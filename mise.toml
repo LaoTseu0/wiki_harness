@@ -1,0 +1,7 @@
+[tools]
+python = "3.12"
+
+# Crée et active automatiquement le venv en entrant dans le repo —
+# un seul moteur Python (racine) pour tous les modules
+[env]
+_.python.venv = { path = ".venv", create = true }
