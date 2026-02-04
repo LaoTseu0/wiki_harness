@@ -45,20 +45,11 @@ et cite (source : backlog.md > NAS).
 ================================================================
 """
 
-import sys
-from pathlib import Path
-
 import httpx
 
-# Le script vit dans son dossier de lecon ; rag_commun.py reste a la
-# racine du module, et 05_rechercher.py dans le dossier de la lecon
-# 2.1.5. On ajoute les deux au chemin de recherche des imports.
-MODULE = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(MODULE))
-sys.path.insert(0, str(MODULE / "2.1-v0.0.1-rag-a-la-main" / "2.1.5-recherche-top-k"))
+from importlib import import_module
 
 from rag_commun import MODELE_CHAT, OLLAMA
-from importlib import import_module
 
 # "05_rechercher" commence par un chiffre : import classique impossible,
 # on passe par import_module (juste pour reutiliser ton code du 05).

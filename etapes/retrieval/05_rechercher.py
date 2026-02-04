@@ -45,13 +45,6 @@ Attendu pour "backup du NAS" (scores a ~0.01 pres) :
 
 import json
 import sqlite3
-import sys
-from pathlib import Path
-
-# Le script vit dans son dossier de lecon ; rag_commun.py reste a la
-# racine du module (bibliotheque partagee). On ajoute cette racine au
-# chemin de recherche des imports.
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from rag_commun import BASE, embedder, similarite_cosinus
 

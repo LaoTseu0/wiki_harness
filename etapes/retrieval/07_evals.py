@@ -57,19 +57,9 @@ mediocre. C'est le point de depart chiffre que la v2 doit battre.
 """
 
 import json
-import sys
 
 from pathlib import Path
 from importlib import import_module
-
-# Le script vit dans son dossier de lecon ; les scripts 05 et 06 sont
-# dans les leurs, et rag_commun.py a la racine du module. On ajoute
-# les trois emplacements au chemin de recherche des imports.
-MODULE = Path(__file__).resolve().parents[2]
-V1 = MODULE / "2.1-v0.0.1-rag-a-la-main"
-sys.path.insert(0, str(MODULE))
-sys.path.insert(0, str(V1 / "2.1.5-recherche-top-k"))
-sys.path.insert(0, str(V1 / "2.1.6-rag-complet"))
 
 _m06 = import_module("06_rag")
 charger_index = import_module("05_rechercher").charger_index
@@ -77,10 +67,9 @@ rechercher = import_module("05_rechercher").rechercher
 construire_prompt = _m06.construire_prompt
 generer = _m06.generer
 
-# Le jeu de questions vit a la racine du module (evals/), partage par
-# toutes les generations — plus de dependance a l'emplacement du repo
-# homelab pour les evals elles-memes.
-JEU = MODULE / "evals" / "questions.json"
+# Le jeu de questions vit dans evals/, a cote des etapes qui l'utilisent —
+# aucune dependance a l'emplacement du repo homelab pour les evals.
+JEU = Path(__file__).resolve().parent / "evals" / "questions.json"
 
 
 def chunk_contient_reponse(chunks: list[tuple], mots_cles: list[str]) -> bool:
