@@ -1,9 +1,6 @@
-# 3.3.3 Note de conception
+# Note de conception
 
-> **Leçon de la section [3.3 Comparaison des régimes d'agents](../3.3-comparaison-regimes-agents.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -17,25 +14,25 @@ entretien.
 
 - **La note de conception, structure canonique** (une page, style ADR) :
   1. **contexte** : l'agent Jarvis, Phase 3 de
-     [jarvis.md](../../../../homelab/architecture/jarvis.md) ;
+     [jarvis.md](../../../homelab/architecture/jarvis.md) ;
   2. **décisions** (avec alternatives écartées et pourquoi) : hooks +
      conteneur plutôt que prompt seul
-     ([3.1](../../3.1-garde-fous-et-securite/3.1-garde-fous-et-securite.md)),
+     ([3.1](garde-fous.md)),
      deux outils HA au lieu d'un
-     ([3.2.1](../../3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md)),
+     ([3.2.1](outil-home-assistant.md)),
      mémoire git vs base
-     ([3.2.2](../../3.2-outils-et-memoire/3.2.2-memoire-versionnee/3.2.2-memoire-versionnee.md)),
+     ([3.2.2](memoire-versionnee.md)),
      harnais Pi vs SDK
-     ([3.3.2](../3.3.2-quatre-regimes/3.3.2-quatre-regimes.md)) ;
+     ([3.3.2](quatre-regimes.md)) ;
   3. **conséquences** : ce qu'on gagne, ce qu'on s'interdit, ce qui
      reste ouvert (le multi-sessions du
-     [3.3.1](../3.3.1-mode-rpc-sdk/3.3.1-mode-rpc-sdk.md)).
+     [3.3.1](mode-rpc-sdk.md)).
 - **Le `.pi/` versionné comme livrable** : extensions (hook
   tool_call), outils enregistrés, hooks de session mémoire, config —
   le dossier *est* le profil reproductible de l'agent : cloner, lancer,
   obtenir le même agent confiné. Peu de candidats peuvent montrer ça —
   d'où « le projet portfolio le plus original du lot »
-  ([roadmap](../../../roadmap.md)).
+  ([roadmap](../_archive/roadmap.md)).
 - **La règle d'écriture** : une décision = alternatives + choix +
   raison en une phrase chacun. Pas de prose d'ambiance — le format ADR
   existe pour être relu dans six mois.
@@ -56,7 +53,7 @@ d'environnement), tag de fin de module.
 - La note qui paraphrase le code : elle documente les *pourquoi* et
   les alternatives écartées — le code dit déjà le comment.
 
-## Question d'entretien
+## Se tester
 
 > « Racontez une décision d'architecture que vous avez prise sur ce
 > projet. »
@@ -68,5 +65,5 @@ d'environnement), tag de fin de module.
 ## Références
 
 - Le format ADR (Architecture Decision Records) — Michael Nygard
-- [jarvis.md](../../../../homelab/architecture/jarvis.md) — la Phase 3
+- [jarvis.md](../../../homelab/architecture/jarvis.md) — la Phase 3
   que ce module réalise
