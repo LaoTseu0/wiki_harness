@@ -1,16 +1,13 @@
-# 1.3.6 Sortie précoce et semver
+# Sortie précoce et semver
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir — c'est cette leçon qui déclenche la 0.0.1
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 Pas de big-bang final : le framework sort en **0.0.1 dès que les
 premières briques promues existent** (client LLM, outils, `rag_commun`),
 puis évolue par incréments versionnés. La décision du 21 juillet 2026
-([roadmap §1.5](../../../roadmap.md)) : fini les « v1/v2/v3 » fermées —
+([roadmap §1.5](../_archive/roadmap.md)) : fini les « v1/v2/v3 » fermées —
 tout est jalons successifs, taggés, comparables.
 
 ## Le savoir
@@ -32,7 +29,7 @@ tout est jalons successifs, taggés, comparables.
     (« le score a bougé entre 0.0.3 et 0.0.4 — voici le diff ») ;
   - psychologiquement : un livrable imparfait publié bat un chef-d'œuvre
     en cours — c'est le principe n°2 de la
-    [roadmap](../../../roadmap.md) (« chaque module produit un livrable
+    [roadmap](../_archive/roadmap.md) (« chaque module produit un livrable
     qui tourne »).
 - **La mécanique** : version dans `pyproject.toml`, tag git annoté
   (`git tag -a v0.0.1 -m "..."`), CHANGELOG court par release (3 lignes
@@ -55,7 +52,7 @@ consommateur. Durée cible : < 10 minutes, sinon on ne le fera pas.
 - CHANGELOG romancé : trois lignes factuelles battent une page — c'est
   un outil de diff, pas de la communication.
 
-## Question d'entretien
+## Se tester
 
 > « Comment gérez-vous les versions d'une lib interne qui bouge
 > vite ? »
@@ -66,5 +63,5 @@ consommateur. Durée cible : < 10 minutes, sinon on ne le fera pas.
 ## Références
 
 - semver.org ; Keep a Changelog (format minimal)
-- [Commit `0704c42`](../../../roadmap.md) du repo — la décision semver
+- [Commit `0704c42`](../_archive/roadmap.md) du repo — la décision semver
   appliquée à l'arborescence elle-même

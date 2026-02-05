@@ -1,18 +1,15 @@
-# 1.3.4 Routage multi-agentique
+# Routage multi-agentique
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
-Le [routeur multi-modèles](../../../../homelab/architecture/router-multi-model.md)
+Le [routeur multi-modèles](../../../homelab/architecture/router-multi-model.md)
 du homelab devenu code : envoyer chaque requête au **bon modèle** selon
 coût / latence / qualité / confidentialité, et orchestrer plusieurs
 agents quand une tâche se décompose. C'est la « gateway
 multi-modèles » des offres (GRDF en construit littéralement une —
-[roadmap §10.3](../../../roadmap.md)).
+[roadmap §10.3](../_archive/roadmap.md)).
 
 ## Le savoir
 
@@ -25,7 +22,7 @@ multi-modèles » des offres (GRDF en construit littéralement une —
     les gros), par **escalade** (essayer petit, escalader si échec
     mesurable — le pattern au meilleur ratio coût/qualité).
 - **Multi-agents, version sceptique** (le scepticisme de Pi, assumé
-  dans la [roadmap couche 3](../../../roadmap.md)) : des sessions
+  dans la [roadmap couche 3](../_archive/roadmap.md)) : des sessions
   séparées **observables** battent souvent la boîte noire. Le pattern
   retenu : **superviseur/ouvriers** — un superviseur décompose,
   distribue à des ouvriers *sans mémoire partagée*, agrège. Pas de
@@ -53,7 +50,7 @@ défendre chiffres en main.
 - Mémoire partagée entre ouvriers : les agents se polluent — préférer
   le superviseur comme seul point d'agrégation.
 
-## Question d'entretien
+## Se tester
 
 > « Quand introduire du multi-agents, et comment le garder
 > débogable ? »
@@ -64,7 +61,7 @@ défendre chiffres en main.
 
 ## Références
 
-- [router-multi-model.md](../../../../homelab/architecture/router-multi-model.md)
+- [router-multi-model.md](../../../homelab/architecture/router-multi-model.md)
   (homelab) — le raisonnement d'origine
 - Blog d'ingénierie Anthropic sur les agents (veille,
-  [roadmap §7](../../../roadmap.md))
+  [roadmap §7](../_archive/roadmap.md))

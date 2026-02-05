@@ -1,9 +1,6 @@
-# 1.3.1 Architecture modulaire
+# Architecture modulaire
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -31,7 +28,7 @@ la boucle d'agent.
 - **Providers interchangeables** : le client LLM est une interface
   (`Protocol` Python) avec des implémentations Ollama / OpenAI-compat /
   Claude — la
-  [2.4.2](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md)
+  [2.4.2](../retrieval/backend-commutable.md)
   en est le prototype.
 - **Le sens des dépendances** : boucle → (outils, client) ; RAG →
   (retrieval, client) ; **jamais l'inverse**, et jamais brique →
@@ -46,7 +43,7 @@ la boucle d'agent.
 Premier jalon : extraire le client LLM des scripts 01-03 en
 `framework/client.py` + tests ; y brancher `rag_commun` promu — la
 0.0.1 de la
-[1.3.6](../1.3.6-sortie-precoce-semver/1.3.6-sortie-precoce-semver.md).
+[1.3.6](sortie-precoce-semver.md).
 
 ## Pièges connus
 
@@ -57,7 +54,7 @@ Premier jalon : extraire le client LLM des scripts 01-03 en
 - Découper trop fin : six briques, pas seize ; une brique = un concept
   qu'on peut nommer en entretien.
 
-## Question d'entretien
+## Se tester
 
 > « Comment structureriez-vous une lib LLM interne pour qu'elle
 > survive au changement de provider ? »
@@ -67,7 +64,7 @@ Premier jalon : extraire le client LLM des scripts 01-03 en
 
 ## Références
 
-- Le [routeur multi-modèles](../../../../homelab/architecture/router-multi-model.md)
+- Le [routeur multi-modèles](../../../homelab/architecture/router-multi-model.md)
   du homelab — la brique routage en germe
 - « Dependency Inversion Principle » (le D de SOLID) appliqué en Python
   (`typing.Protocol`)

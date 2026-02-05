@@ -1,14 +1,11 @@
-# 1.3.2 Clean code production-grade
+# Clean code production-grade
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 « Production-grade » est dans quasi 100 % des offres
-([roadmap §10.1](../../../roadmap.md)) et veut dire quelque chose de
+([roadmap §10.1](../_archive/roadmap.md)) et veut dire quelque chose de
 précis : du code qu'un collègue peut modifier sans peur. Cinq
 pratiques concrètes — typing, Pydantic, pytest, packaging,
 docstrings — appliquées **à la promotion** de chaque brique, pas en
@@ -29,7 +26,7 @@ grand soir final.
 - **Packaging** : `pyproject.toml`, layout `src/`, install éditable
   (`pip install -e .`) — c'est ce qui permet aux modules 2-7
   d'importer le framework proprement
-  ([2.4.3](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.3-tests-typing-packaging/2.4.3-tests-typing-packaging.md)
+  ([2.4.3](../retrieval/tests-typing-packaging.md)
   fait le même mouvement côté RAG).
 - **Docstrings** : minimales dans le code (convention du parcours — le
   `.md` compagnon porte la pédagogie) ; une docstring = le contrat, pas
@@ -50,7 +47,7 @@ la docstring comme un contrat. Ordre fixe, ~une heure par brique.
 - Tester le LLM au lieu du code : les tests unitaires mockent le
   client ; le comportement du modèle, lui, se mesure aux evals.
 
-## Question d'entretien
+## Se tester
 
 > « Qu'est-ce qui distingue votre code d'un script de data scientist ? »
 > Interfaces typées et vérifiées, validation aux frontières, tests qui

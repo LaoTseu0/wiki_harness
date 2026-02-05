@@ -1,9 +1,6 @@
-# 1.1 Socle sans framework ✅
+# Socle sans framework
 
-> **Module 1 — 01-llm-from-scratch** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md) · [progression du module](../PROGRESSION.md)
-> **Statut** : ✅ terminé le 20 juillet 2026
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -17,15 +14,15 @@ SDK feront plus tard est déjà là, en ~200 lignes à chaque fois.
 
 ## Contenu
 
-- [x] **[1.1.1 Chat CLI, historique et contexte](1.1.1-chat-cli-historique-contexte/1.1.1-chat-cli-historique-contexte.md)**
+- **[1.1.1 Chat CLI, historique et contexte](chat-historique-contexte.md)**
       — modèle stateless, streaming, troncature et compaction à la main
-- [x] **[1.1.2 Sampling et prompting](1.1.2-sampling-et-prompting/1.1.2-sampling-et-prompting.md)**
+- **[1.1.2 Sampling et prompting](sampling-et-prompting.md)**
       — temperature, top-k, top-p ; zero/few-shot, chain-of-thought
-- [x] **[1.1.3 Function calling à la main](1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md)**
+- **[1.1.3 Function calling à la main](function-calling.md)**
       — schémas JSON, parsing, exécution, renvoi (= ReAct implémenté)
-- [x] **[1.1.4 Mini-boucle d'agent](1.1.4-mini-boucle-agent/1.1.4-mini-boucle-agent.md)**
+- **[1.1.4 Mini-boucle d'agent](boucle-agent.md)**
       — pattern Pi : read/write/edit/bash dans une boucle while
-- [x] **[1.1.5 Structured output](1.1.5-structured-output/1.1.5-structured-output.md)**
+- **[1.1.5 Structured output](structured-output.md)**
       — extraction JSON validée Pydantic, retry sur JSON invalide
 
 ## Synthèse
@@ -36,16 +33,12 @@ en boucle (1.1.4) et rendre des sorties fiables (1.1.5) — c'est un
 agent.* Chaque module suivant ne fait que spécialiser une de ces
 briques : le RAG enrichit le contexte, le MCP standardise les outils,
 le framework maison les industrialise.
-**Auto-contrôle** : savoir expliquer, au niveau HTTP/JSON, ce qui se
-passe entre « le modèle décide d'appeler un outil » et « le modèle
-reçoit le résultat » — c'est la question d'entretien n°2 du
-[relevé de terrain](../../roadmap.md).
+**Se tester** : savoir expliquer, au niveau HTTP/JSON, ce qui se passe
+entre « le modèle décide d'appeler un outil » et « le modèle reçoit le
+résultat ».
 
-## Livrable
+## Les étapes
 
-Les 8 scripts, chacun dans le dossier de sa leçon
-([01_hello.py](1.1.1-chat-cli-historique-contexte/01_hello.py) →
-[08_structured.py](1.1.5-structured-output/08_structured.py)) +
-[README](../README.md) anglais + [PROGRESSION.md](../PROGRESSION.md).
-**CV** : « implemented tool-calling agent loop from scratch against a
-self-hosted LLM ».
+Les 8 scripts, de [01_hello.py](../../etapes/fondamentaux/01_hello.py)
+à [08_structured.py](../../etapes/fondamentaux/08_structured.py) —
+à lire et à exécuter dans l'ordre.

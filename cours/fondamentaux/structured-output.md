@@ -1,9 +1,6 @@
-# 1.1.5 Structured output
+# Structured output
 
-> **Leçon de la section [1.1 Socle sans framework](../1.1-socle-sans-framework.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis (20 juillet 2026)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`08_structured.py`](../../etapes/fondamentaux/08_structured.py)
 
 ## L'essentiel
 
@@ -31,11 +28,11 @@ garantit la forme, jamais la complétude ni le sens.*
   chaîne vide passe une validation `str`. La complétude et le sens
   exigent des contraintes sémantiques (`Field(min_length=1)`,
   validators) — et parfois un juge
-  ([2.3.2](../../../02-homelab-rag/2.3-v0.0.3-llamaindex-outillage-standard/2.3.2-llm-as-judge/2.3.2-llm-as-judge.md)).
+  ([2.3.2](../retrieval/llm-as-judge.md)).
 
 ## En pratique
 
-[08_structured.py](08_structured.py) : extraction d'infos vers un
+[08_structured.py](../../etapes/fondamentaux/08_structured.py) : extraction d'infos vers un
 modèle Pydantic ; `extraire()` avec retry **écrite par Anthony**
 (ternaire Python spontané) ; banc d'essai des trois régimes.
 
@@ -49,7 +46,7 @@ modèle Pydantic ; `extraire()` avec retry **écrite par Anthony**
 - Parser avec une regex « parce que c'est presque du JSON » — utiliser
   le décodage contraint, il existe pour ça.
 
-## Question d'entretien
+## Se tester
 
 > « Comment garantissez-vous qu'un LLM renvoie du JSON exploitable ? »
 > Décodage contraint pour la forme + validation Pydantic pour les
