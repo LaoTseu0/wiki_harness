@@ -1,11 +1,6 @@
-# 1.2.5 Handshake MCP
+# Handshake MCP
 
-> **Leçon de la section [1.2 Glossaire exécutable](../1.2-glossaire-executable.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ exercice à écrire avec la
-> [5.2](../../../05-homelab-mcp/5.2-client/5.2-client.md) (le client
-> minimal EST cet exercice)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -29,7 +24,7 @@ du protocole ».
 - **La découverte** : `tools/list` renvoie chaque outil avec `name`,
   `description` et `inputSchema` (JSON Schema) — exactement le format
   du function calling de
-  [1.1.3](../../1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md) :
+  [1.1.3](../fondamentaux/function-calling.md) :
   MCP standardise la *distribution* des outils, pas leur nature.
 - **L'appel** : `tools/call` avec `{name, arguments}` → `result.content`
   (liste de blocs typés : text, image…) + `isError`.
@@ -44,7 +39,7 @@ L'exercice (~50 lignes) : lancer un serveur MCP en sous-processus,
 échanger les trois messages sur stdio (une ligne JSON par message),
 afficher la liste d'outils, en appeler un — sans SDK d'aucun côté.
 C'est le livrable de la
-[5.2](../../../05-homelab-mcp/5.2-client/5.2-client.md).
+[5.2](../mcp/client.md).
 
 ## Pièges connus
 
@@ -55,7 +50,7 @@ C'est le livrable de la
 - Mélanger logs et protocole sur stdout : en stdio, stdout est réservé
   au JSON-RPC — les logs vont sur stderr.
 
-## Question d'entretien
+## Se tester
 
 > « Que se passe-t-il concrètement quand un client MCP se connecte à un
 > serveur ? »

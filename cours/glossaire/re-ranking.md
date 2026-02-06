@@ -1,11 +1,6 @@
-# 1.2.2 Re-ranking
+# Re-ranking
 
-> **Leçon de la section [1.2 Glossaire exécutable](../1.2-glossaire-executable.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ exercice à écrire quand la
-> [2.2](../../../02-homelab-rag/2.2-v0.0.2-qdrant-retrieval-avance/2.2-v0.0.2-qdrant-retrieval-avance.md)
-> l'introduira — le savoir est ici
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -39,7 +34,7 @@ précision ensuite* — exigé tel quel par les offres seniors.
 L'exercice (~50 lignes) : prendre le top-20 vecteurs du RAG, re-scorer
 chaque paire (question, chunk) avec Qwen3 via un prompt de notation
 0-10, re-trier, comparer le rang du bon document avant/après sur le
-[jeu d'evals](../../../02-homelab-rag/evals/questions.json).
+[jeu d'evals](../../etapes/retrieval/evals/questions.json).
 
 ## Pièges connus
 
@@ -48,9 +43,9 @@ chaque paire (question, chunk) avec Qwen3 via un prompt de notation
 - Latence oubliée : 50 passages de cross-encoder peuvent coûter plus
   que tout le reste de la chaîne ; mesurer, budgéter.
 - LLM-as-reranker sans schéma de sortie : les notes arrivent en prose —
-  contraindre ([1.1.5](../../1.1-socle-sans-framework/1.1.5-structured-output/1.1.5-structured-output.md)).
+  contraindre ([1.1.5](../fondamentaux/structured-output.md)).
 
-## Question d'entretien
+## Se tester
 
 > « Votre RAG ramène le bon document en 8ᵉ position : que faites-vous ? »
 > Élargir le top-k au retrieval, ajouter un re-ranker cross-encoder sur
