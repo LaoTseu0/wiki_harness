@@ -1,9 +1,6 @@
-# 4.2.2 Charge concurrente
+# Charge concurrente
 
-> **Leçon de la section [4.2 Benchmark documenté vs Ollama](../4.2-benchmark-vs-ollama.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -19,20 +16,20 @@ trace ce que chacun fait de la file.
   fait patienter le reste — le TTFT des requêtes en file **explose
   linéairement**. vLLM insère chaque nouvelle requête dans le batch en
   cours (batching continu,
-  [4.3.1](../../4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)) :
+  [4.3.1](mecanismes-vllm.md)) :
   le débit **agrégé** grimpe, au prix d'une érosion progressive des
   tokens/s par requête.
 - **Le scénario de charge** : n workers async lancés en salve, chacun
-  mesurant ses métriques ([4.2.1](../4.2.1-metriques-debit-latence/4.2.1-metriques-debit-latence.md)) ;
+  mesurant ses métriques ([4.2.1](metriques-debit-latence.md)) ;
   prompts réalistes légèrement variés (éviter de mesurer le
-  [prompt caching](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.4-prompt-caching/1.2.4-prompt-caching.md)
+  [prompt caching](../glossaire/prompt-caching.md)
   à son insu) ; n ∈ {1, 5, 20}, plusieurs salves par point.
 - **Ce qu'on lit dans les courbes attendues** :
   - TTFT p95 vs n : plat puis mur chez Ollama (la file), dégradation
     douce chez vLLM ;
   - débit agrégé vs n : plafonne vite chez Ollama, croît chez vLLM
     jusqu'à saturation du KV cache (6 Go — le mur arrive tôt,
-    [4.1.1](../../4.1-deploiement/4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md)) ;
+    [4.1.1](vllm-sur-rtx-2060.md)) ;
   - à surveiller : préemptions/évictions vLLM quand le cache sature
     (visibles dans ses logs/metrics).
 - **Asyncio, pas threads** : la charge est de l'I/O pur (attendre des
@@ -56,7 +53,7 @@ par requête, débit agrégé, en fonction de n.
   partagés faussent tout — un moteur à la fois, vérifié par
   `nvidia-smi`.
 
-## Question d'entretien
+## Se tester
 
 > « Comment se comporte votre serveur à 20 utilisateurs
 > simultanés ? »

@@ -1,16 +1,13 @@
-# 4.1.1 vLLM sur RTX 2060
+# vLLM sur RTX 2060
 
-> **Leçon de la section [4.1 Déploiement](../4.1-deploiement.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 vLLM est le serveur d'inférence des offres « LLM infra » : pensé pour
 servir **N utilisateurs concurrents** sur GPU (batching continu,
 PagedAttention — mécanismes détaillés en
-[4.3.1](../../4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)).
+[4.3.1](mecanismes-vllm.md)).
 Le défi ici est assumé : le faire tenir sur une RTX 2060 à **6 Go** —
 contrainte qui force à comprendre chaque mégaoctet.
 
@@ -34,7 +31,7 @@ contrainte qui force à comprendre chaque mégaoctet.
   la demande (confort mono-usager, GGUF/CPU-friendly) ; vLLM
   **préalloue et occupe** la carte (rendement multi-usagers). Les deux
   exposent une API **OpenAI-compatible** — notre
-  [backend commutable](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md)
+  [backend commutable](../retrieval/backend-commutable.md)
   bascule sans changer de code (le dogfooding du framework en action).
 - **Déploiement homelab** : image officielle `vllm/vllm-openai`,
   runtime nvidia, port 8000 — un conteneur de plus, mais qui
@@ -46,7 +43,7 @@ contrainte qui force à comprendre chaque mégaoctet.
 Compose avec runtime nvidia, un modèle 3B instruct quantisé AWQ,
 `--max-model-len 4096` ; validation : `curl /v1/models`, une
 complétion, `nvidia-smi` pour lire l'occupation — noter chaque chiffre,
-ils alimentent le [README du bench](../../4.3-analyse-et-verdict/4.3.2-verdict-ollama-vs-vllm/4.3.2-verdict-ollama-vs-vllm.md).
+ils alimentent le [README du bench](verdict-ollama-vs-vllm.md).
 
 ## Pièges connus
 
@@ -59,24 +56,24 @@ ils alimentent le [README du bench](../../4.3-analyse-et-verdict/4.3.2-verdict-o
   pas identique — et plutôt que « le dire dans le README », le
   **mesurer** : rejouer le jeu d'evals du module 2 sur les deux
   moteurs via le
-  [backend commutable](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md) —
+  [backend commutable](../retrieval/backend-commutable.md) —
   l'écart de qualité devient une ligne de tableau, pas une note de
   bas de page.
 - Oublier qu'une carte de 2019 (Turing) n'a pas toutes les
   optimisations récentes : certaines options (FP8, etc.) sont
   indisponibles — vérifier les logs de démarrage.
 
-## Question d'entretien
+## Se tester
 
 > « Que faut-il pour servir un LLM 7B à une équipe ? »
 > Budget VRAM décomposé (poids quantisés + KV cache × concurrence
 > cible), un serveur à batching continu (vLLM), max-model-len
 > dimensionné à l'usage, API OpenAI-compatible pour l'intégration — et
 > des mesures de charge avant la promesse
-> ([4.2.2](../../4.2-benchmark-vs-ollama/4.2.2-charge-concurrente/4.2.2-charge-concurrente.md)).
+> ([4.2.2](charge-concurrente.md)).
 
 ## Références
 
 - Doc vLLM : engine args, quantization, OpenAI server
-- [Roadmap couche 1](../../../roadmap.md) — VRAM = poids + cache +
+- [Roadmap couche 1](../_archive/roadmap.md) — VRAM = poids + cache +
   contexte

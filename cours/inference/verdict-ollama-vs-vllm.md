@@ -1,9 +1,6 @@
-# 4.3.2 Verdict Ollama vs vLLM
+# Verdict Ollama vs vLLM
 
-> **Leçon de la section [4.3 Analyse et verdict](../4.3-analyse-et-verdict.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -25,9 +22,9 @@ refuser le faux duel.
 - **Quand vLLM se justifie** :
   - **concurrence réelle** (une équipe, un service public interne) :
     le débit agrégé et le TTFT sous charge sont sans appel
-    ([4.2.2](../../4.2-benchmark-vs-ollama/4.2.2-charge-concurrente/4.2.2-charge-concurrente.md)) ;
+    ([4.2.2](charge-concurrente.md)) ;
   - besoin de rendement par euro de GPU (batching continu,
-    PagedAttention — [4.3.1](../4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)) ;
+    PagedAttention — [4.3.1](mecanismes-vllm.md)) ;
   - production outillée : métriques Prometheus, déploiement k8s — le
     monde des offres « LLM infra ».
   - Coûts associés à assumer : préallocation VRAM (la carte est
@@ -37,9 +34,9 @@ refuser le faux duel.
   6 Go borne vite la fête ; à ~5 utilisateurs c'est déjà pertinent, à
   1 c'est du sur-engineering.
 - **La structure du post/README** (« un README qui tourne »,
-  [P.2.1](../../../transverse-portfolio/p.2-ecrire/p.2.1-un-post-par-module/p.2.1-un-post-par-module.md)) :
-  question → montage ([4.1.1](../../4.1-deploiement/4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md))
-  → métriques ([4.2.1](../../4.2-benchmark-vs-ollama/4.2.1-metriques-debit-latence/4.2.1-metriques-debit-latence.md))
+  [P.2.1](../_archive/portfolio/p.2-ecrire/p.2.1-un-post-par-module/p.2.1-un-post-par-module.md)) :
+  question → montage ([4.1.1](vllm-sur-rtx-2060.md))
+  → métriques ([4.2.1](metriques-debit-latence.md))
   → courbes → mécanismes → règle de décision. Les chiffres d'abord,
   l'opinion en conclusion.
 
@@ -64,7 +61,7 @@ demandant : « un lead infra qui lit ça peut-il décider ? ».
   VRAM de vLLM interdit le multi-modèles à la Ollama — ça compte dans
   un homelab.
 
-## Question d'entretien
+## Se tester
 
 > « Ollama ou vLLM pour notre équipe de 10 devs ? »
 > Question de charge : 10 utilisateurs actifs → vLLM (batching
@@ -75,5 +72,5 @@ demandant : « un lead infra qui lit ça peut-il décider ? ».
 ## Références
 
 - Les courbes du bench (ce module) — la preuve
-- [Roadmap §3](../../../roadmap.md) — le profil « LLM Infra / MLOps
+- [Roadmap §3](../_archive/roadmap.md) — le profil « LLM Infra / MLOps
   GPU » que ce discours adresse
