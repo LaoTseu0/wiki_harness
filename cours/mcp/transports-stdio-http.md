@@ -1,14 +1,11 @@
-# 5.1.2 Transports stdio et HTTP
+# Transports stdio et HTTP
 
-> **Leçon de la section [5.1 Le serveur](../5.1-serveur.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 MCP sépare **la couche données** (JSON-RPC,
-[1.2.5](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.5-handshake-mcp/1.2.5-handshake-mcp.md))
+[1.2.5](../glossaire/handshake-mcp.md))
 de **la couche transport** : les mêmes messages voyagent en **stdio**
 (local, un sous-processus par client) ou en **HTTP streamable**
 (distant, un serveur pour plusieurs clients). Stdio d'abord — simple et
@@ -24,7 +21,7 @@ suffisant pour Claude Code — HTTP ensuite, pour le homelab en réseau.
     cycle de vie lié au host, et la règle d'hygiène absolue : stdout
     est réservé au protocole, **les logs vont sur stderr** ;
   - c'est le transport du branchement
-    [Claude Code](../5.1.3-integration-claude-code/5.1.3-integration-claude-code.md).
+    [Claude Code](integration-claude-code.md).
 - **HTTP streamable** : le serveur écoute (un endpoint MCP, réponses
   streamées SSE) ; les clients se connectent par le réseau.
   - Forces : serveur **partagé** (un seul processus pour tous les
@@ -32,7 +29,7 @@ suffisant pour Claude Code — HTTP ensuite, pour le homelab en réseau.
     les autres services ;
   - coûts : c'est un service réseau — auth (token au minimum), TLS si
     on sort du LAN, gestion de sessions ; la surface d'attaque naît
-    ici ([5.3](../../5.3-securite/5.3-securite.md)) ;
+    ici ([5.3](securite.md)) ;
   - à situer : SSE pur est l'ancien transport, « streamable HTTP » le
     courant — les deux se rencontrent dans la nature.
 - **Le choix par défaut** : stdio tant qu'un seul host local consomme ;
@@ -45,7 +42,7 @@ suffisant pour Claude Code — HTTP ensuite, pour le homelab en réseau.
 Étape 1 : stdio (le défaut FastMCP), validé avec l'inspector puis
 Claude Code. Étape 2 : le même serveur en HTTP streamable dans un
 conteneur du homelab, token simple, test depuis le
-[client maison](../../5.2-client/5.2.1-client-mcp-minimal/5.2.1-client-mcp-minimal.md)
+[client maison](client-mcp-minimal.md)
 en réseau.
 
 ## Pièges connus
@@ -60,7 +57,7 @@ en réseau.
 - Exposer le HTTP sans auth « parce que c'est le LAN » : le serveur
   lit HA et la doc — un token et un bind d'interface, minimum.
 
-## Question d'entretien
+## Se tester
 
 > « stdio ou HTTP pour un serveur MCP ? »
 > stdio : local, un processus par client, sécurité du processus,
@@ -72,5 +69,5 @@ en réseau.
 ## Références
 
 - Spec MCP, section transports
-- [5.3 Le versant sécurité](../../5.3-securite/5.3-securite.md) — ce
+- [5.3 Le versant sécurité](securite.md) — ce
   que le passage réseau ouvre

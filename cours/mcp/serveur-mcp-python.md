@@ -1,9 +1,6 @@
-# 5.1.1 Serveur MCP Python
+# Serveur MCP Python
 
-> **Leçon de la section [5.1 Le serveur](../5.1-serveur.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -18,7 +15,7 @@ recherche dans la doc — trois outils, trois sources, zéro écriture.
 - **Le SDK officiel (FastMCP)** : un outil = une fonction Python
   décorée ; la signature typée + la docstring **deviennent** le schéma
   JSON publié — le design d'outil de la
-  [1.1.3](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md)
+  [1.1.3](../fondamentaux/function-calling.md)
   s'applique tel quel (description = prompt engineering, sorties
   compactes).
 - **Les trois outils du serveur** :
@@ -26,22 +23,22 @@ recherche dans la doc — trois outils, trois sources, zéro écriture.
     nom, état, santé — résumé, pas le JSON brut ;
   - `ha_entites(filtre)` — états HA en lecture, liste blanche
     d'entités (même périmètre que la
-    [3.2.1](../../../03-jarvis-agent/3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md) —
+    [3.2.1](../agent/outil-home-assistant.md) —
     le savoir-faire est partagé) ;
   - `chercher_doc(question, k)` — appelle le **service RAG** du
     module 2 (`POST /ask`,
-    [2.4.1](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.1-service-fastapi/2.4.1-service-fastapi.md)) :
+    [2.4.1](../retrieval/service-fastapi.md)) :
     réutilisation, pas duplication — le serveur MCP est un *adaptateur*
     de protocole, la logique reste dans le service.
 - **Lecture seule par conception** : aucune écriture exposée — le
   moindre privilège du
-  [module 3](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1-garde-fous-et-securite.md)
+  [module 3](../agent/garde-fous.md)
   appliqué au protocole ; et la surface d'injection
-  ([5.3.1](../../5.3-securite/5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md))
+  ([5.3.1](prompt-injection-indirecte.md))
   reste bornée à l'exfiltration, pas à l'action.
 - **Le coût en contexte, à concevoir — et à mesurer** : chaque outil
   découvert entre dans la fenêtre du host (le rejet de MCP par Pi
-  vécu au homelab — [roadmap couche 4](../../../roadmap.md)) : trois
+  vécu au homelab — [roadmap couche 4](../_archive/roadmap.md)) : trois
   outils bien décrits, pas quinze. Le chiffre s'obtient en comptant
   les tokens des `inputSchema` renvoyés par `tools/list` tels
   qu'injectés dans la fenêtre — le mesurer pour *son* serveur, c'est
@@ -50,7 +47,7 @@ recherche dans la doc — trois outils, trois sources, zéro écriture.
   MCP se justifie à partir de **deux hosts consommateurs** ou d'un
   besoin d'interopérabilité hors harnais ; pour un seul harnais
   maison, `registerTool`
-  ([3.2.1](../../../03-jarvis-agent/3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md))
+  ([3.2.1](../agent/outil-home-assistant.md))
   reste moins cher (pas de handshake, pas de schémas re-découverts à
   chaque session). L'arbitrage du module est de marché (~60 % des
   offres) — celui-ci est le technique, et il faut savoir donner les
@@ -61,7 +58,7 @@ recherche dans la doc — trois outils, trois sources, zéro écriture.
 `serveur.py` (FastMCP) : les trois outils, périmètres en config,
 timeouts sur les backends (docker/HA/RAG), erreurs renvoyées comme
 `isError` propre — testable dès maintenant avec l'inspector MCP, avant
-même le [transport HTTP](../5.1.2-transports-stdio-http/5.1.2-transports-stdio-http.md).
+même le [transport HTTP](transports-stdio-http.md).
 
 ## Pièges connus
 
@@ -74,7 +71,7 @@ même le [transport HTTP](../5.1.2-transports-stdio-http/5.1.2-transports-stdio-
   renvoie une erreur MCP — un serveur d'outils ne meurt pas d'un
   conteneur arrêté.
 
-## Question d'entretien
+## Se tester
 
 > « Qu'expose un serveur MCP, et comment le concevez-vous ? »
 > Des outils typés découvrables (nom, description, inputSchema), ici
@@ -85,5 +82,5 @@ même le [transport HTTP](../5.1.2-transports-stdio-http/5.1.2-transports-stdio-
 ## Références
 
 - SDK MCP Python (FastMCP) + MCP Inspector
-- [1.2.5 Handshake MCP](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.5-handshake-mcp/1.2.5-handshake-mcp.md)
+- [1.2.5 Handshake MCP](../glossaire/handshake-mcp.md)
   — ce que le SDK enrobe

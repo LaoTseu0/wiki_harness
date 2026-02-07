@@ -1,10 +1,6 @@
-# 5.2 Le client
+# Le client
 
-> **Module 5 — 05-homelab-mcp** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : 3e, avant le module 3
-> *(décision du 21 juillet 2026)*
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -16,9 +12,9 @@ serveur MCP » — la formulation exacte de certaines offres.
 
 ## Contenu
 
-- [ ] **[5.2.1 Client MCP minimal](5.2.1-client-mcp-minimal/5.2.1-client-mcp-minimal.md)**
+- **[5.2.1 Client MCP minimal](client-mcp-minimal.md)**
       — handshake, découverte, appel — sans SDK *(= l'exercice de
-      l'[entrée glossaire handshake MCP](../../01-llm-from-scratch/1.2-glossaire-executable/1.2.5-handshake-mcp/1.2.5-handshake-mcp.md))*
+      l'[entrée glossaire handshake MCP](../glossaire/handshake-mcp.md))*
 
 ## Synthèse
 
@@ -32,5 +28,5 @@ marche sur les deux, le protocole est compris.
 
 ## Références
 
-- [1.2.5 Handshake MCP](../../01-llm-from-scratch/1.2-glossaire-executable/1.2.5-handshake-mcp/1.2.5-handshake-mcp.md)
+- [1.2.5 Handshake MCP](../glossaire/handshake-mcp.md)
   — la théorie que ce client exécute

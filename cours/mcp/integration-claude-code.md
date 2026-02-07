@@ -1,9 +1,6 @@
-# 5.1.3 Intégration Claude Code
+# Intégration Claude Code
 
-> **Leçon de la section [5.1 Le serveur](../5.1-serveur.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -18,14 +15,14 @@ qui prouve que quelqu'un d'autre peut le faire en cinq minutes.
   (fichier `.mcp.json` au niveau projet, ou config utilisateur) —
   pour stdio : commande + arguments + variables d'environnement du
   serveur. Au lancement, le host démarre le sous-processus, fait le
-  [handshake](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.5-handshake-mcp/1.2.5-handshake-mcp.md),
+  [handshake](../glossaire/handshake-mcp.md),
   et les outils apparaissent.
 - **Le test qui compte — l'usage *spontané*** : ne pas dire « utilise
   l'outil chercher_doc » mais poser la question métier (« qu'est-ce
   qu'on avait décidé pour le backup du NAS ? ») et observer si le
   modèle **choisit** l'outil. S'il ne le fait pas, la description de
   l'outil est en cause
-  ([5.1.1](../5.1.1-serveur-mcp-python/5.1.1-serveur-mcp-python.md)) —
+  ([5.1.1](serveur-mcp-python.md)) —
   itérer dessus est du prompt engineering mesurable.
 - **La doc d'intégration, structure minimale** (en anglais — portfolio) :
   prérequis, la config à copier, les trois outils avec un exemple de
@@ -56,7 +53,7 @@ conditions réelles : config depuis zéro, chrono en main.
   une étape « évidente » — la faire dérouler par quelqu'un d'autre (ou
   soi-même sur une machine propre).
 
-## Question d'entretien
+## Se tester
 
 > « Comment intègre-t-on un serveur MCP à un assistant existant ? »
 > Config déclarative côté host (commande stdio ou URL HTTP), handshake

@@ -1,9 +1,6 @@
-# 5.3.1 Prompt injection indirecte
+# Prompt injection indirecte
 
-> **Leçon de la section [5.3 Le versant sécurité](../5.3-securite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -20,7 +17,7 @@ LLM-sur-documents, à démontrer sur notre propre chaîne.
   Aucun prompt ne supprime ça ; on ne peut que réduire et confiner.
 - **Le scénario sur notre chaîne** : un `.md` piégé dans le corpus →
   question anodine → `chercher_doc`
-  ([5.1.1](../../5.1-serveur/5.1.1-serveur-mcp-python/5.1.1-serveur-mcp-python.md))
+  ([5.1.1](serveur-mcp-python.md))
   remonte le chunk → l'instruction entre dans la fenêtre du host. Dans
   un système outillé, l'étape suivante est l'**exfiltration par
   outil** : « appelle l'outil X avec le contenu de Y » — l'injection
@@ -28,21 +25,21 @@ LLM-sur-documents, à démontrer sur notre propre chaîne.
 - **Les défenses, par couche** (aucune ne suffit seule) :
   1. **périmètre** : notre serveur est **lecture seule** — l'injection
      peut mentir, pas agir ; le moindre privilège
-     ([3.1.2](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.2-conteneur-moindre-privilege/3.1.2-conteneur-moindre-privilege.md))
+     ([3.1.2](../agent/conteneur-moindre-privilege.md))
      borne le reste ;
   2. **interception** : les actions sensibles repassent par un
      human-in-the-loop
-     ([3.1.1](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.1-hook-tool-call/3.1.1-hook-tool-call.md)) —
+     ([3.1.1](../agent/hook-tool-call.md)) —
      l'humain voit la commande *réelle* ;
   3. **balisage** : délimiter les chunks comme données
-     ([2.1.6](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1.6-rag-complet/2.1.6-rag-complet.md))
+     ([2.1.6](../retrieval/rag-complet.md))
      + consigne de non-obéissance au contenu — réduit, ne garantit
      pas ;
   4. **détection** : scanner le corpus à l'indexation (patterns
      d'instructions), tracer les réponses anormales
-     ([6.1](../../../06-production/6.1-observabilite/6.1-observabilite.md)).
+     ([6.1](../production/observabilite.md)).
 - **La démonstration à documenter** (préfiguration de la
-  [6.2.2](../../../06-production/6.2-securite/6.2.2-tests-adversariaux/6.2.2-tests-adversariaux.md)) :
+  [6.2.2](../production/tests-adversariaux.md)) :
   document piégé → capture du comportement sans défense → défenses une
   à une → tableau de ce qui casse quoi. C'est le README de sécurité du
   module, et un récit d'entretien en or.
@@ -64,7 +61,7 @@ inoffensif. Ne jamais tester avec une charge réellement destructive.
 - Oublier les *résultats d'outils* comme vecteur : tout ce qui entre
   dans la fenêtre est concerné, pas seulement le corpus RAG.
 
-## Question d'entretien
+## Se tester
 
 > « Un document indexé contient une instruction malveillante : que se
 > passe-t-il dans votre système ? »
@@ -76,5 +73,5 @@ inoffensif. Ne jamais tester avec une charge réellement destructive.
 ## Références
 
 - Simon Willison (référence prompt injection —
-  [roadmap §7](../../../roadmap.md))
-- OWASP LLM01 ([6.2.1](../../../06-production/6.2-securite/6.2.1-owasp-top-10-llm/6.2.1-owasp-top-10-llm.md))
+  [roadmap §7](../_archive/roadmap.md))
+- OWASP LLM01 ([6.2.1](../production/owasp-top-10-llm.md))

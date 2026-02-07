@@ -1,10 +1,6 @@
-# 5.3 Le versant sécurité
+# Le versant sécurité
 
-> **Module 5 — 05-homelab-mcp** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : 3e, avant le module 3
-> *(décision du 21 juillet 2026)*
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -16,7 +12,7 @@ d'entretien certain.
 
 ## Contenu
 
-- [ ] **[5.3.1 Prompt injection indirecte](5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md)**
+- **[5.3.1 Prompt injection indirecte](prompt-injection-indirecte.md)**
       — le document piégé, la démonstration sur notre chaîne, les
       défenses
 
@@ -28,7 +24,7 @@ documents du RAG comme les résultats d'outils. Les défenses (séparation
 données/instructions, lecture seule, moindre privilège,
 human-in-the-loop) sont déjà dans l'architecture des modules 3 et 5 ;
 cette section les *éprouve*. Le test adversarial systématique arrive en
-[6.2](../../06-production/6.2-securite/6.2-securite.md).
+[6.2](../production/securite.md).
 **Auto-contrôle** : savoir dérouler le scénario d'attaque complet sur
 notre propre chaîne, et pour chaque étape, nommer la défense qui la
 casse.
