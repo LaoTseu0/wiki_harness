@@ -1,9 +1,6 @@
-# 6.1.3 Suivi des coûts
+# Suivi des coûts
 
-> **Leçon de la section [6.1 Observabilité](../6.1-observabilite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -26,13 +23,13 @@ toutes les offres LLMOps, et l'outil de décision local vs API.
 - **Ce que le chiffre permet** :
   - **dimensionner** : « le RAG consomme ~N M tokens/mois ≈ X €/mois
     en API » — la base du raisonnement local vs cloud
-    ([roadmap couche T](../../../roadmap.md) : « estimer tokens/mois ») ;
+    ([roadmap couche T](../_archive/roadmap.md) : « estimer tokens/mois ») ;
   - **arbitrer le routage**
-    ([1.3.4](../../../01-llm-from-scratch/1.3-framework-maison/1.3.4-routage-multi-agentique/1.3.4-routage-multi-agentique.md)) :
+    ([1.3.4](../framework/routage-multi-agentique.md)) :
     les décisions coût/latence/qualité se prennent sur des coûts
     tracés, pas estimés ;
   - **détecter les dérives** : un agent qui boucle
-    ([1.1.4](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.4-mini-boucle-agent/1.1.4-mini-boucle-agent.md))
+    ([1.1.4](../fondamentaux/boucle-agent.md))
     ou un prompt qui enfle se voient sur la courbe avant de se voir
     ailleurs.
 - **L'honnêteté du modèle de coût local** : le coût équivalent API
@@ -41,7 +38,7 @@ toutes les offres LLMOps, et l'outil de décision local vs API.
   même volume au tarif API. L'écart *dans les deux sens* selon le
   volume est exactement le discours d'entretien.
 - **Le réflexe par requête** : le service RAG renvoie déjà ses
-  métriques ([2.4.1](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.1-service-fastapi/2.4.1-service-fastapi.md)) —
+  métriques ([2.4.1](../retrieval/service-fastapi.md)) —
   y ajouter le coût ferme la boucle : chaque réponse connaît son prix.
 
 ## En pratique
@@ -58,13 +55,13 @@ conclusion.
   cher) : la comparaison ne convainc personne — prendre l'équivalent
   raisonnable et le documenter.
 - Compter les tokens à l'estime : utiliser les comptes exacts renvoyés
-  par l'API ([1.1.1](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/1.1.1-chat-cli-historique-contexte.md)) —
+  par l'API ([1.1.1](../fondamentaux/chat-historique-contexte.md)) —
   ils sont déjà dans les traces.
 - Ignorer les coûts cachés du cloud dans l'autre sens (egress,
   rate limits, montée de gamme forcée) : la comparaison honnête cite
   ses limites des deux côtés.
 
-## Question d'entretien
+## Se tester
 
 > « Local ou API : comment décidez-vous, chiffres en main ? »
 > Tokens/mois mesurés en traces, valorisés au tarif API équivalent,
@@ -75,5 +72,5 @@ conclusion.
 ## Références
 
 - Doc Langfuse : model pricing, dashboards de coûts
-- [Roadmap couche T](../../../roadmap.md) — « coûts et
+- [Roadmap couche T](../_archive/roadmap.md) — « coûts et
   dimensionnement »

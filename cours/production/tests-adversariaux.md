@@ -1,24 +1,21 @@
-# 6.2.2 Tests adversariaux
+# Tests adversariaux
 
-> **Leçon de la section [6.2 Sécurité](../6.2-securite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 « Attaquer soi-même son système avant les autres » — passer de la
 défense théorique
-([6.2.1](../6.2.1-owasp-top-10-llm/6.2.1-owasp-top-10-llm.md)) à la
+([6.2.1](owasp-top-10-llm.md)) à la
 preuve : une petite campagne d'attaques sur son propre RAG et son
 propre agent, chaque défense mesurée contre chaque attaque. Le
 prolongement systématique de la démo d'injection de la
-[5.3.1](../../../05-homelab-mcp/5.3-securite/5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md).
+[5.3.1](../mcp/prompt-injection-indirecte.md).
 
 ## Le savoir
 
 - **La démarche, comme les evals mais offensive** : un jeu d'attaques
-  figé (comme le [jeu de questions](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md)),
+  figé (comme le [jeu de questions](../retrieval/evals.md)),
   rejoué à chaque changement — la sécurité traitée en non-régression.
 - **Les familles à couvrir** (chacune avec charge **bénigne**, un
   marqueur observable type « BANANE », jamais destructive) :
@@ -26,12 +23,12 @@ prolongement systématique de la démo d'injection de la
     systématisée sur plusieurs formulations ;
   - **injection directe** (dans la question) : « ignore le contexte
     et… » — teste le grounding
-    ([2.1.6](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1.6-rag-complet/2.1.6-rag-complet.md)) ;
+    ([2.1.6](../retrieval/rag-complet.md)) ;
   - **exfiltration par outil** (agent) : amener l'agent à passer une
     donnée sensible à un outil — teste le hook
-    ([3.1.1](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.1-hook-tool-call/3.1.1-hook-tool-call.md))
+    ([3.1.1](../agent/hook-tool-call.md))
     et le confinement réseau
-    ([3.1.2](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.2-conteneur-moindre-privilege/3.1.2-conteneur-moindre-privilege.md)) ;
+    ([3.1.2](../agent/conteneur-moindre-privilege.md)) ;
   - **déni par consommation** : question qui fait boucler/exploser le
     contexte — teste MAX_TOURS et les plafonds.
 - **Le livrable : la matrice attaque × défense** — pour chaque attaque,
@@ -40,14 +37,14 @@ prolongement systématique de la démo d'injection de la
   pas juste qu'elles existent.
 - **L'éthique du test** : uniquement sur **son** système, avec des
   charges inoffensives — l'objectif est la démonstration mécanique,
-  pas la nuisance ([contexte : sécurité défensive](../../../roadmap.md)).
+  pas la nuisance ([contexte : sécurité défensive](../_archive/roadmap.md)).
 
 ## En pratique
 
 `adversarial/` : jeu d'attaques en JSON (famille, charge bénigne,
 marqueur attendu), runner qui rejoue contre RAG et agent dans plusieurs
 configs de défense, matrice générée — et traces Langfuse
-([6.1.2](../../6.1-observabilite/6.1.2-tracer-les-appels/6.1.2-tracer-les-appels.md))
+([6.1.2](tracer-les-appels.md))
 des tentatives pour l'analyse.
 
 ## Pièges connus
@@ -60,7 +57,7 @@ des tentatives pour l'analyse.
 - Déclarer « c'est sécurisé » : on déclare « ces attaques-ci sont
   mitigées, mesuré ainsi » — la sécurité absolue ne se prouve pas.
 
-## Question d'entretien
+## Se tester
 
 > « Comment testez-vous la sécurité de votre système LLM ? »
 > Jeu d'attaques figé rejoué en non-régression, familles OWASP
@@ -70,7 +67,7 @@ des tentatives pour l'analyse.
 
 ## Références
 
-- [5.3.1 Prompt injection indirecte](../../../05-homelab-mcp/5.3-securite/5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md)
+- [5.3.1 Prompt injection indirecte](../mcp/prompt-injection-indirecte.md)
   — la première démo, à systématiser
-- OWASP LLM ([6.2.1](../6.2.1-owasp-top-10-llm/6.2.1-owasp-top-10-llm.md)) ;
+- OWASP LLM ([6.2.1](owasp-top-10-llm.md)) ;
   Simon Willison (veille injection)
