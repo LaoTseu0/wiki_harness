@@ -1,9 +1,6 @@
-# 7.2.1 VLM local
+# VLM local
 
-> **Leçon de la section [7.2 Vision locale](../7.2-vision-locale.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -23,9 +20,9 @@ plus) et les usages.
   vision.
 - **L'appel, familier** : même API que le chat, un champ `images` dans
   le message (base64 chez Ollama) — le
-  [client LLM](../../../01-llm-from-scratch/1.3-framework-maison/1.3.1-architecture-modulaire/1.3.1-architecture-modulaire.md)
+  [client LLM](../framework/architecture-modulaire.md)
   du framework s'étend d'un champ, pas d'un paradigme.
-- **Le budget 6 Go** ([4.1.1](../../../04-ollama-vs-vllm-bench/4.1-deploiement/4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md)) :
+- **Le budget 6 Go** ([4.1.1](../inference/vllm-sur-rtx-2060.md)) :
   poids du LLM + **encodeur de vision** + KV cache gonflé par les
   tokens visuels — un VLM 7B quantisé est serré ; mesurer ce qui tient
   et à quelle résolution d'image (réduire l'image réduit les tokens et
@@ -33,11 +30,11 @@ plus) et les usages.
 - **Les usages à démontrer** : description d'image (« qu'y a-t-il sur
   cette photo ? »), **OCR/lecture de document scanné** (le plus utile
   au homelab — documents famille vers le NAS,
-  [7.3.1](../../7.3-ouvertures/7.3.1-camera-et-ocr/7.3.1-camera-et-ocr.md)),
+  [7.3.1](camera-et-ocr.md)),
   extraction structurée depuis une image (VLM + structured output
-  [1.1.5](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.5-structured-output/1.1.5-structured-output.md)).
+  [1.1.5](../fondamentaux/structured-output.md)).
 - **Situer les API cloud** (culture,
-  [7.3.2](../../7.3-ouvertures/7.3.2-api-cloud-equivalentes/7.3.2-api-cloud-equivalentes.md)) :
+  [7.3.2](api-cloud-equivalentes.md)) :
   vision GPT/Claude/Gemini — plus capables, mais les données sortent ;
   l'arbitrage local/cloud est le même que partout.
 
@@ -56,10 +53,10 @@ latence à deux résolutions d'image — tableau « ce qui tient en 6 Go ».
   mesurer, et pour du document critique, situer les alternatives (OCR
   spécialisé, API cloud).
 - Oublier que le VLM et le pipeline vocal
-  ([7.1.1](../../7.1-documenter-existant/7.1.1-etude-de-cas-stt-tts/7.1.1-etude-de-cas-stt-tts.md))
+  ([7.1.1](etude-de-cas-stt-tts.md))
   partagent les 6 Go : ils ne tournent pas forcément en même temps.
 
-## Question d'entretien
+## Se tester
 
 > « Avez-vous fait tourner un modèle de vision en local ? »
 > Un VLM (Qwen-VL/LLaVA) sur RTX 2060 via Ollama : description et OCR
@@ -70,5 +67,5 @@ latence à deux résolutions d'image — tableau « ce qui tient en 6 Go ».
 ## Références
 
 - Qwen-VL / LLaVA (cartes modèles Ollama)
-- [Roadmap couche M](../../../roadmap.md) — implémentation locale des
+- [Roadmap couche M](../_archive/roadmap.md) — implémentation locale des
   VLM

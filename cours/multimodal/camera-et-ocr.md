@@ -1,13 +1,10 @@
-# 7.3.1 Caméra et OCR
+# Caméra et OCR
 
-> **Leçon de la section [7.3 Ouvertures](../7.3-ouvertures.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir (bonus homelab)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
-Rendre la [vision locale](../../7.2-vision-locale/7.2.1-vlm-local/7.2.1-vlm-local.md)
+Rendre la [vision locale](vlm-local.md)
 *utile* en la branchant sur la vraie maison : une caméra Home Assistant
 qui alimente « Jarvis, décris ce que tu vois », et l'OCR des documents
 famille vers le NAS. Le multimodal cesse d'être une démo et devient un
@@ -17,19 +14,19 @@ service.
 
 - **Caméra → VLM** : HA expose les flux/snapshots caméra ; le pattern —
   snapshot déclenché (mouvement, ou demande vocale via le
-  [pipeline STT](../../7.1-documenter-existant/7.1.1-etude-de-cas-stt-tts/7.1.1-etude-de-cas-stt-tts.md))
+  [pipeline STT](etude-de-cas-stt-tts.md))
   → VLM local → description → réponse (vocale via Piper, ou
   notification HA). Toute la chaîne du module 7 s'assemble ici.
 - **OCR documents → NAS** : un dossier surveillé → VLM en mode OCR
-  ([7.2.1](../../7.2-vision-locale/7.2.1-vlm-local/7.2.1-vlm-local.md))
+  ([7.2.1](vlm-local.md))
   → texte + métadonnées → indexable. Le lien fort : ces documents
   deviennent un **corpus RAG** (module 2) — l'OCR est un *ingesteur*
   pour le retrieval. La boucle multimodal → RAG se ferme.
 - **Les garde-fous s'appliquent** : ces usages touchent des données
   **très** personnelles (caméra, documents famille) — moindre
-  privilège ([3.1.2](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.2-conteneur-moindre-privilege/3.1.2-conteneur-moindre-privilege.md)),
+  privilège ([3.1.2](../agent/conteneur-moindre-privilege.md)),
   local-first strict (aucune image ne sort), périmètres HA en liste
-  blanche ([3.2.1](../../../03-jarvis-agent/3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md)).
+  blanche ([3.2.1](../agent/outil-home-assistant.md)).
   C'est précisément là que « fully local » n'est pas un slogan mais une
   exigence.
 - **Le statut « bonus »** : ces ouvertures démontrent la vision
@@ -57,7 +54,7 @@ portfolio.
   témoin OCR dédié sur les champs critiques, toute divergence →
   relecture humaine — et garder l'original, toujours.
 
-## Question d'entretien
+## Se tester
 
 > « Un exemple d'usage multimodal de bout en bout ? »
 > Caméra HA → snapshot → VLM local → description vocale (Piper), et OCR
@@ -67,6 +64,6 @@ portfolio.
 ## Références
 
 - Doc caméras Home Assistant (snapshots)
-- [7.2.1 VLM local](../../7.2-vision-locale/7.2.1-vlm-local/7.2.1-vlm-local.md)
-  · [Module 2 RAG](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1-v0.0.1-rag-a-la-main.md)
+- [7.2.1 VLM local](vlm-local.md)
+  · [Module 2 RAG](../retrieval/rag-a-la-main.md)
   (l'OCR alimente le retrieval)
