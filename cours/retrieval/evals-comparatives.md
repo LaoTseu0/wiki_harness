@@ -1,14 +1,11 @@
-# 2.2.5 Evals comparatives
+# Evals comparatives
 
-> **Leçon de la section [2.2 v0.0.2 — Qdrant + retrieval avancé](../2.2-v0.0.2-qdrant-retrieval-avance.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 La v0.0.2 n'existe que si elle **bat la v0.0.1 sur le même jeu** : les
-12 questions de la [2.1.7](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md),
+12 questions de la [2.1.7](evals.md),
 rejouées à l'identique sur chaque configuration, produisent LE
 livrable de la section — le tableau comparatif. C'est la
 non-régression appliquée au retrieval : traiter les changements de
@@ -44,7 +41,7 @@ chaîne comme du code.
 
 ## En pratique
 
-Étendre [07_evals.py](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/07_evals.py)
+Étendre [07_evals.py](../../etapes/retrieval/07_evals.py)
 pour paramétrer la
 configuration de chaîne, boucler sur les cinq configs, générer le
 tableau en markdown — copié tel quel dans le README du module (et
@@ -60,11 +57,11 @@ c'est la ligne du CV : « with regression evals »).
   un delta de ±1-2 points ne se conclut pas — regarder *quelles*
   questions ont basculé plutôt que les totaux, et réserver les
   verdicts fins au jeu étendu (~30,
-  [2.3.2](../../2.3-v0.0.3-llamaindex-outillage-standard/2.3.2-llm-as-judge/2.3.2-llm-as-judge.md)).
+  [2.3.2](llm-as-judge.md)).
 - Oublier la latence : +3 points de retrieval pour ×4 en latence est
   un *choix* à documenter, pas une victoire gratuite.
 
-## Question d'entretien
+## Se tester
 
 > « Comment prouvez-vous qu'une amélioration RAG en est une ? »
 > Jeu figé, ablation technique par technique, scores ventilés +
@@ -73,6 +70,6 @@ c'est la ligne du CV : « with regression evals »).
 
 ## Références
 
-- [2.1.7 Evals](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md)
+- [2.1.7 Evals](evals.md)
   — le socle et le jeu de questions
-- [Roadmap couche T](../../../roadmap.md) — « tests de non-régression »
+- [Roadmap couche T](../_archive/roadmap.md) — « tests de non-régression »

@@ -1,9 +1,6 @@
-# 2.1.4 Indexation
+# Indexation
 
-> **Leçon de la section [2.1 v0.0.1 — le RAG à la main](../2.1-v0.0.1-rag-a-la-main.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir — [04_indexer.py](04_indexer.py)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`04_indexer.py`](../../etapes/retrieval/04_indexer.py)
 
 ## L'essentiel
 
@@ -11,16 +8,16 @@ L'indexation est le **pipeline batch** qui matérialise le corpus :
 chunk → embedding → stockage. Ici, SQLite — assumé et suffisant pour
 quelques centaines de chunks : le but de la v0.0.1 est de comprendre ce
 qu'une base vectorielle fera à notre place en
-[2.2.1](../../2.2-v0.0.2-qdrant-retrieval-avance/2.2.1-migration-qdrant/2.2.1-migration-qdrant.md).
+[2.2.1](migration-qdrant.md).
 
 ## Le savoir
 
 - **Le schéma minimal** : une table
   `chunks(id, fichier_source, section, texte, embedding)` — le vecteur
   sérialisé en JSON ou BLOB. Pas d'extension vectorielle : la recherche
-  de la [2.1.5](../2.1.5-recherche-top-k/2.1.5-recherche-top-k.md) se
+  de la [2.1.5](recherche-top-k.md) se
   fera en Python, brute force.
-- **Un pipeline batch, donc** ([roadmap couche 2](../../../roadmap.md) —
+- **Un pipeline batch, donc** ([roadmap couche 2](../_archive/roadmap.md) —
   « pipelines batch » est une compétence nommée) :
   - **reprise sur erreur** : l'appel d'embeddings peut échouer au chunk
     412 — le pipeline doit reprendre là où il s'est arrêté, pas tout
@@ -40,9 +37,9 @@ qu'une base vectorielle fera à notre place en
 
 ## En pratique
 
-[04_indexer.py](04_indexer.py) : itérer sur les chunks de
-[2.1.3](../2.1.3-chunking/2.1.3-chunking.md), embedder via
-[2.1.1](../2.1.1-embeddings/2.1.1-embeddings.md), stocker en SQLite ;
+[04_indexer.py](../../etapes/retrieval/04_indexer.py) : itérer sur les chunks de
+[2.1.3](chunking.md), embedder via
+[2.1.1](embeddings.md), stocker en SQLite ;
 afficher un rapport final (n fichiers, n chunks, durée).
 
 ## Pièges connus
@@ -55,7 +52,7 @@ afficher un rapport final (n fichiers, n chunks, durée).
 - `index.db` versionné par accident : c'est un artefact reconstructible
   — déjà couvert par le [.gitignore](../../.gitignore) du module.
 
-## Question d'entretien
+## Se tester
 
 > « Que doit garantir un pipeline d'ingestion RAG en production ? »
 > Idempotence, reprise sur erreur, détection de changement (ne
@@ -65,6 +62,6 @@ afficher un rapport final (n fichiers, n chunks, durée).
 
 ## Références
 
-- [Schéma 03_indexation_sqlite](../../schemas/03_indexation_sqlite.png)
+- [Schéma 03_indexation_sqlite](../_schemas/retrieval/03_indexation_sqlite.png)
 - Doc SQLite (BLOB) — et, pour situer la suite : ce que Qdrant
   remplacera exactement
