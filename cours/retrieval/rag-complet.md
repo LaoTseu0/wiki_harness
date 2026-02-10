@@ -1,9 +1,6 @@
-# 2.1.6 RAG complet
+# RAG complet
 
-> **Leçon de la section [2.1 v0.0.1 — le RAG à la main](../2.1-v0.0.1-rag-a-la-main.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir — [06_rag.py](06_rag.py)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`06_rag.py`](../../etapes/retrieval/06_rag.py)
 
 ## L'essentiel
 
@@ -32,7 +29,7 @@ d'un chatbot qui brode.
   autorise et valorise l'abstention. Un RAG qui répond toujours est un
   RAG qui hallucine parfois.
 - **L'ordre compte** : instructions stables en system (cacheable,
-  [1.2.4](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.4-prompt-caching/1.2.4-prompt-caching.md)),
+  [1.2.4](../glossaire/prompt-caching.md)),
   contexte variable ensuite, question en dernier — et le contexte
   reste borné (k × taille de chunk : le budget se calcule) **et se
   confronte à la fenêtre réellement servie** : Ollama tronque
@@ -43,12 +40,12 @@ d'un chatbot qui brode.
 - **Grounding ≠ vérité** : le modèle peut mal lire une bonne source.
   La chaîne complète se juge donc sur deux axes distincts — retrieval
   et fidélité — mesurés séparément en
-  [2.1.7](../2.1.7-evals/2.1.7-evals.md).
+  [2.1.7](evals.md).
 
 ## En pratique
 
-[06_rag.py](06_rag.py) : assembler retrieval
-([05_rechercher](../2.1.5-recherche-top-k/2.1.5-recherche-top-k.md)) +
+[06_rag.py](../../etapes/retrieval/06_rag.py) : assembler retrieval
+([05_rechercher](recherche-top-k.md)) +
 prompt + appel génération (Qwen3 4B) ; sortie = réponse + liste des
 sources utilisées. Premier test réel : « qu'est-ce qu'on avait décidé
 pour le backup du NAS ? ».
@@ -65,7 +62,7 @@ pour le backup du NAS ? ».
   « ignore » des chunks qu'on croit lui avoir donnés ; symptôme :
   `prompt_eval_count` qui plafonne d'un appel à l'autre.
 
-## Question d'entretien
+## Se tester
 
 > « Comment empêchez-vous votre RAG d'halluciner ? »
 > Grounding explicite en system, abstention autorisée et valorisée,
@@ -74,6 +71,6 @@ pour le backup du NAS ? ».
 
 ## Références
 
-- [Schéma 05_rag_grounding](../../schemas/05_rag_grounding.png)
+- [Schéma 05_rag_grounding](../_schemas/retrieval/05_rag_grounding.png)
 - Le vocabulaire des offres : « grounding/citations/hallucinations »
-  (Cenova, STEP UP — [roadmap §10.1](../../../roadmap.md))
+  (Cenova, STEP UP — [roadmap §10.1](../_archive/roadmap.md))

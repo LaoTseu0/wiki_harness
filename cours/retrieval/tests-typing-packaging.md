@@ -1,13 +1,10 @@
-# 2.4.3 Tests, typing, packaging
+# Tests, typing, packaging
 
-> **Leçon de la section [2.4 Service et craftsmanship](../2.4-service-et-craftsmanship.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
-Le principe 4 de la [roadmap](../../../roadmap.md) appliqué : pas de
+Le principe 4 de la [roadmap](../_archive/roadmap.md) appliqué : pas de
 module « qualité » séparé — le craftsmanship monte *avec* les modules.
 Ici, le RAG reçoit ses premiers tests pytest (les evals en sont le
 germe), son typing, et son packaging : les trois gestes qui font d'un
@@ -24,11 +21,11 @@ projet un **candidat à la promotion** en brique du framework.
      sources et schéma valides ;
   3. **evals-as-tests** : `assert score_retrieval >= baseline` — la
      non-régression de la
-     [2.1.7](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md)
+     [2.1.7](evals.md)
      devient un test marqué `@pytest.mark.eval` (lent, GPU) qu'on
      lance avant chaque tag.
   Le mock vit à la frontière provider
-  ([2.4.2](../2.4.2-backend-commutable/2.4.2-backend-commutable.md)) —
+  ([2.4.2](backend-commutable.md)) —
   l'abstraction paye immédiatement.
 - **Typing** : signatures annotées sur `rag_commun`, `mypy` en local ;
   les modèles Pydantic du service comptent double (validation à
@@ -36,9 +33,9 @@ projet un **candidat à la promotion** en brique du framework.
 - **Packaging à la promotion** : `pyproject.toml`, layout `src/`,
   `pip install -e .` — le module 5 importera `homelab_rag` proprement
   au lieu de bricoler des chemins. Détail des pratiques dans
-  [1.3.2](../../../01-llm-from-scratch/1.3-framework-maison/1.3.2-clean-code-production-grade/1.3.2-clean-code-production-grade.md).
+  [1.3.2](../framework/clean-code.md).
 - **La ligne des offres** : « tests, packaging, code review, software
-  craftsmanship » (MARGO, [roadmap §10.1](../../../roadmap.md)) —
+  craftsmanship » (MARGO, [roadmap §10.1](../_archive/roadmap.md)) —
   quasi 100 % des annonces ; ce trio est la preuve locale.
 
 ## En pratique
@@ -59,7 +56,7 @@ verts depuis un clone frais.
 - Packager sans `src/` layout : les imports passent en local et cassent
   installé — le layout `src/` force l'honnêteté.
 
-## Question d'entretien
+## Se tester
 
 > « Comment testez-vous un système dont le cœur est non déterministe ? »
 > Séparer : unitaires rapides sur le déterministe (chunking, fusion,
@@ -69,6 +66,6 @@ verts depuis un clone frais.
 
 ## Références
 
-- [1.3.2 Clean code production-grade](../../../01-llm-from-scratch/1.3-framework-maison/1.3.2-clean-code-production-grade/1.3.2-clean-code-production-grade.md)
+- [1.3.2 Clean code production-grade](../framework/clean-code.md)
   — le référentiel complet des pratiques
 - Doc pytest (markers) ; doc packaging (`src/` layout)

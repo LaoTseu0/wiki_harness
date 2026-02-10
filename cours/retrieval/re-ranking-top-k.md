@@ -1,18 +1,15 @@
-# 2.2.3 Re-ranking du top-k
+# Re-ranking du top-k
 
-> **Leçon de la section [2.2 v0.0.2 — Qdrant + retrieval avancé](../2.2-v0.0.2-qdrant-retrieval-avance.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir *(→ déclenche l'[entrée glossaire re-ranking](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.2-re-ranking/1.2.2-re-ranking.md))*
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 Appliquer l'entonnoir *rappel d'abord, précision ensuite* à notre
-chaîne : l'[hybride](../2.2.2-retrieval-hybride/2.2.2-retrieval-hybride.md)
+chaîne : l'[hybride](retrieval-hybride.md)
 ramène large (top-20), le re-ranker lit chaque paire
 (question, chunk) **ensemble** et choisit le vrai top-5. La théorie
 complète (bi-encoder vs cross-encoder) est dans
-l'[entrée glossaire](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.2-re-ranking/1.2.2-re-ranking.md) —
+l'[entrée glossaire](../glossaire/re-ranking.md) —
 ici, on branche et on mesure.
 
 ## Le savoir
@@ -22,16 +19,16 @@ ici, on branche et on mesure.
   `top5 = rerank(question, candidats)`. L'interface de la brique
   retrieval ne change pas : le re-ranking est un détail interne
   (l'architecture de
-  [1.3.1](../../../01-llm-from-scratch/1.3-framework-maison/1.3.1-architecture-modulaire/1.3.1-architecture-modulaire.md)
+  [1.3.1](../framework/architecture-modulaire.md)
   paye ici).
 - **Deux implémentations à comparer sur ce module** :
   1. **cross-encoder dédié** (bge-reranker-base via
      sentence-transformers — tourne sur la RTX 2060, quelques dizaines
      de ms par paire) : le choix « production » ;
   2. **LLM-as-reranker** (Qwen3 note chaque paire 0-10, sortie
-     contrainte [1.1.5](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.5-structured-output/1.1.5-structured-output.md)) :
+     contrainte [1.1.5](../fondamentaux/structured-output.md)) :
      zéro dépendance nouvelle, plus lent — parfait pour comprendre.
-- **Ce qu'on mesure** ([2.2.5](../2.2.5-evals-comparatives/2.2.5-evals-comparatives.md)) :
+- **Ce qu'on mesure** ([2.2.5](evals-comparatives.md)) :
   le **rang du bon document** avant/après (MRR si on veut un chiffre
   unique), et la **latence ajoutée** — le re-ranking est un achat de
   précision payé en millisecondes, le tableau doit montrer les deux
@@ -58,7 +55,7 @@ une ligne de tableau chacune.
   corpus bien chunké, ça arrive — un composant sans delta se retire
   (et ça aussi, ça se raconte en entretien).
 
-## Question d'entretien
+## Se tester
 
 > « Où placez-vous le re-ranking dans votre chaîne et pourquoi pas sur
 > tout le corpus ? »
@@ -68,6 +65,6 @@ une ligne de tableau chacune.
 
 ## Références
 
-- [Entrée glossaire re-ranking](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.2-re-ranking/1.2.2-re-ranking.md)
+- [Entrée glossaire re-ranking](../glossaire/re-ranking.md)
   — la mécanique bi- vs cross-encoder
 - bge-reranker (BAAI) — le modèle self-hostable de référence
