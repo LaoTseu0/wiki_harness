@@ -6,7 +6,7 @@
 
 Faire *un* fine-tuning LoRA, une fois, sur un petit modèle et un GPU
 gratuit (Colab) — pour transformer la connaissance théorique
-([1.2.6](../glossaire/lora.md))
+([1.2.6](lora.md))
 en vécu chiffré. Objectif : savoir en parler en entretien avec des
 nombres réels, pas devenir ML Engineer (ce n'est pas le
 [métier visé](../_archive/roadmap.md)).
@@ -17,7 +17,7 @@ nombres réels, pas devenir ML Engineer (ce n'est pas le
   format chat) → `PEFT` + `bitsandbytes` (QLoRA 4-bit) → entraînement
   quelques epochs → adaptateur (~dizaines de Mo) → inférence base +
   adaptateur. La mécanique (rang, α, matrices A·B) est dans
-  l'[entrée glossaire](../glossaire/lora.md).
+  la [leçon dédiée](lora.md).
 - **La bonne tâche pour la démo** : du **style/format**, pas des faits
   — apprendre au modèle à répondre dans un format fixe (ton, structure
   JSON récurrente), là où le fine-tuning a un sens réel. Prendre une
@@ -40,7 +40,7 @@ nombres réels, pas devenir ML Engineer (ce n'est pas le
 
 Un notebook Colab documenté (dataset jouet de style, QLoRA, avant/après
 mesuré), résumé en un README + remontée en
-[entrée glossaire](../glossaire/lora.md) :
+[leçon dédiée](lora.md) :
 coût réel, ce que ça a changé, la conclusion « pourquoi RAG d'abord ».
 
 ## Pièges connus
@@ -64,5 +64,5 @@ coût réel, ce que ça a changé, la conclusion « pourquoi RAG d'abord ».
 
 - HF PEFT + bitsandbytes (QLoRA) ; Unsloth (pour situer les
   accélérateurs)
-- [1.2.6 LoRA](../glossaire/lora.md)
+- [1.2.6 LoRA](lora.md)
   — la théorie

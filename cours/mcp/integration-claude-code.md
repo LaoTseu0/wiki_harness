@@ -15,7 +15,7 @@ qui prouve que quelqu'un d'autre peut le faire en cinq minutes.
   (fichier `.mcp.json` au niveau projet, ou config utilisateur) —
   pour stdio : commande + arguments + variables d'environnement du
   serveur. Au lancement, le host démarre le sous-processus, fait le
-  [handshake](../glossaire/handshake-mcp.md),
+  [handshake](handshake-mcp.md),
   et les outils apparaissent.
 - **Le test qui compte — l'usage *spontané*** : ne pas dire « utilise
   l'outil chercher_doc » mais poser la question métier (« qu'est-ce

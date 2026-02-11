@@ -14,7 +14,7 @@ serveur MCP » — la formulation exacte de certaines offres.
 
 - **[5.2.1 Client MCP minimal](client-mcp-minimal.md)**
       — handshake, découverte, appel — sans SDK *(= l'exercice de
-      l'[entrée glossaire handshake MCP](../glossaire/handshake-mcp.md))*
+      la [leçon handshake MCP](handshake-mcp.md))*
 
 ## Synthèse
 
@@ -28,5 +28,5 @@ marche sur les deux, le protocole est compris.
 
 ## Références
 
-- [1.2.5 Handshake MCP](../glossaire/handshake-mcp.md)
+- [1.2.5 Handshake MCP](handshake-mcp.md)
   — la théorie que ce client exécute

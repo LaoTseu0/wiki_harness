@@ -12,7 +12,7 @@ noire.
 ## Le savoir
 
 - **L'anatomie du client** (la séquence détaillée vit dans
-  l'[entrée glossaire](../glossaire/handshake-mcp.md)) :
+  la [leçon dédiée](handshake-mcp.md)) :
   1. `subprocess.Popen` du serveur, pipes stdin/stdout, **flush ligne
      à ligne** ;
   2. `initialize` → lire le `result` (capacités) → notification
@@ -39,8 +39,7 @@ noire.
 
 `client_minimal.py` : les 4 étapes, affichage lisible de la découverte,
 un appel à `chercher_doc` avec une vraie question — et la démo croisée
-sur un serveur tiers. Renvoi croisé depuis le glossaire
-([1.2.5](../glossaire/handshake-mcp.md)).
+sur un serveur tiers. Le protocole nu est dans la [leçon handshake MCP](handshake-mcp.md).
 
 ## Pièges connus
 
