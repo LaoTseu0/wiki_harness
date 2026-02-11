@@ -22,7 +22,7 @@ trace ce que chacun fait de la file.
 - **Le scénario de charge** : n workers async lancés en salve, chacun
   mesurant ses métriques ([4.2.1](metriques-debit-latence.md)) ;
   prompts réalistes légèrement variés (éviter de mesurer le
-  [prompt caching](../glossaire/prompt-caching.md)
+  [prompt caching](prompt-caching.md)
   à son insu) ; n ∈ {1, 5, 20}, plusieurs salves par point.
 - **Ce qu'on lit dans les courbes attendues** :
   - TTFT p95 vs n : plat puis mur chez Ollama (la file), dégradation
