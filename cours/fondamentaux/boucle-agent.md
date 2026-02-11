@@ -49,7 +49,7 @@ spec), validation humaine, MAX_TOURS.
 - Ne pas tracer les tours : sans log de chaque tool_call, un
   comportement erratique est indébogable.
 - Prompt système d'agent trop long : chaque tour le re-paye
-  (→ [prompt caching](../glossaire/prompt-caching.md)).
+  (→ [prompt caching](../inference/prompt-caching.md)).
 
 ## Se tester
 

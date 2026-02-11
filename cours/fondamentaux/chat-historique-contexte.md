@@ -17,7 +17,7 @@ fait unique.
   la liste complète et prédit le message suivant. Rien d'autre.
 - **Conséquence économique** : chaque tour re-paye tout le préfixe. Une
   conversation de n tours coûte O(n²) tokens cumulés — d'où le prompt
-  caching ([1.2.4](../glossaire/prompt-caching.md))
+  caching ([1.2.4](../inference/prompt-caching.md))
   et la compaction.
 - **Streaming** : la réponse arrive token par token (lignes NDJSON chez
   Ollama, SSE chez les API cloud). L'UX de tout chat : afficher au fil
