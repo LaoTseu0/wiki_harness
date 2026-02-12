@@ -31,7 +31,7 @@ cette réponse, appuyée sur *ce* projet.
   sans généraliser.
 - **Ce que le fine-tuning ferait ici** : rien pour les faits — au
   mieux, styliser le ton des réponses ; le détail mécanique (LoRA,
-  coûts réels) vit dans l'[entrée glossaire](../glossaire/lora.md)
+  coûts réels) vit dans la [leçon dédiée](../production/lora.md)
   et la [6.3](../production/culture-fine-tuning.md).
 - **La réponse n'est pas exclusive** : les deux se combinent (un modèle
   fine-tuné sur le *format* de réponse, alimenté par un RAG pour les
@@ -64,7 +64,7 @@ voix haute : c'est un texte à *dire* en entretien, pas à lire.
 
 ## Références
 
-- [1.2.6 LoRA](../glossaire/lora.md)
+- [1.2.6 LoRA](../production/lora.md)
   — la mécanique de l'autre branche de l'alternative
 - [Roadmap couche 2](../_archive/roadmap.md) — « question d'entretien
   récurrente »

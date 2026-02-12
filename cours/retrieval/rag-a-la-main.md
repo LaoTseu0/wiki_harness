@@ -53,6 +53,6 @@ devant un score retrieval de 7/12 (indice : jamais le modèle).
 
 ## Références
 
-- Schémas du pipeline : [_schemas/retrieval/](../_schemas/retrieval/)
+- Schémas du pipeline : [_schemas/retrieval/](../_schemas/retrieval)
 - Bibliothèque commune : [rag_commun.py](../../etapes/retrieval/rag_commun.py)
 - Jeu d'evals : [evals/questions.json](../../etapes/retrieval/evals/questions.json)

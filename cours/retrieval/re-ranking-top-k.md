@@ -9,7 +9,7 @@ chaîne : l'[hybride](retrieval-hybride.md)
 ramène large (top-20), le re-ranker lit chaque paire
 (question, chunk) **ensemble** et choisit le vrai top-5. La théorie
 complète (bi-encoder vs cross-encoder) est dans
-l'[entrée glossaire](../glossaire/re-ranking.md) —
+la [leçon dédiée](re-ranking.md) —
 ici, on branche et on mesure.
 
 ## Le savoir
@@ -65,6 +65,6 @@ une ligne de tableau chacune.
 
 ## Références
 
-- [Entrée glossaire re-ranking](../glossaire/re-ranking.md)
+- [leçon re-ranking](re-ranking.md)
   — la mécanique bi- vs cross-encoder
 - bge-reranker (BAAI) — le modèle self-hostable de référence

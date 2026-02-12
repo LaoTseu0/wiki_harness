@@ -29,7 +29,7 @@ d'un chatbot qui brode.
   autorise et valorise l'abstention. Un RAG qui répond toujours est un
   RAG qui hallucine parfois.
 - **L'ordre compte** : instructions stables en system (cacheable,
-  [1.2.4](../glossaire/prompt-caching.md)),
+  [1.2.4](../inference/prompt-caching.md)),
   contexte variable ensuite, question en dernier — et le contexte
   reste borné (k × taille de chunk : le budget se calcule) **et se
   confronte à la fenêtre réellement servie** : Ollama tronque

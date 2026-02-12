@@ -14,7 +14,7 @@ que les deux moteurs se trompent sur des cas *différents*.
 
 - **Les deux jambes** :
   - **lexicale** : BM25 sur les textes des chunks — la mécanique
-    complète est dans l'[entrée glossaire](../glossaire/bm25.md) ;
+    complète est dans la [leçon dédiée](bm25.md) ;
   - **dense** : le top-k vecteurs de
     [2.2.1](migration-qdrant.md).
 - **La fusion : RRF** (Reciprocal Rank Fusion) — la méthode robuste

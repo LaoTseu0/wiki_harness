@@ -25,7 +25,7 @@ un conteneur docker de plus, dans le style maison. Le marché dit
     erreur devient triviale), `search`/`query` (top-k), filtres sur
     payload ([2.2.4](filtres-metadonnees.md)).
 - **Sous le capot** : index **HNSW** — approximatif, réglé par
-  m/ef ; tout est dans l'[entrée glossaire](../glossaire/hnsw.md).
+  m/ef ; tout est dans la [leçon dédiée](hnsw.md).
   Premier réflexe de validation : comparer le top-k Qdrant au top-k
   brute force v0.0.1 (recall@k attendu ≈ 1 sur un petit corpus).
 - **Déploiement homelab** : conteneur officiel `qdrant/qdrant`, un
