@@ -26,7 +26,11 @@ Trois règles :
 
 ## Fondamentaux — [le socle sans framework](fondamentaux/index.md)
 
-L'anatomie de toute application LLM, en Python pur.
+L'anatomie de toute application LLM, en Python pur. Ce qui se passe à
+l'intérieur d'un appel au modèle et de sa boucle immédiate — vrai quel que
+soit l'usage qu'on en fera ensuite.
+
+Construire :
 
 - [Chat, historique et contexte](fondamentaux/chat-historique-contexte.md) —
   modèle stateless, streaming, troncature et compaction
@@ -39,11 +43,14 @@ L'anatomie de toute application LLM, en Python pur.
 - [Structured output](fondamentaux/structured-output.md) —
   décodage contraint, validation Pydantic, retry
 
-Trois sujets de cette couche n'ont pas encore leur leçon, et ce sont les
-derniers endroits où le parcours accepte une boîte noire : la
-**tokenisation** (ce que coûte vraiment le français accentué ou un bloc
-YAML), le **template de chat** (le texte que le modèle voit réellement) et
-l'**attention / KV cache**.
+Ouvrir la boîte noire — ce que le modèle voit et ce qu'il calcule :
+
+- [Tokenisation](fondamentaux/tokenisation.md) — l'unité dans laquelle tout
+  se compte : contexte, plafonds, coût
+- [Le template de chat](fondamentaux/template-de-chat.md) — la liste de
+  messages redevient le texte unique que le modèle lit vraiment
+- [Attention et KV cache](fondamentaux/attention-et-kv-cache.md) — pourquoi
+  le 1er token est lent, les suivants rapides, et le contexte cher
 
 ## Retrieval — [le RAG, mesuré](retrieval/rag-a-la-main.md)
 
