@@ -12,6 +12,7 @@ Point d'entrée : [cours/carte.md](cours/carte.md).
 | `etapes/` | les scripts exécutables, numérotés par domaine (`NN_sujet.py`) |
 | `src/framework/` | le framework maison — s'enrichit à chaque leçon acquise |
 | `tests/` | pytest sur `src/framework/` |
+| `outils/` | l'outillage du repo lui-même (génération des schémas, contrôles) |
 | `cours/_archive/` | écrit avant d'être vécu, ou journal historique. Ne pas s'y fier. |
 
 ## Règles
@@ -51,6 +52,16 @@ Ses trois interdits, qui priment sur le reste :
 2. **Ne jamais inventer un vécu** — pas d'incident plausible, pas de « on
    observe souvent que ».
 3. **Ne jamais livrer la solution d'un exercice non fait.**
+
+Une leçon va du tout aux parties puis revient au tout : `Où ça s'emboîte`
+(la carte locale, rayon 1) → `Le savoir` → `Recomposer` (ce que ça change
+ailleurs, jamais un résumé). La rubrique `Où ça s'emboîte` est la **source**
+des schémas Obsidian — jamais éditer un `.canvas` à la main, il se
+régénère :
+
+```bash
+python outils/canvas.py
+```
 
 ## Code
 

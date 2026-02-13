@@ -1,0 +1,107 @@
+{
+	"nodes": [
+		{
+			"id": "piece",
+			"x": 0,
+			"y": 0,
+			"width": 260,
+			"height": 120,
+			"type": "text",
+			"text": "**template-de-chat**\n\naplatit la liste de messages en le texte unique et balisé que le modèle lit réellement",
+			"color": "4"
+		},
+		{
+			"id": "amont0",
+			"x": -420,
+			"y": -65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/fondamentaux/chat-historique-contexte.md",
+			"color": "6"
+		},
+		{
+			"id": "amont1",
+			"x": -420,
+			"y": 65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/fondamentaux/tokenisation.md",
+			"color": "6"
+		},
+		{
+			"id": "aval0",
+			"x": 420,
+			"y": -65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/fondamentaux/function-calling.md",
+			"color": "6"
+		},
+		{
+			"id": "aval1",
+			"x": 420,
+			"y": 65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/mcp/prompt-injection-indirecte.md",
+			"color": "6"
+		},
+		{
+			"id": "confusion",
+			"x": 0,
+			"y": 300,
+			"width": 260,
+			"height": 90,
+			"type": "text",
+			"text": "le prompt système, qui est un *contenu* placé dans le gabarit, pas le gabarit lui-même",
+			"color": "1"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-amont0",
+			"fromNode": "amont0",
+			"fromSide": "right",
+			"toNode": "piece",
+			"toSide": "left",
+			"label": "la liste de messages à aplatir"
+		},
+		{
+			"id": "e-amont1",
+			"fromNode": "amont1",
+			"fromSide": "right",
+			"toNode": "piece",
+			"toSide": "left",
+			"label": "les balises se facturent en tokens"
+		},
+		{
+			"id": "e-aval0",
+			"fromNode": "piece",
+			"fromSide": "right",
+			"toNode": "aval0",
+			"toSide": "left",
+			"label": "le rôle `tool` n'est qu'une balise de plus"
+		},
+		{
+			"id": "e-aval1",
+			"fromNode": "piece",
+			"fromSide": "right",
+			"toNode": "aval1",
+			"toSide": "left",
+			"label": "écrire les balises soi-même est l'attaque la plus directe"
+		},
+		{
+			"id": "e-confusion",
+			"fromNode": "piece",
+			"fromSide": "bottom",
+			"toNode": "confusion",
+			"toSide": "top",
+			"toEnd": "none",
+			"label": "≠"
+		}
+	]
+}
