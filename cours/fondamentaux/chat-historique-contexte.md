@@ -2,6 +2,13 @@
 
 > [carte du cours](../carte.md) · étape : [`01_hello.py`](../../etapes/fondamentaux/01_hello.py)
 
+## Où ça s'emboîte
+
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `messages` — la liste côté client, renvoyée en entier à chaque tour et où le token généré est réinjecté
+
+![[chat-historique-contexte.canvas]]
+
 ## L'essentiel
 
 Un LLM est **stateless** : il ne se souvient de rien entre deux appels.

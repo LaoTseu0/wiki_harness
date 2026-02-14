@@ -2,6 +2,13 @@
 
 > [carte du cours](../carte.md) · étape : [`04_sampling.ipynb`](../../etapes/fondamentaux/04_sampling.ipynb)
 
+## Où ça s'emboîte
+
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `filtres` · `temperature` · `tirage` — entre un logit par token du vocabulaire, sort un token unique
+
+![[sampling-et-prompting.canvas]]
+
 ## L'essentiel
 
 À chaque token, le modèle produit une **distribution de probabilités**
@@ -18,8 +25,10 @@ la temperature avant les filtres ; l'ordre réel est une chaîne de
 samplers propre au moteur, parfois configurable — raison de plus pour
 l'avoir mesuré soi-même plutôt que récité.
 
-- **temperature** : divise les logits avant le softmax. T → 0 :
-  quasi-argmax (répétitif, sûr) ; T élevée : distribution aplatie
+- **temperature** : divise les [logits](../glossaire/logits.md) avant le
+  [softmax](../glossaire/softmax.md). T → 0 :
+  quasi-[argmax](../glossaire/argmax.md) (répétitif, sûr) ; T élevée :
+  distribution aplatie
   (créatif, instable). « Déterministe » à T=0 n'est **pas garanti** :
   égalités de probabilités, ordre des opérations flottantes, batching.
 - **top-k** : ne garder que les k tokens les plus probables (coupe la
@@ -63,7 +72,7 @@ cas concrets — écrit en grande partie par Anthony.
 
 > « Temperature 0, c'est déterministe ? »
 > Non garanti : ex æquo dans la distribution, non-associativité des
-> flottants selon le batching, architectures MoE (le routage des
+> flottants selon le batching, architectures [MoE](../glossaire/moe.md) (le routage des
 > experts dépend de la composition du batch : la même requête ne
 > rencontre pas toujours les mêmes voisines, donc pas les mêmes
 > arrondis ni les mêmes experts saturés). Pour de la reproductibilité,
