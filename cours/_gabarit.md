@@ -13,16 +13,36 @@ maison est le tout, les leçons sont les parties, la promotion dans
 
 | Phase | Rubrique | Opération mentale |
 |---|---|---|
-| Tout | `Où ça s'emboîte` | localiser la pièce parmi ses voisines |
+| Tout | `Où ça s'emboîte` | voir la machine entière, et où cette pièce agit |
+| — | `Prérequis et suites` | de quoi ça dépend, ce que ça débloque |
 | — | `L'essentiel` | ce que la leçon affirme, et qu'on saura vérifier |
 | Parties | `Le savoir` | décomposer, expliquer le mécanisme |
 | Parties | `En pratique` · `Mesures` | l'épreuve du réel |
 | Tout | `Recomposer` | remettre la pièce, prédire ce qui change ailleurs |
 
+Ne pas confondre les deux premières : `Où ça s'emboîte` situe la pièce dans
+un **processus technique** (ce qui se passe à l'exécution) ; `Prérequis et
+suites` situe la leçon dans le **parcours** (ce qui se lit avant et après).
+Deux axes distincts, deux rubriques distinctes.
+
 **`Recomposer` n'est pas `À retenir`.** Compresser, c'est redire les parties
 en plus court ; recomposer, c'est remettre la pièce dans l'ensemble et en
 tirer une prédiction sur autre chose. C'est le mouvement le plus difficile,
 donc celui qu'on saute — il est obligatoire.
+
+## Les termes techniques sont des liens
+
+À sa **première occurrence utile** dans une leçon, un terme technique devient
+un lien. Priorité de la cible :
+
+1. la **leçon** qui traite ce terme, si elle existe (`KV cache` → sa leçon) ;
+2. sinon, sa **définition dans `cours/glossaire/`** (`transformers` → le
+   glossaire) — créée si elle manque.
+
+Le glossaire ne contient que ce qui n'a pas de leçon : ni étape, ni mesure,
+ni promotion, juste de quoi ne pas rester bloqué sur un mot. Le jour où un
+terme mérite d'être refait à la main, il quitte le glossaire pour devenir une
+leçon, et les liens se retournent vers elle.
 
 ## Choisir le gabarit
 
@@ -63,35 +83,53 @@ Marqueur des emplacements à ne pas combler :
 
 ## `Où ça s'emboîte` — la rubrique qui se dessine
 
-Quatre lignes, jamais plus, toujours dans cet ordre. C'est la **source** du
-schéma `.canvas` voisin, régénéré par `outils/canvas.py` — donc sa forme est
-contrainte.
+La leçon ne décrit **pas** son schéma : elle déclare quel processus elle
+traverse et quelle étape elle ouvre. Deux lignes, jamais plus.
 
 ```markdown
 ## Où ça s'emboîte
 
-- **En amont** : [tokenisation](tokenisation.md) — le texte est déjà découpé en tokens
-- **La pièce** : transforme la liste de messages en le texte unique que le modèle lit
-- **En aval** : [function calling](function-calling.md) — le rôle `tool` n'est qu'une balise de plus
-- **À ne pas confondre avec** : le prompt système, qui est un *contenu*, pas un *format*
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `tokenizer` — entre un texte balisé, sortent des entiers du vocabulaire
+
+![[tokenisation.canvas]]
 ```
 
-- **En amont / En aval** : un lien par voisin, suivi d'un tiret cadratin et
-  de la relation en une clause — cette clause devient l'étiquette de la
-  flèche. Plusieurs voisins possibles, séparés par ` · `.
-- **La pièce** : ce que fait cet élément, sans lien, une ligne.
-- **À ne pas confondre avec** : l'axe de discrimination. Un concept se
-  définit autant par ce dont on le distingue que par ce qu'il est.
+- **Processus** : un lien vers une définition de `cours/_processus/`. Si le
+  processus n'existe pas encore, on l'écrit d'abord — jamais en double.
+- **L'étape ouverte** : un ou plusieurs identifiants d'étape contigus, entre
+  accents graves, séparés par ` · `, puis un tiret cadratin et ce qui entre /
+  ce qui sort. Cette clause devient l'encadré attaché à la boîte allumée.
+- **L'incrustation** `![[<stem>.canvas]]` affiche le schéma sous la rubrique.
+  Le nom de base suffit — Obsidian le résout où qu'il soit rangé.
+
+Le générateur produit **deux vues**, toutes deux rangées dans
+`cours/_schemas/canvas/` :
+
+- le **processus complet**, une fois par définition — la carte de référence ;
+- la **vue locale** de chaque leçon — trois boîtes : l'étape précédente,
+  celle de la leçon (allumée), l'étape suivante. Les deux boîtes voisines
+  sont des liens : un clic ouvre le canvas de la leçon voisine, et de proche
+  en proche on parcourt toute la chaîne.
+
+```bash
+python outils/canvas.py            # régénère tout
+python outils/canvas.py --verifier # échoue si un canvas est périmé
+```
 
 Trois règles non négociables :
 
-1. **Rayon 1.** Voisins immédiats seulement. Sans cette borne, chaque schéma
-   rampe vers une carte globale et diverge de `carte.md`.
-2. **La prose est la source, le canvas est le rendu.** Le `.md` se lit seul ;
-   le `.canvas` se régénère. Jamais l'inverse.
-3. **Aucune analogie.** La réponse nomme des voisins réels du cours. Si on ne
-   peut pas la dessiner, c'est que l'ouverture est vague — le schéma échoue
-   avant le lecteur, et c'est le but.
+1. **Une définition, N rendus.** Le processus est décrit une seule fois dans
+   `cours/_processus/` ; les leçons n'en redonnent jamais leur version. Une
+   mécanique fausse se corrige à un seul endroit.
+2. **La même machine, une boîte qui bouge.** Chaque vue locale montre les
+   étapes aux mêmes coordonnées d'une leçon à l'autre : seule change la boîte
+   allumée. C'est ce qui donne la vision de l'imbrication.
+3. **La prose est la source, le canvas est le rendu.** Ne jamais éditer un
+   `.canvas` à la main : il sera écrasé.
+
+Une leçon sans processus technique — `LoRA`, `quatre régimes`, tout le
+gabarit B en général — n'a simplement pas de schéma, et c'est normal.
 
 ---
 
@@ -104,7 +142,14 @@ Trois règles non négociables :
 
 ## Où ça s'emboîte
 
-Les quatre lignes décrites plus haut.
+Les deux lignes décrites plus haut : le processus, l'étape ouverte.
+
+## Prérequis et suites
+
+- **Suppose acquis** : les notions nécessaires, chacune avec le lien vers
+  la leçon qui l'enseigne. Si une notion n'est enseignée nulle part, elle
+  se pose ici en trois lignes, ou elle devient une leçon à part entière.
+- **Débloque** : ce que cette leçon rend possible ensuite.
 
 ## L'essentiel
 
@@ -191,8 +236,13 @@ mais un **paysage**, et la recomposition est un **critère de décision**.
 
 ## Où ça s'emboîte
 
-Mêmes quatre lignes. Ici « en amont / en aval » se lisent comme
-« ce qui amène à en parler / ce que ça permet de comprendre ».
+Rubrique **omise** la plupart du temps : une leçon « situer » ne porte
+généralement pas sur une étape d'un processus technique. Si elle en couvre
+une malgré tout, mêmes deux lignes que le gabarit A.
+
+## Prérequis et suites
+
+Identique au gabarit A.
 
 ## L'essentiel
 
@@ -237,8 +287,8 @@ Chaque ligne se répond par oui ou non. Un seul non = la leçon repasse.
 | # | Contrôle |
 |---|---|
 | 1 | Le niveau visé (refaire / situer) est-il déclaré et le bon gabarit employé ? |
-| 2 | `Où ça s'emboîte` tient-il en quatre lignes, à rayon 1, sans aucune analogie ? |
-| 3 | Le schéma `.canvas` se génère-t-il sans erreur depuis ces quatre lignes ? |
+| 2 | `Où ça s'emboîte` désigne-t-il un processus existant et une étape réelle, sans redécrire la chaîne ? |
+| 3 | Le schéma `.canvas` se génère-t-il sans erreur, et `--verifier` passe-t-il ? |
 | 4 | Chaque notion supposée connue est-elle liée à la leçon qui l'enseigne, ou posée sur place ? |
 | 5 | Toute propriété affirmée s'accompagne-t-elle de son mécanisme ? |
 | 6 | Un lecteur pourrait-il prédire le comportement dans un cas non traité ? |
