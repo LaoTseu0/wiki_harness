@@ -37,9 +37,11 @@ COURS = RACINE / "cours"
 PROCESSUS = COURS / "_processus"
 SORTIE = COURS / "_schemas" / "canvas"
 
-LARGEUR, HAUTEUR, PAS = 260, 110, 340
-DETAIL_Y, PROC_Y = 200, -190
-ALLUME, VOISIN, DETAIL, PROC = "4", "6", "3", "2"  # vert, violet, jaune, cyan
+# Une taille par role : l'etape de la lecon domine, ses voisines s'effacent.
+ALLUMEE = (310, 180)   # l'etape que la lecon ouvre
+VOISINE = (290, 140)   # les etapes d'avant / d'apres, cliquables
+ECART_X, ECART_Y = 340, 140  # blanc entre deux boites, en rangee / en colonne
+ALLUME, VOISIN = "4", "6"  # vert, violet
 
 TITRE = re.compile(r"^##\s+O[ùu] [çc]a s'embo[îi]te\s*$", re.M)
 SECTION = re.compile(r"^##\s", re.M)
@@ -99,12 +101,18 @@ def cible_canvas(lecon: Path) -> str:
     return (SORTIE / f"{lecon.stem}.canvas").relative_to(RACINE).as_posix()
 
 
+def cible_lecon(lecon: Path) -> str:
+    """Chemin vault de la lecon, sans extension — pour un [[lien|alias]]."""
+    return lecon.relative_to(RACINE).with_suffix("").as_posix()
+
+
 def rendu(canvas: dict) -> str:
     return json.dumps(canvas, ensure_ascii=False, indent="\t") + "\n"
 
 
-def boite(ident, x, y, texte=None, fichier=None, couleur=None, h=HAUTEUR) -> dict:
-    n = {"id": ident, "x": x, "y": y, "width": LARGEUR, "height": h}
+def boite(ident, x, y, taille, texte=None, fichier=None, couleur=None) -> dict:
+    largeur, hauteur = taille
+    n = {"id": ident, "x": x, "y": y, "width": largeur, "height": hauteur}
     if fichier:
         n["type"], n["file"] = "file", fichier
     else:
@@ -126,7 +134,9 @@ def dessiner_processus(proc: dict) -> dict:
     """La chaine entiere, carte de reference — rien d'allume."""
     etapes = proc["etapes"]
     pos = {i: n for n, (i, _, _) in enumerate(etapes)}
-    noeuds = [boite(i, n * PAS, 0, texte=f"**{proc['libelle'][i]}**\n\n{proc['role'][i]}")
+    pas = ALLUMEE[0] + ECART_X
+    noeuds = [boite(i, n * pas, 0, ALLUMEE,
+                    texte=f"**{proc['libelle'][i]}**\n\n{proc['role'][i]}")
               for n, (i, _, _) in enumerate(etapes)]
     aretes = []
     for k, ((de, vers), lab) in enumerate(proc["label"].items()):
@@ -136,9 +146,46 @@ def dessiner_processus(proc: dict) -> dict:
     return {"nodes": noeuds, "edges": aretes}
 
 
+def milieu(hauteur: int) -> int:
+    """Ordonnee d'une boite centree sur la hauteur d'une etape allumee."""
+    return (ALLUMEE[1] - hauteur) // 2
+
+
+def placer(allumees: list[str], avant, apres, taille: dict) -> dict:
+    """Position (x, y) de chaque boite.
+
+    Au-dela de deux etapes allumees la rangee devient une colonne : la
+    lecon se lit de haut en bas et reste lisible sans defiler. Les deux
+    voisines restent sur les cotes, accrochees a la premiere et a la
+    derniere etape.
+    """
+    pos = {}
+    if len(allumees) > 2:
+        colonne = VOISINE[0] + ECART_X if avant else 0
+        for n, ident in enumerate(allumees):
+            pos[ident] = (colonne, n * (ALLUMEE[1] + ECART_Y))
+        if avant:
+            pos[avant] = (0, milieu(taille[avant][1]))
+        if apres:
+            pos[apres] = (colonne + ALLUMEE[0] + ECART_X,
+                          pos[allumees[-1]][1] + milieu(taille[apres][1]))
+        return pos
+
+    # rangee : abscisses cumulees, les boites n'ont pas la meme largeur
+    curseur = 0
+    for ident in ([avant] if avant else []) + allumees + ([apres] if apres else []):
+        pos[ident] = (curseur, milieu(taille[ident][1]))
+        curseur += taille[ident][0] + ECART_X
+    return pos
+
+
 def dessiner_lecon(proc: dict, allumees: list[str], detail: str,
-                   proc_canvas: str, voisin_canvas) -> dict:
+                   lien_lecon: str, voisin_canvas) -> dict:
     """Trois boites : precedente, celle(s) de la lecon, suivante.
+
+    La boite allumee se suffit a elle-meme : son titre est un lien vers la
+    lecon, son corps une liste a puces (role de l'etape, puis ce que la
+    lecon ouvre). Rien autour, pour ne pas encombrer la vue.
 
     voisin_canvas : fonction step_id -> chemin canvas du voisin, ou None.
     """
@@ -146,34 +193,39 @@ def dessiner_lecon(proc: dict, allumees: list[str], detail: str,
     avant = proc["avant"].get(premiere)
     apres = proc["apres"].get(derniere)
 
-    # sequence de gauche a droite : [avant] + allumees + [apres]
+    # sens de lecture : [avant] + allumees + [apres]
     sequence = ([avant] if avant else []) + allumees + ([apres] if apres else [])
-    x = {ident: i * PAS for i, ident in enumerate(sequence)}
+    taille = {i: ALLUMEE if i in allumees else VOISINE for i in sequence}
+    pos = placer(allumees, avant, apres, taille)
+    colonne = len(allumees) > 2
 
     noeuds, aretes = [], []
     for ident in sequence:
         est_allumee = ident in allumees
+        x, y = pos[ident]
         cible = None if est_allumee else voisin_canvas(ident)
         if cible:
-            noeuds.append(boite(ident, x[ident], 0, fichier=cible, couleur=VOISIN))
+            noeuds.append(boite(ident, x, y, taille[ident],
+                                fichier=cible, couleur=VOISIN))
+            continue
+        if est_allumee:
+            titre = f"[[{lien_lecon}|{proc['libelle'][ident]}]]"
+            # le detail ne concerne que l'entree du groupe allume
+            lignes = [proc["role"][ident]]
+            if detail and ident == premiere:
+                lignes.append(detail)
         else:
-            txt = f"**{proc['libelle'][ident]}**\n\n{proc['role'][ident]}"
-            noeuds.append(boite(ident, x[ident], 0, texte=txt,
-                                couleur=ALLUME if est_allumee else None))
+            titre, lignes = proc["libelle"][ident], [proc["role"][ident]]
+        txt = f"**{titre}**\n\n" + "\n".join(f"- {p}" for p in lignes)
+        noeuds.append(boite(ident, x, y, taille[ident], texte=txt,
+                            couleur=ALLUME if est_allumee else None))
 
     for a, b in zip(sequence, sequence[1:]):
-        aretes.append(fleche(f"e-{a}-{b}", a, b, proc["label"].get((a, b))))
+        # en colonne, seules les fleches entre allumees descendent
+        empile = colonne and a in allumees and b in allumees
+        cote = ("bottom", "top") if empile else ("right", "left")
+        aretes.append(fleche(f"e-{a}-{b}", a, b, proc["label"].get((a, b)), cote))
 
-    if detail:
-        noeuds.append(boite("detail", x[premiere], DETAIL_Y, texte=detail,
-                            couleur=DETAIL))
-        aretes.append(fleche("e-detail", "detail", premiere, "la leçon ouvre ici",
-                             cote=("top", "bottom")))
-
-    noeuds.append(boite("proc", x[premiere], PROC_Y, fichier=proc_canvas,
-                        couleur=PROC, h=60))
-    aretes.append(fleche("e-proc", "proc", premiere, "processus complet",
-                         cote=("bottom", "top")))
     return {"nodes": noeuds, "edges": aretes}
 
 
@@ -219,8 +271,6 @@ def principal(verifier: bool) -> int:
     perimes, ecrits, sans = [], 0, 0
 
     caches = {p: charger_processus(p) for p in sorted(PROCESSUS.glob("*.md"))}
-    canvas_proc = {p: (SORTIE / f"{p.stem}.canvas").relative_to(RACINE).as_posix()
-                   for p in caches}
 
     def ecrire(cible: Path, canvas: dict) -> None:
         nonlocal ecrits
@@ -242,7 +292,7 @@ def principal(verifier: bool) -> int:
         def voisin(step, _pp=proc_path):
             return proprietaire.get((_pp, step))
         canvas = dessiner_lecon(caches[proc_path], allumees, detail,
-                                canvas_proc[proc_path], voisin)
+                                cible_lecon(lecon), voisin)
         ecrire(SORTIE / f"{lecon.stem}.canvas", canvas)
 
     if verifier:

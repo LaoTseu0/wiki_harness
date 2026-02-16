@@ -11,6 +11,8 @@ Point d'entrée : [cours/carte.md](cours/carte.md).
 | `cours/` | la prose, un dossier par domaine. Aucun numéro dans les chemins. |
 | `etapes/` | les scripts exécutables, numérotés par domaine (`NN_sujet.py`) |
 | `src/framework/` | le framework maison — s'enrichit à chaque leçon acquise |
+| `cours/glossaire/` | définitions courtes des termes qui n'ont pas de leçon |
+| `cours/_schemas/canvas/` | schémas `.canvas` générés — jamais édités à la main |
 | `tests/` | pytest sur `src/framework/` |
 | `outils/` | l'outillage du repo lui-même (génération des schémas, contrôles) |
 | `cours/_archive/` | écrit avant d'être vécu, ou journal historique. Ne pas s'y fier. |
@@ -54,10 +56,19 @@ Ses trois interdits, qui priment sur le reste :
 3. **Ne jamais livrer la solution d'un exercice non fait.**
 
 Une leçon va du tout aux parties puis revient au tout : `Où ça s'emboîte`
-(la carte locale, rayon 1) → `Le savoir` → `Recomposer` (ce que ça change
-ailleurs, jamais un résumé). La rubrique `Où ça s'emboîte` est la **source**
-des schémas Obsidian — jamais éditer un `.canvas` à la main, il se
-régénère :
+(la machine, et l'étape que la leçon ouvre) → `Le savoir` → `Recomposer`
+(ce que ça change ailleurs, jamais un résumé).
+
+Un terme technique devient un lien à sa première occurrence : vers la leçon
+qui le traite, ou à défaut vers `cours/glossaire/` (définition créée si
+absente). Le glossaire ne contient que ce qui n'a pas de leçon.
+
+Les processus techniques sont décrits **une seule fois** dans
+`cours/_processus/` ; une leçon déclare lequel elle traverse et quelle étape
+elle ouvre, et incruste son schéma par `![[<stem>.canvas]]`. Le générateur
+produit une vue locale navigable (précédent / leçon / suivant) plus le
+processus complet, tous dans `cours/_schemas/canvas/`. Ne jamais éditer un
+`.canvas` à la main :
 
 ```bash
 python outils/canvas.py
