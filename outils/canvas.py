@@ -1,25 +1,27 @@
-"""Regenere les schemas .canvas depuis la rubrique "Ou ca s'emboite".
+"""Regenere les schemas .canvas : vue locale par lecon + processus complet.
 
-La prose est la source, le canvas est le rendu. Ce script lit le bloc de
-quatre lignes de chaque lecon et ecrit un JSONCanvas a cote d'elle, meme
-nom de base. Aucun canvas ne s'edite a la main : il serait ecrase.
+Principe : UNE definition du processus (cours/_processus/*.md), N rendus.
+Chaque lecon declare quel processus elle traverse et quelle(s) etape(s)
+elle ouvre. Le generateur produit deux familles de canvas, tous ranges
+dans cours/_schemas/canvas/ :
 
-    python outils/canvas.py            # regenere tout
-    python outils/canvas.py --verifier # echoue si un canvas est absent
-                                       # ou perime (pour un hook git)
+  - un canvas PAR PROCESSUS  : la chaine entiere, carte de reference ;
+  - un canvas PAR LECON      : trois boites — l'etape precedente, celle
+                               de la lecon (allumee), l'etape suivante.
+                               Les boites voisines sont des liens : un
+                               clic ouvre le canvas de la lecon voisine.
 
-Format attendu dans la lecon :
+    python outils/canvas.py
+    python outils/canvas.py --verifier   # sortie != 0 si un canvas est perime
+
+Dans une lecon :
 
     ## Ou ca s'emboite
 
-    - **En amont** : [x](x.md) — la relation · [y](y.md) — la relation
-    - **La piece** : ce que fait cet element
-    - **En aval** : [z](z.md) — la relation
-    - **A ne pas confondre avec** : la distinction
+    - **Processus** : [d'un texte a un token](../_processus/generation-token.md)
+    - **L'etape ouverte** : `tokenizer` — entre un texte, sortent des entiers
 
-Les lignes "En amont"/"En aval" acceptent plusieurs voisins separes par
-" · ". La clause qui suit le tiret cadratin devient l'etiquette de la
-fleche. Toutes les lignes sont facultatives sauf "La piece".
+Plusieurs etapes contigues possibles, separees par " · ".
 """
 
 import argparse
@@ -32,76 +34,77 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
 COURS = RACINE / "cours"
+PROCESSUS = COURS / "_processus"
+SORTIE = COURS / "_schemas" / "canvas"
 
-# Geometrie : la piece au centre, les voisins de part et d'autre.
-LARGEUR, HAUTEUR, INTERLIGNE = 260, 90, 130
-COLONNE = 420
-
-ROUGE, VERT, VIOLET = "1", "4", "6"
+LARGEUR, HAUTEUR, PAS = 260, 110, 340
+DETAIL_Y, PROC_Y = 200, -190
+ALLUME, VOISIN, DETAIL, PROC = "4", "6", "3", "2"  # vert, violet, jaune, cyan
 
 TITRE = re.compile(r"^##\s+O[ùu] [çc]a s'embo[îi]te\s*$", re.M)
 SECTION = re.compile(r"^##\s", re.M)
 PUCE = re.compile(r"^-\s+\*\*(.+?)\*\*\s*:\s*(.+)$")
 LIEN = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+ETAPE = re.compile(r"^\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", re.M)
+FIL = re.compile(r"^-\s+`([^`]+)`\s*(?:→|->)\s*`([^`]+)`\s*:\s*(.+)$", re.M)
+CODE = re.compile(r"`([^`]+)`")
 
 
 def sans_accents(texte: str) -> str:
-    """Pour comparer des intitules de puce sans se soucier des accents."""
     plat = unicodedata.normalize("NFD", texte)
     return "".join(c for c in plat if unicodedata.category(c) != "Mn").lower()
 
 
-def extraire_bloc(texte: str) -> dict[str, str] | None:
-    """Renvoie {intitule_normalise: contenu} pour la rubrique, ou None."""
-    debut = TITRE.search(texte)
+def bloc(texte: str, titre: re.Pattern) -> str | None:
+    debut = titre.search(texte)
     if not debut:
         return None
     suite = texte[debut.end():]
     fin = SECTION.search(suite)
-    corps = suite[: fin.start()] if fin else suite
+    return suite[: fin.start()] if fin else suite
 
-    puces = {}
+
+def puces(corps: str) -> dict[str, str]:
+    trouvees = {}
     for ligne in corps.split("\n"):
         m = PUCE.match(ligne.strip())
         if m:
-            puces[sans_accents(m.group(1))] = m.group(2).strip()
-    return puces
+            trouvees[sans_accents(m.group(1))] = m.group(2).strip()
+    return trouvees
 
 
-# Une lecon peut n'avoir aucun voisin d'un cote : on l'ecrit en toutes
-# lettres dans la prose, mais on ne dessine pas une boite "rien".
-ABSENCE = {"rien", "aucun", "aucune", "-", "—"}
+def charger_processus(fichier: Path) -> dict:
+    texte = fichier.read_text(encoding="utf-8")
+    etapes = [(i, lib.strip(), role.strip()) for i, lib, role in ETAPE.findall(texte)]
+    if not etapes:
+        raise ValueError(f"{fichier.name} : aucune etape dans le tableau")
+    connus = {i for i, _, _ in etapes}
+    fil = FIL.findall(texte)
+    for de, vers, _ in fil:
+        for bout in (de, vers):
+            if bout not in connus:
+                raise ValueError(f"{fichier.name} : etape inconnue dans le fil : {bout}")
+    return {
+        "etapes": etapes,
+        "libelle": {i: lib for i, lib, _ in etapes},
+        "role": {i: role for i, _, role in etapes},
+        "avant": {vers: de for de, vers, _ in fil},   # predecesseur (suit le fil, boucle comprise)
+        "apres": {de: vers for de, vers, _ in fil},   # successeur
+        "label": {(de, vers): lab for de, vers, lab in fil},
+    }
 
 
-def voisins(clause: str, lecon: Path) -> list[tuple[str, str | None, str]]:
-    """Decoupe une ligne amont/aval en (libelle, chemin_vault, relation)."""
-    resultat = []
-    for morceau in clause.split(" · "):
-        morceau = morceau.strip()
-        if not morceau:
-            continue
-        tete = morceau.split("—", 1)[0].strip()
-        if sans_accents(tete) in ABSENCE:
-            continue
-        # la relation est ce qui suit le tiret cadratin, hors du lien
-        relation = ""
-        if "—" in morceau:
-            avant, relation = morceau.split("—", 1)
-            relation = relation.strip()
-        else:
-            avant = morceau
-        lien = LIEN.search(avant)
-        if lien:
-            cible = (lecon.parent / lien.group(2)).resolve()
-            chemin = cible.relative_to(RACINE).as_posix() if cible.exists() else None
-            resultat.append((lien.group(1), chemin, relation))
-        else:
-            resultat.append((avant.strip(), None, relation))
-    return resultat
+def cible_canvas(lecon: Path) -> str:
+    """Chemin vault du canvas d'une lecon (range dans _schemas/canvas)."""
+    return (SORTIE / f"{lecon.stem}.canvas").relative_to(RACINE).as_posix()
 
 
-def noeud(ident, x, y, texte=None, fichier=None, couleur=None) -> dict:
-    n = {"id": ident, "x": x, "y": y, "width": LARGEUR, "height": HAUTEUR}
+def rendu(canvas: dict) -> str:
+    return json.dumps(canvas, ensure_ascii=False, indent="\t") + "\n"
+
+
+def boite(ident, x, y, texte=None, fichier=None, couleur=None, h=HAUTEUR) -> dict:
+    n = {"id": ident, "x": x, "y": y, "width": LARGEUR, "height": h}
     if fichier:
         n["type"], n["file"] = "file", fichier
     else:
@@ -111,100 +114,148 @@ def noeud(ident, x, y, texte=None, fichier=None, couleur=None) -> dict:
     return n
 
 
-def colonne(items, x, prefixe, couleur) -> list[dict]:
-    """Empile verticalement une liste de voisins, centree sur y=0."""
-    depart = -((len(items) - 1) * INTERLIGNE) // 2
-    noeuds = []
-    for i, (libelle, chemin, _) in enumerate(items):
-        noeuds.append(
-            noeud(f"{prefixe}{i}", x, depart + i * INTERLIGNE,
-                  texte=f"**{libelle}**", fichier=chemin, couleur=couleur)
-        )
-    return noeuds
+def fleche(ident, de, vers, label=None, cote=("right", "left")) -> dict:
+    a = {"id": ident, "fromNode": de, "fromSide": cote[0],
+         "toNode": vers, "toSide": cote[1]}
+    if label:
+        a["label"] = label
+    return a
 
 
-def construire(lecon: Path, puces: dict[str, str]) -> dict | None:
-    piece = puces.get("la piece")
-    if not piece:
-        return None
-
-    amont = voisins(puces.get("en amont", ""), lecon)
-    aval = voisins(puces.get("en aval", ""), lecon)
-
-    centre = noeud("piece", 0, 0, texte=f"**{lecon.stem}**\n\n{piece}",
-                   couleur=VERT)
-    centre["height"] = 120
-    noeuds = [centre]
-    noeuds += colonne(amont, -COLONNE, "amont", VIOLET)
-    noeuds += colonne(aval, COLONNE, "aval", VIOLET)
-
+def dessiner_processus(proc: dict) -> dict:
+    """La chaine entiere, carte de reference — rien d'allume."""
+    etapes = proc["etapes"]
+    pos = {i: n for n, (i, _, _) in enumerate(etapes)}
+    noeuds = [boite(i, n * PAS, 0, texte=f"**{proc['libelle'][i]}**\n\n{proc['role'][i]}")
+              for n, (i, _, _) in enumerate(etapes)]
     aretes = []
-    for i, (_, _, relation) in enumerate(amont):
-        a = {"id": f"e-amont{i}", "fromNode": f"amont{i}", "fromSide": "right",
-             "toNode": "piece", "toSide": "left"}
-        if relation:
-            a["label"] = relation
-        aretes.append(a)
-    for i, (_, _, relation) in enumerate(aval):
-        a = {"id": f"e-aval{i}", "fromNode": "piece", "fromSide": "right",
-             "toNode": f"aval{i}", "toSide": "left"}
-        if relation:
-            a["label"] = relation
-        aretes.append(a)
+    for k, ((de, vers), lab) in enumerate(proc["label"].items()):
+        retour = pos[vers] < pos[de]
+        cote = ("bottom", "bottom") if retour else ("right", "left")
+        aretes.append(fleche(f"fil{k}", de, vers, lab, cote))
+    return {"nodes": noeuds, "edges": aretes}
 
-    confusion = puces.get("a ne pas confondre avec")
-    if confusion:
-        noeuds.append(noeud("confusion", 0, 300, texte=confusion, couleur=ROUGE))
-        aretes.append({
-            "id": "e-confusion", "fromNode": "piece", "fromSide": "bottom",
-            "toNode": "confusion", "toSide": "top", "toEnd": "none", "label": "≠",
-        })
 
+def dessiner_lecon(proc: dict, allumees: list[str], detail: str,
+                   proc_canvas: str, voisin_canvas) -> dict:
+    """Trois boites : precedente, celle(s) de la lecon, suivante.
+
+    voisin_canvas : fonction step_id -> chemin canvas du voisin, ou None.
+    """
+    premiere, derniere = allumees[0], allumees[-1]
+    avant = proc["avant"].get(premiere)
+    apres = proc["apres"].get(derniere)
+
+    # sequence de gauche a droite : [avant] + allumees + [apres]
+    sequence = ([avant] if avant else []) + allumees + ([apres] if apres else [])
+    x = {ident: i * PAS for i, ident in enumerate(sequence)}
+
+    noeuds, aretes = [], []
+    for ident in sequence:
+        est_allumee = ident in allumees
+        cible = None if est_allumee else voisin_canvas(ident)
+        if cible:
+            noeuds.append(boite(ident, x[ident], 0, fichier=cible, couleur=VOISIN))
+        else:
+            txt = f"**{proc['libelle'][ident]}**\n\n{proc['role'][ident]}"
+            noeuds.append(boite(ident, x[ident], 0, texte=txt,
+                                couleur=ALLUME if est_allumee else None))
+
+    for a, b in zip(sequence, sequence[1:]):
+        aretes.append(fleche(f"e-{a}-{b}", a, b, proc["label"].get((a, b))))
+
+    if detail:
+        noeuds.append(boite("detail", x[premiere], DETAIL_Y, texte=detail,
+                            couleur=DETAIL))
+        aretes.append(fleche("e-detail", "detail", premiere, "la leçon ouvre ici",
+                             cote=("top", "bottom")))
+
+    noeuds.append(boite("proc", x[premiere], PROC_Y, fichier=proc_canvas,
+                        couleur=PROC, h=60))
+    aretes.append(fleche("e-proc", "proc", premiere, "processus complet",
+                         cote=("bottom", "top")))
     return {"nodes": noeuds, "edges": aretes}
 
 
 def lecons():
     for f in sorted(COURS.rglob("*.md")):
-        if "_archive" in f.parts or f.name.startswith("_"):
+        if any(p.startswith("_") for p in f.relative_to(COURS).parts):
             continue
         yield f
 
 
-def principal(verifier: bool) -> int:
-    ecrits, absents, sans_rubrique = [], [], []
+def collecter(caches: dict) -> tuple[list, dict]:
+    """Renvoie (declarations, proprietaire[(proc_path, step)] -> canvas)."""
+    declarations, proprietaire = [], {}
     for lecon in lecons():
-        texte = lecon.read_text(encoding="utf-8")
-        puces = extraire_bloc(texte)
-        if puces is None:
-            sans_rubrique.append(lecon)
+        corps = bloc(lecon.read_text(encoding="utf-8"), TITRE)
+        if corps is None:
             continue
-        canvas = construire(lecon, puces)
-        if canvas is None:
-            print(f"  ! {lecon.relative_to(RACINE)} : rubrique sans 'La piece'")
+        champs = puces(corps)
+        lien = LIEN.search(champs.get("processus", ""))
+        if not lien:
+            print(f"  ! {lecon.relative_to(RACINE)} : pas de lien de processus")
             continue
+        proc_path = (lecon.parent / lien.group(2)).resolve()
+        if proc_path not in caches:
+            print(f"  ! {lecon.relative_to(RACINE)} : processus inconnu ({lien.group(2)})")
+            continue
+        avant_tiret = champs.get("l'etape ouverte", "").split("—", 1)
+        allumees = CODE.findall(avant_tiret[0])
+        connus = {i for i, _, _ in caches[proc_path]["etapes"]}
+        hors = [e for e in allumees if e not in connus]
+        if hors:
+            print(f"  ! {lecon.relative_to(RACINE)} : etape(s) hors processus {hors}")
+            continue
+        detail = avant_tiret[1].strip() if len(avant_tiret) > 1 else ""
+        declarations.append((lecon, proc_path, allumees, detail))
+        for step in allumees:
+            proprietaire[(proc_path, step)] = cible_canvas(lecon)
+    return declarations, proprietaire
 
-        cible = lecon.with_suffix(".canvas")
-        rendu = json.dumps(canvas, ensure_ascii=False, indent="\t") + "\n"
+
+def principal(verifier: bool) -> int:
+    SORTIE.mkdir(parents=True, exist_ok=True)
+    perimes, ecrits, sans = [], 0, 0
+
+    caches = {p: charger_processus(p) for p in sorted(PROCESSUS.glob("*.md"))}
+    canvas_proc = {p: (SORTIE / f"{p.stem}.canvas").relative_to(RACINE).as_posix()
+                   for p in caches}
+
+    def ecrire(cible: Path, canvas: dict) -> None:
+        nonlocal ecrits
+        contenu = rendu(canvas)
         if verifier:
-            if not cible.exists() or cible.read_text(encoding="utf-8") != rendu:
-                absents.append(cible)
+            if not cible.exists() or cible.read_text(encoding="utf-8") != contenu:
+                perimes.append(cible)
         else:
-            cible.write_text(rendu, encoding="utf-8")
-            ecrits.append(cible)
+            cible.write_text(contenu, encoding="utf-8")
+            ecrits += 1
+
+    for p, cache in caches.items():
+        ecrire(SORTIE / f"{p.stem}.canvas", dessiner_processus(cache))
+
+    declarations, proprietaire = collecter(caches)
+    sans = sum(1 for _ in lecons()) - len(declarations)
+
+    for lecon, proc_path, allumees, detail in declarations:
+        def voisin(step, _pp=proc_path):
+            return proprietaire.get((_pp, step))
+        canvas = dessiner_lecon(caches[proc_path], allumees, detail,
+                                canvas_proc[proc_path], voisin)
+        ecrire(SORTIE / f"{lecon.stem}.canvas", canvas)
 
     if verifier:
-        for c in absents:
+        for c in perimes:
             print(f"  ! perime ou absent : {c.relative_to(RACINE)}")
-        print(f"{len(absents)} canvas a regenerer")
-        return 1 if absents else 0
+        print(f"{len(perimes)} canvas a regenerer")
+        return 1 if perimes else 0
 
-    print(f"{len(ecrits)} canvas ecrits, "
-          f"{len(sans_rubrique)} lecons sans rubrique \"Ou ca s'emboite\"")
+    print(f"{ecrits} canvas ecrits, {sans} lecons sans schema")
     return 0
 
 
 if __name__ == "__main__":
     parseur = argparse.ArgumentParser(description=__doc__)
-    parseur.add_argument("--verifier", action="store_true",
-                         help="ne rien ecrire, sortir en erreur si perime")
+    parseur.add_argument("--verifier", action="store_true")
     sys.exit(principal(parseur.parse_args().verifier))
