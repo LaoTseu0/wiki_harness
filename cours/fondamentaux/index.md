@@ -16,8 +16,10 @@ SDK feront plus tard est déjà là, en ~200 lignes à chaque fois.
 
 - **[1.1.1 Chat CLI, historique et contexte](chat-historique-contexte.md)**
       — modèle stateless, streaming, troncature et compaction à la main
-- **[1.1.2 Sampling et prompting](sampling-et-prompting.md)**
-      — temperature, top-k, top-p ; zero/few-shot, chain-of-thought
+- **[1.1.2 Sampling](sampling.md)**
+      — temperature, top-k, top-p, le tirage et la portée de la seed
+- **[Prompting](prompting.md)**
+      — zero/few-shot, chain-of-thought, ReAct, prompt système
 - **[1.1.3 Function calling à la main](function-calling.md)**
       — schémas JSON, parsing, exécution, renvoi (= ReAct implémenté)
 - **[1.1.4 Mini-boucle d'agent](boucle-agent.md)**

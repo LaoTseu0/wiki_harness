@@ -48,7 +48,7 @@ token spécial que le serveur intercepte pour couper la génération.
 ([Modelfile](../glossaire/modelfile.md) chez Ollama, `chat_template` du
 tokenizer chez Hugging Face) — pas choisi par
 nous. `/api/show` l'expose, au même endroit que les paramètres de sampling
-par défaut qui avaient piégé le [débogage du sampling](sampling-et-prompting.md).
+par défaut qui avaient piégé le [débogage du sampling](sampling.md).
 Même leçon : *ce que tu n'as pas envoyé, quelqu'un l'a rempli à ta place.*
 
 **Et quand le format est faux ?** Le modèle a été entraîné sur *ce*
