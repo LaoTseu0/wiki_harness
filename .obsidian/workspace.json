@@ -8,17 +8,40 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d677cf8f545a8ce5",
+            "id": "eb0aa9e67fc1a67d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "file": "AGENTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "sampling-et-prompting"
+              "title": "AGENTS"
+            }
+          }
+        ]
+      },
+      {
+        "id": "726dc4015da63f32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c6e5e57b3e8f4b3",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "wiki/cours/_schemas/canvas/sampling.canvas",
+                "viewState": {
+                  "x": 785,
+                  "y": 410,
+                  "zoom": -0.8027676525619526
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "sampling"
             }
           }
         ]
@@ -53,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "retrieval",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "file": "cours/fondamentaux/tokenisation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +127,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rétrolien pour sampling-et-prompting"
+              "title": "Rétrolien pour tokenisation"
             }
           },
           {
@@ -113,12 +136,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "file": "cours/fondamentaux/tokenisation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Liens sortants de sampling-et-prompting"
+              "title": "Liens sortants de tokenisation"
             }
           },
           {
@@ -156,13 +179,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "file": "cours/fondamentaux/tokenisation.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Plan de sampling-et-prompting"
+              "title": "Plan de tokenisation"
             }
           }
         ]
@@ -183,41 +206,58 @@
       "bases:Créer une nouvelle base": false
     }
   },
-  "active": "d677cf8f545a8ce5",
+  "active": "7c6e5e57b3e8f4b3",
   "lastOpenFiles": [
-    "cours/_schemas/canvas/sampling-et-prompting.canvas",
-    "cours/_gabarit.md.tmp.15964.e540a6b660b1",
-    "cours/_gabarit.md.tmp.15964.b195b66aa239",
-    "cours/_schemas/canvas/attention-et-kv-cache.canvas",
-    "cours/_schemas/canvas/tokenisation.canvas",
-    "cours/_schemas/canvas/template-de-chat.canvas",
-    "cours/_schemas/canvas/chat-historique-contexte.canvas",
-    "outils/canvas.py.tmp.15964.b886859013ef",
-    "outils/canvas.py.tmp.15964.08a14477f662",
-    "cours/fondamentaux/sampling-et-prompting.md",
-    "cours/fondamentaux/template-de-chat.md",
-    "cours/fondamentaux/tokenisation.md",
-    "outils/canvas.py.tmp.15964.81888b84d82f",
-    "cours/_schemas/canvas/generation-token.canvas",
-    "outils/canvas.py.tmp.23908.b342b3a0a42b",
-    "cours/_gabarit.md",
-    "outils/canvas.py.tmp.23908.3fac5010a6c3",
-    "cours/fondamentaux/attention-et-kv-cache.md",
-    "cours/retrieval/ragas-deepeval.md",
-    "cours/retrieval/recherche-top-k.md",
-    "cours/retrieval/re-ranking-top-k.md",
-    "cours/retrieval/re-ranking.md",
-    "cours/retrieval/backend-commutable.md",
-    "cours/retrieval/llamaindex-outillage.md",
-    "cours/glossaire/index.md",
-    "cours/glossaire/logits.md",
-    "cours/glossaire/modelfile.md",
-    "cours/glossaire/argmax.md",
-    "cours/glossaire/autoregression.md",
-    "cours/_archive/roadmap.md",
-    "cours/fondamentaux/chat-historique-contexte.md",
-    "outils/canvas.py.tmp.12332.da1028e0b9ba",
-    "outils/canvas.py.tmp.12332.f977c651bb92",
-    "cours/fondamentaux/index.md"
+    "wiki/cours/_schemas/canvas/template-de-chat.canvas",
+    "wiki/cours/_schemas/canvas/tokenisation.canvas",
+    "wiki/cours/_schemas/canvas/attention-et-kv-cache.canvas",
+    "AGENTS.md",
+    "wiki/etapes/retrieval/__pycache__/03_chunking.cpython-312.pyc",
+    "wiki/outils/__pycache__/controles.cpython-312.pyc",
+    "wiki/outils/__pycache__/canvas.cpython-312.pyc",
+    "wiki/outils/__pycache__",
+    "sedRuervY",
+    "AGENTS.md.tmp.23384.bd9a8d7b33c2",
+    "wiki/tests/__pycache__/test_ollama.cpython-312-pytest-9.1.1.pyc",
+    "wiki/tests/__pycache__/test_contexte.cpython-312-pytest-9.1.1.pyc",
+    "wiki/tests/__pycache__",
+    "wiki/tests/test_ollama.py",
+    "wiki/src/framework/README.md",
+    "wiki/cours/_schemas/retrieval/06_evals_baseline.png",
+    "wiki/cours/_schemas/retrieval/04_recherche_topk.png",
+    "wiki/cours/_schemas/retrieval/05_rag_grounding.png",
+    "wiki/cours/_schemas/retrieval/03_indexation_sqlite.png",
+    "wiki/cours/_schemas/retrieval/02_chunking.png",
+    "wiki/cours/_schemas/retrieval/01_pipeline_rag.png",
+    "wiki/cours/_schemas/canvas/sampling.canvas",
+    "wiki/cours/_schemas/canvas/generation-token.canvas",
+    "wiki/cours/_schemas/canvas/ou-agit-la-seed.canvas",
+    "wiki/cours/_schemas/canvas/chat-historique-contexte.canvas",
+    "wiki/cours/_processus/generation-token.md",
+    "wiki/cours/_archive/sampling-et-prompting.md",
+    "wiki/cours/_archive/roadmap.md",
+    "wiki/cours/retrieval/tableau-final.md",
+    "wiki/cours/retrieval/similarite-cosinus.md",
+    "wiki/cours/retrieval/retrieval-hybride.md",
+    "wiki/cours/retrieval/recherche-top-k.md",
+    "wiki/cours/retrieval/re-ranking.md",
+    "wiki/cours/retrieval/re-ranking-top-k.md",
+    "wiki/cours/retrieval/ragas-deepeval.md",
+    "wiki/cours/retrieval/rag-vs-fine-tuning.md",
+    "wiki/cours/retrieval/rag-complet.md",
+    "wiki/cours/retrieval/rag-a-la-main.md",
+    "wiki/cours/retrieval/qdrant.md",
+    "wiki/cours/retrieval/migration-qdrant.md",
+    "wiki/cours/retrieval/llamaindex.md",
+    "wiki/cours/retrieval/llamaindex-outillage.md",
+    "wiki/cours/retrieval/indexation.md",
+    "wiki/cours/retrieval/hnsw.md",
+    "wiki/cours/retrieval/filtres-metadonnees.md",
+    "wiki/cours/retrieval/evals.md",
+    "wiki/cours/retrieval/evals-comparatives.md",
+    "wiki/cours/retrieval/embeddings.md",
+    "cours/_schemas/canvas/sampling.canvas",
+    "cours/_schemas/canvas/ou-agit-la-seed.canvas",
+    "cours/_schemas/canvas/sampling-et-prompting.canvas"
   ]
 }
