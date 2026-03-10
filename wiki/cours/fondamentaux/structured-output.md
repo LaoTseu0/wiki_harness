@@ -1,0 +1,59 @@
+# Structured output
+
+> [carte du cours](../carte.md) · étape : [`08_structured.py`](../../etapes/fondamentaux/08_structured.py)
+
+## L'essentiel
+
+Dès qu'un LLM alimente du code, sa sortie doit être **du JSON valide et
+conforme à un schéma** — pas « à peu près du JSON ». Trois régimes,
+comparés au banc d'essai : demander poliment, contraindre le décodage,
+valider et réessayer. La leçon centrale : *le décodage contraint
+garantit la forme, jamais la complétude ni le sens.*
+
+## Le savoir
+
+- **Régime 1 — demander poliment** : « réponds en JSON » dans le
+  prompt. Résultat mesuré : retries systématiques (markdown autour du
+  JSON, virgules en trop, clés inventées). Inutilisable seul en
+  production.
+- **Régime 2 — décodage contraint** : le paramètre `format` d'Ollama
+  (ou JSON mode / response_format ailleurs) applique une **grammaire**
+  pendant la génération : seuls les tokens compatibles avec le schéma
+  sont autorisés. Résultat mesuré : 0 retry de forme.
+- **Régime 3 — validation Pydantic + retry** : `model_validate_json()`
+  vérifie types et contraintes ; en cas d'échec, renvoyer **l'erreur au
+  modèle** pour auto-correction (observée en live au banc d'essai).
+- **Pourquoi les trois se combinent** : la grammaire a laissé passer un
+  champ optionnel *absent* alors que l'info était dans le texte, et une
+  chaîne vide passe une validation `str`. La complétude et le sens
+  exigent des contraintes sémantiques (`Field(min_length=1)`,
+  validators) — et parfois un juge
+  ([LLM-as-judge](../framework/llm-as-judge.md)).
+
+## En pratique
+
+[08_structured.py](../../etapes/fondamentaux/08_structured.py) : extraction d'infos vers un
+modèle Pydantic ; `extraire()` avec retry **écrite par Anthony**
+(ternaire Python spontané) ; banc d'essai des trois régimes.
+
+## Pièges connus
+
+- Croire le schéma suffisant : forme ≠ vérité — le contenu peut rester
+  halluciné, seul son *format* est garanti.
+- « use null for missing info » → le modèle met null sur des champs
+  requis pourtant présents dans le texte : le prompt fait partie du
+  contrat, ses effets se testent.
+- Parser avec une regex « parce que c'est presque du JSON » — utiliser
+  le décodage contraint, il existe pour ça.
+
+## Se tester
+
+> « Comment garantissez-vous qu'un LLM renvoie du JSON exploitable ? »
+> Décodage contraint pour la forme + validation Pydantic pour les
+> contraintes sémantiques + retry avec l'erreur en entrée — et un test
+> qui mesure le taux de retry, parce que sans mesure c'est une opinion.
+
+## Références
+
+- Doc `format`/structured outputs d'Ollama
+- Pydantic v2 (`model_validate_json`, `Field`, validators)
