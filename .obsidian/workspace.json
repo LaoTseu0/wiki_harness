@@ -11,14 +11,17 @@
             "id": "7c6e5e57b3e8f4b3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "wiki/cours/framework/clean-code.md",
-                "mode": "preview",
-                "source": false
+                "file": "wiki/cours/_schemas/canvas/boucle-outils.canvas",
+                "viewState": {
+                  "x": 2105,
+                  "y": 90,
+                  "zoom": -1.2265521446561811
+                }
               },
-              "icon": "lucide-file",
-              "title": "clean-code"
+              "icon": "lucide-layout-dashboard",
+              "title": "boucle-outils"
             }
           }
         ]
@@ -183,8 +186,23 @@
       "bases:Créer une nouvelle base": false
     }
   },
-  "active": "7c6e5e57b3e8f4b3",
+  "active": "8086501818db9b00",
   "lastOpenFiles": [
+    "wiki/cours/framework/llm-as-judge.md.tmp.23748.5a74202597a1",
+    "wiki/cours/framework/tests-typing-packaging.md.tmp.23748.df6c8bfcb487",
+    "wiki/cours/framework/sortie-precoce-semver.md.tmp.23748.99e601b20ef4",
+    "wiki/cours/framework/architecture-modulaire.md.tmp.23748.27154c24730f",
+    "wiki/cours/_processus/boucle-outils.md",
+    "wiki/cours/_schemas/canvas/chat-historique-contexte.canvas",
+    "wiki/cours/framework/evolutivite.md.tmp.23748.1c0fc0a48b14",
+    "wiki/cours/framework/providers.md.tmp.23748.feed7e5afe74",
+    "wiki/cours/_schemas/canvas/structured-output.canvas",
+    "wiki/cours/_schemas/canvas/function-calling.canvas",
+    "wiki/cours/_schemas/canvas/boucle-agent.canvas",
+    "wiki/cours/_schemas/canvas/boucle-outils.canvas",
+    "wiki/cours/_processus/boucle-outils.md.tmp.23748.c89f09215cd1",
+    "wiki/cours/_schemas/canvas/generation-token.canvas",
+    "wiki/cours/framework/clean-code.md",
     "wiki/cours/inference/deploiement.md",
     "wiki/cours/inference/charge-concurrente.md",
     "wiki/cours/inference/benchmark.md",
@@ -209,12 +227,6 @@
     "wiki/outils/__pycache__/controles.cpython-312.pyc",
     "wiki/outils/__pycache__/canvas.cpython-312.pyc",
     "wiki/outils/__pycache__",
-    "sedRuervY",
-    "AGENTS.md.tmp.23384.bd9a8d7b33c2",
-    "wiki/tests/__pycache__/test_ollama.cpython-312-pytest-9.1.1.pyc",
-    "wiki/tests/__pycache__/test_contexte.cpython-312-pytest-9.1.1.pyc",
-    "wiki/tests/__pycache__",
-    "wiki/tests/test_ollama.py",
     "wiki/src/framework/README.md",
     "wiki/cours/_schemas/retrieval/06_evals_baseline.png",
     "wiki/cours/_schemas/retrieval/04_recherche_topk.png",
@@ -222,20 +234,11 @@
     "wiki/cours/_schemas/retrieval/03_indexation_sqlite.png",
     "wiki/cours/_schemas/retrieval/02_chunking.png",
     "wiki/cours/_schemas/retrieval/01_pipeline_rag.png",
-    "wiki/cours/_schemas/canvas/generation-token.canvas",
-    "wiki/cours/_schemas/canvas/ou-agit-la-seed.canvas",
-    "wiki/cours/_schemas/canvas/chat-historique-contexte.canvas",
     "wiki/cours/_processus/generation-token.md",
     "wiki/cours/_archive/sampling-et-prompting.md",
     "wiki/cours/_archive/roadmap.md",
     "wiki/cours/retrieval/tableau-final.md",
     "wiki/cours/retrieval/similarite-cosinus.md",
-    "wiki/cours/retrieval/retrieval-hybride.md",
-    "wiki/cours/retrieval/recherche-top-k.md",
-    "wiki/cours/retrieval/re-ranking.md",
-    "wiki/cours/retrieval/re-ranking-top-k.md",
-    "cours/_schemas/canvas/sampling.canvas",
-    "cours/_schemas/canvas/ou-agit-la-seed.canvas",
-    "cours/_schemas/canvas/sampling-et-prompting.canvas"
+    "wiki/cours/retrieval/retrieval-hybride.md"
   ]
 }
