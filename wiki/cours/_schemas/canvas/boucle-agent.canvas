@@ -1,0 +1,88 @@
+{
+	"nodes": [
+		{
+			"id": "dispatch",
+			"x": 0,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/function-calling.canvas",
+			"color": "6"
+		},
+		{
+			"id": "execution",
+			"x": 630,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/boucle-agent|L'exécution]]**\n\n- la fonction tourne derrière ses gardes — périmètre, validation, délai\n- entre une fonction résolue, sort soit un tour de plus, soit la main rendue à l'appelant",
+			"color": "4"
+		},
+		{
+			"id": "renvoi",
+			"x": 630,
+			"y": 320,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/boucle-agent|Le renvoi]]**\n\n- la valeur de retour entre dans l'historique, en message de rôle `tool`",
+			"color": "4"
+		},
+		{
+			"id": "plafond",
+			"x": 630,
+			"y": 640,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/boucle-agent|Le plafond de tours]]**\n\n- ce qui reprend la main quand le modèle ne conclut pas",
+			"color": "4"
+		},
+		{
+			"id": "schema",
+			"x": 1280,
+			"y": 660,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/structured-output.canvas",
+			"color": "6"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-dispatch-execution",
+			"fromNode": "dispatch",
+			"fromSide": "right",
+			"toNode": "execution",
+			"toSide": "left",
+			"label": "la fonction Python résolue, et ses arguments déballés"
+		},
+		{
+			"id": "e-execution-renvoi",
+			"fromNode": "execution",
+			"fromSide": "bottom",
+			"toNode": "renvoi",
+			"toSide": "top",
+			"label": "une valeur de retour, à rendre lisible par le modèle"
+		},
+		{
+			"id": "e-renvoi-plafond",
+			"fromNode": "renvoi",
+			"fromSide": "bottom",
+			"toNode": "plafond",
+			"toSide": "top",
+			"label": "l'historique augmenté d'un message de plus"
+		},
+		{
+			"id": "e-plafond-schema",
+			"fromNode": "plafond",
+			"fromSide": "right",
+			"toNode": "schema",
+			"toSide": "left",
+			"label": "un tour de plus — la requête entière repart"
+		}
+	]
+}

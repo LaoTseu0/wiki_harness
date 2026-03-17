@@ -1,0 +1,70 @@
+{
+	"nodes": [
+		{
+			"id": "contrainte",
+			"x": 0,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/structured-output.canvas",
+			"color": "6"
+		},
+		{
+			"id": "emission",
+			"x": 630,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/function-calling|L'émission]]**\n\n- le modèle rend un message : du texte libre, ou un appel structuré\n- entre un schéma annoncé, sort un nom d'outil résolu en fonction Python",
+			"color": "4"
+		},
+		{
+			"id": "dispatch",
+			"x": 1280,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/function-calling|Le dispatch]]**\n\n- le nom généré est résolu en fonction Python, ou refusé faute d'entrée",
+			"color": "4"
+		},
+		{
+			"id": "execution",
+			"x": 1930,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/boucle-agent.canvas",
+			"color": "6"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-contrainte-emission",
+			"fromNode": "contrainte",
+			"fromSide": "right",
+			"toNode": "emission",
+			"toSide": "left",
+			"label": "selon le champ, du texte dans le prompt ou un masque sur les tokens"
+		},
+		{
+			"id": "e-emission-dispatch",
+			"fromNode": "emission",
+			"fromSide": "right",
+			"toNode": "dispatch",
+			"toSide": "left",
+			"label": "un nom d'outil et des arguments JSON"
+		},
+		{
+			"id": "e-dispatch-execution",
+			"fromNode": "dispatch",
+			"fromSide": "right",
+			"toNode": "execution",
+			"toSide": "left",
+			"label": "la fonction Python résolue, et ses arguments déballés"
+		}
+	]
+}
