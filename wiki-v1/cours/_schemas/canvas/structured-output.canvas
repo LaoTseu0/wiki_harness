@@ -1,0 +1,70 @@
+{
+	"nodes": [
+		{
+			"id": "plafond",
+			"x": 0,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/boucle-agent.canvas",
+			"color": "6"
+		},
+		{
+			"id": "schema",
+			"x": 630,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/structured-output|Le schéma annoncé]]**\n\n- des noms, des descriptions et des types joints à la requête — champ `tools` ou champ `format`\n- entre une classe Pydantic, sort le jeu des tokens que la génération a encore le droit de produire",
+			"color": "4"
+		},
+		{
+			"id": "contrainte",
+			"x": 1280,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[wiki/cours/fondamentaux/structured-output|La contrainte de forme]]**\n\n- ce que le schéma fait réellement pendant la génération, et qui diffère selon le champ employé",
+			"color": "4"
+		},
+		{
+			"id": "emission",
+			"x": 1930,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "wiki/cours/_schemas/canvas/function-calling.canvas",
+			"color": "6"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-plafond-schema",
+			"fromNode": "plafond",
+			"fromSide": "right",
+			"toNode": "schema",
+			"toSide": "left",
+			"label": "un tour de plus — la requête entière repart"
+		},
+		{
+			"id": "e-schema-contrainte",
+			"fromNode": "schema",
+			"fromSide": "right",
+			"toNode": "contrainte",
+			"toSide": "left",
+			"label": "les types que la sortie devra respecter"
+		},
+		{
+			"id": "e-contrainte-emission",
+			"fromNode": "contrainte",
+			"fromSide": "right",
+			"toNode": "emission",
+			"toSide": "left",
+			"label": "selon le champ, du texte dans le prompt ou un masque sur les tokens"
+		}
+	]
+}
