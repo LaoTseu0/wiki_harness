@@ -22,8 +22,8 @@ Une leçon descend du tout vers les parties, puis remonte. Ce n'est pas un ornem
 
 **`Recomposer` n'est pas un résumé.** Résumer, c'est redire les parties en plus court. Recomposer, c'est remettre la pièce dans l'ensemble et en tirer une compréhension sur son utilité dans son ensemble. Il est obligatoire.
 
-L'approche H-A-H s'observe sur la parti du début du cours, avec :
-Savoir le situer (H) - > L'essentiel (A) -> Recomposer (H)
+L'approche H-A-H s'observe sur la partie du début du cours, avec :
+Savoir le situer (H) -> L'essentiel (A) -> Recomposer (H)
 
 ## Deux niveaux : refaire ou situer
 
@@ -53,19 +53,6 @@ promeut: hosef/sampling.py        # ou : aucune — <raison en une ligne>
 ```
 
 `statut` dit où en est la leçon, sans le commenter dans le corps : `prévue` (titre réservé), `écrite` (savoir complet, réel encore troué), `mesurée` (l'étape a tourné, les chiffres sont là).
-
-## La langue
-
-Le fond juste ne suffit pas. La V1 a échoué là-dessus ; la V2 en fait un motif de rejet.
-
-- **Le test du francophone natif prime** — règle suprême d'AGENTS.md : aucun calque de l'anglais, aucun faux-ami. Le jargon technique anglais, lui, reste en anglais.
-- **Registre écrit, précis.** Pas de béquilles de l'oral (« du coup », « en gros », « un peu »), pas d'emphase commerciale (« puissant », « incontournable »).
-- **Une phrase, une idée.** Phrases courtes par défaut. Un paragraphe défend une seule affirmation.
-- **Toute propriété affirmée porte sa cause.** Interdit : l'adjectif-verdict seul (« instable », « coûteux »). On donne le mécanisme qui le produit, ou on se tait.
-- **Nommer la pièce, pas « le système ».** Si la phrase reste vraie en remplaçant le nom par « le système », elle n'explique rien.
-- **Le concret avant l'abstrait.** L'exemple porte la règle ; la règle ne flotte pas seule.
-- **Pas d'auto-référence.** Ni « dans cette leçon nous allons voir », ni statut, ni date, ni note sur sa propre rédaction dans le corps.
-- **Le terme technique est un lien** à sa première occurrence utile : vers la leçon qui le traite, sinon vers `glossaire/` (définition créée si absente). Le glossaire ne garde que ce qui n'a pas de leçon.
 
 ## Les trois interdits
 

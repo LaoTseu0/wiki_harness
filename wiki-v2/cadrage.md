@@ -2,11 +2,37 @@
 
 Ce fichier fixe ce qu'on construit, en deux objets distincts. Il précède la [cartographie](cartographie.md) : c'est lui qui dit ce que chaque Parcours doit déposer.
 
+## Le principe : des couches.
+
+Cette V2 range par **couche du système**. Chaque Parcours est une couche, et une couche est **un seul niveau d'abstraction** : on ne mélange pas le tirage d'un token avec l'aiguillage entre agents. Les couches montent dans l'ordre où la compréhension se construit — la génération d'abord, l'orchestration en haut — et on ne redescend jamais : chaque Parcours suppose la couche du dessous acquise.
+
+L'ordre est donc **cognitif** : on ne manipule une pièce qu'après avoir compris celle sur laquelle elle repose.
+
+## La forme d'un Parcours
+
+Un Parcours enseigne les **mécanismes** d'une couche — jamais un outil qu'on ne saurait pas refaire. Il se termine par deux sections fixes :
+
+- **Cas pratique** — des exercices sur la couche, à faire, pas à lire.
+- **Intégration** — la brique Hosef de la couche, déposée dans `/hosef/src`. C'est le retour au tout : la pièce comprise devient du code réutilisé.
+
+Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce que la rédaction devra couvrir, pour qu'aucune ne se perde. Une notion sans leçon propre part au glossaire ; aucune ne disparaît.
+## Ce qui vient ensuite
+
+Le squelette est fixé : douze Parcours, en couches, chacun d'un seul niveau d'abstraction, chacun fermé par un *Cas pratique* et une *Intégration*. Reste à dériver, Parcours par Parcours, chaque notion en leçon ou en entrée de glossaire, avec son en-tête complet — c'est là que le graphe devient vérifiable par `Hosef/outils/`. On construit un Parcours à la fois, dans l'ordre, en commençant par le 0.
+
+- **Le terme technique est un lien** à sa première occurrence utile : vers la leçon qui le traite, sinon vers `glossaire/` (définition créée si absente). Le glossaire ne garde que ce qui n'a pas de leçon.
+
+## Le transverse et le glossaire
+
+Certaines notions ne sont pas une couche : elles traversent tout le projet. Elles ne forment pas un Parcours, elles se pratiquent à chaque *Intégration*.
+
+- **Le terme technique est un lien** à sa première occurrence utile : vers la leçon qui le traite, sinon vers `glossaire/` (définition créée si absente). Le glossaire ne garde que ce qui n'a pas de leçon.
+
 ## Deux objets, pas un
 
 **Le harnais** est la finalité : un assistant agentique complet, avant tout local, qui route entre plusieurs agents et tient une mémoire de plusieurs natures. C'est le produit.
 
-**Hosef** — *Harness OS Framework* — est la librairie sur laquelle le harnais est bâti. Elle ne connaît rien du harnais : elle expose des briques génériques — un client, une boucle, un registre d'outils, des mémoires, un routeur — que le harnais compose et configure.
+**Hosef** — *Harness OS Framework* — est la bibliothèque sur laquelle le harnais est bâti. Elle ne connaît rien du harnais : elle expose des briques génériques — un client, une boucle, un registre d'outils, des mémoires, un routeur — que le harnais compose et configure.
 
 ## Le harnais — la finalité
 
@@ -22,7 +48,7 @@ Un assistant agentique complet, mono-utilisateur, auto-hébergé. « Complet » 
 
 Ce que le harnais n'est **pas** : un service multi-tenant, une plateforme, un produit à vendre. Il sert une personne, sur sa machine. Cette limite fixe le périmètre.
 
-## Hosef — la librairie
+## Hosef — la bibliothèque
 
 Hosef expose une brique par couche du système. Chaque brique se dépose à la fin du Parcours qui en enseigne les mécanismes (section *Intégration*), dans `src/hosef/`. Ce tableau est le contrat entre le cours et le framework.
 
@@ -45,7 +71,7 @@ Ce qui est **hors** Hosef : la personnalité du harnais, ses prompts système, s
 
 La brique `memory` tient plusieurs `store` derrière une interface de rappel commune, plus les processus qui les maintiennent. Le détail vit dans [memoire.md](memoire.md) ; en bref :
 
-- **Memoire** — vectoriel (le sens), stateful (l'état exact), graphe temporel (liens datés, scoring, decay), wiki-LLM (connaissance auto-rédigée).
+- **Mémoire** — vectoriel (le sens), stateful (l'état exact), graphe temporel (liens datés, scoring, decay), wiki-LLM (connaissance auto-rédigée).
 - **Processus** — scoring et decay, consolidation (le mode Dream), auto-apprentissage.
 - **Degré zéro** — la mémoire de travail est la fenêtre elle-même : brique `context`, Parcours 2.
 
