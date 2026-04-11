@@ -9,6 +9,7 @@ Tous les termes techniques anglicisés peuvent rester en anglais pour la bonne c
 - **Le test du francophone natif prime** — règle suprême d'AGENTS.md : aucun calque de l'anglais, aucun faux-ami. Le jargon technique anglais, lui, reste en anglais. 
 	- liste acceptée en plus des termes communs : 
 	  - Template
+	  - Frontmatter — le bloc de métadonnées en tête de note, jamais « en-tête » ni « en-tête YAML »
 	  - Input / Output — dans les signatures de pièces ou d'étapes, jamais « entrée / sortie » ni « entrent X, sort Y »
 
 

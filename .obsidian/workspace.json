@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki-v2/template.md",
+                "file": "wiki-v2/cadrage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "template"
+              "title": "cadrage"
             }
           }
         ]
@@ -186,6 +186,7 @@
   "active": "01734b1e56872abc",
   "lastOpenFiles": [
     "wiki-v2/template.md",
+    "AGENTS.md.tmp.28408.a2ed15f99c03",
     "AGENTS.md.tmp.33672.6038c0c36ba1",
     "AGENTS.md",
     "wiki-v2/memoire.md.tmp.33672.066a226d30d0",
@@ -198,7 +199,6 @@
     "AGENTS.md.tmp.28732.c083a18bba03",
     "AGENTS.md.tmp.28732.2075a91dc506",
     "AGENTS.md.tmp.28732.a711a1a3aedb",
-    "AGENTS.md.tmp.28732.eab5b54f6be7",
     "wiki-v2/memoire.md",
     "CLAUDE.md",
     "wiki-v1/cours/fondamentaux/attention-et-kv-cache.md",
