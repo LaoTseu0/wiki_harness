@@ -20,8 +20,6 @@ Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce
 
 Le squelette est fixé : douze Parcours, en couches, chacun d'un seul niveau d'abstraction, chacun fermé par un *Cas pratique* et une *Intégration*. Reste à dériver, Parcours par Parcours, chaque notion en leçon ou en entrée de glossaire, avec son en-tête complet — c'est là que le graphe devient vérifiable par `Hosef/outils/`. On construit un Parcours à la fois, dans l'ordre, en commençant par le 0.
 
-- **Le terme technique est un lien** à sa première occurrence utile : vers la leçon qui le traite, sinon vers `glossaire/` (définition créée si absente). Le glossaire ne garde que ce qui n'a pas de leçon.
-
 ## Le transverse et le glossaire
 
 Certaines notions ne sont pas une couche : elles traversent tout le projet. Elles ne forment pas un Parcours, elles se pratiquent à chaque *Intégration*.
