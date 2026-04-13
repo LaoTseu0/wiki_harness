@@ -1,6 +1,7 @@
 # Règles — ce qu'on construit, et sous quelle forme une leçon rentre
 
-Extension d'[AGENTS.md](../AGENTS.md), chargée avec lui. AGENTS.md tient le transverse — langue, git, code, contrôles, la règle *Mesurer*, « un concept, un seul endroit » ; ce fichier ne les redit pas, il s'y appuie. Il précède la [cartographie](cartographie.md), qui fixe l'ordre du parcours : lui dit ce que chaque Parcours dépose (partie I) et la forme sous laquelle une leçon rentre (partie II).
+Extension d'[AGENTS.md](../AGENTS.md), chargée avec lui. AGENTS.md. Il précède la [cartographie](cartographie.md), qui fixe l'ordre du parcours.
+Ce chaque Parcours dépose (partie I) et la forme sous laquelle une leçon rentre (partie II).
 La cartographie est l'**index** — c'est elle qui pointe vers le bas, on clique une rubrique et on tombe sur le cours
 
 ---
@@ -25,6 +26,8 @@ Un Parcours enseigne les **mécanismes** d'une couche — jamais un outil qu'on 
 - **Intégration** — la brique Hosef de la couche, déposée dans `src/hosef/`. La pièce comprise devient du code réutilisé.
 
 Les notions listées sous chaque Parcours dans la [cartographie](cartographie.md) sont **exhaustives** : elles fixent ce que la rédaction doit couvrir. Une notion sans leçon propre part au glossaire ; aucune ne disparaît. Le squelette est fixé — douze Parcours, en couches. On les dérive un à la fois, dans l'ordre, en commençant par le 0.
+
+**Une seule exception à la règle « jamais un outil qu'on ne saurait pas refaire »** : au Parcours 1 (Le transport), le backend qui sert le modèle est consommé, jamais rebâti — construire un serveur d'inférence chargerait le référentiel sans rien apprendre du fil. Ollama sert d'exemple concret pour les endpoints et le streaming ; ses alternatives (llama.cpp, vLLM, LM Studio, TGI) sont citées pour ne pas orienter vers un seul outil. L'objet enseigné reste le transport — HTTP, endpoints, streaming, erreurs — pas le serveur.
 
 ## Le harnais — la finalité
 

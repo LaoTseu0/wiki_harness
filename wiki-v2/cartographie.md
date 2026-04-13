@@ -9,42 +9,49 @@ Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon
 ### 0 · La génération
 *La couche : le modèle comme fonction qui, d'une suite de tokens, tire le suivant.*
 
-- tokenisation — BPE / SentencePiece, vocabulaire, comptage
-- template de chat — la liste de messages devient le texte unique lu par le modèle
+- tokenisation — BPE / SentencePiece, vocabulaire, comptage ; tokens de contrôle (rôles, début/fin de tour, BOS/EOS)
+- template de chat — la liste de messages devient le texte unique lu par le modèle, par insertion des tokens de contrôle
+- détokenisation — des tokens au texte ; un token byte-level peut couper un caractère UTF-8, donc un token seul n'est pas toujours affichable
 - logits, softmax, distribution de probabilité
 - autorégression — un token à la fois, réinjecté
-- échantillonnage — température, top-k, top-p, min-p, repetition penalty
-- la seed et sa portée ; les stop sequences
+- échantillonnage — température, top-k, top-p, min-p ; l'argmax (greedy) comme limite température → 0
+- pénalités de répétition — repetition penalty (multiplicative sur les logits) vs presence / frequency (additives, comptées)
+- la seed et sa portée ; l'arrêt de la boucle — EOS, stop sequences, `max_tokens`
 - attention et KV cache — premier token lent, suivants rapides
 - fenêtre de contexte — le plafond, et pourquoi il coûte
+- Ajouter au glossaire — samplers exotiques (typical-p, mirostat, tail-free), beam search
 
 **Cas pratique** — reproduire une génération déterministe ; tracer une distribution et la déformer réglage par réglage.
-**Intégration** — `generation` : tokeniser, compteur de tokens, config d'échantillonnage, rendu de template.
+**Intégration** — `generation` : tokeniser et détokeniser, compteur de tokens, rendu de template, le sampler (logits → token) et sa config, la boucle autorégressive bornée.
 
 ### 1 · Le transport
 *La couche : le modèle comme service au bout d'un fil.*
 
-- HTTP brut — un POST, une réponse, sans SDK
-- les endpoints — complétion vs chat
-- streaming SSE — la réponse token par token
-- codes et erreurs — 4xx / 5xx, corps d'erreur
+- le backend local — Ollama en exemple ; llama.cpp, vLLM, LM Studio, TGI en alternatives
+- HTTP brut — un POST, une réponse, sans SDK ; en-têtes et authentification, de même forme en local et en cloud
+- les endpoints — complétion vs chat ; API native et couche OpenAI-compatible, deux surfaces sur un même backend
+- streaming — la réponse token par token ; deux formats, NDJSON natif vs SSE, et le réassemblage des deltas
+- la forme de la réponse — le contenu, la raison d'arrêt, le comptage des tokens
+- codes et erreurs — 4xx / 5xx, corps d'erreur ; détection du 429 et de Retry-After
 - timeouts et coupures de flux
+- Ajouter au glossaire — keep-alive et pooling de connexion, endpoints d'inventaire
 
-**Cas pratique** — un client streaming écrit à la main, qui survit à une coupure en cours de flux.
-**Intégration** — `client` : appel, streaming, taxonomie d'erreurs.
+**Cas pratique** — un client streaming écrit à la main, contre Ollama, qui survit à une coupure en cours de flux ; pointé tour à tour sur l'endpoint natif puis OpenAI-compatible.
+**Intégration** — `client` : requête authentifiée, appel, streaming SSE et NDJSON, parsing de la réponse, taxonomie d'erreurs.
 
 ### 2 · Le contexte
-*La couche : la conversation comme état qu'on gère sous un plafond.*
+*La couche : la conversation comme historique qu'on maintient sous un seuil de tokens.*
 
-- le modèle est sans mémoire (stateless)
+- le modèle est sans mémoire (stateless) — on renvoie tout l'historique à chaque tour ; le coût en tokens croît avec la conversation
 - historique et rôles — system / user / assistant / tool
-- construction du contexte — quoi mettre, dans quel ordre
-- estimation des tokens ; le budget de contexte
-- fenêtre glissante ; troncature
-- compaction et résumé
+- construction du contexte — quoi mettre, dans quel ordre ; « lost in the middle », placer le critique en tête ou en fin
+- comptage et budget — comptage exact via le tokenizer (brique `generation`, P0) ; partition du budget : système / historique / contexte récupéré / réserve pour la réponse
+- éviction — comment couper (fenêtre glissante, troncature) et quoi sauver (le système ne s'évince pas, les tours récents priment, messages épinglés)
+- compaction et résumé — compresser les vieux tours ; quand déclencher, ce que le résumé perd
+- Ajouter au glossaire — « lost in the middle »
 
-**Cas pratique** — tenir une conversation longue sous un plafond fixe sans perdre le fil.
-**Intégration** — `context` : gestionnaire de fenêtre et de budget, compaction.
+**Cas pratique** — tenir une conversation longue sous un seuil fixe sans perdre le fil.
+**Intégration** — `context` : gestionnaire de fenêtre et de budget (partition + réserve de sortie), politique d'éviction, compaction.
 
 ### 3 · Le contrôle
 *La couche : diriger ce que le modèle produit, sans toucher à ses poids.*
