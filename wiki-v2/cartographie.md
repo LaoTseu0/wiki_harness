@@ -2,7 +2,7 @@
 
 > Refaire à la main chaque couche d'une application LLM — de la génération d'un token jusqu'au harnais multi-agent — puis déposer ce qu'on a compris dans **Hosef**, la bibliothèque maison sur laquelle le harnais sera bâti. Terrain : un petit modèle local.
 
-Ce fichier fixe l'ordre du parcours. La forme d'une leçon est dans [template.md](template.md) ; ce qu'on construit, dans [cadrage.md](cadrage.md).
+Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon sont dans [REGLES.md](REGLES.md) — parties I et II.
 
 ## Les Parcours
 
