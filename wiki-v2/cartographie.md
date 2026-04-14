@@ -88,15 +88,18 @@ Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon
 ### 5 · Les outils distants — MCP
 *La couche : l'outil comme service distant, interchangeable.*
 
-- le protocole MCP — `tools/list`, `tools/call`
+- le protocole MCP — du JSON-RPC 2.0 ; les méthodes tools/list et tools/call
+- les trois primitives — tools, resources, prompts ; la couche vise l'outil, les deux autres nommées pour mémoire
 - un serveur ; un client minimal
-- le handshake sous le SDK
-- transports — stdio, HTTP
-- intégration à un client existant
-- le versant sécurité — injection de prompt indirecte
+- le handshake — initialize, négociation de version et de capacités
+- transports — stdio et HTTP
+- intégration à un client existant — brancher le serveur MCP sur le registre d'outils du P4
+- menaces propres au distant — injection indirecte par le résultat, tool poisoning par la description, rug-pull d'un outil après approbation
+- confiance du serveur — du code tiers qu'on n'a pas écrit, la portée des droits qu'on lui prête
+- Ajouter au glossaire — Streamable HTTP, notification list_changed
 
 **Cas pratique** — exposer un outil en MCP, puis le consommer comme s'il était natif.
-**Intégration** — `tools` étendu : un outil distant indiscernable d'un natif dans le registre.
+**Intégration** — `tools` étendu : un client MCP derrière un adaptateur, l'outil distant indiscernable d'un natif dans le registre.
 
 ### 6 · La mémoire
 *La couche : ce que l'agent sait au-delà de sa fenêtre.*
