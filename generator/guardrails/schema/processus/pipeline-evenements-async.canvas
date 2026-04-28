@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"note:contrat","type":"text","text":"# Pipeline d'événements asynchrone\n\n**Input global** · configuration et source d'événements\n\n**Output global** · résultats transformés ou fin explicitement qualifiée","x":0,"y":-300,"width":700,"height":180},
+		{"id":"note:annulation","type":"text","text":"**Portée de l'annulation**\n\nL'annulation peut être reçue à chaque point de suspension. La branche dessinée depuis la transformation représente ce mécanisme sans prétendre qu'il n'existe qu'à cet endroit.","x":1360,"y":600,"width":620,"height":140},
+		{"id":"configurer-pipeline","type":"text","text":"**Configurer le pipeline**\n\nValider les paramètres et préparer les dépendances","x":0,"y":0,"width":260,"height":120},
+		{"id":"ouvrir-ressources","type":"text","text":"**Ouvrir les ressources**\n\nEntrer dans leurs contextes de durée de vie","x":340,"y":0,"width":260,"height":120},
+		{"id":"produire-evenement","type":"text","text":"**Produire un événement**\n\nAvancer la source paresseuse","x":680,"y":0,"width":260,"height":120},
+		{"id":"valider-evenement","type":"text","text":"**Valider l'événement**\n\nÉtablir un contrat typé ou signaler l'écart","x":1020,"y":0,"width":260,"height":120},
+		{"id":"transformer-evenement","type":"text","text":"**Transformer l'événement**\n\nExécuter le travail synchrone ou asynchrone","x":1360,"y":0,"width":260,"height":120},
+		{"id":"emettre-evenement","type":"text","text":"**Émettre le résultat**\n\nCéder un événement transformé au consommateur","x":1700,"y":0,"width":260,"height":120},
+		{"id":"decider-suite","type":"text","text":"**Décider de la suite**\n\nContinuer ou terminer le flux","x":2040,"y":0,"width":260,"height":120},
+		{"id":"fermer-ressources","type":"text","text":"**Fermer les ressources**\n\nGarantir le nettoyage de chaque contexte","x":2380,"y":0,"width":260,"height":120},
+		{"id":"resultat-pipeline","type":"text","text":"**Résultat du pipeline**\n\nSortie complète, erreur typée ou annulation","x":2720,"y":0,"width":260,"height":120},
+		{"id":"signaler-erreur","type":"text","text":"**Signaler l'erreur**\n\nConserver sa cause et son type","x":1360,"y":340,"width":260,"height":120},
+		{"id":"annuler-flux","type":"text","text":"**Annuler le flux**\n\nPropager l'annulation sans la masquer","x":2120,"y":670,"width":260,"height":120},
+		{"id":"iteration-suivante","type":"text","text":"**Itération suivante**\n\nRendre le contrôle avant de reprendre la source","x":1570,"y":200,"width":260,"height":120}
+	],
+	"edges":[
+		{"id":"configuration-vers-ouverture","fromNode":"configurer-pipeline","fromSide":"right","toNode":"ouvrir-ressources","toSide":"left"},
+		{"id":"ouverture-vers-production","fromNode":"ouvrir-ressources","fromSide":"right","toNode":"produire-evenement","toSide":"left"},
+		{"id":"production-vers-validation","fromNode":"produire-evenement","fromSide":"right","toNode":"valider-evenement","toSide":"left"},
+		{"id":"validation-vers-transformation","fromNode":"valider-evenement","fromSide":"right","toNode":"transformer-evenement","toSide":"left","label":"valide"},
+		{"id":"transformation-vers-emission","fromNode":"transformer-evenement","fromSide":"right","toNode":"emettre-evenement","toSide":"left"},
+		{"id":"emission-vers-decision","fromNode":"emettre-evenement","fromSide":"right","toNode":"decider-suite","toSide":"left"},
+		{"id":"decision-vers-fermeture","fromNode":"decider-suite","fromSide":"right","toNode":"fermer-ressources","toSide":"left","label":"terminer"},
+		{"id":"fermeture-vers-resultat","fromNode":"fermer-ressources","fromSide":"right","toNode":"resultat-pipeline","toSide":"left"},
+		{"id":"decision-vers-iteration","fromNode":"decider-suite","fromSide":"bottom","toNode":"iteration-suivante","toSide":"right","label":"continuer"},
+		{"id":"iteration-vers-production","fromNode":"iteration-suivante","fromSide":"left","toNode":"produire-evenement","toSide":"bottom"},
+		{"id":"validation-vers-erreur","fromNode":"valider-evenement","fromSide":"bottom","toNode":"signaler-erreur","toSide":"left","label":"invalide"},
+		{"id":"transformation-vers-erreur","fromNode":"transformer-evenement","fromSide":"bottom","toNode":"signaler-erreur","toSide":"top","label":"échec"},
+		{"id":"erreur-vers-fermeture","fromNode":"signaler-erreur","fromSide":"right","toNode":"fermer-ressources","toSide":"bottom"},
+		{"id":"transformation-vers-annulation","fromNode":"transformer-evenement","fromSide":"bottom","toNode":"annuler-flux","toSide":"left","label":"annulation reçue"},
+		{"id":"annulation-vers-fermeture","fromNode":"annuler-flux","fromSide":"right","toNode":"fermer-ressources","toSide":"bottom"}
+	]
+}
