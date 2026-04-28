@@ -1,0 +1,217 @@
+{
+  "nodes": [
+    {
+      "id": "messages",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Messages structurés**\n\nInstructions, historique et contenus"
+    },
+    {
+      "id": "chat-template",
+      "type": "text",
+      "x": 360,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**AMONT**\n\n**Chat template**\n\nSérialiser les rôles et délimiteurs",
+      "color": "5"
+    },
+    {
+      "id": "tokenisation",
+      "type": "text",
+      "x": 720,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**ÉTAPE OUVERTE**\n\n**Tokenisation**\n\nTransformer le texte en identifiants",
+      "color": "6"
+    },
+    {
+      "id": "inference",
+      "type": "text",
+      "x": 1080,
+      "y": 0,
+      "width": 260,
+      "height": 160,
+      "text": "**AVAL**\n\n**Inférence**\n\nIdentifiants → logits\n\n[[generator/guardrails/schema/processus/inference-transformer.canvas|Ouvrir le sous-processus]]",
+      "color": "4"
+    },
+    {
+      "id": "logits",
+      "type": "text",
+      "x": 1440,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Logits**\n\nScores bruts sur le vocabulaire"
+    },
+    {
+      "id": "transformation-logits",
+      "type": "text",
+      "x": 1800,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Transformation des logits**\n\nContraintes, pénalités et filtrage"
+    },
+    {
+      "id": "sampling",
+      "type": "text",
+      "x": 2160,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Sampling**\n\nChoisir le prochain token"
+    },
+    {
+      "id": "ajout-token",
+      "type": "text",
+      "x": 2520,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Ajout au contexte**\n\nÉtendre la séquence courante"
+    },
+    {
+      "id": "condition-arret",
+      "type": "text",
+      "x": 3240,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Condition d'arrêt**\n\nDécider de poursuivre ou terminer"
+    },
+    {
+      "id": "detokenisation",
+      "type": "text",
+      "x": 2880,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Détokenisation**\n\nDécoder et accumuler le fragment"
+    },
+    {
+      "id": "reponse",
+      "type": "text",
+      "x": 3600,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "text": "**Réponse**\n\nTexte et raison d'arrêt"
+    },
+    {
+      "id": "reinjection",
+      "type": "text",
+      "x": 2880,
+      "y": 360,
+      "width": 260,
+      "height": 120,
+      "text": "**Réinjection**\n\nRéutiliser la séquence étendue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "messages-vers-chat-template",
+      "fromNode": "messages",
+      "fromSide": "right",
+      "toNode": "chat-template",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "chat-template-vers-tokenisation",
+      "fromNode": "chat-template",
+      "fromSide": "right",
+      "toNode": "tokenisation",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "tokenisation-vers-inference",
+      "fromNode": "tokenisation",
+      "fromSide": "right",
+      "toNode": "inference",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "inference-vers-logits",
+      "fromNode": "inference",
+      "fromSide": "right",
+      "toNode": "logits",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "logits-vers-transformation",
+      "fromNode": "logits",
+      "fromSide": "right",
+      "toNode": "transformation-logits",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "transformation-vers-sampling",
+      "fromNode": "transformation-logits",
+      "fromSide": "right",
+      "toNode": "sampling",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "sampling-vers-ajout",
+      "fromNode": "sampling",
+      "fromSide": "right",
+      "toNode": "ajout-token",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "token choisi"
+    },
+    {
+      "id": "ajout-vers-detokenisation",
+      "fromNode": "ajout-token",
+      "fromSide": "right",
+      "toNode": "detokenisation",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "detokenisation-vers-condition",
+      "fromNode": "detokenisation",
+      "fromSide": "right",
+      "toNode": "condition-arret",
+      "toSide": "left",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "condition-vers-reponse",
+      "fromNode": "condition-arret",
+      "fromSide": "right",
+      "toNode": "reponse",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "arrêt"
+    },
+    {
+      "id": "condition-vers-reinjection",
+      "fromNode": "condition-arret",
+      "fromSide": "bottom",
+      "toNode": "reinjection",
+      "toSide": "right",
+      "toEnd": "arrow",
+      "label": "continuer"
+    },
+    {
+      "id": "reinjection-vers-inference",
+      "fromNode": "reinjection",
+      "fromSide": "left",
+      "toNode": "inference",
+      "toSide": "bottom",
+      "toEnd": "arrow",
+      "label": "séquence étendue"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "nodes": [
+    {
+      "id": "projet-versionne",
+      "type": "group",
+      "x": -160,
+      "y": 0,
+      "width": 980,
+      "height": 620,
+      "label": "PROJET VERSIONNÉ"
+    },
+    {
+      "id": "environnement-local",
+      "type": "group",
+      "x": 1100,
+      "y": 0,
+      "width": 740,
+      "height": 620,
+      "label": "ENVIRONNEMENT LOCAL NON VERSIONNÉ"
+    },
+    {
+      "id": "distribution",
+      "type": "group",
+      "x": 1960,
+      "y": 0,
+      "width": 480,
+      "height": 620,
+      "label": "ARTEFACTS DE DISTRIBUTION"
+    },
+    {
+      "id": "interpreteur-base",
+      "type": "text",
+      "text": "**RELATION DIRECTE**\n\n**Interpréteur de base**\n\nInstallation Python utilisée pour créer l'environnement",
+      "x": 1150,
+      "y": 100,
+      "width": 260,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "environnement-virtuel",
+      "type": "text",
+      "text": "**ÉLÉMENT OUVERT**\n\n**Environnement virtuel**\n\nMatérialisation locale, isolée et jetable",
+      "x": 1490,
+      "y": 100,
+      "width": 300,
+      "height": 140,
+      "color": "6"
+    },
+    {
+      "id": "site-packages",
+      "type": "text",
+      "text": "**RELATION DIRECTE**\n\n**site-packages**\n\nDistributions installées pour cet environnement",
+      "x": 1320,
+      "y": 360,
+      "width": 300,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "backend-build",
+      "type": "text",
+      "text": "**Backend de build**\n\nTransformer les sources selon le contrat déclaré",
+      "x": 2050,
+      "y": 100,
+      "width": 300,
+      "height": 140
+    },
+    {
+      "id": "wheel-sdist",
+      "type": "text",
+      "text": "**Wheel et sdist**\n\nArtefact installable et archive source",
+      "x": 2050,
+      "y": 360,
+      "width": 300,
+      "height": 140
+    },
+    {
+      "id": "pyproject-toml",
+      "type": "text",
+      "text": "**RELATION DIRECTE**\n\n**pyproject.toml**\n\nMétadonnées, contraintes, backend et configuration",
+      "x": -110,
+      "y": 100,
+      "width": 260,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "sources-praxis",
+      "type": "text",
+      "text": "**Sources de Praxis**\n\nCode destiné à devenir importable",
+      "x": 200,
+      "y": 100,
+      "width": 260,
+      "height": 140
+    },
+    {
+      "id": "frontend-projet",
+      "type": "text",
+      "text": "**RELATION DIRECTE**\n\n**Frontend de projet**\n\nRésoudre, verrouiller, synchroniser et lancer",
+      "x": 200,
+      "y": 360,
+      "width": 300,
+      "height": 150,
+      "color": "5"
+    },
+    {
+      "id": "lockfile",
+      "type": "text",
+      "text": "**RELATION DIRECTE**\n\n**Lockfile**\n\nRésolution exacte gérée par le frontend",
+      "x": 510,
+      "y": 100,
+      "width": 260,
+      "height": 140,
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "frontend-lit-pyproject",
+      "fromNode": "frontend-projet",
+      "fromSide": "left",
+      "toNode": "pyproject-toml",
+      "toSide": "bottom",
+      "label": "lit les déclarations"
+    },
+    {
+      "id": "frontend-ecrit-lockfile",
+      "fromNode": "frontend-projet",
+      "fromSide": "right",
+      "toNode": "lockfile",
+      "toSide": "bottom",
+      "label": "calcule et met à jour"
+    },
+    {
+      "id": "frontend-materialise-environnement",
+      "fromNode": "frontend-projet",
+      "fromSide": "right",
+      "toNode": "environnement-virtuel",
+      "toSide": "left",
+      "label": "crée et synchronise"
+    },
+    {
+      "id": "interpreteur-fonde-environnement",
+      "fromNode": "interpreteur-base",
+      "fromSide": "right",
+      "toNode": "environnement-virtuel",
+      "toSide": "left",
+      "label": "sert de base"
+    },
+    {
+      "id": "pyproject-contraint-environnement",
+      "fromNode": "pyproject-toml",
+      "fromSide": "right",
+      "toNode": "environnement-virtuel",
+      "toSide": "left",
+      "label": "déclare les contraintes"
+    },
+    {
+      "id": "lockfile-decrit-environnement",
+      "fromNode": "lockfile",
+      "fromSide": "right",
+      "toNode": "environnement-virtuel",
+      "toSide": "left",
+      "label": "décrit la résolution"
+    },
+    {
+      "id": "environnement-isole-site-packages",
+      "fromNode": "environnement-virtuel",
+      "fromSide": "bottom",
+      "toNode": "site-packages",
+      "toSide": "top",
+      "label": "isole"
+    },
+    {
+      "id": "sources-installees-editable",
+      "fromNode": "sources-praxis",
+      "fromSide": "right",
+      "toNode": "site-packages",
+      "toSide": "left",
+      "label": "installation éditable"
+    },
+    {
+      "id": "pyproject-designe-backend",
+      "fromNode": "pyproject-toml",
+      "fromSide": "right",
+      "toNode": "backend-build",
+      "toSide": "left",
+      "label": "désigne"
+    },
+    {
+      "id": "sources-alimentent-backend",
+      "fromNode": "sources-praxis",
+      "fromSide": "right",
+      "toNode": "backend-build",
+      "toSide": "left",
+      "label": "fournissent le contenu"
+    },
+    {
+      "id": "frontend-invoque-backend",
+      "fromNode": "frontend-projet",
+      "fromSide": "right",
+      "toNode": "backend-build",
+      "toSide": "left",
+      "label": "invoque"
+    },
+    {
+      "id": "backend-produit-artefacts",
+      "fromNode": "backend-build",
+      "fromSide": "bottom",
+      "toNode": "wheel-sdist",
+      "toSide": "top",
+      "label": "produit"
+    }
+  ]
+}
