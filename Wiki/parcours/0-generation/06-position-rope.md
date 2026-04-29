@@ -63,9 +63,9 @@ capable de moduler les relations entre positions autorisées.
 
 ### La rotation
 
-Sur une paire de composantes, une rotation d'angle \(\theta\) s'écrit :
+Sur une paire de composantes, une rotation d'angle $\theta$ s'écrit :
 
-\[
+$$
 R_\theta
 \begin{bmatrix}x_1\\x_2\end{bmatrix}
 =
@@ -74,7 +74,17 @@ R_\theta
 \sin\theta & \cos\theta
 \end{bmatrix}
 \begin{bmatrix}x_1\\x_2\end{bmatrix}
-\]
+$$
+
+La multiplication donne deux nouvelles composantes :
+
+$$
+x'_1 = x_1\cos\theta - x_2\sin\theta
+\qquad
+x'_2 = x_1\sin\theta + x_2\cos\theta
+$$
+
+La paire change ainsi de direction sans changer de longueur.
 
 RoPE utilise plusieurs fréquences sur les paires de dimensions. À la position
 `m`, il applique une rotation dépendant de `m` à la requête et à la clé. Le
@@ -187,4 +197,3 @@ nombreuses fréquences, ni les formes tensorielles, ni les variantes de scaling.
   calcul des fréquences, rotation de `Q` et `K`, position du cache.
 - [Transformers — RoPE utilities](https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_rope_utils.py) —
   variantes configurables et validation.
-
