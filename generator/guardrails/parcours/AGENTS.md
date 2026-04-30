@@ -3,10 +3,11 @@
 Ce fichier contient les règles canoniques qui valent pour toute intervention
 dans le dépôt : langue, rigueur des affirmations et méthode de travail.
 
-Le contrat propre au projet vit dans [REGLES.md](REGLES.md) et doit
-être lu avant toute création ou modification de contenu :
+Le point d’entrée du contrat propre au projet vit dans
+[CADRAGE.md](CADRAGE.md). Il doit être lu avant toute création ou modification
+de contenu :
 
-@generator/guardrails/parcours/REGLES.md
+@generator/guardrails/parcours/CADRAGE.md
 
 ## Langue
 
@@ -17,7 +18,9 @@ Le contrat propre au projet vit dans [REGLES.md](REGLES.md) et doit
   leur forme d'origine lorsqu'ils nomment un concept, un contrat, une
   primitive, un champ ou une opération consacrée par l'écosystème. Une entrée
   de glossaire portant une définition en français simple doit les accompagner.
-  Le terme ou l'expression doit être relié à cette entrée de glossaire.
+  Dans chaque leçon, la première occurrence du terme ou de l'expression est un
+  lien vers cette entrée. Les occurrences suivantes dans la même leçon sont en
+  gras, sans répéter le lien.
 - Conserver le jargon technique anglais lorsqu'il évite une traduction
   artificielle ou ambiguë.
 - Employer notamment `Template`, `Frontmatter`, `Input` et `Output` dans leur

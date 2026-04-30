@@ -5,7 +5,7 @@
 > dans **Praxis** et fait progresser **Mnémos**, l'assistant personnel qui
 > l'emploie.
 
-Le [contrat du projet](REGLES.md) fixe la méthode, les frontières et la forme
+Le [contrat du projet](CADRAGE.md) fixe la méthode, les frontières et la forme
 des leçons. Ce fichier fixe l'ordre de construction et la couverture du cours.
 
 Chaque Parcours annonce aussi ses processus structurants. Le
