@@ -1,156 +1,18 @@
 {
-  "nodes": [
-    {
-      "id": "caractere-abstrait",
-      "type": "text",
-      "x": 0,
-      "y": 0,
-      "width": 280,
-      "height": 130,
-      "text": "**RELATION DIRECTE**\n\n**Caractère abstrait**\n\nUnité sémantique encodée par Unicode",
-      "color": "5"
-    },
-    {
-      "id": "point-code",
-      "type": "text",
-      "x": 400,
-      "y": 0,
-      "width": 280,
-      "height": 130,
-      "text": "**ÉLÉMENT OUVERT**\n\n**Point de code**\n\nPosition numérique notée U+XXXX",
-      "color": "6"
-    },
-    {
-      "id": "valeur-scalaire",
-      "type": "text",
-      "x": 800,
-      "y": 0,
-      "width": 280,
-      "height": 130,
-      "text": "**RELATION DIRECTE**\n\n**Valeur scalaire**\n\nPoint de code hors zone des surrogates",
-      "color": "5"
-    },
-    {
-      "id": "encodage-utf8",
-      "type": "text",
-      "x": 1200,
-      "y": 0,
-      "width": 280,
-      "height": 130,
-      "text": "**Encodage UTF-8**\n\nAssocier une valeur scalaire à des unités de code"
-    },
-    {
-      "id": "octets",
-      "type": "text",
-      "x": 1600,
-      "y": 0,
-      "width": 280,
-      "height": 130,
-      "text": "**Octets**\n\nUnités de code de 8 bits en UTF-8"
-    },
-    {
-      "id": "grapheme",
-      "type": "text",
-      "x": 200,
-      "y": 320,
-      "width": 300,
-      "height": 150,
-      "text": "**RELATION DIRECTE**\n\n**Grapheme cluster**\n\nUnité que l'utilisateur peut percevoir comme un caractère",
-      "color": "5"
-    },
-    {
-      "id": "normalisation",
-      "type": "text",
-      "x": 700,
-      "y": 320,
-      "width": 300,
-      "height": 150,
-      "text": "**RELATION DIRECTE**\n\n**Normalisation Unicode**\n\nChoisir une forme canonique ou de compatibilité",
-      "color": "5"
-    },
-    {
-      "id": "chaine-python",
-      "type": "text",
-      "x": 1200,
-      "y": 320,
-      "width": 300,
-      "height": 150,
-      "text": "**RELATION DIRECTE**\n\n**str Python**\n\nSéquence de points de code manipulée par le programme",
-      "color": "5"
-    }
-  ],
-  "edges": [
-    {
-      "id": "caractere-vers-point",
-      "fromNode": "caractere-abstrait",
-      "fromSide": "right",
-      "toNode": "point-code",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "reçoit généralement un point de code"
-    },
-    {
-      "id": "point-vers-scalaire",
-      "fromNode": "point-code",
-      "fromSide": "right",
-      "toNode": "valeur-scalaire",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "hors surrogates devient"
-    },
-    {
-      "id": "scalaire-vers-utf8",
-      "fromNode": "valeur-scalaire",
-      "fromSide": "right",
-      "toNode": "encodage-utf8",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "est encodée par"
-    },
-    {
-      "id": "utf8-vers-octets",
-      "fromNode": "encodage-utf8",
-      "fromSide": "right",
-      "toNode": "octets",
-      "toSide": "left",
-      "toEnd": "arrow",
-      "label": "produit 1 à 4"
-    },
-    {
-      "id": "grapheme-vers-points",
-      "fromNode": "grapheme",
-      "fromSide": "top",
-      "toNode": "point-code",
-      "toSide": "bottom",
-      "toEnd": "arrow",
-      "label": "peut regrouper plusieurs"
-    },
-    {
-      "id": "normalisation-vers-points",
-      "fromNode": "normalisation",
-      "fromSide": "top",
-      "toNode": "point-code",
-      "toSide": "bottom",
-      "toEnd": "arrow",
-      "label": "transforme une séquence en une forme équivalente"
-    },
-    {
-      "id": "chaine-vers-points",
-      "fromNode": "chaine-python",
-      "fromSide": "top",
-      "toNode": "point-code",
-      "toSide": "bottom",
-      "toEnd": "arrow",
-      "label": "indexe des"
-    },
-    {
-      "id": "chaine-vers-utf8",
-      "fromNode": "chaine-python",
-      "fromSide": "top",
-      "toNode": "encodage-utf8",
-      "toSide": "bottom",
-      "toEnd": "arrow",
-      "label": "encode explicitement vers"
-    }
-  ]
+	"nodes":[
+		{"id":"groupe-unicode-octets","type":"group","x":-1000,"y":-20,"width":1720,"height":710,"label":"Texte, Unicode et octets"},
+		{"id":"caractere-abstrait","type":"text","text":"**RELATION DIRECTE**\n\n**Caractère abstrait**\n\nUnité sémantique encodée par Unicode","x":-980,"y":0,"width":280,"height":160,"color":"5"},
+		{"id":"point-code","type":"text","text":"**ÉLÉMENT OUVERT**\n\n**Point de code**\n\nPosition numérique notée U+XXXX","x":-200,"y":0,"width":280,"height":160,"color":"6"},
+		{"id":"valeur-scalaire","type":"text","text":"**RELATION DIRECTE**\n\n**Valeur scalaire**\n\nPoint de code hors zone des surrogates","x":420,"y":0,"width":280,"height":160,"color":"5"},
+		{"id":"grapheme","type":"text","text":"**RELATION DIRECTE**\n\n**Grapheme cluster**\n\nUnité que l'utilisateur peut percevoir comme un caractère","x":-840,"y":280,"width":300,"height":150,"color":"5"},
+		{"id":"normalisation","type":"text","text":"**RELATION DIRECTE**\n\n**Normalisation Unicode**\n\nChoisir une forme canonique ou de compatibilité","x":-220,"y":520,"width":300,"height":150,"color":"5"},
+		{"id":"chaine-python","type":"text","text":"**RELATION DIRECTE**\n\n**str Python**\n\nSéquence de points de code manipulée par le programme","x":380,"y":280,"width":300,"height":150,"color":"5"}
+	],
+	"edges":[
+		{"id":"caractere-vers-point","fromNode":"caractere-abstrait","fromSide":"right","toNode":"point-code","toSide":"left","label":"reçoit généralement un point de code"},
+		{"id":"point-vers-scalaire","fromNode":"point-code","fromSide":"right","toNode":"valeur-scalaire","toSide":"left","label":"hors surrogates devient"},
+		{"id":"grapheme-vers-points","fromNode":"grapheme","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"peut regrouper plusieurs"},
+		{"id":"normalisation-vers-points","fromNode":"normalisation","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"transforme une séquence en une forme équivalente"},
+		{"id":"chaine-vers-points","fromNode":"chaine-python","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"indexe des"}
+	]
 }
