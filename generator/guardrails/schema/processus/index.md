@@ -69,4 +69,4 @@ Dans une vue de leçon générée :
 
 La couleur accompagne toujours un libellé : le sens reste lisible sans couleur.
 Le contrat complet est défini dans
-[REGLES](../../parcours/REGLES.md#doctrine-visuelle).
+[règles visuelles](../REGLES.md).
