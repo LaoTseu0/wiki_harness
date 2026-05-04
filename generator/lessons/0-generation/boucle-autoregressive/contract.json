@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "boucle-autoregressive",
+  "titre": "Réinjecter le token choisi",
+  "concept_central": "Réinjecter le token choisi",
+  "attribution_cartographie": "autorégression et croissance de la séquence",
+  "notions": [
+    "Factorisation autorégressive",
+    "Le token choisi devient une donnée",
+    "État minimal du run",
+    "Un tour possède des frontières",
+    "Entraînement et inférence"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/14-boucle-autoregressive.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "boucle-autoregressive",
+    "type": "leçon",
+    "titre": "Réinjecter le token choisi",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "autoregression",
+      "loop"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "reinjection",
+    "brique": "generation",
+    "contrat": "praxis.generation.GenerationLoop"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
