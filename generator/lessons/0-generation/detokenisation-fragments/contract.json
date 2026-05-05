@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "id": "detokenisation-fragments",
+  "titre": "Reconstruire le texte généré",
+  "concept_central": "Reconstruire le texte généré",
+  "attribution_cartographie": "détokenisation incrémentale et fragments UTF-8 incomplets",
+  "notions": [
+    "Le token n'est pas sa chaîne d'affichage",
+    "Un fragment UTF-8 peut être incomplet",
+    "Décodage incrémental",
+    "Deux stratégies pour streamer",
+    "Tokens spéciaux et texte visible",
+    "Buffer de sortie"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/15-detokenisation-fragments.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "detokenisation-fragments",
+    "type": "leçon",
+    "titre": "Reconstruire le texte généré",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "detokenisation",
+      "streaming",
+      "utf8"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "detokenisation",
+    "brique": "generation",
+    "contrat": "praxis.generation.TokenDecoder"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
