@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "templates-chat",
+  "titre": "Le texte réellement lu par le modèle",
+  "concept_central": "Le texte réellement lu par le modèle",
+  "attribution_cartographie": "rôles, délimiteurs et Template de chat",
+  "notions": [
+    "Les messages sont une structure applicative",
+    "Le moindre séparateur fait partie du prompt",
+    "Ouvrir un nouveau tour ou continuer le dernier",
+    "Sérialiser puis tokeniser sans double ajout",
+    "Un Template ne protège pas les instructions"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/04-templates-chat.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "templates-chat",
+    "type": "leçon",
+    "titre": "Le texte réellement lu par le modèle",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "chat-template",
+      "messages"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "chat-template",
+    "brique": "generation",
+    "contrat": "praxis.generation.ChatTemplate"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
