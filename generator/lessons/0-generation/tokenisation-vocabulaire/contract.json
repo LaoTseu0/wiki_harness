@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "tokenisation-vocabulaire",
+  "titre": "Tokenisation et vocabulaire",
+  "concept_central": "Tokenisation et vocabulaire",
+  "attribution_cartographie": "BPE, SentencePiece, vocabulaire et relation texte–identifiants",
+  "notions": [
+    "Le pipeline d'un tokenizer",
+    "Le vocabulaire",
+    "BPE",
+    "SentencePiece n'est pas un synonyme de BPE",
+    "Encodage, décodage et aller-retour"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/02-tokenisation-vocabulaire.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 1,
+  "frontmatter": {
+    "id": "tokenisation-vocabulaire",
+    "type": "leçon",
+    "titre": "Tokenisation et vocabulaire",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "tokenisation",
+      "bpe",
+      "sentencepiece"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "tokenisation",
+    "brique": "generation",
+    "contrat": "praxis.generation.Tokenizer"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}

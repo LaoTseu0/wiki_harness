@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "lecon": "tokenisation-vocabulaire",
+  "contrat": {
+    "statut": "a-valider",
+    "raison": "Migration structurelle sans validation sémantique."
+  },
+  "sections": {
+    "prerequis": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "savoir-le-situer": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "connaissances": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "reconstruction": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "decision-praxis": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "limites": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "se-tester": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "references": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-27"
+    },
+    "mesures": {
+      "statut": "a-generer"
+    }
+  }
+}
