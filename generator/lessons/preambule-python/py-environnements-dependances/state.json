@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "lecon": "py-environnements-dependances",
+  "contrat": {
+    "statut": "a-valider",
+    "raison": "Migration structurelle sans validation sémantique."
+  },
+  "sections": {
+    "prerequis": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "savoir-le-situer": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "connaissances": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "reconstruction": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "decision-praxis": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "limites": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "se-tester": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "references": {
+      "statut": "generee",
+      "mise_a_jour": "2026-07-25"
+    },
+    "mesures": {
+      "statut": "a-generer"
+    }
+  }
+}

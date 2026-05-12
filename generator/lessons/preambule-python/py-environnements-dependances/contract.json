@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "id": "py-environnements-dependances",
+  "titre": "Environnements et dépendances",
+  "concept_central": "Environnements et dépendances",
+  "attribution_cartographie": "environnement virtuel, `pyproject.toml`, dépendances et packaging",
+  "notions": [
+    "L'environnement virtuel est un état dérivé",
+    "Déclaration, résolution et installation",
+    "Les responsabilités de `pyproject.toml`",
+    "Frontend, backend et artefacts",
+    "La synchronisation avec uv"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/preambule-python/01-environnements-dependances.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 1,
+  "frontmatter": {
+    "id": "py-environnements-dependances",
+    "type": "leçon",
+    "titre": "Environnements et dépendances",
+    "parcours": "preambule-python",
+    "statut": "brouillon",
+    "tags": [
+      "python",
+      "environnement",
+      "dependances",
+      "packaging"
+    ],
+    "created": "2026-07-25",
+    "updated": "2026-07-25",
+    "verified": "2026-07-25",
+    "processus": "aucun — préparation du projet",
+    "schema": "environnement-projet-python",
+    "element": "environnement-virtuel",
+    "brique": "contracts",
+    "contrat": "aucun — prépare le socle de packaging de Praxis"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
