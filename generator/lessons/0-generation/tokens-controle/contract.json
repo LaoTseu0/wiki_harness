@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "tokens-controle",
+  "titre": "Tokens de contrôle",
+  "concept_central": "Tokens de contrôle",
+  "attribution_cartographie": "BOS, EOS, fins de tour et portée des tokens spéciaux",
+  "notions": [
+    "Réservé ne signifie pas magique",
+    "BOS, EOS et fin de tour",
+    "Padding et token inconnu",
+    "L'ajout automatique peut dupliquer les marqueurs",
+    "Le contenu peut ressembler à un marqueur"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/03-tokens-controle.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "tokens-controle",
+    "type": "leçon",
+    "titre": "Tokens de contrôle",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "tokenisation",
+      "special-tokens"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "tokenisation",
+    "brique": "generation",
+    "contrat": "praxis.generation.SpecialTokens"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
