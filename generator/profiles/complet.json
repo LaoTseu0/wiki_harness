@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "complet",
+  "description": "Leçon complète destinée au Wiki principal.",
+  "obligatoires": [
+    "prerequis",
+    "savoir-le-situer",
+    "connaissances",
+    "reconstruction",
+    "decision-praxis",
+    "limites",
+    "se-tester",
+    "references"
+  ],
+  "optionnelles": [
+    "mesures"
+  ]
+}

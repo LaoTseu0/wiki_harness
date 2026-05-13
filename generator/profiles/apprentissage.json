@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "apprentissage",
+  "description": "Leçon d'apprentissage sans la décision propre à Praxis.",
+  "obligatoires": [
+    "prerequis",
+    "savoir-le-situer",
+    "connaissances",
+    "reconstruction",
+    "limites",
+    "se-tester",
+    "references"
+  ],
+  "optionnelles": [
+    "mesures"
+  ]
+}

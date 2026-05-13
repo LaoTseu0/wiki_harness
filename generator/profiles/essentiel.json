@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "essentiel",
+  "description": "Concept, position, limites et vérification de compréhension.",
+  "obligatoires": [
+    "prerequis",
+    "savoir-le-situer",
+    "connaissances",
+    "limites",
+    "se-tester",
+    "references"
+  ],
+  "optionnelles": []
+}

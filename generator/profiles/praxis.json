@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "praxis",
+  "description": "Mécanisme, reconstruction et décision d'intégration dans Praxis.",
+  "obligatoires": [
+    "prerequis",
+    "savoir-le-situer",
+    "connaissances",
+    "reconstruction",
+    "decision-praxis",
+    "limites",
+    "references"
+  ],
+  "optionnelles": [
+    "mesures"
+  ]
+}
