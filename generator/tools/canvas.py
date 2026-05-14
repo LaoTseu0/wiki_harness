@@ -2,7 +2,8 @@
 
 Les processus et schémas de référence sont les sources de vérité. Une vue
 contextualisée n'est jamais éditée à la main : elle est dérivée du couple
-``processus``–``etape`` ou ``schema``–``element`` d'une leçon.
+``processus``–``etape`` ou ``schema``–``element`` porté par le contrat
+canonique d'une leçon.
 """
 
 from __future__ import annotations
@@ -21,7 +22,7 @@ RACINE = Path(__file__).resolve().parents[2]
 DOSSIER_GARDE_FOUS = RACINE / "generator" / "guardrails"
 DOSSIER_PROCESSUS = DOSSIER_GARDE_FOUS / "schema" / "processus"
 DOSSIER_SCHEMAS = DOSSIER_GARDE_FOUS / "schema" / "references"
-DOSSIER_LECONS = RACINE / "Wiki" / "parcours"
+DOSSIER_LECONS = RACINE / "generator" / "lessons"
 DOSSIER_VUES = DOSSIER_GARDE_FOUS / "schema" / "canvas"
 CHEMIN_CARTOGRAPHIE = DOSSIER_GARDE_FOUS / "parcours" / "cartographie.md"
 
@@ -42,7 +43,11 @@ class Lecon:
     """Référence d'une leçon vers une pièce d'un Canvas canonique."""
 
     identifiant: str
+    titre: str
     chemin: Path
+    groupe: str
+    libelle_groupe: str
+    hauteurs: dict[str, int]
     processus: str | None = None
     etape: str | None = None
     schema: str | None = None
@@ -185,6 +190,13 @@ def verifier_canvas(contenu: dict[str, Any], chemin: Path) -> None:
                 f"{chemin_relatif(chemin)} — nœud {identifiant!r} : "
                 "color doit être une chaîne"
             )
+        if type_noeud == "group" and (
+            not isinstance(noeud.get("label"), str) or not noeud["label"]
+        ):
+            raise ErreurCanvas(
+                f"{chemin_relatif(chemin)} — groupe {identifiant!r} : "
+                "label doit être une chaîne non vide"
+            )
 
     ids_aretes: set[str] = set()
     for position, arete in enumerate(aretes):
@@ -239,32 +251,64 @@ def verifier_canvas(contenu: dict[str, Any], chemin: Path) -> None:
                 )
 
 
-def lire_frontmatter(chemin: Path) -> dict[str, str] | None:
-    """Lit les scalaires utiles d'un Frontmatter YAML sans dépendance externe."""
+def lire_contrat(
+    chemin: Path,
+) -> tuple[dict[str, str], str, str, str, dict[str, int]] | None:
+    """Lit les données visuelles utiles d'un contrat canonique."""
 
-    lignes = chemin.read_text(encoding="utf-8-sig").splitlines()
-    if not lignes or lignes[0].strip() != "---":
-        return None
-
-    fin = next(
-        (index for index, ligne in enumerate(lignes[1:], start=1) if ligne.strip() == "---"),
-        None,
-    )
-    if fin is None:
+    contrat = charger_json(chemin)
+    frontmatter = contrat.get("frontmatter")
+    if not isinstance(frontmatter, dict):
         raise ErreurCanvas(
-            f"{chemin_relatif(chemin)} — Frontmatter ouvert mais non fermé"
+            f"{chemin_relatif(chemin)} — objet frontmatter absent du contrat"
         )
+    if frontmatter.get("type") != "leçon":
+        return None
+    titre = contrat.get("titre")
+    identifiant = contrat.get("id")
+    if not isinstance(titre, str) or not titre:
+        raise ErreurCanvas(f"{chemin_relatif(chemin)} — titre absent du contrat")
+    if not isinstance(identifiant, str) or not identifiant:
+        raise ErreurCanvas(f"{chemin_relatif(chemin)} — id absent du contrat")
 
-    donnees: dict[str, str] = {}
-    for ligne in lignes[1:fin]:
-        correspondance = re.match(r"^([A-Za-z0-9_-]+):\s*(.*?)\s*$", ligne)
-        if not correspondance:
-            continue
-        cle, valeur = correspondance.groups()
-        if len(valeur) >= 2 and valeur[0] == valeur[-1] and valeur[0] in "\"'":
-            valeur = valeur[1:-1]
-        donnees[cle] = valeur
-    return donnees
+    visualisation = contrat.get("visualisation", {})
+    if not isinstance(visualisation, dict):
+        raise ErreurCanvas(
+            f"{chemin_relatif(chemin)} — visualisation doit être un objet"
+        )
+    groupe = visualisation.get("groupe", f"groupe-{identifiant}")
+    libelle = visualisation.get("libelle", titre)
+    if not isinstance(groupe, str) or not SLUG.fullmatch(groupe):
+        raise ErreurCanvas(
+            f"{chemin_relatif(chemin)} — id de groupe invalide {groupe!r}"
+        )
+    if not isinstance(libelle, str) or not libelle:
+        raise ErreurCanvas(
+            f"{chemin_relatif(chemin)} — libellé de groupe absent"
+        )
+    hauteurs = visualisation.get("hauteurs", {})
+    if not isinstance(hauteurs, dict):
+        raise ErreurCanvas(
+            f"{chemin_relatif(chemin)} — hauteurs doit être un objet"
+        )
+    for identifiant_noeud, hauteur in hauteurs.items():
+        if (
+            not isinstance(identifiant_noeud, str)
+            or not SLUG.fullmatch(identifiant_noeud)
+            or not isinstance(hauteur, int)
+            or isinstance(hauteur, bool)
+            or hauteur <= 0
+        ):
+            raise ErreurCanvas(
+                f"{chemin_relatif(chemin)} — hauteur invalide pour "
+                f"{identifiant_noeud!r}"
+            )
+    donnees = {
+        cle: valeur
+        for cle, valeur in frontmatter.items()
+        if isinstance(valeur, str)
+    }
+    return donnees, titre, groupe, libelle, hauteurs
 
 
 def decouvrir_lecons() -> tuple[list[Lecon], list[str]]:
@@ -277,15 +321,16 @@ def decouvrir_lecons() -> tuple[list[Lecon], list[str]]:
     erreurs: list[str] = []
     ids: dict[str, Path] = {}
 
-    for chemin in sorted(DOSSIER_LECONS.rglob("*.md")):
+    for chemin in sorted(DOSSIER_LECONS.rglob("contract.json")):
         try:
-            frontmatter = lire_frontmatter(chemin)
+            contrat = lire_contrat(chemin)
         except (ErreurCanvas, OSError, UnicodeError) as erreur:
             erreurs.append(str(erreur))
             continue
 
-        if frontmatter is None or frontmatter.get("type") != "leçon":
+        if contrat is None:
             continue
+        frontmatter, titre, groupe, libelle_groupe, hauteurs = contrat
 
         identifiant = frontmatter.get("id", "")
         processus = frontmatter.get("processus", "")
@@ -348,7 +393,11 @@ def decouvrir_lecons() -> tuple[list[Lecon], list[str]]:
             lecons.append(
                 Lecon(
                     identifiant=identifiant,
+                    titre=titre,
                     chemin=chemin,
+                    groupe=groupe,
+                    libelle_groupe=libelle_groupe,
+                    hauteurs=hauteurs,
                     schema=schema,
                     element=element,
                 )
@@ -384,7 +433,11 @@ def decouvrir_lecons() -> tuple[list[Lecon], list[str]]:
         lecons.append(
             Lecon(
                 identifiant=identifiant,
+                titre=titre,
                 chemin=chemin,
+                groupe=groupe,
+                libelle_groupe=libelle_groupe,
+                hauteurs=hauteurs,
                 processus=processus,
                 etape=etape,
             )
@@ -629,6 +682,11 @@ def produire_vue(
         for noeud in source["nodes"]
         if not noeud["id"].startswith("note:")
     }
+    if lecon.groupe in ids_structurels:
+        raise ErreurCanvas(
+            f"{chemin_relatif(lecon.chemin)} — id de groupe déjà employé "
+            f"par le Canvas canonique : {lecon.groupe!r}"
+        )
     if cible not in ids_structurels:
         nature = "étape" if est_processus else "élément"
         source_id = lecon.processus if est_processus else lecon.schema
@@ -666,14 +724,53 @@ def produire_vue(
             if extremite != cible
         }
 
-    noeuds: list[dict[str, Any]] = []
+    ids_presentes = {cible}
+    if est_processus:
+        ids_presentes.update(predecesseurs)
+        ids_presentes.update(successeurs)
+    else:
+        ids_presentes.update(relations)
+
+    aretes = [
+        arete
+        for arete in aretes
+        if arete["fromNode"] in ids_presentes
+        and arete["toNode"] in ids_presentes
+    ]
+    sources_presentes = [
+        source_noeud
+        for source_noeud in source["nodes"]
+        if source_noeud["id"] in ids_presentes
+    ]
+    gauche = min(noeud["x"] for noeud in sources_presentes) - 20
+    haut = min(noeud["y"] for noeud in sources_presentes) - 20
+    droite = max(
+        noeud["x"] + noeud["width"] for noeud in sources_presentes
+    ) + 20
+    bas = max(
+        noeud["y"] + lecon.hauteurs.get(noeud["id"], noeud["height"])
+        for noeud in sources_presentes
+    ) + 20
+    noeuds: list[dict[str, Any]] = [
+        {
+            "id": lecon.groupe,
+            "type": "group",
+            "x": gauche,
+            "y": haut,
+            "width": droite - gauche,
+            "height": bas - haut,
+            "label": lecon.libelle_groupe,
+        }
+    ]
     for source_noeud in source["nodes"]:
         identifiant = source_noeud["id"]
-        if identifiant not in ids_structurels:
+        if identifiant not in ids_presentes:
             continue
 
         noeud = copy.deepcopy(source_noeud)
         noeud.pop("color", None)
+        if identifiant in lecon.hauteurs:
+            noeud["height"] = lecon.hauteurs[identifiant]
         if identifiant == cible:
             etiquette = "ÉTAPE OUVERTE" if est_processus else "ÉLÉMENT OUVERT"
             prefixer(noeud, etiquette, "6")
