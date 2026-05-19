@@ -6,7 +6,7 @@ parcours: 0-generation
 statut: brouillon
 tags: [generation, sampling, seed, reproductibilite]
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 verified: 2026-07-27
 processus: generation-token
 etape: sampling
@@ -27,22 +27,22 @@ contrat: praxis.generation.Sampler
 
 **Processus** —
 [[generator/guardrails/schema/processus/generation-token.canvas|de l'échange à la réponse générée]].  
-Input global : messages structurés. Output global : texte généré et raison
+[[glossaire/input|Input]] global : messages structurés. [[glossaire/output|Output]] global : texte généré et raison
 d'arrêt.  
-Grandes étapes : logits transformés → sampling → ajout du token → boucle.
+Grandes étapes : logits transformés → [[glossaire/sampling|sampling]] → ajout du [[glossaire/token|token]] → boucle.
 
 **Étape ouverte** —
 `transformation-logits → sampling → ajout-token`.  
-Input : distribution finie, normalisée et non vide. Output : un identifiant de
-token.  
+**Input** : distribution finie, normalisée et non vide. **Output** : un identifiant de
+**token**.  
 Responsabilité : effectuer exactement un tirage catégoriel avec une source
 d'aléa explicite, ou appliquer l'argmax demandé.
 
-**L'essentiel** — le sampling tire un indice selon les poids finaux. Une seed
+**L'essentiel** — le **sampling** tire un indice selon les poids finaux. Une [[glossaire/seed|seed]]
 initialise l'état d'un générateur pseudo-aléatoire ; elle ne fige ni les logits
 ni les calculs qui les ont produits.
 
-**Recomposer** — le token choisi est ajouté à la séquence. Cette décision
+**Recomposer** — le **token** choisi est ajouté à la séquence. Cette décision
 modifie le prochain passage avant, de sorte qu'une divergence unique peut
 entraîner une trajectoire entièrement différente.
 
@@ -52,18 +52,18 @@ entraîner une trajectoire entièrement différente.
 
 ### Distribution catégorielle
 
-Pour des probabilités \(p_1,\ldots,p_V\), le sampler choisit l'indice `i` avec
-la probabilité \(p_i\). Un tirage possible utilise un nombre uniforme
-\(u\in[0,1)\) et la première somme cumulée supérieure à `u`.
+Pour des probabilités $p_1,\ldots,p_V$, le sampler choisit l'indice `i` avec
+la probabilité $p_i$. Un tirage possible utilise un nombre uniforme
+$u\in[0,1)$ et la première somme cumulée supérieure à `u`.
 
-Le sampler ne « comprend » pas les tokens. Il reçoit leur ordre et leurs poids.
+Le sampler ne « comprend » pas les **tokens**. Il reçoit leur ordre et leurs poids.
 Une permutation des probabilités sans la même permutation des identifiants
 produit un résultat incohérent.
 
 ### État du générateur pseudo-aléatoire
 
-Une seed crée un état initial. Chaque tirage consomme cet état et produit le
-suivant. Réinitialiser le générateur avec la même seed à chaque token ne rejoue
+Une **seed** crée un état initial. Chaque tirage consomme cet état et produit le
+suivant. Réinitialiser le générateur avec la même **seed** à chaque **token** ne rejoue
 pas une génération normale : cela réutilise la première valeur uniforme à
 chaque étape.
 
@@ -72,7 +72,7 @@ séquence aléatoire globale. Son état peut être enregistré pour diagnostique
 reprendre une expérience, à condition que tout le calcul déterministe autour
 reste identique.
 
-### La seed ne suffit pas
+### La **seed** ne suffit pas
 
 Pour reproduire une trajectoire, il faut notamment conserver :
 
@@ -81,7 +81,7 @@ Pour reproduire une trajectoire, il faut notamment conserver :
 - ordre et paramètres des transformations ;
 - runtime, version des bibliothèques et device ;
 - algorithmes déterministes ou non ;
-- seed et état du générateur ;
+- **seed** et état du générateur ;
 - politique de cache et de batch susceptible de modifier les calculs.
 
 PyTorch ne garantit pas une reproductibilité complète entre versions,
@@ -89,21 +89,21 @@ plateformes ou exécutions CPU et GPU. Certaines opérations disposent d'une
 variante déterministe ; l'activer peut réduire les performances ou provoquer
 une erreur lorsqu'aucune variante n'est disponible.
 
-### Greedy et départage
+### [[glossaire/greedy|Greedy]] et départage
 
-Greedy ne consomme pas de hasard. Avec des logits strictement ordonnés et le
+**Greedy** ne consomme pas de hasard. Avec des logits strictement ordonnés et le
 même calcul numérique, il choisit le même indice.
 
 Deux valeurs égales demandent une convention, souvent le premier indice
 maximal. Deux runtimes peuvent aussi arrondir différemment des scores presque
-égaux. « Sans sampling » est donc une condition nécessaire mais pas toujours
+égaux. « Sans **sampling** » est donc une condition nécessaire mais pas toujours
 suffisante pour une égalité bit à bit entre environnements.
 
 ### Reproductibilité contre qualité
 
 Reproduire un résultat permet de diagnostiquer une transformation ou une
 régression. Cela ne montre pas que la sortie est bonne. Inversement, plusieurs
-seeds sont nécessaires pour évaluer une stratégie stochastique ; un exemple
+**seeds** sont nécessaires pour évaluer une stratégie stochastique ; un exemple
 favorable ne mesure pas sa distribution de qualité.
 
 ## Reconstruction
@@ -140,14 +140,14 @@ variation rend l'état consommable du générateur visible.
 ## Décision et dépôt dans Praxis
 
 - **Décision** — `Sampler` reçoit un générateur pseudo-aléatoire propre au run ;
-  greedy utilise un chemin séparé.
-- **Alternatives** — RNG global, seed passée à chaque appel, ou choix délégué au
+  **greedy** utilise un chemin séparé.
+- **Alternatives** — [[glossaire/rng|RNG]] global, **seed** passée à chaque appel, ou choix délégué au
   backend sans métadonnées.
 - **Critère** — isoler les exécutions concurrentes et rendre l'expérience
   rejouable dans un environnement fixé.
-- **Coût accepté** — la trace conserve seed, versions et configuration, sans
+- **Coût accepté** — la trace conserve **seed**, versions et configuration, sans
   promettre une portabilité bit à bit.
-- **Condition de révision** — une reprise durable du RNG sera cadrée avec les
+- **Condition de révision** — une reprise durable du **RNG** sera cadrée avec les
   checkpoints au Parcours 10.
 - **Contrat** — `praxis.generation.Sampler`.
 - **Invariant et tests** — un appel choisit un candidat autorisé ; deux
@@ -159,7 +159,7 @@ variation rend l'état consommable du générateur visible.
 - **La reconstruction ne prouve pas** — la reproductibilité entre Python,
   PyTorch, llama.cpp et un GPU.
 - **Praxis ne garantit pas encore** — la reprise d'un run interrompu.
-- **Échec provoqué** — un composant concurrent qui utilise le RNG global doit
+- **Échec provoqué** — un composant concurrent qui utilise le **RNG** global doit
   modifier la trajectoire et justifier son exclusion du contrat.
 - **Ouverture ultérieure** —
   [[14-boucle-autoregressive|Réinjecter le token choisi]] et le Parcours 10
@@ -167,14 +167,14 @@ variation rend l'état consommable du générateur visible.
 
 ## Se tester
 
-1. Pourquoi réinitialiser la même seed avant chaque token est-il différent
+1. Pourquoi réinitialiser la même **seed** avant chaque **token** est-il différent
    d'initialiser une fois le run ?
-2. Comment un appel concurrent peut-il casser une expérience fondée sur un RNG
+2. Comment un appel concurrent peut-il casser une expérience fondée sur un **RNG**
    global ?
-3. Quelles données faut-il conserver en plus de la seed pour tenter de
+3. Quelles données faut-il conserver en plus de la **seed** pour tenter de
    reproduire une génération locale ?
-4. Greedy garantit-il une égalité bit à bit entre un CPU et un GPU ?
-5. Pourquoi une seule seed ne suffit-elle pas pour comparer la qualité de deux
+4. **Greedy** garantit-il une égalité bit à bit entre un CPU et un GPU ?
+5. Pourquoi une seule **seed** ne suffit-elle pas pour comparer la qualité de deux
    configurations stochastiques ?
 
 [Vérifier les réponses](../../corrections/0-generation/00-parcours-0.md#13--tirer-le-prochain-token).
@@ -183,11 +183,11 @@ variation rend l'état consommable du générateur visible.
 
 - [PyTorch — Reproducibility, mise à jour du
   2025-10-03](https://docs.pytorch.org/docs/stable/notes/randomness.html) —
-  portée des seeds et limites entre plateformes et versions.
+  portée des **seeds** et limites entre plateformes et versions.
 - [PyTorch — `Generator`](https://docs.pytorch.org/docs/stable/generated/torch.Generator.html) —
-  état, seed et clonage d'un générateur.
+  état, **seed** et clonage d'un générateur.
 - [PyTorch — `multinomial`](https://docs.pytorch.org/docs/stable/generated/torch.multinomial.html) —
   tirage d'indices à partir de poids et générateur injecté.
 - [Transformers — génération, documentation `main` vérifiée le
   2026-07-27](https://huggingface.co/docs/transformers/main_classes/text_generation) —
-  distinction `do_sample` et greedy.
+  distinction `do_sample` et **greedy**.

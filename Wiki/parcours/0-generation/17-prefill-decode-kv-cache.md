@@ -6,7 +6,7 @@ parcours: 0-generation
 statut: brouillon
 tags: [generation, inference, kv-cache, prefill]
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 verified: 2026-07-27
 processus: generation-token
 etape: inference
@@ -32,46 +32,46 @@ contrat: praxis.generation.NextTokenModel
 dont l'étape `inference` ouvre
 [[generator/guardrails/schema/processus/inference-transformer.canvas|le passage avant du
 Transformer]].  
-Input global : messages structurés. Output global : texte généré et raison
+[[glossaire/input|Input]] global : messages structurés. [[glossaire/output|Output]] global : texte généré et raison
 d'arrêt.  
 Grandes étapes : tokenisation → inférence → logits → boucle.
 
 **Étape ouverte** — `tokenisation | reinjection → inference → logits`.  
-Input : prompt complet au premier passage, puis nouveau token et cache
-compatible. Output : logits du prochain token et cache étendu.  
+**Input** : prompt complet au premier passage, puis nouveau token et cache
+compatible. **Output** : logits du prochain token et cache étendu.  
 Responsabilité : distinguer le calcul initial du préfixe de l'extension
 incrémentale.
 
-**L'essentiel** — le prefill calcule le prompt et construit les clés et valeurs
-de chaque couche. Le decode réutilise ce cache et ne calcule les nouveaux
+**L'essentiel** — le [[glossaire/prefill|prefill]] calcule le prompt et construit les clés et valeurs
+de chaque couche. Le [[glossaire/decode|decode]] réutilise ce cache et ne calcule les nouveaux
 états que pour les positions ajoutées.
 
 **Recomposer** — le cache accélère les retours de la boucle vers l'inférence,
-mais ne change ni le tokenizer, ni la politique de sampling, ni la condition
+mais ne change ni le [[glossaire/tokenizer|tokenizer]], ni la politique de [[glossaire/sampling|sampling]], ni la condition
 d'arrêt.
 
 ![[prefill-decode-kv-cache.canvas]]
 
 ## Connaissances
 
-### Prefill
+### **Prefill**
 
-Le prefill traite les \(N\) tokens du prompt sous masque causal. Les opérations
+Le **prefill** traite les $N$ tokens du prompt sous masque causal. Les opérations
 sur les positions peuvent être exécutées en parallèle parce que toutes les
 valeurs du prompt sont déjà connues.
 
 Chaque couche produit les clés et valeurs correspondant à ces positions. Le
 runtime conserve celles qui seront nécessaires aux futurs calculs d'attention.
 Le premier logit de génération provient de la dernière position utile du
-prefill.
+**prefill**.
 
 Le temps avant le premier token inclut donc Template, tokenisation, transfert
-des entrées, prefill et choix du premier token. Il ne se réduit pas au seul
-sampling.
+des entrées, **prefill** et choix du premier token. Il ne se réduit pas au seul
+**sampling**.
 
-### Decode
+### **Decode**
 
-Après avoir choisi un token, le decode calcule sa nouvelle représentation
+Après avoir choisi un token, le **decode** calcule sa nouvelle représentation
 position par position. À chaque couche :
 
 1. produire `Q`, `K` et `V` pour la nouvelle position ;
@@ -85,7 +85,7 @@ préfixe à chaque tour. Avec cache, il les relit.
 
 ### Ce que le cache contient
 
-Un cache KV courant contient, pour chaque couche, les clés et valeurs des
+Un [[glossaire/cache-kv|cache KV]] courant contient, pour chaque couche, les clés et valeurs des
 positions conservées, ainsi que les informations permettant de les positionner
 et de les masquer correctement.
 
@@ -122,7 +122,7 @@ Ces propriétés doivent être mesurées sur le runtime et le matériel concern�
 Un cache dépend au minimum du checkpoint, des couches, de la convention de
 position, du préfixe exact et de la configuration d'attention. Le réutiliser
 avec un autre Template ou un autre modèle donne des états sans rapport avec le
-nouvel Input.
+nouvel **Input**.
 
 Partager un cache de préfixe stable peut être une optimisation volontaire. Le
 préfixe doit être identique au niveau des identifiants et sa frontière de
@@ -179,12 +179,12 @@ requête parcourt encore les clés autorisées dans une attention complète.
 
 ## Se tester
 
-1. Quelle différence de disponibilité des tokens sépare prefill et decode ?
+1. Quelle différence de disponibilité des tokens sépare **prefill** et **decode** ?
 2. Quelles projections le cache évite-t-il de recalculer pour le préfixe ?
-3. Pourquoi le coût d'attention du decode continue-t-il de croître avec une
+3. Pourquoi le coût d'attention du **decode** continue-t-il de croître avec une
    attention complète ?
 4. Quelles identités doivent être compatibles avant de réutiliser un cache ?
-5. Un cache KV est-il une mémoire agentique ?
+5. Un **cache KV** est-il une mémoire agentique ?
 
 [Vérifier les réponses](../../corrections/0-generation/00-parcours-0.md#17--prefill-decode-et-cache-kv).
 
