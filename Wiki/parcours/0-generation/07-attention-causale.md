@@ -6,7 +6,7 @@ parcours: 0-generation
 statut: brouillon
 tags: [generation, transformer, attention]
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 verified: 2026-07-27
 processus: inference-transformer
 etape: attention-causale
@@ -29,14 +29,14 @@ contrat: aucun — mécanisme interne fourni par le runtime du modèle
 **Processus** —
 [[generator/guardrails/schema/processus/inference-transformer.canvas|passage avant d'un Transformer
 decoder-only]].  
-Input global : identifiants de tokens et cache éventuel. Output global : logits
+[[glossaire/input|Input]] global : identifiants de tokens et cache éventuel. [[glossaire/output|Output]] global : logits
 du prochain token.  
-Grandes étapes : embeddings → normalisation d'attention → attention causale →
+Grandes étapes : embeddings → normalisation d'attention → [[glossaire/attention-causale|attention causale]] →
 résidu → MLP → projection.
 
 **Étape ouverte** —
 `normalisation-attention → attention-causale → residu-attention`.  
-Input : residual stream normalisé et masque. Output : une mise à jour qui
+**Input** : residual stream normalisé et masque. **Output** : une mise à jour qui
 agrège les valeurs des positions autorisées.  
 Responsabilité : calculer, pour chaque requête, une combinaison pondérée du
 passé accessible.
@@ -54,40 +54,40 @@ est projetée puis ajoutée par la connexion résiduelle avant le sous-bloc MLP.
 
 ### Projeter Q, K et V
 
-À partir d'une matrice de représentations \(X\), une tête calcule :
+À partir d'une matrice de représentations $X$, une tête calcule :
 
-\[
+$$
 Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
-\]
+$$
 
 Les poids sont appris. `Q`, `K` et `V` ne sont pas trois copies sémantiques
 étiquetées à la main ; ce sont trois projections servant des rôles différents
 dans le calcul.
 
-Pour une requête \(q_i\) et une clé \(k_j\), le score brut est leur produit
-scalaire. La division par \(\sqrt{d_k}\) limite la croissance de la magnitude
+Pour une requête $q_i$ et une clé $k_j$, le score brut est leur produit
+scalaire. La division par $\sqrt{d_k}$ limite la croissance de la magnitude
 des produits lorsque la dimension de tête augmente.
 
 ### Masquer le futur
 
 Dans un modèle autorégressif, la position `i` ne doit pas exploiter les tokens
 `j > i` pendant l'entraînement ou l'inférence. Le masque ajoute une valeur
-équivalente à moins l'infini aux scores interdits avant softmax. Leur
+équivalente à moins l'infini aux scores interdits avant [[glossaire/softmax|softmax]]. Leur
 probabilité devient alors nulle.
 
-\[
+$$
 \operatorname{Attention}(Q,K,V)
 =
-\operatorname{softmax}
+\operatorname{**softmax**}
 \left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
-\]
+$$
 
-Le masque de padding et le masque causal peuvent contribuer à `M`. Leur forme
+Le masque de padding et le [[glossaire/masque-causal|masque causal]] peuvent contribuer à `M`. Leur forme
 et leur convention dépendent du runtime.
 
 ### Pondérer les valeurs
 
-Softmax transforme chaque ligne de scores autorisés en poids non négatifs dont
+**Softmax** transforme chaque ligne de scores autorisés en poids non négatifs dont
 la somme vaut un. La sortie d'une tête est la somme pondérée des vecteurs
 `V`.
 
@@ -102,7 +102,7 @@ les sorties puis les projette vers la dimension cachée. Les têtes peuvent
 apprendre des relations différentes sans qu'un rôle stable leur soit assigné à
 l'avance.
 
-La Grouped-Query Attention utilise davantage de têtes de requêtes que de têtes
+La [[glossaire/grouped-query-attention|Grouped-Query Attention]] utilise davantage de têtes de requêtes que de têtes
 de clés et valeurs. Plusieurs requêtes partagent alors un même groupe de
 `K`/`V`, ce qui réduit le cache. Ce choix d'architecture ne change pas le
 contrat conceptuel `QKᵀ → poids → V`.
@@ -145,7 +145,7 @@ def attention(
 ```
 
 Pour simuler la causalité à la position `i`, ne fournir que les clés et valeurs
-`0..i`, ou masquer explicitement le reste avant softmax.
+`0..i`, ou masquer explicitement le reste avant **softmax**.
 
 ## Décision et dépôt dans Praxis
 
@@ -169,19 +169,19 @@ Pour simuler la causalité à la position `i`, ne fournir que les clés et valeu
   kernel d'attention.
 - **Praxis ne garantit pas encore** — l'accès aux matrices d'attention d'un
   fournisseur.
-- **Échec provoqué** — appliquer le masque après softmax laisse le total
+- **Échec provoqué** — appliquer le masque après **softmax** laisse le total
   inférieur à un et ne renormalise pas les positions autorisées.
 - **Ouverture ultérieure** — [[08-residual-normalisation|Residual stream et
   normalisation]] puis [[17-prefill-decode-kv-cache|cache KV]].
 
 ## Se tester
 
-1. Pourquoi diviser les scores par \(\sqrt{d_k}\) ?
+1. Pourquoi diviser les scores par $\sqrt{d_k}$ ?
 2. Quelle différence sépare le rôle d'une clé de celui d'une valeur ?
-3. Pourquoi le masque doit-il agir avant softmax ?
+3. Pourquoi le masque doit-il agir avant **softmax** ?
 4. Une matrice d'attention élevée constitue-t-elle une explication suffisante
    de la réponse finale ?
-5. Quel coût mémoire la Grouped-Query Attention cherche-t-elle notamment à
+5. Quel coût mémoire la **Grouped-Query Attention** cherche-t-elle notamment à
    réduire ?
 
 [Vérifier les réponses](../../corrections/0-generation/00-parcours-0.md#07--lattention-causale).
@@ -195,5 +195,5 @@ Pour simuler la causalité à la position `i`, ne fournir que les clés et valeu
   partage des clés et valeurs entre groupes de requêtes.
 - [Transformers — implémentation Llama, révision `main` vérifiée le
   2026-07-27](https://github.com/huggingface/transformers/blob/main/src/transformers/models/llama/modeling_llama.py) —
-  projections, masque, scaling, softmax et répétition des groupes KV.
+  projections, masque, scaling, **softmax** et répétition des groupes KV.
 

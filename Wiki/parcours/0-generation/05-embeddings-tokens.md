@@ -6,7 +6,7 @@ parcours: 0-generation
 statut: brouillon
 tags: [generation, transformer, embeddings]
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 verified: 2026-07-27
 processus: inference-transformer
 etape: embeddings-tokens
@@ -27,23 +27,23 @@ contrat: aucun — mécanisme interne fourni par le runtime du modèle
 
 **Processus** —
 [[generator/guardrails/schema/processus/inference-transformer.canvas|passage avant d'un Transformer]].  
-Input global : identifiants de tokens et cache éventuel. Output global : logits
-du prochain token.  
-Grandes étapes : embeddings → blocs Transformer répétés → normalisation finale
-→ projection vocabulaire.
+[[glossaire/input|Input]] global : identifiants de [[glossaire/token|tokens]] et cache éventuel. [[glossaire/output|Output]] global : logits
+du prochain **token**.  
+Grandes étapes : [[glossaire/embedding|embeddings]] → blocs Transformer répétés → normalisation finale
+→ projection [[glossaire/vocabulaire|vocabulaire]].
 
 **Étape ouverte** —
 `identifiants-tokens → embeddings-tokens → normalisation-attention`.  
-Input : entiers compris dans le vocabulaire. Output : un vecteur initial par
+**Input** : entiers compris dans le **vocabulaire**. **Output** : un vecteur initial par
 position.  
 Responsabilité : sélectionner dans une matrice apprise la représentation
 associée à chaque identifiant.
 
-**L'essentiel** — l'embedding de token est une lecture de ligne dans une
+**L'essentiel** — l'**embedding** de **token** est une lecture de ligne dans une
 matrice de poids. Le contexte ne modifie pas encore ce vecteur ; les couches
 Transformer le contextualisent ensuite.
 
-**Recomposer** — la table d'embeddings suppose exactement le vocabulaire utilisé
+**Recomposer** — la table d'**embeddings** suppose exactement le **vocabulaire** utilisé
 pendant l'entraînement. Une erreur d'identifiant devient un mauvais vecteur
 avant même la première couche d'attention.
 
@@ -51,11 +51,11 @@ avant même la première couche d'attention.
 
 ## Connaissances
 
-### Une matrice indexée par le vocabulaire
+### Une matrice indexée par le **vocabulaire**
 
-Pour un vocabulaire de taille \(V\) et une dimension cachée \(d\), la table
-d'embeddings possède la forme \(V \times d\). Un identifiant `i` sélectionne la
-ligne \(E_i\).
+Pour un **vocabulaire** de taille $V$ et une dimension cachée $d$, la table
+d'**embeddings** possède la forme $V \times d$. Un identifiant `i` sélectionne la
+ligne $E_i$.
 
 Pour un batch de forme `[batch, sequence]`, la lecture produit typiquement un
 tenseur `[batch, sequence, hidden_size]`. Ce n'est pas une multiplication
@@ -83,18 +83,18 @@ RoPE aux requêtes et clés dans l'attention. Il ne faut donc pas ajouter
 arbitrairement un vecteur de position à une architecture qui n'a pas été
 entraînée ainsi.
 
-Certaines architectures multiplient aussi les embeddings par une constante.
+Certaines architectures multiplient aussi les **embeddings** par une constante.
 Cette échelle est une propriété de la configuration et du code du modèle, pas
 une étape universelle de Praxis.
 
 ### Partage avec la projection de sortie
 
-La matrice de projection vers le vocabulaire peut partager ses poids avec la
-table d'embeddings. Ce *weight tying* réduit le nombre de paramètres et relie
+La matrice de projection vers le **vocabulaire** peut partager ses poids avec la
+table d'**embeddings**. Ce *weight tying* réduit le nombre de paramètres et relie
 les représentations d'entrée et de sortie.
 
 Le partage reste optionnel. Deux matrices de mêmes dimensions ne sont pas
-nécessairement le même paramètre. Le runtime et la configuration du checkpoint
+nécessairement le même paramètre. Le runtime et la configuration du [[glossaire/checkpoint|checkpoint]]
 font foi.
 
 ## Reconstruction
@@ -122,18 +122,18 @@ pour les deux occurrences.
 
 ## Décision et dépôt dans Praxis
 
-- **Décision** — Praxis n'implémente pas les poids d'embedding d'un modèle
+- **Décision** — Praxis n'implémente pas les poids d'**embedding** d'un modèle
   réel. Le laboratoire peut les inspecter à travers le runtime.
 - **Alternatives** — recopier l'architecture d'un modèle dans `generation`, ou
-  traiter l'embedding comme un service de recherche sémantique.
+  traiter l'**embedding** comme un service de recherche sémantique.
 - **Critère** — le Parcours 0 doit ouvrir le mécanisme qui explique la frontière
   identifiants–tenseurs sans réécrire un moteur tensoriel.
-- **Coût accepté** — l'inspection dépend d'un runtime et d'un checkpoint
+- **Coût accepté** — l'inspection dépend d'un runtime et d'un **checkpoint**
   explicitement versionnés.
 - **Condition de révision** — le Parcours 1 définira la frontière d'inférence et
   les formats de poids réellement servis.
 - **Contrat** — aucun contrat public : ce mécanisme reste interne au modèle.
-- **Invariant et tests** — le tokenizer et le checkpoint ont un vocabulaire
+- **Invariant et tests** — le tokenizer et le **checkpoint** ont un **vocabulaire**
   compatible ; les identifiants restent dans les bornes.
 
 ## Limites et cas d'échec
@@ -142,18 +142,18 @@ pour les deux occurrences.
   vecteurs jouets portent une sémantique.
 - **Praxis ne garantit pas encore** — la forme tensorielle d'un fournisseur
   distant.
-- **Échec provoqué** — un identifiant hors vocabulaire doit échouer avant
+- **Échec provoqué** — un identifiant hors **vocabulaire** doit échouer avant
   l'inférence.
 - **Ouverture ultérieure** — [[06-position-rope|Représenter la position]] et
   [[07-attention-causale|L'attention causale]].
 
 ## Se tester
 
-1. Pourquoi deux occurrences du même token ont-elles le même embedding initial
+1. Pourquoi deux occurrences du même **token** ont-elles le même **embedding** initial
    mais pas nécessairement la même représentation après une couche ?
-2. Que faudrait-il permuter en plus du vocabulaire pour préserver exactement le
+2. Que faudrait-il permuter en plus du **vocabulaire** pour préserver exactement le
    comportement du modèle ?
-3. Pourquoi une base vectorielle de documents et la table d'embeddings du
+3. Pourquoi une base vectorielle de documents et la table d'**embeddings** du
    modèle ne remplissent-elles pas la même fonction ?
 4. Le partage des poids avec la projection de sortie peut-il être déduit de la
    seule forme des matrices ?
@@ -163,7 +163,7 @@ pour les deux occurrences.
 ## Références
 
 - [Vaswani et al., *Attention Is All You Need*, v7](https://arxiv.org/abs/1706.03762) —
-  embeddings et architecture Transformer d'origine.
+  **embeddings** et architecture Transformer d'origine.
 - [PyTorch — `Embedding`](https://docs.pytorch.org/docs/stable/generated/torch.nn.Embedding.html) —
   table de recherche et formes d'entrée et de sortie.
 - [Transformers — implémentation Llama, révision `main` vérifiée le
