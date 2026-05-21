@@ -40,4 +40,4 @@ def evaluer_arret(
 ```
 
 Cette version travaille sur le texte cumulé. Un streamer réel doit aussi
-retenir les suffixes qui sont des préfixes possibles d'une stop sequence.
+retenir les suffixes qui sont des préfixes possibles d'une **stop sequence**.

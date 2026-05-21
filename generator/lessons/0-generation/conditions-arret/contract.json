@@ -12,7 +12,13 @@
     "Priorité et simultanéité"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "EOS",
+    "stop sequence",
+    "runtime"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/16-conditions-arret.md",
   "profil_par_defaut": "complet",
@@ -30,7 +36,7 @@
       "budgets"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "condition-arret",
