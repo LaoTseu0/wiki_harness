@@ -1,7 +1,7 @@
 ## Références
 
 - [Vaswani et al., *Attention Is All You Need*, v7](https://arxiv.org/abs/1706.03762) —
-  embeddings et architecture Transformer d'origine.
+  **embeddings** et architecture Transformer d'origine.
 - [PyTorch — `Embedding`](https://docs.pytorch.org/docs/stable/generated/torch.nn.Embedding.html) —
   table de recherche et formes d'entrée et de sortie.
 - [Transformers — implémentation Llama, révision `main` vérifiée le
