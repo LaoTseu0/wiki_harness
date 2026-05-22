@@ -1,6 +1,6 @@
 ## Reconstruction
 
-Le décodeur UTF-8 incrémental de Python :
+Le décodeur **UTF-8** incrémental de Python :
 
 ```python
 import codecs
