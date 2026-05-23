@@ -4,7 +4,7 @@
   laboratoire et le sampler.
 - **Alternatives** — déléguer toute normalisation au runtime, ou stocker
   uniquement des probabilités.
-- **Critère** — conserver les logits permet de composer les transformations et
+- **Critère** — conserver les **logits** permet de composer les transformations et
   d'observer chaque étape.
 - **Coût accepté** — l'implémentation pédagogique en Python n'est pas utilisée
   sur le chemin de production tensoriel.

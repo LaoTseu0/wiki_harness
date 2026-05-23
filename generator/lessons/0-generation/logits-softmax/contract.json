@@ -12,7 +12,14 @@
     "Softmax n'est pas encore une stratégie de génération"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "logit",
+    "softmax",
+    "log-probabilité",
+    "sampling"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/11-logits-softmax.md",
   "profil_par_defaut": "complet",
@@ -30,7 +37,7 @@
       "probabilites"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "logits",
