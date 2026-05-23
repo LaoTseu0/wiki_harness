@@ -25,5 +25,5 @@ ContextBudget(capacity=2048, input_tokens=1800, reserved_output=248).validate()
 ```
 
 Le laboratoire fera ensuite varier la longueur réelle d'un prompt et mesurera
-séparément temps de prefill, temps par token et mémoire lorsque le runtime les
+séparément temps de **prefill**, temps par token et mémoire lorsque le runtime les
 expose.

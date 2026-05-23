@@ -4,14 +4,14 @@
 
 - **longueur d'entrée** : tokens obtenus après Template et tokenisation ;
 - **budget de sortie** : nombre maximal de nouveaux tokens autorisés ;
-- **fenêtre effective** : capacité réellement utilisable avec ce checkpoint,
+- **fenêtre effective** : capacité réellement utilisable avec ce [[glossaire/checkpoint|checkpoint]],
   cette configuration et ce runtime.
 
 Une requête simple exige :
 
-\[
-\text{input\_tokens} + \text{reserved\_output} \leq \text{context\_capacity}
-\]
+$$
+\text{**input**\_tokens} + \text{reserved\_output} \leq \text{context\_capacity}
+$$
 
 Réserver le maximum de sortie évite d'atteindre la frontière au milieu d'une
 réponse. Une autre politique peut accepter une réserve souple, mais elle doit
@@ -30,33 +30,33 @@ Il faut distinguer :
 - positions encodables sans erreur ;
 - qualité effectivement évaluée à cette longueur.
 
-### Coût du prefill
+### Coût du [[glossaire/prefill|prefill]]
 
-Dans une attention complète standard, une séquence de longueur \(N\) forme une
-matrice de scores \(N \times N\) par tête avant exploitation du masque. Le
-nombre d'interactions d'attention est donc quadratique en \(N\).
+Dans une attention complète standard, une séquence de longueur $N$ forme une
+matrice de scores $N \times N$ par tête avant exploitation du masque. Le
+nombre d'interactions d'attention est donc quadratique en $N$.
 
 Les projections et le MLP ont d'autres coûts, généralement linéaires en nombre
 de positions pour une largeur de modèle fixée. Le `O(N²)` de l'attention ne
 permet pas à lui seul de prédire la latence totale : kernels, bande passante,
 batch, précision et matériel interviennent.
 
-### Coût du decode avec cache
+### Coût du [[glossaire/decode|decode]] avec cache
 
 Pour un nouveau token et une attention complète, la requête compare ses scores
-aux \(N\) clés précédentes : cette partie est linéaire en longueur conservée
-pour ce pas. Générer \(G\) tokens après un prompt de longueur \(N\) accumule
+aux $N$ clés précédentes : cette partie est linéaire en longueur conservée
+pour ce pas. Générer $G$ tokens après un prompt de longueur $N$ accumule
 environ :
 
-\[
+$$
 \sum_{g=0}^{G-1}(N+g)
 =
 GN + \frac{G(G-1)}{2}
-\]
+$$
 
 interactions requête–clé par tête, sans compter les autres opérations.
 
-Le cache KV consomme lui aussi une mémoire qui croît avec les positions, les
+Le [[glossaire/cache-kv|cache KV]] consomme lui aussi une mémoire qui croît avec les positions, les
 couches, les têtes KV, la dimension de tête et la taille numérique.
 
 ### Les architectures peuvent changer ces lois locales

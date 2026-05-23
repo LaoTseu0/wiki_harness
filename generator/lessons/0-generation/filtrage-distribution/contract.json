@@ -14,7 +14,16 @@
     "Greedy"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "logit",
+    "température",
+    "top-k",
+    "top-p",
+    "min-p",
+    "greedy"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/12-filtrage-distribution.md",
   "profil_par_defaut": "complet",
@@ -32,7 +41,7 @@
       "top-p"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "transformation-logits",
