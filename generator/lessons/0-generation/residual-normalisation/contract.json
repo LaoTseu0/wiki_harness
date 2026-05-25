@@ -11,7 +11,16 @@
     "Précision numérique"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "residual stream",
+    "pré-norm",
+    "post-norm",
+    "LayerNorm",
+    "RMSNorm",
+    "MLP"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/08-residual-normalisation.md",
   "profil_par_defaut": "complet",
@@ -29,7 +38,7 @@
       "rmsnorm"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "inference-transformer",
     "etape": "residu-attention",

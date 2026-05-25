@@ -4,6 +4,6 @@
   convergence attribués à une variante de normalisation.
 - **Praxis ne garantit pas encore** — une égalité numérique bit à bit entre
   runtimes.
-- **Échec provoqué** — intervertir pré-norm et post-norm avec les mêmes poids
+- **Échec provoqué** — intervertir **pré-norm** et **post-norm** avec les mêmes poids
   doit produire une autre fonction.
 - **Ouverture ultérieure** — [[09-mlp-transformer|Le MLP d'une couche]].

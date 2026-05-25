@@ -1,7 +1,7 @@
 ## Décision et dépôt dans Praxis
 
 - **Décision** — Praxis décrit l'ordre des sous-blocs à partir de la
-  configuration du modèle ; il ne généralise pas le Canvas pré-norm à tous les
+  configuration du modèle ; il ne généralise pas le Canvas **pré-norm** à tous les
   checkpoints.
 - **Alternatives** — enseigner seulement « chaque couche transforme le
   tenseur », ou reproduire le kernel de normalisation.
