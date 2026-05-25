@@ -13,7 +13,15 @@
     "Compatibilité"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "prefill",
+    "decode",
+    "cache KV",
+    "tokenizer",
+    "sampling"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/17-prefill-decode-kv-cache.md",
   "profil_par_defaut": "complet",
@@ -31,7 +39,7 @@
       "prefill"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "inference",
