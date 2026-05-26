@@ -12,7 +12,15 @@
     "Reproductibilité contre qualité"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "sampling",
+    "seed",
+    "RNG",
+    "greedy",
+    "token"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/13-sampling-reproductibilite.md",
   "profil_par_defaut": "complet",
@@ -30,7 +38,7 @@
       "reproductibilite"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "sampling",
