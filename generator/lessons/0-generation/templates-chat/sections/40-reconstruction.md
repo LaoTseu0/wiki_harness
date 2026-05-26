@@ -1,6 +1,6 @@
 ## Reconstruction
 
-Rendre visible la sérialisation avec un Template jouet :
+Rendre visible la sérialisation avec un **Template** jouet :
 
 ```python
 ROLE = {
@@ -22,5 +22,5 @@ def rendre(messages: list[dict[str, str]], *, ouvrir_assistant: bool) -> str:
 ```
 
 Afficher `repr(rendre(...))` rend les retours à la ligne et les espaces
-observables. Encoder ensuite cette valeur avec un vrai tokenizer montre que
+observables. Encoder ensuite cette valeur avec un vrai **tokenizer** montre que
 toute variation de sérialisation modifie les identifiants.

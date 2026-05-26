@@ -12,7 +12,16 @@
     "Un Template ne protège pas les instructions"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "Template",
+    "decoder-only",
+    "tokenizer",
+    "token de contrôle",
+    "checkpoint",
+    "prompt"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/04-templates-chat.md",
   "profil_par_defaut": "complet",
@@ -29,7 +38,7 @@
       "messages"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "chat-template",
