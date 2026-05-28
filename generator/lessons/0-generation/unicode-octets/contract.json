@@ -11,7 +11,13 @@
     "Le token est encore une autre unité"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Unicode",
+    "point de code",
+    "UTF-8",
+    "octet",
+    "token"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/01-unicode-octets.md",
   "profil_par_defaut": "complet",
@@ -35,7 +41,7 @@
       "utf8"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "aucun — représentation fondamentale du texte",
     "schema": "representation-texte",
