@@ -1,6 +1,6 @@
 ## Connaissances
 
-### L'environnement virtuel est un état dérivé
+### L'**environnement virtuel** est un état dérivé
 
 Une installation Python fournit un **interpréteur de base**. `venv` crée à
 partir de lui un répertoire qui possède son propre exécutable Python, son
@@ -27,7 +27,7 @@ exécutables de `.venv` en tête du `PATH`. Appeler directement son interpréteu
 ou employer `uv run` évite de dépendre de l'état du terminal.
 
 La [documentation Python 3.14 sur `venv`](https://docs.python.org/3.14/library/venv.html)
-qualifie les environnements virtuels de jetables, non versionnés et non
+qualifie les **environnements virtuels** de jetables, non versionnés et non
 déplaçables : leur contrat est d'être recréés depuis les déclarations du
 projet, pas copiés entre machines. Cette propriété vient des chemins absolus et
 de la relation conservée avec l'interpréteur de base.
@@ -39,15 +39,15 @@ Trois objets répondent à trois questions différentes :
 | Objet | Question | Producteur | Versionné |
 |---|---|---|---|
 | `pyproject.toml` | Quelles contraintes et métadonnées le projet déclare-t-il ? | humain et outils autorisés | oui |
-| `uv.lock` | Quelle résolution précise satisfait actuellement ces contraintes ? | resolver uv | oui |
+| `uv.lock` | Quelle résolution précise satisfait actuellement ces contraintes ? | resolver [[glossaire/uv|uv]] | oui |
 | `.venv` | Qu'est-ce qui est effectivement installé pour ce projet local ? | synchroniseur | non |
 
 Une contrainte comme `httpx>=0.28,<1` autorise plusieurs versions. Le resolver
-choisit un ensemble compatible et l'inscrit dans le lockfile. Le synchroniseur
+choisit un ensemble compatible et l'inscrit dans le **lockfile**. Le synchroniseur
 matérialise ensuite cet ensemble dans l'environnement.
 
 Un `pip install` manuel dans `.venv` ne modifie pas nécessairement
-`pyproject.toml` ou le lockfile. L'environnement peut alors fonctionner sur une
+`pyproject.toml` ou le **lockfile**. L'environnement peut alors fonctionner sur une
 machine tout en étant impossible à expliquer ou à reconstruire.
 
 ### Les responsabilités de `pyproject.toml`
@@ -58,7 +58,7 @@ sépare plusieurs espaces de noms :
 
 | Table | Responsabilité |
 |---|---|
-| `[build-system]` | backend de build et dépendances nécessaires pour l'exécuter |
+| `[build-system]` | [[glossaire/backend-de-build|backend de build]] et dépendances nécessaires pour l'exécuter |
 | `[project]` | métadonnées distribuées, version de Python et dépendances runtime |
 | `[dependency-groups]` | dépendances internes de développement, de test ou de documentation |
 | `[tool.<nom>]` | configuration propre à un outil |
@@ -83,34 +83,34 @@ packaging de la PyPA](https://packaging.python.org/en/latest/flow/) conserve
 cette frontière entre l'outil qui demande une construction et celui qui
 l'exécute.
 
-Même lorsque uv fournit les deux implémentations, les responsabilités restent
+Même lorsque **uv** fournit les deux implémentations, les responsabilités restent
 distinctes :
 
 - `uv` agit comme frontend, resolver et synchroniseur ;
-- `uv_build` agit comme backend de build ;
-- le wheel est l'artefact installable ;
-- le sdist est l'archive source utilisée pour reconstruire des distributions.
+- `uv_build` agit comme **backend de build** ;
+- le [[glossaire/wheel|wheel]] est l'artefact installable ;
+- le [[glossaire/sdist|sdist]] est l'archive source utilisée pour reconstruire des distributions.
 
 Cette séparation permet de remplacer le backend sans changer la signification
 de `[project]`, ou d'utiliser un autre frontend capable de suivre les mêmes
 standards.
 
-### La synchronisation avec uv
+### La synchronisation avec **uv**
 
 Selon son [contrat de verrouillage et de
 synchronisation](https://docs.astral.sh/uv/concepts/projects/sync/), `uv run`
-vérifie normalement le lockfile et l'environnement avant de lancer la commande.
+vérifie normalement le **lockfile** et l'environnement avant de lancer la commande.
 Ce confort implique un effet de bord possible : une commande locale peut
 mettre à jour la résolution si les déclarations ont changé.
 
 Dans un contrôle automatisé, `uv run --locked` ou `uv lock --check` transforme
-ce décalage en erreur au lieu de modifier le lockfile. Une nouvelle version
+ce décalage en erreur au lieu de modifier le **lockfile**. Une nouvelle version
 publiée sur l'index ne rend pas à elle seule `uv.lock` périmé ; la mise à jour
 des versions verrouillées reste une décision explicite.
 
 La [documentation de la structure d'un projet
 uv](https://docs.astral.sh/uv/concepts/projects/layout/) précise que `uv.lock`
-est propre à uv. Le format standard `pylock.toml` peut servir d'artefact
-d'échange, mais il ne représente pas encore toutes les fonctions du lockfile de
-projet uv. L'export ne doit donc pas être présenté comme une copie équivalente
+est propre à **uv**. Le format standard `pylock.toml` peut servir d'artefact
+d'échange, mais il ne représente pas encore toutes les fonctions du **lockfile** de
+projet **uv**. L'export ne doit donc pas être présenté comme une copie équivalente
 dans tous les cas.

@@ -7,7 +7,7 @@
 - [PyPA — groupes de dépendances](https://packaging.python.org/en/latest/specifications/dependency-groups/) —
   dépendances internes absentes des métadonnées construites.
 - [PyPA — flux de packaging](https://packaging.python.org/en/latest/flow/) —
-  relation entre frontend, backend, sdist et wheel.
+  relation entre frontend, backend, **sdist** et **wheel**.
 - [uv — structure d'un projet](https://docs.astral.sh/uv/concepts/projects/layout/) —
   `.venv`, `uv.lock` et relation avec `pylock.toml`.
 - [uv — verrouillage et synchronisation](https://docs.astral.sh/uv/concepts/projects/sync/) —
