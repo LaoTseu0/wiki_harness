@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -17,6 +18,7 @@ RACINE = Path(__file__).resolve().parents[2]
 DOSSIER_GENERATEUR = RACINE / "generator"
 DOSSIER_LECONS = DOSSIER_GENERATEUR / "lessons"
 DOSSIER_PROFILS = DOSSIER_GENERATEUR / "profiles"
+DOSSIER_GLOSSAIRE = RACINE / "Wiki" / "glossaire"
 CHEMIN_SECTIONS = DOSSIER_GENERATEUR / "sections.json"
 CHEMIN_CARTOGRAPHIE = (
     DOSSIER_GENERATEUR / "guardrails" / "parcours" / "cartographie.md"
@@ -50,6 +52,20 @@ CHAMPS_FRONTMATTER = {
 
 class ErreurLecon(Exception):
     """Erreur de contrat présentée sans trace d’exécution."""
+
+
+def slugifier_terme(terme: str) -> str:
+    """Transforme un terme consacré en nom stable d’entrée de glossaire."""
+
+    sans_accents = "".join(
+        caractere
+        for caractere in unicodedata.normalize("NFKD", terme)
+        if not unicodedata.combining(caractere)
+    )
+    slug = re.sub(r"[^a-z0-9]+", "-", sans_accents.casefold()).strip("-")
+    if not slug or not SLUG.fullmatch(slug):
+        raise ErreurLecon(f"terme de glossaire invalide : {terme!r}")
+    return slug
 
 
 @dataclass(frozen=True)
@@ -343,6 +359,17 @@ def charger_lecon(chemin: Path, registre: dict[str, Any]) -> Lecon:
             raise ErreurLecon(
                 f"{chemin_relatif(chemin)} — {champ} doit être une liste"
             )
+    termes = donnees["termes"]
+    if any(not terme.strip() or terme != terme.strip() for terme in termes):
+        raise ErreurLecon(
+            f"{chemin_relatif(chemin)} — termes contient une entrée vide "
+            "ou entourée d’espaces"
+        )
+    slugs_termes = [slugifier_terme(terme) for terme in termes]
+    if len(slugs_termes) != len(set(slugs_termes)):
+        raise ErreurLecon(
+            f"{chemin_relatif(chemin)} — termes contient un doublon de glossaire"
+        )
     regles_supplementaires = donnees.get("regles_supplementaires")
     if not isinstance(regles_supplementaires, list) or not all(
         isinstance(item, str) for item in regles_supplementaires

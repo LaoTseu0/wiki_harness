@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from lessonlib import (
+    DOSSIER_GLOSSAIRE,
     DOSSIER_PROFILS,
     RACINE,
     ErreurLecon,
@@ -19,11 +20,86 @@ from lessonlib import (
     chemin_fragment,
     chemin_relatif,
     decouvrir_contrats,
+    slugifier_terme,
 )
+from glossarylib import fichiers_lecon, occurrences_texte
 
 
 DOSSIER_WIKI = RACINE / "Wiki" / "parcours"
 DELIMITEURS_MATHJAX_INTERDITS = re.compile(r"\\(?:\(|\)|\[|\])")
+
+
+def verifier_glossaire(lecon, registre, profil) -> list[str]:
+    """Vérifie les entrées, les premiers liens et le gras des répétitions."""
+
+    erreurs: list[str] = []
+    for terme in lecon.donnees["termes"]:
+        slug = slugifier_terme(terme)
+        chemin_entree = DOSSIER_GLOSSAIRE / f"{slug}.md"
+        try:
+            contenu_entree = chemin_entree.read_text(encoding="utf-8-sig")
+        except FileNotFoundError:
+            erreurs.append(
+                f"{chemin_relatif(lecon.chemin_contrat)} — entrée de "
+                f"glossaire absente pour {terme!r} : "
+                f"{chemin_relatif(chemin_entree)}"
+            )
+            continue
+        except (OSError, UnicodeError) as erreur:
+            erreurs.append(
+                f"{chemin_relatif(chemin_entree)} — illisible : {erreur}"
+            )
+            continue
+        lignes_entree = contenu_entree.strip().splitlines()
+        if not lignes_entree or lignes_entree[0] != f"# {terme}":
+            erreurs.append(
+                f"{chemin_relatif(chemin_entree)}:1 — titre attendu : # {terme}"
+            )
+        definition = [
+            ligne
+            for ligne in lignes_entree[1:]
+            if ligne.strip() and not ligne.startswith("#")
+        ]
+        if not definition:
+            erreurs.append(
+                f"{chemin_relatif(chemin_entree)} — définition française absente"
+            )
+
+        occurrences = []
+        for chemin in fichiers_lecon(lecon, registre, profil):
+            texte = chemin.read_text(encoding="utf-8-sig")
+            occurrences.extend(
+                (
+                    chemin,
+                    texte[: occurrence.position].count("\n") + 1,
+                    occurrence,
+                )
+                for occurrence in occurrences_texte(texte, terme, slug)
+            )
+        if not occurrences:
+            erreurs.append(
+                f"{chemin_relatif(lecon.chemin_contrat)} — terme déclaré "
+                f"mais absent de la prose : {terme!r}"
+            )
+            continue
+        chemin, numero, premiere = occurrences[0]
+        if premiere.statut != "glossaire":
+            erreurs.append(
+                f"{chemin_relatif(chemin)}:{numero} — première occurrence "
+                f"de {terme!r} sans lien vers le glossaire"
+            )
+        for chemin, numero, occurrence in occurrences[1:]:
+            if occurrence.statut == "brut":
+                erreurs.append(
+                    f"{chemin_relatif(chemin)}:{numero} — occurrence suivante "
+                    f"de {terme!r} non mise en gras"
+                )
+            elif occurrence.statut == "glossaire":
+                erreurs.append(
+                    f"{chemin_relatif(chemin)}:{numero} — lien de glossaire "
+                    f"répété pour {terme!r}"
+                )
+    return erreurs
 
 
 def verifier_lecon(lecon, registre) -> tuple[list[str], list[str]]:
@@ -85,6 +161,7 @@ def verifier_lecon(lecon, registre) -> tuple[list[str], list[str]]:
 
     try:
         profil = charger_profil(lecon.donnees["profil_par_defaut"], registre)
+        erreurs.extend(verifier_glossaire(lecon, registre, profil))
         attendu = assembler(lecon, registre, profil)
         chemin_sortie = lecon.chemin_sortie
         if not chemin_sortie.is_file():
