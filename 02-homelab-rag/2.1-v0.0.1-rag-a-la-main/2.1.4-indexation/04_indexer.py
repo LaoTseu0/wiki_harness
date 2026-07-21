@@ -48,6 +48,13 @@ d'environ 1,6 Mo cree a cote du script.
 
 import json
 import sqlite3
+import sys
+from pathlib import Path
+
+# Le script vit dans son dossier de lecon ; rag_commun.py reste a la
+# racine du module (bibliotheque partagee). On ajoute cette racine au
+# chemin de recherche des imports.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from rag_commun import BASE, charger_corpus, embedder
 
