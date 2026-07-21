@@ -1,0 +1,4 @@
+# (.venv/ et __pycache__/ sont ignorés par le .gitignore racine)
+# Index SQLite : artefact reconstructible par 04_indexer.py, jamais versionné
+index.db
+*.db
