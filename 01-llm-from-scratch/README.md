@@ -33,11 +33,11 @@ One script = one mechanism. Each builds on the previous one.
 
 ## Running it
 
-Requirements: an Ollama server, Python 3.12, and [mise](https://mise.jdx.dev) (optional — it pins Python and auto-activates the venv via [`mise.toml`](mise.toml)).
+Requirements: an Ollama server, Python 3.12, and [mise](https://mise.jdx.dev) (optional — it pins Python and auto-activates the shared venv via the repo-root [`mise.toml`](../mise.toml)).
 
 ```bash
 # adjust OLLAMA_URL and MODEL at the top of each script first
-pip install -r requirements.txt
+pip install -r ../requirements.txt   # shared deps, repo root
 python 01_hello.py
 ```
 

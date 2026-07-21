@@ -18,8 +18,10 @@
 - Le code appelle l'**Ollama de jarvis-central** (`http://192.168.1.57:11434`,
   modèle `qwen3:4b-instruct-2507-q4_K_M`). jarvis-core (RTX 4090) volontairement
   laissé de côté pendant l'apprentissage.
-- Outillage : **mise** (pas uv) — `mise.toml` épingle Python 3.12 et
-  auto-active le venv `.venv/` en entrant dans le dossier.
+- Outillage : **mise** (pas uv) — `mise.toml` **à la racine du repo**
+  épingle Python 3.12 et auto-active le venv `.venv/` : un seul moteur
+  Python pour tous les modules (décision du 21 juillet 2026),
+  dépendances dans le `requirements.txt` racine.
 
 ## Checklist Module 1 — le socle sans framework
 

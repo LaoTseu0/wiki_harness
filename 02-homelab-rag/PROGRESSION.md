@@ -25,7 +25,9 @@ avec des **evals dès la v1** — la partie la plus valorisable du module.
   modèle `nomic-embed-text` (à puller — constat du 20 juillet : seul
   Qwen3 4B est présent).
 - Génération : Qwen3 4B, comme au Module 1.
-- Outillage : mise + venv auto (même mise.toml que le Module 1), httpx.
+- Outillage : mise + venv auto (`mise.toml` et `requirements.txt` à la
+  racine du repo — un seul moteur Python pour tous les modules,
+  décision du 21 juillet 2026), httpx.
 
 ## Checklist v1 — le RAG entièrement à la main
 

@@ -1,0 +1,5 @@
+# Dependances communes du repo — un seul venv a la racine (mise.toml),
+# installees au fil des etapes et des modules
+httpx>=0.28      # client HTTP (appels a l'API Ollama) — modules 1 et 2
+pydantic>=2.0    # validation de donnees a l'execution (08_structured)
+ipykernel>=7.0   # noyau Jupyter pour le notebook 04_sampling

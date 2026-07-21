@@ -1,0 +1,35 @@
+# 7.3 Ouvertures
+
+> **Module 7 — 07-multimodal** · [sommaire](../../sommaire.md) ·
+> [roadmap](../../roadmap.md)
+> **Statut** : ⚪ à venir · **Passage** : après le module 2,
+> parallélisable ensuite
+> **Dernière mise à jour** : 21 juillet 2026
+
+## Vue d'ensemble
+
+Prolonger la vision vers le homelab (caméra HA, OCR des documents
+famille) et situer les équivalents cloud pour en parler en entretien.
+Deux leçons : les débouchés concrets qui rendent la vision *utile*, et
+la carte des API cloud qui rend le discours *complet*.
+
+## Contenu
+
+- [ ] **[7.3.1 Caméra et OCR](7.3.1-camera-et-ocr/7.3.1-camera-et-ocr.md)**
+      — caméra HA → « décris ce que tu vois » ; OCR famille → NAS
+- [ ] **[7.3.2 API cloud équivalentes](7.3.2-api-cloud-equivalentes/7.3.2-api-cloud-equivalentes.md)**
+      — vision GPT/Claude/Gemini, génération d'images, Whisper API
+
+## Synthèse
+
+Le module (et, dans l'ordre de passage, une grande part du parcours) se
+clôt sur l'utilité et l'ouverture : la vision branchée sur la vraie
+maison (caméra, documents) et resituée dans le paysage cloud. C'est la
+bascule finale local → monde : savoir faire en local *et* savoir situer
+ce que le cloud ferait. **Auto-contrôle** : pour chaque usage local du
+module, savoir nommer l'API cloud équivalente et l'arbitrage qui les
+départage.
+
+## Références
+
+- [Roadmap couche M](../../roadmap.md) — débouché homelab et API cloud
