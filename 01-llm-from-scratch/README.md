@@ -13,14 +13,14 @@ One script = one mechanism. Each builds on the previous one.
 
 | Step | File | Mechanism | The takeaway |
 |------|------|-----------|--------------|
-| 01 | [`01_hello.py`](01_hello.py) | A raw LLM call | An LLM call is just `POST {model, messages}` → JSON. Everything else is decoration. |
-| 02 | [`02_chat.py`](02_chat.py) | Chat with history | The model is **stateless**: the "conversation" is a client-side list, re-sent in full on every turn. |
-| 03 | [`03_stream.py`](03_stream.py) | Token streaming | Generation is token by token; streaming is one JSON line per chunk (`iter_lines` + `json.loads`). |
-| 04 | [`04_sampling.ipynb`](04_sampling.ipynb) | Sampling (temperature, top-k, top-p) | The pipeline order matters: probabilities → top-k/top-p filters → temperature → draw. `top_k=1` makes temperature irrelevant. |
-| 05 | [`05_contexte.py`](05_contexte.py) | Context management | Truncation, then **compaction**: an LLM call summarizing old turns, restarting from `[system + summary]` (420 → 184 tokens in the test). |
-| 06 | [`06_outils.py`](06_outils.py) | Function calling, by hand | A tool call is a *request* in JSON. The model proposes, **our code disposes** — it never executes anything itself. |
-| 07 | [`07_agent.py`](07_agent.py) | A mini agent loop | `agent = LLM + tools + while loop`. New tools (read/write/exec) demand new guardrails: sandbox, path-traversal check, human confirmation, bounded loop. |
-| 08 | [`08_structured.py`](08_structured.py) | Structured output | Politely asking for JSON is a lottery. Constrained decoding (`format` = JSON schema) guarantees **shape**; Pydantic validation + retry guards the **content**. |
+| 01 | [`01_hello.py`](1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/01_hello.py) | A raw LLM call | An LLM call is just `POST {model, messages}` → JSON. Everything else is decoration. |
+| 02 | [`02_chat.py`](1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/02_chat.py) | Chat with history | The model is **stateless**: the "conversation" is a client-side list, re-sent in full on every turn. |
+| 03 | [`03_stream.py`](1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/03_stream.py) | Token streaming | Generation is token by token; streaming is one JSON line per chunk (`iter_lines` + `json.loads`). |
+| 04 | [`04_sampling.ipynb`](1.1-socle-sans-framework/1.1.2-sampling-et-prompting/04_sampling.ipynb) | Sampling (temperature, top-k, top-p) | The pipeline order matters: probabilities → top-k/top-p filters → temperature → draw. `top_k=1` makes temperature irrelevant. |
+| 05 | [`05_contexte.py`](1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/05_contexte.py) | Context management | Truncation, then **compaction**: an LLM call summarizing old turns, restarting from `[system + summary]` (420 → 184 tokens in the test). |
+| 06 | [`06_outils.py`](1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/06_outils.py) | Function calling, by hand | A tool call is a *request* in JSON. The model proposes, **our code disposes** — it never executes anything itself. |
+| 07 | [`07_agent.py`](1.1-socle-sans-framework/1.1.4-mini-boucle-agent/07_agent.py) | A mini agent loop | `agent = LLM + tools + while loop`. New tools (read/write/exec) demand new guardrails: sandbox, path-traversal check, human confirmation, bounded loop. |
+| 08 | [`08_structured.py`](1.1-socle-sans-framework/1.1.5-structured-output/08_structured.py) | Structured output | Politely asking for JSON is a lottery. Constrained decoding (`format` = JSON schema) guarantees **shape**; Pydantic validation + retry guards the **content**. |
 
 ## Lessons that stuck (the hard way)
 
@@ -38,10 +38,10 @@ Requirements: an Ollama server, Python 3.12, and [mise](https://mise.jdx.dev) (o
 ```bash
 # adjust OLLAMA_URL and MODEL at the top of each script first
 pip install -r ../requirements.txt   # shared deps, repo root
-python 01_hello.py
+python 1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/01_hello.py
 ```
 
-Every script is standalone and numbered: run them in order, read them in order.
+Every script is standalone and numbered: run them in order, read them in order. Each lives in its lesson folder (`1.1-socle-sans-framework/1.1.x-…/`), next to the lesson notes that explain it.
 
 ## Why no framework?
 
