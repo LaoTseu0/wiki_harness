@@ -1,11 +1,11 @@
-# Progression — homelab-rag (Module 2)
+# Progression — 02-homelab-rag (Module 2)
 
 > **Double rôle** : (1) re-briefer Claude en début de session — *commencer
 > chaque session par « lis PROGRESSION.md »* — et (2) consolider
 > l'apprentissage d'Anthony en rendant le parcours visible.
 > **Tenu à jour par Claude à chaque étape franchie.**
 > Roadmap complète : [../roadmap.md](../roadmap.md) (ce projet = Module 2).
-> Module précédent : [../llm-from-scratch/PROGRESSION.md](../llm-from-scratch/PROGRESSION.md).
+> Module précédent : [../01-llm-from-scratch/PROGRESSION.md](../01-llm-from-scratch/PROGRESSION.md).
 > Dernière mise à jour : 20 juillet 2026
 
 ---

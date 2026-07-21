@@ -40,8 +40,8 @@ avant d'empiler la suivante**.
 5. **Versionnage semver** *(décision du 21 juillet 2026)*. Fini les
    « v1/v2/v3 » : tout livrable sort tôt en **0.0.1** et évolue
    incrémentalement (tags git). Les « générations » d'un projet (RAG à
-   la main → Qdrant → LlamaIndex) sont des jalons mineurs successifs
-   (0.1.0, 0.2.0, 0.3.0), jamais des réécritures fermées.
+   la main → Qdrant → LlamaIndex) sont des jalons successifs
+   (0.0.1, 0.0.2, 0.0.3), jamais des réécritures fermées.
 
 ---
 
@@ -170,7 +170,7 @@ Notions clés : débit (tokens/s) vs latence, batching, KV cache, VRAM
   la connaissance changeante/sourçable, le fine-tuning pour le style et
   les formats, presque jamais pour injecter des faits ;
 - les façons de l'implémenter, par ordre pédagogique : **SDK direct**
-  (à la main — module 2 v1), puis **LlamaIndex** (centré RAG) ou
+  (à la main — module 2 v0.0.1), puis **LlamaIndex** (centré RAG) ou
   **LangChain/LangGraph** (chaînes et graphes) ; situer Haystack et
   RAGFlow (alternatives que citent certaines offres).
 
@@ -375,7 +375,7 @@ et l'inférence lourde déménage sur `jarvis-core`, voir
       Pydantic, avec retry en cas de JSON invalide.
 
 **✅ Socle initial terminé le 20 juillet 2026** — livrable :
-`llm-from-scratch/` (8 scripts + README anglais + PROGRESSION.md) —
+`01-llm-from-scratch/` (8 scripts + README anglais + PROGRESSION.md) —
 depuis le 21 juillet 2026, dans ce repo `framework` indépendant.
 
 > **⚠️ Module jamais fermé — c'est le glossaire exécutable du parcours**
@@ -399,7 +399,7 @@ depuis le 21 juillet 2026, dans ce repo `framework` indépendant.
 > promues existent, puis évolution incrémentale semver (§1, principe 5).
 > Détail dans [sommaire.md](sommaire.md).
 
-**Livrable** : repo `llm-from-scratch` (ou équivalent), README anglais
+**Livrable** : `01-llm-from-scratch/` (repo public dédié à l'extraction), README anglais
 expliquant chaque mécanisme — et enrichi en continu (référentiel vivant).
 **CV** : « implemented tool-calling agent loop from scratch against a
 self-hosted LLM » + « maintains an executable glossary of LLM concepts,
@@ -410,19 +410,19 @@ each entry a runnable framework-free script ».
 Le projet : « qu'est-ce qu'on avait décidé pour le backup du NAS ? » →
 réponse sourcée depuis les `.md` de ce repo.
 
-- [ ] **v1 à la main** : chunking des `.md`, embeddings via Ollama
+- [ ] **v0.0.1 à la main** : chunking des `.md`, embeddings via Ollama
       (`nomic-embed-text` ou équivalent), stockage SQLite + similarité
       cosinus maison, top-k dans le prompt, citations des fichiers sources ;
-- [ ] **v2 outillée** : migrer vers **Qdrant** (conteneur — un service de
+- [ ] **v0.0.2 outillée** : migrer vers **Qdrant** (conteneur — un service de
       plus dans le style du homelab) ; ajouter le retrieval hybride
       (BM25 + vecteurs), le **re-ranking** et les **filtres métadonnées**
       (exigés tels quels par les offres seniors, §10.4) et comparer ;
-- [ ] **v3 framework** : refaire en **LlamaIndex** pour parler le
+- [ ] **v0.0.3 framework** : refaire en **LlamaIndex** pour parler le
       vocabulaire du marché — et documenter ce que le framework a
       apporté / caché ;
-- [ ] **Evals dès la v1** : 30 questions/réponses attendues, score
+- [ ] **Evals dès la v0.0.1** : 30 questions/réponses attendues, score
       automatisé (déterministe + LLM-as-judge), tableau de non-régression
-      v1 → v2 → v3 ; passer le jeu dans **RAGAS** ou **DeepEval** en fin
+      v0.0.1 → v0.0.2 → v0.0.3 ; passer le jeu dans **RAGAS** ou **DeepEval** en fin
       de module pour connaître l'outillage standard. *C'est la partie la
       plus valorisable du module.* **Règle du juge** *(21 juillet 2026)* :
       juge ≠ générateur — jamais Qwen3 4B jugeant Qwen3 4B (biais
@@ -442,7 +442,7 @@ réponse sourcée depuis les `.md` de ce repo.
 - [ ] savoir conclure : **RAG vs fine-tuning**, pourquoi RAG était le bon
       choix ici (réponse d'entretien rédigée dans le README).
 
-**Livrable** : repo `homelab-rag` avec le tableau de métriques dans le
+**Livrable** : `02-homelab-rag/` avec le tableau de métriques dans le
 README.
 **CV** : « built and evaluated a RAG pipeline end-to-end (custom, then
 Qdrant + LlamaIndex), with regression evals ».
@@ -716,7 +716,7 @@ Strasbourg), Cenova (GenAI Engineer RAG & MCP, Neuilly), Mirakl
       intégré au module 3 (comparaison des régimes d'agents).*
 - [x] Au module 2, pousser le retrieval jusqu'au **re-ranking et aux
       filtres métadonnées** (exigés tels quels par les offres seniors).
-      *Validé le 21 juillet 2026 — intégré à la checklist v2 du module 2.*
+      *Validé le 21 juillet 2026 — intégré à la checklist v0.0.2 du module 2.*
 - [x] Au module 6, ajouter le suivi des **coûts** dans Langfuse (métrique
       citée dans toutes les offres LLMOps). *Validé le 21 juillet 2026 —
       intégré au module 6.*

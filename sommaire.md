@@ -12,7 +12,7 @@
 > compagnon court — docstring minimale dans le code.
 > **Versionnage** : semver partout — tout livrable sort tôt en 0.0.1 et
 > évolue incrémentalement ; les générations d'un projet sont des jalons
-> mineurs (0.1.0, 0.2.0…), jamais des réécritures fermées.
+> successifs (0.0.1, 0.0.2…), jamais des réécritures fermées.
 > **Ordre de passage** : 1 → 2 (6 en continu) → **5** → 3 → 4/7
 > (le MCP avancé avant l'agent — décision du 21 juillet 2026).
 > **Légende** : ✅ acquis · 🔵 en cours · ⚪ à venir
@@ -20,7 +20,7 @@
 
 ---
 
-## Module 1 — llm-from-scratch : du socle au framework *(jamais fermé)*
+## Module 1 — 01-llm-from-scratch : du socle au framework *(jamais fermé)*
 
 ### 1.1 Socle sans framework ✅ *(terminé le 20 juillet 2026)*
 
@@ -41,9 +41,9 @@
   pas refaire en ~50 lignes → un exercice numéroté en Python pur ici,
   avec renvoi croisé depuis le module qui l'a introduit
 - Entrées candidates déjà identifiées :
-  - **BM25** (retrieval lexical, ← module 2 v2) — implémentable à la main
-  - **Re-ranking** (ré-ordonner le top-k, ← module 2 v2)
-  - **HNSW** (l'index de Qdrant, ← module 2 v2) — version « comprendre
+  - **BM25** (retrieval lexical, ← module 2 v0.0.2) — implémentable à la main
+  - **Re-ranking** (ré-ordonner le top-k, ← module 2 v0.0.2)
+  - **HNSW** (l'index de Qdrant, ← module 2 v0.0.2) — version « comprendre
     et schématiser », pas implémenter
   - **Prompt caching** (← couche 0 / module 3)
   - **Handshake MCP** (`tools/list` / `tools/call`, ← module 5)
@@ -70,9 +70,9 @@
 
 ---
 
-## Module 2 — homelab-rag : le RAG complet, mesuré 🔵
+## Module 2 — 02-homelab-rag : le RAG complet, mesuré 🔵
 
-### 2.1 v1 — le RAG entièrement à la main 🔵
+### 2.1 v0.0.1 — le RAG entièrement à la main 🔵
 
 - ✅ 01 Embeddings : texte → vecteur 768 dims via Ollama, norme = 1
 - ✅ 02 Similarité cosinus : écrite par Anthony (produit scalaire,
@@ -85,22 +85,22 @@
   *(baseline provisoire mesurée : retrieval 7/12, génération 7/12,
   zéro hallucination)*
 
-### 2.2 v2 — Qdrant + retrieval avancé ⚪
+### 2.2 v0.0.2 — Qdrant + retrieval avancé ⚪
 
 - Migration du stockage vers Qdrant (conteneur docker homelab)
 - Retrieval hybride : BM25 + vecteurs *(→ entrée glossaire BM25)*
 - Re-ranking du top-k *(→ entrée glossaire)*
 - Filtres métadonnées (par dossier, par type de doc)
-- Re-passage des evals : tableau comparatif v1 → v2
+- Re-passage des evals : tableau comparatif v0.0.1 → v0.0.2
 
-### 2.3 v3 — LlamaIndex + outillage standard ⚪
+### 2.3 v0.0.3 — LlamaIndex + outillage standard ⚪
 
 - Refaire la chaîne en LlamaIndex ; documenter ce que le framework
   apporte / cache
 - Étendre le jeu d'evals (~30 questions) + LLM-as-judge — **juge ≠
   générateur** (jamais Qwen3 4B jugeant Qwen3 4B), choix documenté
 - Passer les evals dans RAGAS ou DeepEval
-- Tableau final v1 → v2 → v3 dans le README
+- Tableau final v0.0.1 → v0.0.2 → v0.0.3 dans le README
 - Réponse d'entretien rédigée : RAG vs fine-tuning, pourquoi RAG ici
 
 ### 2.4 Service et craftsmanship ⚪ *(ajouté le 21 juillet 2026)*

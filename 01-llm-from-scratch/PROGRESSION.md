@@ -1,4 +1,4 @@
-# Progression — llm-from-scratch
+# Progression — 01-llm-from-scratch
 
 > **Double rôle** : (1) re-briefer Claude en début de session — *commencer
 > chaque session par « lis PROGRESSION.md »* — et (2) consolider
