@@ -11,10 +11,14 @@
             "id": "ac609c5e555682e0",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Vue graphique"
+              "type": "markdown",
+              "state": {
+                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "sampling-et-prompting"
             }
           }
         ]
@@ -181,8 +185,12 @@
   },
   "active": "ac609c5e555682e0",
   "lastOpenFiles": [
+    "CLAUDE.md.tmp.22584.6fe1f71a3ad2",
+    "cours/_gabarit.md",
     "cours/fondamentaux/attention-et-kv-cache.md",
     "cours/carte.md",
+    "sampling-et-prompting.md",
+    "cours/agent/quatre-regimes.md",
     "cours/fondamentaux/template-de-chat.md",
     "cours/fondamentaux/tokenisation.md",
     "etapes/fondamentaux/11_kv_cache.py",
@@ -198,7 +206,6 @@
     "cours/fondamentaux/structured-output.md",
     "cours/retrieval/re-ranking.md",
     "cours/retrieval/re-ranking-top-k.md",
-    "sampling-et-prompting.md",
     "CLAUDE.md.tmp.20208.f30dd0c35b47",
     "cours/carte.md.tmp.20208.1748c5b9a254",
     "cours/carte.md.tmp.20208.253a5a6d6595",
@@ -211,9 +218,6 @@
     "cours/retrieval/backend-commutable.md",
     "cours/glossaire/lora.md",
     "cours/inference/analyse-et-verdict.md",
-    "cours/glossaire/re-ranking.md",
-    "cours/glossaire/prompt-caching.md",
-    "cours/glossaire/hnsw.md",
     "tests",
     "src/framework",
     "src",

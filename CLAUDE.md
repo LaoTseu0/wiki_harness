@@ -39,21 +39,18 @@ Point d'entrée : [cours/carte.md](cours/carte.md).
 
 ## Gabarit d'une leçon
 
-```markdown
-# Titre
+La spécification complète est dans [cours/_gabarit.md](cours/_gabarit.md) :
+deux squelettes selon le niveau visé (*refaire* ou *situer*), et la liste
+de contrôle à passer avant de valider une leçon. À lire avant d'en écrire
+ou d'en réécrire une.
 
-> [carte du cours](../carte.md) · étape : [`NN_sujet.py`](../../etapes/domaine/NN_sujet.py)
+Ses trois interdits, qui priment sur le reste :
 
-## L'essentiel
-## Le savoir
-## En pratique
-## Pièges connus
-## Se tester
-## Références
-```
-
-Rubrique optionnelle quand la leçon promeut du code :
-`## Ce que ça change dans le framework`.
+1. **Ne jamais inventer une mesure** — les emplacements prévus restent
+   vides et marqués `<!-- À MESURER -->` tant que l'étape n'a pas tourné.
+2. **Ne jamais inventer un vécu** — pas d'incident plausible, pas de « on
+   observe souvent que ».
+3. **Ne jamais livrer la solution d'un exercice non fait.**
 
 ## Code
 
