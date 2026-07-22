@@ -21,7 +21,7 @@ OLLAMA = "http://192.168.1.57:11434"
 MODELE_EMBED = "nomic-embed-text"
 MODELE_CHAT = "qwen3:4b-instruct-2507-q4_K_M"
 
-RACINE = Path(__file__).parent.parent.parent / "homelab"  # le corpus : repo homelab, frere de ce repo
+RACINE = Path(__file__).resolve().parents[3] / "homelab"  # le corpus : repo homelab, frere de ce repo
 BASE = Path(__file__).parent / "index.db"           # l'index SQLite (04)
 DOSSIERS_EXCLUS = {".git", ".venv", "__pycache__", ".obsidian"}
 

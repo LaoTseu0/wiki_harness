@@ -37,8 +37,8 @@ from pathlib import Path
 # Le corpus vit dans le repo homelab, suppose installe A COTE de ce
 # repo (freres dans le meme dossier parent). Le script vit desormais
 # dans son dossier de lecon, 2 niveaux sous la racine du module :
-# parents[4] remonte a la racine des projets, puis homelab/.
-RACINE = Path(__file__).resolve().parents[4] / "homelab"
+# parents[3] remonte a la racine des projets, puis homelab/.
+RACINE = Path(__file__).resolve().parents[3] / "homelab"
 DOSSIERS_EXCLUS = {".git", ".venv", "__pycache__", ".obsidian"}
 
 
