@@ -4,8 +4,7 @@
 
 ## Vue d'ensemble
 
-L'aboutissement du parcours : la trajectoire scripts → glossaire →
-bibliothèque → **framework maison**, que les modules suivants
+L'aboutissement du parcours : la trajectoire étapes → bibliothèque → **framework maison**, que les modules suivants
 consomment (dogfooding) et font évoluer. Les six leçons couvrent les
 deux faces du chantier : *ce qu'on construit* (briques, routage) et
 *comment on le construit* (craftsmanship, plugins, releases précoces).

@@ -25,7 +25,7 @@ raconter est exactement ce que la [roadmap](../_archive/roadmap.md) appelle
     surestime le cache d'autant. La VRAM disponible **est** la
     capacité en concurrence
     ([4.1.1](vllm-sur-rtx-2060.md)) ;
-  - même mécanique que le [prompt caching](../glossaire/prompt-caching.md) —
+  - même mécanique que le [prompt caching](prompt-caching.md) —
     ici intra-requête, là inter-requêtes.
 - **Batching continu** (continuous batching) : le batching naïf attend
   que le lot entier finisse — le batch avance au rythme du plus lent.

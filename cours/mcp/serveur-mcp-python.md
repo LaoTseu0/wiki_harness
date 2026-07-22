@@ -82,5 +82,5 @@ même le [transport HTTP](transports-stdio-http.md).
 ## Références
 
 - SDK MCP Python (FastMCP) + MCP Inspector
-- [1.2.5 Handshake MCP](../glossaire/handshake-mcp.md)
+- [1.2.5 Handshake MCP](handshake-mcp.md)
   — ce que le SDK enrobe

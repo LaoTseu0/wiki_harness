@@ -35,7 +35,7 @@ Qdrant, et son compromis rappel/vitesse se règle.
 
 ## En pratique
 
-L'entrée glossaire est un **schéma commenté** (couches, descente d'une
+Cette leçon est un **schéma commenté** (couches, descente d'une
 requête) + une mesure : sur le corpus du module 2, comparer brute force
 vs HNSW de Qdrant — recall@5 et latence, en variant `efSearch`
 (ex. 16 / 64 / 256).

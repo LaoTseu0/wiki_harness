@@ -18,10 +18,10 @@ périmètre maîtrisé (2.2.4 filtres) — et la preuve chiffrée (2.2.5).
       — conteneur docker homelab, collections, payloads
 - **[2.2.2 Retrieval hybride](retrieval-hybride.md)**
       — BM25 + vecteurs, fusion des classements *(→
-      [entrée glossaire BM25](../glossaire/bm25.md))*
+      [leçon BM25](bm25.md))*
 - **[2.2.3 Re-ranking du top-k](re-ranking-top-k.md)**
       — cross-encoder sur les candidats *(→
-      [entrée glossaire](../glossaire/re-ranking.md))*
+      [leçon dédiée](re-ranking.md))*
 - **[2.2.4 Filtres métadonnées](filtres-metadonnees.md)**
       — par dossier, par type de doc
 - **[2.2.5 Evals comparatives](evals-comparatives.md)**
@@ -33,7 +33,7 @@ La v0.0.2 ne change **pas la nature** de la chaîne — elle muscle le
 « R » : mêmes embeddings, même génération, mais un rappel plus large
 (hybride), un tri plus fin (re-ranking) et un périmètre plus net
 (filtres), servis par une vraie base (Qdrant, dont l'index HNSW est
-compris via le [glossaire](../glossaire/hnsw.md)).
+compris via la [leçon HNSW](hnsw.md)).
 Chaque ajout se justifie par son delta dans le tableau — un ajout sans
 delta se retire. **Auto-contrôle** : savoir expliquer pourquoi hybride
 et re-ranking attaquent des faiblesses *différentes* du retrieval

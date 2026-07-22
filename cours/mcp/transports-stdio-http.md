@@ -5,7 +5,7 @@
 ## L'essentiel
 
 MCP sépare **la couche données** (JSON-RPC,
-[1.2.5](../glossaire/handshake-mcp.md))
+[1.2.5](handshake-mcp.md))
 de **la couche transport** : les mêmes messages voyagent en **stdio**
 (local, un sous-processus par client) ou en **HTTP streamable**
 (distant, un serveur pour plusieurs clients). Stdio d'abord — simple et

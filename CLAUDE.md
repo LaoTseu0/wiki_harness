@@ -28,6 +28,14 @@ Point d'entrée : [cours/carte.md](cours/carte.md).
   validation est : *sais-tu le réimplémenter et prédire son comportement ?*
 - **Mesurer** : toute affirmation de performance s'appuie sur un chiffre
   produit ici, jamais sur un souvenir de doc.
+- **Un concept, un seul endroit.** Pas de dossier transverse qui rejoue un
+  deuxième axe de rangement : une notion se range dans le domaine qui
+  l'utilise. Quand un concept mérite d'être séparé de son application (la
+  théorie du re-ranking vs son branchement), ce sont deux fichiers voisins,
+  pas deux dossiers.
+- **Si tu ne sais pas le refaire en ~50 lignes, il te faut une étape.** Un
+  concept qu'un framework cache et qu'on ne saurait pas réimplémenter reste
+  une boîte noire tant qu'il n'a pas son script exécutable dans `etapes/`.
 
 ## Gabarit d'une leçon
 

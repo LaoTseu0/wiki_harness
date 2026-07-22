@@ -39,6 +39,12 @@ L'anatomie de toute application LLM, en Python pur.
 - [Structured output](fondamentaux/structured-output.md) —
   décodage contraint, validation Pydantic, retry
 
+Trois sujets de cette couche n'ont pas encore leur leçon, et ce sont les
+derniers endroits où le parcours accepte une boîte noire : la
+**tokenisation** (ce que coûte vraiment le français accentué ou un bloc
+YAML), le **template de chat** (le texte que le modèle voit réellement) et
+l'**attention / KV cache**.
+
 ## Retrieval — [le RAG, mesuré](retrieval/rag-a-la-main.md)
 
 D'abord [entièrement à la main](retrieval/rag-a-la-main.md) :
@@ -52,9 +58,12 @@ Puis [outillé avec Qdrant](retrieval/qdrant.md) :
 
 - [Migration Qdrant](retrieval/migration-qdrant.md) ·
   [retrieval hybride](retrieval/retrieval-hybride.md) ·
-  [re-ranking](retrieval/re-ranking-top-k.md) ·
+  [re-ranking du top-k](retrieval/re-ranking-top-k.md) ·
   [filtres métadonnées](retrieval/filtres-metadonnees.md) ·
   [evals comparatives](retrieval/evals-comparatives.md)
+- Les mécaniques que Qdrant cache, à savoir refaire à la main :
+  [BM25](retrieval/bm25.md) · [re-ranking](retrieval/re-ranking.md)
+  *(bi-encoder vs cross-encoder)* · [HNSW](retrieval/hnsw.md)
 
 Puis [avec l'outillage standard](retrieval/llamaindex-outillage.md) :
 
@@ -76,6 +85,7 @@ Enfin [en service](retrieval/service-et-craftsmanship.md) :
   [transports stdio et HTTP](mcp/transports-stdio-http.md) ·
   [intégration à un client existant](mcp/integration-claude-code.md)
 - [Client MCP minimal](mcp/client-mcp-minimal.md) — `tools/list`, `tools/call`
+- [Le handshake MCP](mcp/handshake-mcp.md) — le protocole sous le SDK
 - [Le versant sécurité](mcp/securite.md) :
   [prompt injection indirecte](mcp/prompt-injection-indirecte.md)
 
@@ -100,6 +110,7 @@ Enfin [en service](retrieval/service-et-craftsmanship.md) :
 - [Analyse](inference/analyse-et-verdict.md) :
   [mécanismes vLLM](inference/mecanismes-vllm.md) *(batching continu, KV cache,
   PagedAttention)* · [verdict](inference/verdict-ollama-vs-vllm.md)
+- [Prompt caching](inference/prompt-caching.md) — ne pas re-payer le préfixe stable
 
 ## Production — [ce qui rend un pipeline exploitable](production/observabilite.md)
 
@@ -112,7 +123,9 @@ Enfin [en service](retrieval/service-et-craftsmanship.md) :
   [tests adversariaux](production/tests-adversariaux.md) ·
   [threat model](production/threat-model-jarvis.md)
 - [Culture fine-tuning](production/culture-fine-tuning.md) :
-  [LoRA](production/lora-sur-colab.md) — savoir quand ce n'est *pas* la réponse
+  [ce qu'est LoRA](production/lora.md) et
+  [le faire tourner](production/lora-sur-colab.md) — surtout, savoir quand ce
+  n'est *pas* la réponse
 
 ## Multimodal — [capitaliser sur le pipeline vocal](multimodal/documenter-existant.md)
 
@@ -123,15 +136,6 @@ Enfin [en service](retrieval/service-et-craftsmanship.md) :
   [API cloud équivalentes](multimodal/api-cloud-equivalentes.md)
 
 ---
-
-## [Glossaire exécutable](glossaire/index.md)
-
-Transverse, alimenté par les autres domaines. Règle d'entrée : un concept
-qu'un framework cache et qu'on ne saurait pas refaire en ~50 lignes.
-
-[BM25](glossaire/bm25.md) · [re-ranking](glossaire/re-ranking.md) ·
-[HNSW](glossaire/hnsw.md) · [prompt caching](glossaire/prompt-caching.md) ·
-[handshake MCP](glossaire/handshake-mcp.md) · [LoRA](glossaire/lora.md)
 
 ## [Le framework maison](framework/index.md)
 

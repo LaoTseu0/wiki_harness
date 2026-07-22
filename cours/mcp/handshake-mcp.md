@@ -39,7 +39,7 @@ L'exercice (~50 lignes) : lancer un serveur MCP en sous-processus,
 échanger les trois messages sur stdio (une ligne JSON par message),
 afficher la liste d'outils, en appeler un — sans SDK d'aucun côté.
 C'est le livrable de la
-[5.2](../mcp/client.md).
+[5.2](client.md).
 
 ## Pièges connus
 

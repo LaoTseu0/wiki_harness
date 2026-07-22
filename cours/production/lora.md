@@ -36,8 +36,8 @@ on ne s'en sert presque jamais.
 
 ## En pratique
 
-L'entrée glossaire = le vécu de la
-[6.3](../production/culture-fine-tuning.md)
+Cette leçon = le vécu de la
+[6.3](culture-fine-tuning.md)
 (LoRA d'un petit modèle sur Colab) résumé en un script/README : coût
 réel, dataset minimal, avant/après mesuré — et la conclusion honnête.
 
