@@ -1,9 +1,6 @@
-# 1.3.5 Dogfooding
+# Dogfooding
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -31,7 +28,7 @@ protection contre l'API désagréable et la feature inutile.
 
 - **La boucle de promotion** : script qui marche → besoin ressenti
   ailleurs → extraction en brique + tests
-  ([1.3.2](../1.3.2-clean-code-production-grade/1.3.2-clean-code-production-grade.md))
+  ([1.3.2](clean-code.md))
   → les deux usages migrent dessus. Jamais d'extraction avant le
   **deuxième** usage (règle des deux occurrences).
 - **Pourquoi ça vaut de l'or en entretien** : « mon framework a cinq
@@ -55,7 +52,7 @@ extrait des scripts 01-03.
   aller vite », le signal de friction est perdu — le contournement se
   documente ou se corrige.
 
-## Question d'entretien
+## Se tester
 
 > « Comment évitez-vous de construire un framework que personne
 > n'utilise ? »
@@ -65,5 +62,5 @@ extrait des scripts 01-03.
 
 ## Références
 
-- [PROGRESSION.md du module 2](../../../02-homelab-rag/PROGRESSION.md)
+- [PROGRESSION.md du module 2](../_archive/journal/progression-fondamentaux.md)
   — premier terrain de dogfooding

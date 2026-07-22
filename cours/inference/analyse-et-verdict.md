@@ -1,14 +1,11 @@
-# 4.3 Analyse et verdict
+# Analyse et verdict
 
-> **Module 4 — 04-ollama-vs-vllm-bench** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : parallélisable
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
 Expliquer les chiffres, pas seulement les produire — puis trancher.
-Les courbes de la [4.2](../4.2-benchmark-vs-ollama/4.2-benchmark-vs-ollama.md)
+Les courbes de la [4.2](benchmark.md)
 s'expliquent par trois mécanismes (batching continu, KV cache,
 PagedAttention) qu'il faut savoir raconter ; le verdict traduit ensuite
 la mécanique en règle de décision : quand Ollama suffit, quand vLLM se
@@ -16,16 +13,16 @@ justifie.
 
 ## Contenu
 
-- [ ] **[4.3.1 Mécanismes vLLM](4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)**
+- **[4.3.1 Mécanismes vLLM](mecanismes-vllm.md)**
       — batching continu, KV cache, PagedAttention
-- [ ] **[4.3.2 Verdict Ollama vs vLLM](4.3.2-verdict-ollama-vs-vllm/4.3.2-verdict-ollama-vs-vllm.md)**
+- **[4.3.2 Verdict Ollama vs vLLM](verdict-ollama-vs-vllm.md)**
       — quand l'un suffit, quand l'autre se justifie
 
 ## Synthèse
 
 Le module se referme en boucle complète : déployer
-([4.1](../4.1-deploiement/4.1-deploiement.md)) → mesurer
-([4.2](../4.2-benchmark-vs-ollama/4.2-benchmark-vs-ollama.md)) →
+([4.1](deploiement.md)) → mesurer
+([4.2](benchmark.md)) →
 expliquer → décider. C'est la démarche d'ingénierie infra en
 miniature, et elle produit un discours d'entretien complet : « voici
 mes courbes, voici pourquoi elles ont cette forme, voici ma règle de

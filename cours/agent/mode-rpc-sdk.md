@@ -1,9 +1,6 @@
-# 3.3.1 Mode RPC/SDK
+# Mode RPC/SDK
 
-> **Leçon de la section [3.3 Comparaison des régimes d'agents](../3.3-comparaison-regimes-agents.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir (bonus)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -18,17 +15,17 @@ humain au clavier.
 - **Le changement de posture** : de « l'humain ouvre une session » à
   « la session attend des requêtes ». Concrètement : un petit service
   (FastAPI, le pattern de la
-  [2.4.1](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.1-service-fastapi/2.4.1-service-fastapi.md))
+  [2.4.1](../retrieval/service-fastapi.md))
   qui possède une session Pi via son mode RPC/SDK et expose
   `POST /task` → réponse de l'agent.
 - **Ce que la persistance change** :
   - le **contexte s'accumule** entre requêtes → la gestion de contexte
-    ([1.1.1](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/1.1.1-chat-cli-historique-contexte.md))
-    et la [mémoire versionnée](../../3.2-outils-et-memoire/3.2.2-memoire-versionnee/3.2.2-memoire-versionnee.md)
+    ([1.1.1](../fondamentaux/chat-historique-contexte.md))
+    et la [mémoire versionnée](memoire-versionnee.md)
     passent de confort à nécessité (quand committer, si la session ne
     « finit » jamais ? → checkpoints périodiques) ;
   - les **garde-fous restent** : le hook
-    ([3.1.1](../../3.1-garde-fous-et-securite/3.1.1-hook-tool-call/3.1.1-hook-tool-call.md))
+    ([3.1.1](hook-tool-call.md))
     vaut pour les requêtes programmatiques aussi — mais le
     human-in-the-loop doit trouver sa forme asynchrone : file
     d'approbation avec **TTL** (une approbation qui n'arrive pas à
@@ -63,7 +60,7 @@ contexte.
   sensibles doivent *attendre* une approbation, pas être silencieusement
   refusées ou pire, accordées.
 
-## Question d'entretien
+## Se tester
 
 > « Quelle différence entre un agent interactif et un agent
 > persistant ? »
@@ -76,5 +73,5 @@ contexte.
 ## Références
 
 - Mode RPC/SDK de Pi (doc du harnais)
-- [3.2.2 Mémoire versionnée](../../3.2-outils-et-memoire/3.2.2-memoire-versionnee/3.2.2-memoire-versionnee.md)
+- [3.2.2 Mémoire versionnée](memoire-versionnee.md)
   — la brique qui rend la session jetable

@@ -1,11 +1,6 @@
-# 1.2.3 HNSW
+# HNSW
 
-> **Leçon de la section [1.2 Glossaire exécutable](../1.2-glossaire-executable.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ entrée « comprendre et schématiser » (pas
-> implémenter) — à produire avec la
-> [2.2](../../../02-homelab-rag/2.2-v0.0.2-qdrant-retrieval-avance/2.2-v0.0.2-qdrant-retrieval-avance.md)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -54,7 +49,7 @@ vs HNSW de Qdrant — recall@5 et latence, en variant `efSearch`
 - Sur 200 chunks, HNSW n'apporte rien : le brute force est déjà
   instantané — l'index se justifie à l'échelle, pas par principe.
 
-## Question d'entretien
+## Se tester
 
 > « Comment une base vectorielle trouve-t-elle les plus proches voisins
 > sans tout comparer ? »

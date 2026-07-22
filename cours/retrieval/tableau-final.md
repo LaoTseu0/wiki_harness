@@ -1,9 +1,6 @@
-# 2.3.4 Tableau final
+# Tableau final
 
-> **Leçon de la section [2.3 v0.0.3 — LlamaIndex + outillage standard](../2.3-v0.0.3-llamaindex-outillage-standard.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -24,18 +21,18 @@ entre une démo et de l'ingénierie, visible en une image.
   | v0.0.3 | LlamaIndex (même socle) | ? | ? | ? | ? |
 
   complété par : le jeu étendu (~30 questions,
-  [2.3.2](../2.3.2-llm-as-judge/2.3.2-llm-as-judge.md)) et l'annexe
-  RAGAS ([2.3.3](../2.3.3-ragas-deepeval/2.3.3-ragas-deepeval.md)).
+  [2.3.2](llm-as-judge.md)) et l'annexe
+  RAGAS ([2.3.3](ragas-deepeval.md)).
 - **Chaque chiffre a une histoire** : le tableau seul ne suffit pas —
   deux ou trois phrases par transition (« l'hybride a repêché les
   questions à termes exacts ; le re-ranking n'a rien apporté sur ce
   corpus, retiré »). Les échecs documentés valent autant que les
   gains : « ce que je referais autrement » est une section attendue
-  du README ([P.1.1](../../../transverse-portfolio/p.1-repos-publics/p.1.1-github-public/p.1.1-github-public.md)).
+  du README ([P.1.1](../_archive/portfolio/p.1-repos-publics/p.1.1-github-public/p.1.1-github-public.md)).
 - **L'hygiène de comparaison** : le cœur du jeu (12 questions) reste
   identique sur les trois générations ; les extensions sont marquées ;
   les configs sont rejouables depuis les tags git
-  ([1.3.6](../../../01-llm-from-scratch/1.3-framework-maison/1.3.6-sortie-precoce-semver/1.3.6-sortie-precoce-semver.md)).
+  ([1.3.6](../framework/sortie-precoce-semver.md)).
 - **Pourquoi c'est LE différenciateur** : la question d'entretien n°1
   (« comment évaluez-vous ? ») trouve ici une réponse *pointable* — un
   lien vaut mieux qu'un discours.
@@ -43,7 +40,7 @@ entre une démo et de l'ingénierie, visible en une image.
 ## En pratique
 
 Générer le tableau depuis
-[07_evals.py](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/07_evals.py) (sortie
+[07_evals.py](../../etapes/retrieval/07_evals.py) (sortie
 markdown), le coller daté dans le README anglais, avec le commentaire
 de transition par génération — et le garder à jour à chaque tag.
 
@@ -57,7 +54,7 @@ de transition par génération — et le garder à jour à chaque tag.
 - Le tableau généré à la main : recopier des chiffres, c'est en
   trahir un — la sortie markdown vient du script.
 
-## Question d'entretien
+## Se tester
 
 > « Montrez-moi comment votre système a progressé. »
 > Le tableau : trois générations, même jeu, scores ventilés, deltas
@@ -66,7 +63,7 @@ de transition par génération — et le garder à jour à chaque tag.
 
 ## Références
 
-- [2.2.5 Evals comparatives](../../2.2-v0.0.2-qdrant-retrieval-avance/2.2.5-evals-comparatives/2.2.5-evals-comparatives.md)
+- [2.2.5 Evals comparatives](evals-comparatives.md)
   — la discipline d'ablation qui alimente ce tableau
-- [P.1 Les repos publics](../../../transverse-portfolio/p.1-repos-publics/p.1-repos-publics.md)
+- [P.1 Les repos publics](../_archive/portfolio/p.1-repos-publics/p.1-repos-publics.md)
   — le README qui l'accueille

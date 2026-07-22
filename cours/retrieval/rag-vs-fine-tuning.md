@@ -1,14 +1,10 @@
-# 2.3.5 RAG vs fine-tuning
+# RAG vs fine-tuning
 
-> **Leçon de la section [2.3 v0.0.3 — LlamaIndex + outillage standard](../2.3-v0.0.3-llamaindex-outillage-standard.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir — la réponse se rédige dans le README en fin
-> de module
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
-Question d'entretien n°4 du [relevé de terrain](../../../roadmap.md),
+Question d'entretien n°4 du [relevé de terrain](../_archive/roadmap.md),
 récurrente parce qu'elle teste la lucidité d'architecture : **RAG pour
 la connaissance changeante et sourçable, fine-tuning pour le style et
 les formats, presque jamais pour injecter des faits**. La leçon rédige
@@ -20,10 +16,10 @@ cette réponse, appuyée sur *ce* projet.
 
   | Critère | RAG | Fine-tuning |
   |---|---|---|
-  | Les faits changent | ✅ ré-indexer suffit | ❌ ré-entraîner |
-  | Sources exigées | ✅ citations natives | ❌ opaque |
-  | Contrôle d'accès | ✅ filtres par requête | ❌ tout est dans les poids |
-  | Style/format récurrent | ~ prompt/few-shot | ✅ son vrai cas d'usage |
+  | Les faits changent | ré-indexer suffit | ❌ ré-entraîner |
+  | Sources exigées | citations natives | ❌ opaque |
+  | Contrôle d'accès | filtres par requête | ❌ tout est dans les poids |
+  | Style/format récurrent | ~ prompt/few-shot | son vrai cas d'usage |
   | Coût d'entrée | index + retrieval | dataset propre + GPU + evals |
   | Risque | retrieval raté (mesurable) | oubli catastrophique, dérive |
 
@@ -35,8 +31,8 @@ cette réponse, appuyée sur *ce* projet.
   sans généraliser.
 - **Ce que le fine-tuning ferait ici** : rien pour les faits — au
   mieux, styliser le ton des réponses ; le détail mécanique (LoRA,
-  coûts réels) vit dans l'[entrée glossaire](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.6-lora/1.2.6-lora.md)
-  et la [6.3](../../../06-production/6.3-culture-fine-tuning/6.3-culture-fine-tuning.md).
+  coûts réels) vit dans l'[entrée glossaire](../glossaire/lora.md)
+  et la [6.3](../production/culture-fine-tuning.md).
 - **La réponse n'est pas exclusive** : les deux se combinent (un modèle
   fine-tuné sur le *format* de réponse, alimenté par un RAG pour les
   *faits*) — le dire en entretien évite le faux dilemme.
@@ -59,7 +55,7 @@ voix haute : c'est un texte à *dire* en entretien, pas à lire.
 - Oublier la première marche : beaucoup de « besoins de fine-tuning »
   meurent avec un bon prompt système — le dire fait gagner des points.
 
-## Question d'entretien
+## Se tester
 
 > « RAG ou fine-tuning pour ce besoin ? »
 > Poser trois questions en retour : les faits changent-ils ? faut-il
@@ -68,7 +64,7 @@ voix haute : c'est un texte à *dire* en entretien, pas à lire.
 
 ## Références
 
-- [1.2.6 LoRA](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.6-lora/1.2.6-lora.md)
+- [1.2.6 LoRA](../glossaire/lora.md)
   — la mécanique de l'autre branche de l'alternative
-- [Roadmap couche 2](../../../roadmap.md) — « question d'entretien
+- [Roadmap couche 2](../_archive/roadmap.md) — « question d'entretien
   récurrente »

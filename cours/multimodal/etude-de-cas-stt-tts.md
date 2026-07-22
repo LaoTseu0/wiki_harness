@@ -1,11 +1,6 @@
-# 7.1.1 Étude de cas STT/TTS
+# Étude de cas STT/TTS
 
-> **Leçon de la section [7.1 Documenter l'existant](../7.1-documenter-existant.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : 🔵 en production (fonctionnel) · ⚪ non mesuré — au
-> standard du cours (« sans évaluation chiffrée, une démo »), acquis
-> seulement après l'instrumentation
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -31,25 +26,25 @@ offres.
   - **LLM** : le cœur déjà maîtrisé (module 1) ;
   - **Piper (TTS)** : texte → audio, **streamé** — la première syllabe
     sort avant la fin de la phrase, comme le
-    [streaming de tokens](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/1.1.1-chat-cli-historique-contexte.md)
+    [streaming de tokens](../fondamentaux/chat-historique-contexte.md)
     côté texte.
 - **La métrique qui compte : la latence perçue** — le temps entre « fin
   de ma phrase » et « début de la réponse audio ». Le streaming Piper
   la réduit drastiquement (on n'attend pas la synthèse complète) —
   exactement l'analogue du TTFT
-  ([4.2.1](../../../04-ollama-vs-vllm-bench/4.2-benchmark-vs-ollama/4.2.1-metriques-debit-latence/4.2.1-metriques-debit-latence.md)).
-- **Les termes du marché** ([roadmap couche M](../../../roadmap.md)) :
+  ([4.2.1](../inference/metriques-debit-latence.md)).
+- **Les termes du marché** ([roadmap couche M](../_archive/roadmap.md)) :
   STT, TTS, VAD, streaming, latence de bout en bout — les mêmes qu'on
   emploie pour n'importe quel pipeline multimodal ; savoir les mapper
   sur Whisper/Piper est la compétence.
 - **La contrainte partagée** : tout tourne en **local sur la RTX
-  2060** — le pipeline vocal et la [vision](../../7.2-vision-locale/7.2.1-vlm-local/7.2.1-vlm-local.md)
+  2060** — le pipeline vocal et la [vision](vlm-local.md)
   se disputent les mêmes 6 Go, ce qui se budgète.
 
 ## En pratique
 
 Instrumenter le pipeline existant pour horodater chaque brique
-(réutiliser l'esprit des [traces](../../../06-production/6.1-observabilite/6.1.2-tracer-les-appels/6.1.2-tracer-les-appels.md)),
+(réutiliser l'esprit des [traces](../production/tracer-les-appels.md)),
 produire un tableau de latences (médiane + p95), un schéma de la
 chaîne, et la latence perçue avec/sans streaming Piper.
 
@@ -63,7 +58,7 @@ chaîne, et la latence perçue avec/sans streaming Piper.
 - Choisir Whisper large « pour la qualité » sans mesurer : sur 6 Go
   partagés, le modèle STT concurrence le LLM — l'arbitrage se chiffre.
 
-## Question d'entretien
+## Se tester
 
 > « Décrivez un pipeline multimodal que vous avez fait tourner. »
 > Assistant vocal 100 % local : VAD → Whisper STT → LLM → Piper TTS
@@ -74,5 +69,5 @@ chaîne, et la latence perçue avec/sans streaming Piper.
 ## Références
 
 - Whisper (OpenAI) ; Piper (TTS local streamé)
-- [architecture/jarvis.md](../../../../homelab/architecture/jarvis.md) —
+- [architecture/jarvis.md](../../../homelab/architecture/jarvis.md) —
   le pipeline vocal d'origine

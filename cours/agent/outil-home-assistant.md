@@ -1,16 +1,13 @@
-# 3.2.1 Outil home_assistant
+# Outil home_assistant
 
-> **Leçon de la section [3.2 Outils et mémoire](../3.2-outils-et-memoire.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 Premier outil custom **réel** de l'agent : `home_assistant`, enregistré
 via `pi.registerTool`, qui appelle l'API REST de HA avec un token à
 périmètre limité. Le pattern est exactement celui du
-[function calling](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md) —
+[function calling](../fondamentaux/function-calling.md) —
 mais cette fois l'outil touche la maison, donc chaque choix de
 périmètre compte.
 
@@ -25,20 +22,20 @@ périmètre compte.
   le scope se construit : un **utilisateur HA dédié** à l'agent, non
   admin ; côté outil, une **liste blanche d'entités et de services**
   (les lampes du salon oui, la serrure non) — le moindre privilège de
-  la [3.1.2](../../3.1-garde-fous-et-securite/3.1.2-conteneur-moindre-privilege/3.1.2-conteneur-moindre-privilege.md)
+  la [3.1.2](conteneur-moindre-privilege.md)
   appliqué aux credentials.
 - **Le design de l'outil** (le schéma est du prompt engineering,
-  [1.1.3](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md)) :
+  [1.1.3](../fondamentaux/function-calling.md)) :
   - plutôt **deux outils** (`ha_lire` / `ha_agir`) qu'un couteau
     suisse : la lecture peut être allow, l'action passe en ask
-    ([3.1.1](../../3.1-garde-fous-et-securite/3.1.1-hook-tool-call/3.1.1-hook-tool-call.md)) ;
+    ([3.1.1](hook-tool-call.md)) ;
   - arguments **énumérés** quand c'est possible (entity_id dans un
     enum généré depuis la liste blanche) — le modèle ne peut pas
     inventer une entité hors périmètre ;
   - réponses **compactes** : `GET /api/states` complet sature la
     fenêtre — filtrer et résumer côté outil.
 - **Lien MCP** : le même homelab sera exposé en lecture par le
-  [serveur MCP](../../../05-homelab-mcp/5.1-serveur/5.1.1-serveur-mcp-python/5.1.1-serveur-mcp-python.md) —
+  [serveur MCP](../mcp/serveur-mcp-python.md) —
   deux canaux de distribution (outil de harnais vs protocole), même
   savoir-faire de périmètre.
 
@@ -59,7 +56,7 @@ puis « allume la lampe du bureau » (avec validation humaine visible).
   tentera des services non prévus ; la description énonce le périmètre
   exact.
 
-## Question d'entretien
+## Se tester
 
 > « Comment donnez-vous à un agent l'accès à une API sensible ? »
 > Identité dédiée non admin, liste blanche d'opérations côté outil,
@@ -69,4 +66,4 @@ puis « allume la lampe du bureau » (avec validation humaine visible).
 ## Références
 
 - Doc API REST Home Assistant (states, services, tokens)
-- [architecture/jarvis.md](../../../../homelab/architecture/jarvis.md)
+- [architecture/jarvis.md](../../../homelab/architecture/jarvis.md)

@@ -1,9 +1,6 @@
-# 2.3.1 LlamaIndex
+# LlamaIndex
 
-> **Leçon de la section [2.3 v0.0.3 — LlamaIndex + outillage standard](../2.3-v0.0.3-llamaindex-outillage-standard.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -21,12 +18,12 @@ c'est de mapper chaque abstraction sur le script maison qu'on a déjà
   | Concept LlamaIndex | Notre v0.0.1/v0.0.2 |
   |---|---|
   | `SimpleDirectoryReader` | lecture des `.md` |
-  | `Node` + parsers (`MarkdownNodeParser`) | [chunking](../../2.1-v0.0.1-rag-a-la-main/2.1.3-chunking/2.1.3-chunking.md) + métadonnées |
-  | `OllamaEmbedding` | [embeddings](../../2.1-v0.0.1-rag-a-la-main/2.1.1-embeddings/2.1.1-embeddings.md) httpx |
-  | `VectorStoreIndex` + `QdrantVectorStore` | [indexation](../../2.1-v0.0.1-rag-a-la-main/2.1.4-indexation/2.1.4-indexation.md)/[Qdrant](../../2.2-v0.0.2-qdrant-retrieval-avance/2.2.1-migration-qdrant/2.2.1-migration-qdrant.md) |
-  | `retriever` (+ `similarity_top_k`) | [recherche top-k](../../2.1-v0.0.1-rag-a-la-main/2.1.5-recherche-top-k/2.1.5-recherche-top-k.md) |
-  | `node_postprocessors` (rerank) | [re-ranking](../../2.2-v0.0.2-qdrant-retrieval-avance/2.2.3-re-ranking-top-k/2.2.3-re-ranking-top-k.md) |
-  | `query_engine` | [RAG complet](../../2.1-v0.0.1-rag-a-la-main/2.1.6-rag-complet/2.1.6-rag-complet.md) |
+  | `Node` + parsers (`MarkdownNodeParser`) | [chunking](chunking.md) + métadonnées |
+  | `OllamaEmbedding` | [embeddings](embeddings.md) httpx |
+  | `VectorStoreIndex` + `QdrantVectorStore` | [indexation](indexation.md)/[Qdrant](migration-qdrant.md) |
+  | `retriever` (+ `similarity_top_k`) | [recherche top-k](recherche-top-k.md) |
+  | `node_postprocessors` (rerank) | [re-ranking](re-ranking-top-k.md) |
+  | `query_engine` | [RAG complet](rag-complet.md) |
 
 - **Ce que le framework cache — à documenter explicitement** : le
   **prompt de synthèse par défaut** (en anglais, sans notre grounding
@@ -38,7 +35,7 @@ c'est de mapper chaque abstraction sur le script maison qu'on a déjà
   Le README liste les deux colonnes — c'est le livrable « ce que le
   framework apporte / cache » du sommaire.
 - **À situer** : LangChain/LangGraph (chaînes et graphes généralistes),
-  Haystack, RAGFlow ([roadmap couche 2](../../../roadmap.md)) — un
+  Haystack, RAGFlow ([roadmap couche 2](../_archive/roadmap.md)) — un
   paragraphe chacun, pas plus.
 
 ## En pratique
@@ -60,7 +57,7 @@ s'explique ou se corrige.
   conclure que « le framework est moins bon » : comparer à
   configuration égale, puis comparer les défauts.
 
-## Question d'entretien
+## Se tester
 
 > « Que vous apporte un framework RAG, et que vous cache-t-il ? »
 > Apports : intégrations, vitesse de mise en œuvre, patterns éprouvés.
@@ -71,5 +68,5 @@ s'explique ou se corrige.
 ## Références
 
 - Doc LlamaIndex (query engine, node parsers, vector stores)
-- La [PROGRESSION du module](../../PROGRESSION.md) — le registre
+- La [PROGRESSION du module](../_archive/journal/progression-fondamentaux.md) — le registre
   apports/cachés au fil de l'eau

@@ -1,14 +1,11 @@
-# 2.3.2 LLM-as-judge
+# LLM-as-judge
 
-> **Leçon de la section [2.3 v0.0.3 — LlamaIndex + outillage standard](../2.3-v0.0.3-llamaindex-outillage-standard.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 Les scores déterministes de la
-[2.1.7](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md)
+[2.1.7](evals.md)
 plafonnent : « la réponse contient-elle les mots-clés » rate les bonnes
 réponses reformulées. Un **LLM juge** note la qualité avec souplesse —
 à condition de le calibrer, et de respecter la règle du module :
@@ -21,13 +18,13 @@ réponses reformulées. Un **LLM juge** note la qualité avec souplesse —
   selon une **rubrique explicite** — par axe, pas en vrac :
   exactitude, fidélité aux sources, complétude, abstention correcte.
   Sortie contrainte
-  ([1.1.5](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.5-structured-output/1.1.5-structured-output.md)) :
+  ([1.1.5](../fondamentaux/structured-output.md)) :
   `{score: int, justification: str}` par axe.
 - **Les biais documentés du juge** — les connaître est la moitié de la
   compétence :
   - **auto-préférence** : un modèle sur-note ses propres sorties →
     d'où juge ≠ générateur (biais d'auto-évaluation, nommé dans le
-    [sommaire](../../../sommaire.md)) ;
+    [sommaire](../carte.md)) ;
   - **verbosité** : les réponses longues sur-notées ;
   - **position** : en comparaison A/B, le premier gagne plus souvent —
     randomiser l'ordre ;
@@ -54,7 +51,7 @@ réponses reformulées. Un **LLM juge** note la qualité avec souplesse —
 
 `juge.py` : rubrique par axe, sortie JSON contrainte, un modèle juge
 distinct configuré via le
-[backend commutable](../../2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md) ;
+[backend commutable](backend-commutable.md) ;
 étape de calibration sur 10 cas notés à la main, résultats dans le
 README.
 
@@ -69,7 +66,7 @@ README.
 - Faire confiance au juge sans calibration : un juge non calibré est
   un générateur d'opinions à grande échelle.
 
-## Question d'entretien
+## Se tester
 
 > « Quelles limites au LLM-as-judge, et comment les gérez-vous ? »
 > Biais d'auto-préférence (juge ≠ générateur), verbosité, position,
@@ -81,4 +78,4 @@ README.
 
 - Zheng et al., « Judging LLM-as-a-Judge » (MT-Bench) — les biais
   mesurés
-- [Roadmap couche T](../../../roadmap.md) — les trois familles d'evals
+- [Roadmap couche T](../_archive/roadmap.md) — les trois familles d'evals

@@ -1,9 +1,6 @@
-# 2.4.1 Service FastAPI
+# Service FastAPI
 
-> **Leçon de la section [2.4 Service et craftsmanship](../2.4-service-et-craftsmanship.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -16,7 +13,7 @@ serveur MCP l'appellera, Langfuse le tracera.
 ## Le savoir
 
 - **Le contrat d'API, en Pydantic des deux côtés**
-  ([1.1.5](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.5-structured-output/1.1.5-structured-output.md)
+  ([1.1.5](../fondamentaux/structured-output.md)
   appliqué au web) :
 
   ```python
@@ -40,7 +37,7 @@ serveur MCP l'appellera, Langfuse le tracera.
 - **La frontière service/bibliothèque** : la route est **mince** — elle
   valide, appelle `rag_commun.ask()`, sérialise. Toute la logique
   reste dans la bibliothèque : c'est elle qu'on teste
-  ([2.4.3](../2.4.3-tests-typing-packaging/2.4.3-tests-typing-packaging.md))
+  ([2.4.3](tests-typing-packaging.md))
   et qu'on promeut en brique.
 - **Opérationnel minimal** : `GET /health` (les conteneurs du homelab
   en vivent), erreurs HTTP propres (422 validation, 503 backend
@@ -51,7 +48,7 @@ serveur MCP l'appellera, Langfuse le tracera.
 
 `service.py` : deux routes (`/ask`, `/health`), modèles Pydantic,
 appel à la bibliothèque commune ; test de bout en bout au `curl` — et
-brancher le [client MCP du module 5](../../../05-homelab-mcp/5.1-serveur/5.1.1-serveur-mcp-python/5.1.1-serveur-mcp-python.md)
+brancher le [client MCP du module 5](../mcp/serveur-mcp-python.md)
 dessus le moment venu.
 
 ## Pièges connus
@@ -64,7 +61,7 @@ dessus le moment venu.
   périmètre pour l'instant, mais à dire en entretien (auth, rate
   limiting, quotas — la partie « production » du discours).
 
-## Question d'entretien
+## Se tester
 
 > « Comment exposez-vous un système LLM au reste du SI ? »
 > Micro-service HTTP au contrat Pydantic strict, routes minces sur une
@@ -74,5 +71,5 @@ dessus le moment venu.
 ## Références
 
 - Doc FastAPI (Pydantic models, async, `/docs`)
-- [Roadmap §10.1](../../../roadmap.md) — « FastAPI / APIs backend,
+- [Roadmap §10.1](../_archive/roadmap.md) — « FastAPI / APIs backend,
   ~50 % des offres »

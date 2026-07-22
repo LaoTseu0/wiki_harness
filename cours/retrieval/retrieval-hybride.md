@@ -1,9 +1,6 @@
-# 2.2.2 Retrieval hybride
+# Retrieval hybride
 
-> **Leçon de la section [2.2 v0.0.2 — Qdrant + retrieval avancé](../2.2-v0.0.2-qdrant-retrieval-avance.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir *(→ déclenche l'[entrée glossaire BM25](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.1-bm25/1.2.1-bm25.md))*
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -17,9 +14,9 @@ que les deux moteurs se trompent sur des cas *différents*.
 
 - **Les deux jambes** :
   - **lexicale** : BM25 sur les textes des chunks — la mécanique
-    complète est dans l'[entrée glossaire](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.1-bm25/1.2.1-bm25.md) ;
+    complète est dans l'[entrée glossaire](../glossaire/bm25.md) ;
   - **dense** : le top-k vecteurs de
-    [2.2.1](../2.2.1-migration-qdrant/2.2.1-migration-qdrant.md).
+    [2.2.1](migration-qdrant.md).
 - **La fusion : RRF** (Reciprocal Rank Fusion) — la méthode robuste
   par défaut :
 
@@ -45,7 +42,7 @@ que les deux moteurs se trompent sur des cas *différents*.
 Implémenter `chercher_hybride(question, k)` : top-20 BM25 + top-20
 dense → RRF → top-k ; comparer sur les questions ratées par la
 baseline (le retrieval 7/12 de la
-[2.1.7](../../2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md) —
+[2.1.7](evals.md) —
 combien l'hybride en repêche-t-il ?).
 
 ## Pièges connus
@@ -58,7 +55,7 @@ combien l'hybride en repêche-t-il ?).
   questions à termes exacts : le jeu doit couvrir les deux régimes de
   faiblesse.
 
-## Question d'entretien
+## Se tester
 
 > « Pourquoi votre RAG combine-t-il BM25 et vecteurs ? »
 > Erreurs décorrélées : le lexical rate les paraphrases, le dense rate

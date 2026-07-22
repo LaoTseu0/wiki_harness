@@ -1,9 +1,6 @@
-# 1.3.3 Évolutivité sans friction
+# Évolutivité sans friction
 
-> **Leçon de la section [1.3 Le framework maison](../1.3-framework-maison.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -38,7 +35,7 @@ l'architecture a une dette — c'est mesurable, donc c'est un test.
   (`registre.provider("ollama")`), agents (préréglages boucle +
   outils + garde-fous). Un seul pattern à apprendre.
 - **Ce que ça achète** : le module 3 ajoutera `home_assistant`
-  ([3.2.1](../../../03-jarvis-agent/3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md))
+  ([3.2.1](../agent/outil-home-assistant.md))
   sans toucher au cœur — la preuve vivante que le critère tient.
 
 ## En pratique
@@ -58,7 +55,7 @@ du nouveau fichier).
 - Sur-généraliser : un système de plugins avec hooks, priorités et
   events pour trois outils — la friction déplacée, pas supprimée.
 
-## Question d'entretien
+## Se tester
 
 > « Comment concevez-vous un système extensible sans le
 > sur-concevoir ? »

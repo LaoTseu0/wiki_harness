@@ -1,10 +1,6 @@
-# 7.3 Ouvertures
+# Ouvertures
 
-> **Module 7 — 07-multimodal** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : après le module 2,
-> parallélisable ensuite
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -15,9 +11,9 @@ la carte des API cloud qui rend le discours *complet*.
 
 ## Contenu
 
-- [ ] **[7.3.1 Caméra et OCR](7.3.1-camera-et-ocr/7.3.1-camera-et-ocr.md)**
+- **[7.3.1 Caméra et OCR](camera-et-ocr.md)**
       — caméra HA → « décris ce que tu vois » ; OCR famille → NAS
-- [ ] **[7.3.2 API cloud équivalentes](7.3.2-api-cloud-equivalentes/7.3.2-api-cloud-equivalentes.md)**
+- **[7.3.2 API cloud équivalentes](api-cloud-equivalentes.md)**
       — vision GPT/Claude/Gemini, génération d'images, Whisper API
 
 ## Synthèse
@@ -32,4 +28,4 @@ départage.
 
 ## Références
 
-- [Roadmap couche M](../../roadmap.md) — débouché homelab et API cloud
+- [Roadmap couche M](../_archive/roadmap.md) — débouché homelab et API cloud

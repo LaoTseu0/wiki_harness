@@ -1,10 +1,6 @@
-# 1.3 Le framework maison
+# Le framework maison
 
-> **Module 1 — 01-llm-from-scratch** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md) · [progression du module](../PROGRESSION.md)
-> **Statut** : ⚪ à venir — release 0.0.1 dès les premières briques
-> promues, puis semver en continu
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -17,19 +13,19 @@ Pas de big-bang final — 0.0.1 tôt, incréments semver ensuite.
 
 ## Contenu
 
-- [ ] **[1.3.1 Architecture modulaire](1.3.1-architecture-modulaire/1.3.1-architecture-modulaire.md)**
+- **[1.3.1 Architecture modulaire](architecture-modulaire.md)**
       — briques enfichables : client LLM, outils, boucle, mémoire,
       retrieval, evals
-- [ ] **[1.3.2 Clean code production-grade](1.3.2-clean-code-production-grade/1.3.2-clean-code-production-grade.md)**
+- **[1.3.2 Clean code production-grade](clean-code.md)**
       — typing, Pydantic, pytest, packaging, docstrings
-- [ ] **[1.3.3 Évolutivité sans friction](1.3.3-evolutivite-sans-friction/1.3.3-evolutivite-sans-friction.md)**
+- **[1.3.3 Évolutivité sans friction](evolutivite.md)**
       — ajouter un outil/provider/agent = un fichier, zéro modification
       du cœur
-- [ ] **[1.3.4 Routage multi-agentique](1.3.4-routage-multi-agentique/1.3.4-routage-multi-agentique.md)**
+- **[1.3.4 Routage multi-agentique](routage-multi-agentique.md)**
       — superviseur/ouvriers, routage coût/latence/qualité
-- [ ] **[1.3.5 Dogfooding](1.3.5-dogfooding/1.3.5-dogfooding.md)**
+- **[1.3.5 Dogfooding](dogfooding.md)**
       — les modules 2-7 consomment le framework et le font évoluer
-- [ ] **[1.3.6 Sortie précoce et semver](1.3.6-sortie-precoce-semver/1.3.6-sortie-precoce-semver.md)**
+- **[1.3.6 Sortie précoce et semver](sortie-precoce-semver.md)**
       — 0.0.1 dès les premières briques promues (client LLM, outils,
       `rag_commun`)
 

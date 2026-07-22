@@ -1,9 +1,6 @@
-# 3.1.2 Conteneur et moindre privilège
+# Conteneur et moindre privilège
 
-> **Leçon de la section [3.1 Garde-fous et sécurité d'abord](../3.1-garde-fous-et-securite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -28,16 +25,16 @@ appliqué à l'agent : n'accorder que ce que la tâche exige — et
   - **réseau** : réseau docker interne, egress limité aux endpoints
     nécessaires (HA, Ollama) — un agent qui ne peut pas joindre
     l'extérieur ne peut pas exfiltrer
-    ([6.2.3](../../../06-production/6.2-securite/6.2.3-threat-model-jarvis/6.2.3-threat-model-jarvis.md)) ;
+    ([6.2.3](../production/threat-model-jarvis.md)) ;
   - **ressources** : limites CPU/mémoire — un agent en boucle ne
     couche pas la machine.
-- **Pourquoi les deux couches** ([3.1.1](../3.1.1-hook-tool-call/3.1.1-hook-tool-call.md) +
+- **Pourquoi les deux couches** ([3.1.1](hook-tool-call.md) +
   celle-ci) : le hook est fin mais logiciel (bug, cas non prévu) ; le
   conteneur est grossier mais physique. La défense en profondeur = le
   hook rend l'abus *improbable*, le conteneur le rend *impossible à
   l'échelle du système*.
 - **Le jeton, même logique** : le token HA de la
-  [3.2.1](../../3.2-outils-et-memoire/3.2.1-outil-home-assistant/3.2.1-outil-home-assistant.md)
+  [3.2.1](outil-home-assistant.md)
   sera à périmètre limité — le moindre privilège s'applique aux
   credentials comme aux montages.
 
@@ -59,7 +56,7 @@ domaine externe ; les deux doivent échouer.
   namespace, pas une VM — d'où l'intérêt de garder *aussi* le hook et
   de ne pas donner root.
 
-## Question d'entretien
+## Se tester
 
 > « Votre agent est compromis par une injection : quel est le rayon des
 > dégâts ? »
@@ -70,6 +67,6 @@ domaine externe ; les deux doivent échouer.
 
 ## Références
 
-- [securite.md](../../../../homelab/architecture/securite.md) — la
+- [securite.md](../../../homelab/architecture/securite.md) — la
   politique homelab
 - Doc docker : user, cap_drop, read_only, réseaux internes

@@ -1,9 +1,6 @@
-# 6.1.2 Tracer les appels
+# Tracer les appels
 
-> **Leçon de la section [6.1 Observabilité](../6.1-observabilite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -15,7 +12,7 @@ spans sont illisibles, c'est souvent l'architecture qui l'est.
 ## Le savoir
 
 - **La trace RAG type** (une requête `POST /ask`,
-  [2.4.1](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.1-service-fastapi/2.4.1-service-fastapi.md)) :
+  [2.4.1](../retrieval/service-fastapi.md)) :
 
   ```
   trace "ask"
@@ -27,21 +24,21 @@ spans sont illisibles, c'est souvent l'architecture qui l'est.
   ```
 
   Chaque maillon de la
-  [chaîne](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1-v0.0.1-rag-a-la-main.md)
+  [chaîne](../retrieval/rag-a-la-main.md)
   a son span — le diagnostic par couche devient un clic.
 - **La trace agent** (module 3) : un span par tour de
-  [boucle](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.4-mini-boucle-agent/1.1.4-mini-boucle-agent.md),
+  [boucle](../fondamentaux/boucle-agent.md),
   chaque tool_call avec arguments et résultat, et les **décisions du
-  hook** ([3.1.1](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.1-hook-tool-call/3.1.1-hook-tool-call.md))
+  hook** ([3.1.1](../agent/hook-tool-call.md))
   en events — la trace devient aussi un journal de sécurité.
 - **Où coudre l'instrumentation** : à la **frontière provider**
-  ([2.4.2](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md))
+  ([2.4.2](../retrieval/backend-commutable.md))
   pour les générations (un seul point pour tous les appels LLM), et
   dans `rag_commun` pour les spans métier — le code applicatif ne voit
   pas Langfuse.
 - **Ce qu'on met dans les métadonnées** : version du corpus, config de
   chaîne (hybride ? rerank ?), tag git — c'est ce qui permet de
-  corréler traces et [tableau d'evals](../../../02-homelab-rag/2.3-v0.0.3-llamaindex-outillage-standard/2.3.4-tableau-final/2.3.4-tableau-final.md).
+  corréler traces et [tableau d'evals](../retrieval/tableau-final.md).
 
 ## En pratique
 
@@ -65,7 +62,7 @@ lire chunk par chunk pourquoi elle a raté.
   précieuses — les capturer avec leur contexte, pas seulement les
   succès.
 
-## Question d'entretien
+## Se tester
 
 > « Que tracez-vous dans votre système LLM ? »
 > Une trace par requête, un span par maillon (retrieval avec chunks et
@@ -76,5 +73,5 @@ lire chunk par chunk pourquoi elle a raté.
 ## Références
 
 - SDK Python Langfuse (décorateurs, spans, generations)
-- [2.1.7 Evals](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1.7-evals/2.1.7-evals.md)
+- [2.1.7 Evals](../retrieval/evals.md)
   — ce que les traces expliquent

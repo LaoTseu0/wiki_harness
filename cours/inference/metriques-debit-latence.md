@@ -1,9 +1,6 @@
-# 4.2.1 Métriques : débit et latence
+# Métriques : débit et latence
 
-> **Leçon de la section [4.2 Benchmark documenté vs Ollama](../4.2-benchmark-vs-ollama.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -16,7 +13,7 @@ benchmark illisible.
 ## Le savoir
 
 - **Les deux phases d'une requête** (l'explication mécanique est en
-  [4.3.1](../../4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)) :
+  [4.3.1](mecanismes-vllm.md)) :
   - **prefill** : tout le prompt est traité d'un bloc (parallélisable,
     borné par le calcul) → détermine le **TTFT** ;
   - **decode** : les tokens sortent un à un (borné par la bande
@@ -33,7 +30,7 @@ benchmark illisible.
   modèle chez Ollama).
 - **Conditions à figer et publier** : même modèle (et quantisations
   notées — AWQ vs GGUF,
-  [4.1.1](../../4.1-deploiement/4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md)),
+  [4.1.1](vllm-sur-rtx-2060.md)),
   même longueur de prompt (le TTFT dépend du prompt), même
   `max_tokens`, température fixée, un moteur à la fois sur le GPU.
 
@@ -54,7 +51,7 @@ permettent de recalculer sans re-mesurer.
 - Le premier appel Ollama inclut le chargement du modèle : warm-up
   systématique avant mesure.
 
-## Question d'entretien
+## Se tester
 
 > « Quelles métriques pour évaluer un serveur d'inférence ? »
 > TTFT (expérience d'attente), tokens/s par requête (expérience de
@@ -64,7 +61,7 @@ permettent de recalculer sans re-mesurer.
 
 ## Références
 
-- [4.3.1 Mécanismes vLLM](../../4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md)
+- [4.3.1 Mécanismes vLLM](mecanismes-vllm.md)
   — prefill/decode expliqués
 - Doc métriques vLLM (`/metrics`, Prometheus) — pour croiser nos
   mesures

@@ -1,9 +1,6 @@
-# 3.3 Comparaison des régimes d'agents
+# Comparaison des régimes d'agents
 
-> **Module 3 — 03-jarvis-agent** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : 4e, après le module 5
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -15,13 +12,13 @@ conception qui capitalise le tout.
 
 ## Contenu
 
-- [ ] **[3.3.1 Mode RPC/SDK](3.3.1-mode-rpc-sdk/3.3.1-mode-rpc-sdk.md)**
+- **[3.3.1 Mode RPC/SDK](mode-rpc-sdk.md)**
       — (bonus) un service qui tient une session Pi ouverte — embryon
       d'agent persistant
-- [ ] **[3.3.2 Quatre régimes, même boucle](3.3.2-quatre-regimes/3.3.2-quatre-regimes.md)**
+- **[3.3.2 Quatre régimes, même boucle](quatre-regimes.md)**
       — (bonus culture) manuelle / harnais Pi / SDK du marché /
       graphe LangGraph
-- [ ] **[3.3.3 Note de conception](3.3.3-note-de-conception/3.3.3-note-de-conception.md)**
+- **[3.3.3 Note de conception](note-de-conception.md)**
       — dans `architecture/` + `.pi/` complet versionné
 
 ## Synthèse

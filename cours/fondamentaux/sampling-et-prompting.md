@@ -1,9 +1,6 @@
-# 1.1.2 Sampling et prompting
+# Sampling et prompting
 
-> **Leçon de la section [1.1 Socle sans framework](../1.1-socle-sans-framework.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis (20 juillet 2026)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`04_sampling.ipynb`](../../etapes/fondamentaux/04_sampling.ipynb)
 
 ## L'essentiel
 
@@ -44,12 +41,12 @@ termes) :
   améliore le raisonnement, coûte des tokens ;
 - **ReAct** : alterner raisonnement et action — le pattern derrière
   toutes les boucles d'agent
-  ([1.1.4](../1.1.4-mini-boucle-agent/1.1.4-mini-boucle-agent.md)) ;
+  ([1.1.4](boucle-agent.md)) ;
 - prompt système : rôle, contraintes d'entrée/sortie, format.
 
 ## En pratique
 
-[04_sampling.ipynb](04_sampling.ipynb) : protocole en dict de
+[04_sampling.ipynb](../../etapes/fondamentaux/04_sampling.ipynb) : protocole en dict de
 scénarios + `**options`, effets mesurés paramètre par paramètre sur des
 cas concrets — écrit en grande partie par Anthony.
 
@@ -62,7 +59,7 @@ cas concrets — écrit en grande partie par Anthony.
 - Croire qu'un few-shot « montre le style » : il fixe aussi la
   *longueur* et la *structure* attendues, souvent à l'insu de l'auteur.
 
-## Question d'entretien
+## Se tester
 
 > « Temperature 0, c'est déterministe ? »
 > Non garanti : ex æquo dans la distribution, non-associativité des

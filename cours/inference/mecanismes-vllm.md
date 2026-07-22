@@ -1,9 +1,6 @@
-# 4.3.1 Mécanismes vLLM
+# Mécanismes vLLM
 
-> **Leçon de la section [4.3 Analyse et verdict](../4.3-analyse-et-verdict.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -11,7 +8,7 @@ Trois mécanismes expliquent toutes les courbes du bench : le **KV
 cache** (pourquoi la mémoire est le goulot), le **batching continu**
 (pourquoi vLLM encaisse la concurrence) et **PagedAttention**
 (pourquoi vLLM loge plus de requêtes dans la même VRAM). Savoir les
-raconter est exactement ce que la [roadmap](../../../roadmap.md) appelle
+raconter est exactement ce que la [roadmap](../_archive/roadmap.md) appelle
 « expliquer les résultats ».
 
 ## Le savoir
@@ -27,15 +24,15 @@ raconter est exactement ce que la [roadmap](../../../roadmap.md) appelle
     sont 4-8× moins nombreuses, et compter les têtes d'attention
     surestime le cache d'autant. La VRAM disponible **est** la
     capacité en concurrence
-    ([4.1.1](../../4.1-deploiement/4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md)) ;
-  - même mécanique que le [prompt caching](../../../01-llm-from-scratch/1.2-glossaire-executable/1.2.4-prompt-caching/1.2.4-prompt-caching.md) —
+    ([4.1.1](vllm-sur-rtx-2060.md)) ;
+  - même mécanique que le [prompt caching](../glossaire/prompt-caching.md) —
     ici intra-requête, là inter-requêtes.
 - **Batching continu** (continuous batching) : le batching naïf attend
   que le lot entier finisse — le batch avance au rythme du plus lent.
   vLLM ordonnance **par itération** : à chaque pas de génération, les
   séquences finies sortent, les nouvelles entrent immédiatement. C'est
   ce qui fait grimper le débit agrégé sans faire exploser le TTFT
-  ([4.2.2](../../4.2-benchmark-vs-ollama/4.2.2-charge-concurrente/4.2.2-charge-concurrente.md)).
+  ([4.2.2](charge-concurrente.md)).
 - **PagedAttention** : allouer le KV cache en bloc contigu par requête
   (à la taille max possible) gaspille la VRAM en fragmentation. vLLM
   le découpe en **pages** de taille fixe allouées à la demande —
@@ -51,7 +48,7 @@ raconter est exactement ce que la [roadmap](../../../roadmap.md) appelle
 
 Annoter les courbes du bench mécanisme par mécanisme (une flèche =
 une explication) — l'exercice force la compréhension et produit les
-figures du post ([4.3.2](../4.3.2-verdict-ollama-vs-vllm/4.3.2-verdict-ollama-vs-vllm.md)).
+figures du post ([4.3.2](verdict-ollama-vs-vllm.md)).
 
 ## Pièges connus
 
@@ -64,7 +61,7 @@ figures du post ([4.3.2](../4.3.2-verdict-ollama-vs-vllm/4.3.2-verdict-ollama-vs
   mémoire ; la réactivité sous charge vient du batching continu — deux
   mécanismes, deux effets.
 
-## Question d'entretien
+## Se tester
 
 > « Pourquoi vLLM tient-il la charge là où Ollama fait la queue ? »
 > Batching continu (insertion par itération vs file), PagedAttention
@@ -76,4 +73,4 @@ figures du post ([4.3.2](../4.3.2-verdict-ollama-vs-vllm/4.3.2-verdict-ollama-vs
 
 - Kwon et al., « Efficient Memory Management for LLM Serving with
   PagedAttention » (le papier vLLM)
-- [Roadmap couche 1](../../../roadmap.md) — débit vs latence, KV cache
+- [Roadmap couche 1](../_archive/roadmap.md) — débit vs latence, KV cache

@@ -1,10 +1,6 @@
-# 1.2.6 LoRA
+# LoRA
 
-> **Leçon de la section [1.2 Glossaire exécutable](../1.2-glossaire-executable.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ entrée culture — à produire avec la
-> [6.3](../../../06-production/6.3-culture-fine-tuning/6.3-culture-fine-tuning.md)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -33,7 +29,7 @@ on ne s'en sert presque jamais.
   à petit modèle.
 - **Quand ça ne l'est pas** (9 fois sur 10) : injecter des **faits**
   changeants ou sourçables → RAG
-  ([2.3.5](../../../02-homelab-rag/2.3-v0.0.3-llamaindex-outillage-standard/2.3.5-rag-vs-fine-tuning/2.3.5-rag-vs-fine-tuning.md)) ;
+  ([2.3.5](../retrieval/rag-vs-fine-tuning.md)) ;
   suivre des instructions → prompt/few-shot d'abord ; et le
   fine-tuning peut **dégrader** les capacités générales (oubli
   catastrophique).
@@ -41,7 +37,7 @@ on ne s'en sert presque jamais.
 ## En pratique
 
 L'entrée glossaire = le vécu de la
-[6.3](../../../06-production/6.3-culture-fine-tuning/6.3-culture-fine-tuning.md)
+[6.3](../production/culture-fine-tuning.md)
 (LoRA d'un petit modèle sur Colab) résumé en un script/README : coût
 réel, dataset minimal, avant/après mesuré — et la conclusion honnête.
 
@@ -55,7 +51,7 @@ réel, dataset minimal, avant/après mesuré — et la conclusion honnête.
   l'adaptateur semble « ne pas marcher » alors que le prompt ne matche
   pas.
 
-## Question d'entretien
+## Se tester
 
 > « Quand recommanderiez-vous un fine-tuning plutôt qu'un RAG ? »
 > Style/format/domaine stable, volume d'appels justifiant

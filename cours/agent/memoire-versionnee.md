@@ -1,9 +1,6 @@
-# 3.2.2 Mémoire versionnée
+# Mémoire versionnée
 
-> **Leçon de la section [3.2 Outils et mémoire](../3.2-outils-et-memoire.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -11,7 +8,7 @@ La fenêtre de contexte est périssable — la mémoire d'un agent doit
 vivre **ailleurs** : des fichiers markdown dans un dépôt git,
 synchronisés par hooks de session (pull à l'ouverture, commit à la
 fermeture). C'est le pattern « external memory » du context
-engineering ([roadmap couche 0](../../../roadmap.md)), avec un bonus
+engineering ([roadmap couche 0](../_archive/roadmap.md)), avec un bonus
 décisif : la mémoire devient **diffable, auditable, réversible**.
 
 ## Le savoir
@@ -38,7 +35,7 @@ décisif : la mémoire devient **diffable, auditable, réversible**.
   - **audit** : `git log` répond à « pourquoi l'agent croit-il ça ? »
     — et `git blame` date la croyance ;
   - **rollback** : une mémoire polluée (erreur, ou injection
-    [5.3.1](../../../05-homelab-mcp/5.3-securite/5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md))
+    [5.3.1](../mcp/prompt-injection-indirecte.md))
     se révoque par revert — une mémoire en base opaque, non ;
   - **le commit est un checkpoint** : la granularité session borne le
     rayon d'une pollution.
@@ -65,7 +62,7 @@ en session B, le corriger en session C et lire l'historique.
   écrivaine à la fois, ou des fichiers par domaine — le problème est
   connu, le trancher explicitement.
 
-## Question d'entretien
+## Se tester
 
 > « Comment donnez-vous une mémoire long terme à un agent ? »
 > Mémoire externe en fichiers versionnés, hooks de session
@@ -75,7 +72,7 @@ en session B, le corriger en session C et lire l'historique.
 
 ## Références
 
-- [Roadmap couche 0](../../../roadmap.md) — « mémoire externe » dans
+- [Roadmap couche 0](../_archive/roadmap.md) — « mémoire externe » dans
   le context engineering
 - La convention OKF du homelab
-  ([architecture/jarvis.md](../../../../homelab/architecture/jarvis.md))
+  ([architecture/jarvis.md](../../../homelab/architecture/jarvis.md))

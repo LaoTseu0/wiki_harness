@@ -1,9 +1,6 @@
-# 4.1 Déploiement
+# Déploiement
 
-> **Module 4 — 04-ollama-vs-vllm-bench** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md)
-> **Statut** : ⚪ à venir · **Passage** : parallélisable
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -12,11 +9,11 @@ grand public — et découvrir ce que « servir un modèle » veut dire
 au-delà d'Ollama : la VRAM se budgète, le modèle se choisit quantisé,
 et le serveur se règle. Une seule leçon, dense : le déploiement est le
 prérequis des mesures de la
-[4.2](../4.2-benchmark-vs-ollama/4.2-benchmark-vs-ollama.md).
+[4.2](benchmark.md).
 
 ## Contenu
 
-- [ ] **[4.1.1 vLLM sur RTX 2060](4.1.1-vllm-sur-rtx-2060/4.1.1-vllm-sur-rtx-2060.md)**
+- **[4.1.1 vLLM sur RTX 2060](vllm-sur-rtx-2060.md)**
       — conteneur, petit modèle adapté aux 6 Go, endpoint
       OpenAI-compatible
 
@@ -31,5 +28,5 @@ de l'expérience. **Auto-contrôle** : savoir décomposer où partent les
 
 ## Références
 
-- [Roadmap couche 1](../../roadmap.md) — le tableau des moteurs
+- [Roadmap couche 1](../_archive/roadmap.md) — le tableau des moteurs
   d'inférence

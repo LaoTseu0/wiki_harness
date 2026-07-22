@@ -1,9 +1,6 @@
-# 6.1.1 Langfuse self-hosté
+# Langfuse self-hosté
 
-> **Leçon de la section [6.1 Observabilité](../6.1-observabilite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -23,12 +20,12 @@ déploiement docker compose de plus, dans le style des autres services.
   Postgres (métadonnées), ClickHouse (traces à volume), Redis, MinIO
   (S3 local). C'est le service le plus « gros » du homelab jusqu'ici —
   bonne occasion de pratiquer un compose multi-services avec réseau
-  interne ([roadmap §4](../../../roadmap.md), déjà acquis).
+  interne ([roadmap §4](../_archive/roadmap.md), déjà acquis).
 - **Le modèle de données à connaître** : organisation → projet →
   **traces** → **observations** (spans, generations, events) ; clés
   API par projet (public/secret) ; un projet par module ici (rag,
   agent) pour des tableaux de bord séparés.
-- **Les alternatives, à situer** ([roadmap couche T](../../../roadmap.md)) :
+- **Les alternatives, à situer** ([roadmap couche T](../_archive/roadmap.md)) :
   LangSmith (SaaS, écosystème LangChain), Helicone (proxy), Arize
   Phoenix (open source, orienté evals) — le critère décisif ici :
   self-hostable et agnostique du framework.
@@ -41,7 +38,7 @@ déploiement docker compose de plus, dans le style des autres services.
 Compose Langfuse sur le homelab, projet « homelab-rag », clés en
 variables d'environnement, healthcheck — puis première trace de test
 envoyée depuis un script minimal avant d'instrumenter quoi que ce soit
-([6.1.2](../6.1.2-tracer-les-appels/6.1.2-tracer-les-appels.md)).
+([6.1.2](tracer-les-appels.md)).
 
 ## Pièges connus
 
@@ -55,18 +52,18 @@ envoyée depuis un script minimal avant d'instrumenter quoi que ce soit
   LAN, un mot de passe solide et pas de port forwardé.
 - Verrouiller ses appels sur le SDK Langfuse partout dans le code :
   instrumenter à la frontière provider
-  ([2.4.2](../../../02-homelab-rag/2.4-service-et-craftsmanship/2.4.2-backend-commutable/2.4.2-backend-commutable.md)) —
+  ([2.4.2](../retrieval/backend-commutable.md)) —
   un seul point de couture, remplaçable.
 
-## Question d'entretien
+## Se tester
 
 > « Pourquoi self-hoster son observabilité LLM ? »
 > Les traces contiennent prompts et réponses — le plus sensible du
 > système ; self-host = confidentialité par construction, coût nul à
 > l'échelle homelab, et l'argument souveraineté/RGPD des offres
-> françaises ([roadmap §10.3](../../../roadmap.md)).
+> françaises ([roadmap §10.3](../_archive/roadmap.md)).
 
 ## Références
 
 - Doc self-hosting Langfuse (docker compose v3)
-- [Roadmap couche T](../../../roadmap.md) — le paysage des outils
+- [Roadmap couche T](../_archive/roadmap.md) — le paysage des outils

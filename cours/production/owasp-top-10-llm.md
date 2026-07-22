@@ -1,13 +1,10 @@
-# 6.2.1 OWASP Top 10 for LLM Applications
+# OWASP Top 10 for LLM Applications
 
-> **Leçon de la section [6.2 Sécurité](../6.2-securite.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
-Le référentiel que « connaître par cœur » ([roadmap](../../../roadmap.md))
+Le référentiel que « connaître par cœur » ([roadmap](../_archive/roadmap.md))
 n'est pas une figure de style : l'OWASP Top 10 for LLM Applications est
 le vocabulaire commun des offres sécurité IA. La compétence n'est pas
 de le réciter mais de **mapper chaque risque sur son propre système** —
@@ -19,16 +16,16 @@ ce qu'on a déjà mitigé, ce qui reste ouvert.
 
   | # | Risque | Où dans ce repo |
   |---|---|---|
-  | LLM01 | Prompt injection | [5.3.1](../../../05-homelab-mcp/5.3-securite/5.3.1-prompt-injection-indirecte/5.3.1-prompt-injection-indirecte.md) (démo) |
-  | LLM02 | Sensitive info disclosure | traces self-hostées [6.1.1](../../6.1-observabilite/6.1.1-langfuse-self-hoste/6.1.1-langfuse-self-hoste.md), local-first |
+  | LLM01 | Prompt injection | [5.3.1](../mcp/prompt-injection-indirecte.md) (démo) |
+  | LLM02 | Sensitive info disclosure | traces self-hostées [6.1.1](langfuse-self-hoste.md), local-first |
   | LLM03 | Supply chain | modèles/paquets vérifiés, quantisations tracées |
   | LLM04 | Data & model poisoning | scan du corpus à l'indexation |
-  | LLM05 | Improper output handling | `calculer` filtré [1.1.3](../../../01-llm-from-scratch/1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md), sorties validées |
-  | LLM06 | Excessive agency | moindre privilège [3.1.2](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1.2-conteneur-moindre-privilege/3.1.2-conteneur-moindre-privilege.md), lecture seule MCP |
+  | LLM05 | Improper output handling | `calculer` filtré [1.1.3](../fondamentaux/function-calling.md), sorties validées |
+  | LLM06 | Excessive agency | moindre privilège [3.1.2](../agent/conteneur-moindre-privilege.md), lecture seule MCP |
   | LLM07 | System prompt leakage | pas de secret en prompt |
-  | LLM08 | Vector/embedding weaknesses | filtres [2.2.4](../../../02-homelab-rag/2.2-v0.0.2-qdrant-retrieval-avance/2.2.4-filtres-metadonnees/2.2.4-filtres-metadonnees.md), périmètres |
-  | LLM09 | Misinformation | grounding + citations [2.1.6](../../../02-homelab-rag/2.1-v0.0.1-rag-a-la-main/2.1.6-rag-complet/2.1.6-rag-complet.md), evals hallucination |
-  | LLM10 | Unbounded consumption | MAX_TOURS, plafonds, suivi coûts [6.1.3](../../6.1-observabilite/6.1.3-suivi-des-couts/6.1.3-suivi-des-couts.md) |
+  | LLM08 | Vector/embedding weaknesses | filtres [2.2.4](../retrieval/filtres-metadonnees.md), périmètres |
+  | LLM09 | Misinformation | grounding + citations [2.1.6](../retrieval/rag-complet.md), evals hallucination |
+  | LLM10 | Unbounded consumption | MAX_TOURS, plafonds, suivi coûts [6.1.3](suivi-des-couts.md) |
 
 - **La lecture transversale** : la moitié du Top 10 se mitige par
   **moindre privilège + validation des E/S** — exactement les deux
@@ -36,7 +33,7 @@ ce qu'on a déjà mitigé, ce qui reste ouvert.
   structure, pas mémorisé une liste.
 - **Ce qui reste ouvert (à assumer)** : le homelab n'a pas de gateway
   LLM ni de guardrails outillés (Llama Guard, etc.) — les *situer*
-  ([roadmap §10.1](../../../roadmap.md)) et dire pourquoi c'est hors
+  ([roadmap §10.1](../_archive/roadmap.md)) et dire pourquoi c'est hors
   scope à cette échelle.
 
 ## En pratique
@@ -56,7 +53,7 @@ les liens réels du repo, plus deux lignes par risque non mitigé
 - Ignorer les versions : OWASP LLM évolue (2023 → 2025) — citer
   l'édition, c'est montrer qu'on suit.
 
-## Question d'entretien
+## Se tester
 
 > « Que connaissez-vous de l'OWASP Top 10 for LLM ? »
 > Le citer, puis le mapper sur un système réel : injection démontrée,
@@ -67,4 +64,4 @@ les liens réels du repo, plus deux lignes par risque non mitigé
 ## Références
 
 - OWASP Top 10 for LLM Applications (édition courante)
-- [Roadmap couche T](../../../roadmap.md) — « à connaître par cœur »
+- [Roadmap couche T](../_archive/roadmap.md) — « à connaître par cœur »

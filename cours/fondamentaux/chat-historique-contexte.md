@@ -1,9 +1,6 @@
-# 1.1.1 Chat CLI, historique et contexte
+# Chat CLI, historique et contexte
 
-> **Leçon de la section [1.1 Socle sans framework](../1.1-socle-sans-framework.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis (20 juillet 2026)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`01_hello.py`](../../etapes/fondamentaux/01_hello.py)
 
 ## L'essentiel
 
@@ -20,7 +17,7 @@ fait unique.
   la liste complète et prédit le message suivant. Rien d'autre.
 - **Conséquence économique** : chaque tour re-paye tout le préfixe. Une
   conversation de n tours coûte O(n²) tokens cumulés — d'où le prompt
-  caching ([1.2.4](../../1.2-glossaire-executable/1.2.4-prompt-caching/1.2.4-prompt-caching.md))
+  caching ([1.2.4](../glossaire/prompt-caching.md))
   et la compaction.
 - **Streaming** : la réponse arrive token par token (lignes NDJSON chez
   Ollama, SSE chez les API cloud). L'UX de tout chat : afficher au fil
@@ -40,16 +37,16 @@ fait unique.
     quelques questions de rappel posées avant/après compaction (le
     fait du tour 2 survit-il ?) — sinon c'est une opinion.
 - **Compter les tokens** : le modèle ne voit pas des mots
-  (tokenisation, couche 0 de la [roadmap](../../../roadmap.md)) ;
+  (tokenisation, couche 0 de la [roadmap](../_archive/roadmap.md)) ;
   l'API renvoie les comptes exacts (`prompt_eval_count`/`eval_count`
   chez Ollama) — les afficher à chaque tour rend le coût visible.
 
 ## En pratique
 
-[01_hello.py](01_hello.py) (l'appel brut),
-[02_chat.py](02_chat.py) (boucle de chat + compteur de tokens),
-[03_stream.py](03_stream.py) (streaming NDJSON),
-[05_contexte.py](05_contexte.py) (`tronquer()` par slicing, puis
+[01_hello.py](../../etapes/fondamentaux/01_hello.py) (l'appel brut),
+[02_chat.py](../../etapes/fondamentaux/02_chat.py) (boucle de chat + compteur de tokens),
+[03_stream.py](../../etapes/fondamentaux/03_stream.py) (streaming NDJSON),
+[05_contexte.py](../../etapes/fondamentaux/05_contexte.py) (`tronquer()` par slicing, puis
 compaction déboguée en live : trace du résumé, placement en system).
 
 ## Pièges connus
@@ -61,7 +58,7 @@ compaction déboguée en live : trace du résumé, placement en system).
 - Estimer les tokens avec `len(texte.split())` — faux dès qu'il y a du
   code, des accents ou une autre langue ; utiliser les comptes de l'API.
 
-## Question d'entretien
+## Se tester
 
 > « Pourquoi l'API d'un LLM est-elle stateless, et qu'est-ce que ça
 > implique pour votre application ? »
@@ -73,5 +70,5 @@ compaction déboguée en live : trace du résumé, placement en system).
 
 ## Références
 
-- Karpathy, « Intro to LLMs » (couche 0 de la [roadmap](../../../roadmap.md))
+- Karpathy, « Intro to LLMs » (couche 0 de la [roadmap](../_archive/roadmap.md))
 - Doc API Ollama (`/api/chat`, streaming NDJSON)

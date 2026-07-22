@@ -1,9 +1,6 @@
-# 1.1.3 Function calling à la main
+# Function calling à la main
 
-> **Leçon de la section [1.1 Socle sans framework](../1.1-socle-sans-framework.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis (20 juillet 2026)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`06_outils.py`](../../etapes/fondamentaux/06_outils.py)
 
 ## L'essentiel
 
@@ -33,7 +30,7 @@ fait générer une trace de raisonnement explicite (« Thought: ») avant
 chaque action ; le function calling natif n'émet que l'action, le
 « raisonnement » restant implicite (ou dans le texte qui précède le
 tool_call). Même alternance, sans le R visible — et la boucle
-([1.1.4](../1.1.4-mini-boucle-agent/1.1.4-mini-boucle-agent.md)) n'est
+([1.1.4](boucle-agent.md)) n'est
 que la répétition de ce cycle.
 
 **Sous le capot du champ `tools`** : le serveur fusionne schémas et
@@ -50,7 +47,7 @@ périmètres.
 
 ## En pratique
 
-[06_outils.py](06_outils.py) : trois outils — `heure_actuelle`,
+[06_outils.py](../../etapes/fondamentaux/06_outils.py) : trois outils — `heure_actuelle`,
 `calculer` (eval filtré), et `modeles_charges` **écrit par Anthony de
 bout en bout** (appel httpx + schéma JSON + dispatch).
 
@@ -63,10 +60,10 @@ bout en bout** (appel httpx + schéma JSON + dispatch).
 - Oublier de renvoyer le résultat dans l'historique : le modèle
   « répond » sans avoir vu la donnée, en hallucinant l'exécution.
 
-## Question d'entretien
+## Se tester
 
 > « Expliquez ce qui se passe quand le modèle appelle un outil. »
-> La question n°2 du [relevé de terrain](../../../roadmap.md) — la
+> La question n°2 du [relevé de terrain](../_archive/roadmap.md) — la
 > réponse est le cycle en 4 étapes ci-dessus, au niveau HTTP/JSON,
 > jamais « le framework s'en occupe ».
 

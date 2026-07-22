@@ -1,9 +1,6 @@
-# 2.1.3 Chunking
+# Chunking
 
-> **Leçon de la section [2.1 v0.0.1 — le RAG à la main](../2.1-v0.0.1-rag-a-la-main.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir — [03_chunking.py](03_chunking.py)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`03_chunking.py`](../../etapes/retrieval/03_chunking.py)
 
 ## L'essentiel
 
@@ -16,7 +13,7 @@ métadonnée — condition des citations.
 ## Le savoir
 
 - **Pourquoi découper** : (1) la fenêtre du modèle d'embeddings est
-  limitée ([2.1.1](../2.1.1-embeddings/2.1.1-embeddings.md)) ; (2) un
+  limitée ([2.1.1](embeddings.md)) ; (2) un
   vecteur qui moyenne dix sujets n'est proche de rien (dilution) ;
   (3) au retrieval on veut injecter le passage pertinent, pas 40 Ko.
 - **Les stratégies, par sophistication croissante** :
@@ -31,16 +28,16 @@ métadonnée — condition des citations.
     coûteuse, rarement nécessaire.
 - **Métadonnées dès maintenant** : chaque chunk porte
   `{fichier_source, titre_de_section}` minimum — c'est ce qui permet
-  les citations en [2.1.6](../2.1.6-rag-complet/2.1.6-rag-complet.md)
+  les citations en [2.1.6](rag-complet.md)
   et les filtres en
-  [2.2.4](../../2.2-v0.0.2-qdrant-retrieval-avance/2.2.4-filtres-metadonnees/2.2.4-filtres-metadonnees.md).
+  [2.2.4](filtres-metadonnees.md).
 - **Ordres de grandeur** : viser ~200-800 tokens par chunk ; une
   section très longue se re-découpe, une minuscule se fusionne avec sa
   voisine ou garde son titre pour le contexte.
 
 ## En pratique
 
-[03_chunking.py](03_chunking.py) : parser les `.md` du corpus
+[03_chunking.py](../../etapes/retrieval/03_chunking.py) : parser les `.md` du corpus
 homelab, découper par sections, attacher les métadonnées, afficher la
 distribution des tailles (le premier réflexe de debug).
 
@@ -52,9 +49,9 @@ distribution des tailles (le premier réflexe de debug).
   le sujet du chunk est nommé — le préfixer au texte du chunk.
 - Optimiser le chunking à l'aveugle : c'est LE paramètre qui bouge les
   scores retrieval — ne le régler qu'avec les
-  [evals](../2.1.7-evals/2.1.7-evals.md) comme juge.
+  [evals](evals.md) comme juge.
 
-## Question d'entretien
+## Se tester
 
 > « Votre RAG répond mal : en quoi le chunking peut-il être coupable ? »
 > Chunks trop grands (dilution du vecteur), trop petits (sens
@@ -64,6 +61,6 @@ distribution des tailles (le premier réflexe de debug).
 
 ## Références
 
-- [Schéma 02_chunking](../../schemas/02_chunking.png)
+- [Schéma 02_chunking](../_schemas/retrieval/02_chunking.png)
 - Doc text splitters de LangChain — pour situer ce que la v0.0.3
   automatisera

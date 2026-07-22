@@ -1,10 +1,6 @@
-# 1.2 Glossaire exécutable
+# Glossaire exécutable
 
-> **Module 1 — 01-llm-from-scratch** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md) · [progression du module](../PROGRESSION.md)
-> **Statut** : 🔵 continu — alimenté par les modules 2-7 ; le module 1
-> n'est jamais fermé
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -19,20 +15,20 @@ module source l'introduit. Règle d'entrée :
 
 ## Contenu
 
-- [ ] **[1.2.1 BM25](1.2.1-bm25/1.2.1-bm25.md)** — retrieval lexical
-      (← [2.2](../../02-homelab-rag/2.2-v0.0.2-qdrant-retrieval-avance/2.2-v0.0.2-qdrant-retrieval-avance.md)),
+- **[1.2.1 BM25](bm25.md)** — retrieval lexical
+      (← [2.2](../retrieval/qdrant.md)),
       implémentable à la main
-- [ ] **[1.2.2 Re-ranking](1.2.2-re-ranking/1.2.2-re-ranking.md)** —
+- **[1.2.2 Re-ranking](re-ranking.md)** —
       ré-ordonner le top-k (← 2.2)
-- [ ] **[1.2.3 HNSW](1.2.3-hnsw/1.2.3-hnsw.md)** — l'index de Qdrant
+- **[1.2.3 HNSW](hnsw.md)** — l'index de Qdrant
       (← 2.2), « comprendre et schématiser », pas implémenter
-- [ ] **[1.2.4 Prompt caching](1.2.4-prompt-caching/1.2.4-prompt-caching.md)**
+- **[1.2.4 Prompt caching](prompt-caching.md)**
       — ne pas re-payer le préfixe stable (← couche 0 / module 3)
-- [ ] **[1.2.5 Handshake MCP](1.2.5-handshake-mcp/1.2.5-handshake-mcp.md)**
+- **[1.2.5 Handshake MCP](handshake-mcp.md)**
       — `tools/list` / `tools/call`
-      (← [5.2](../../05-homelab-mcp/5.2-client/5.2-client.md))
-- [ ] **[1.2.6 LoRA](1.2.6-lora/1.2.6-lora.md)** — culture fine-tuning
-      (← [6.3](../../06-production/6.3-culture-fine-tuning/6.3-culture-fine-tuning.md))
+      (← [5.2](../mcp/client.md))
+- **[1.2.6 LoRA](lora.md)** — culture fine-tuning
+      (← [6.3](../production/culture-fine-tuning.md))
 
 ## Synthèse
 
@@ -44,14 +40,14 @@ script exécutable — la preuve portable qu'aucune couche n'est magique.
 **Auto-contrôle** : pour chaque entrée, savoir répondre à « comment le
 referiez-vous en 50 lignes ? ».
 **Entrées candidates suivantes** (relecture critique du 21 juillet
-2026, [CHALLENGE.md](../../CHALLENGE.md)) : la **tokenisation** (ce
+2026, [CHALLENGE.md](../_archive/CHALLENGE.md)) : la **tokenisation** (ce
 que coûte vraiment le français accentué ou un bloc YAML), le
 **template de chat** (le texte que le modèle voit réellement — vu en
-[1.1.3](../1.1-socle-sans-framework/1.1.3-function-calling-a-la-main/1.1.3-function-calling-a-la-main.md))
+[1.1.3](../fondamentaux/function-calling.md))
 et l'**attention/KV cache** en schéma commenté — la couche 0 ne doit
 pas rester la seule couche magique du parcours.
 
-## Livrable
+## La règle
 
-[README](../README.md) anglais : « every entry is a runnable script » —
-pièce maîtresse du portfolio.
+Une entrée = un script qu'on peut lancer. Tant qu'un concept n'a pas
+sa version exécutable ici, il n'est pas acquis : il est récité.

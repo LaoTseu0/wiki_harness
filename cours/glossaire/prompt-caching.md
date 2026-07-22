@@ -1,15 +1,11 @@
-# 1.2.4 Prompt caching
+# Prompt caching
 
-> **Leçon de la section [1.2 Glossaire exécutable](../1.2-glossaire-executable.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ exercice à écrire (← couche 0 de la roadmap /
-> module 3 — les agents en vivent)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
 Chaque appel re-paye tout le préfixe (system, outils, exemples) — vu en
-[1.1.1](../../1.1-socle-sans-framework/1.1.1-chat-cli-historique-contexte/1.1.1-chat-cli-historique-contexte.md).
+[1.1.1](../fondamentaux/chat-historique-contexte.md).
 Le prompt caching évite de **recalculer ce préfixe stable** : le serveur
 conserve l'état interne (KV cache) du début du prompt et ne retraite
 que ce qui change. Pour un agent qui boucle avec le même system prompt,
@@ -60,7 +56,7 @@ prompt, pas une session).
 - Confondre prompt caching et cache de *réponses* : on économise le
   prefill, la génération reste payée et reste probabiliste.
 
-## Question d'entretien
+## Se tester
 
 > « Comment réduire le coût d'un agent qui fait 50 appels avec le même
 > prompt système ? »

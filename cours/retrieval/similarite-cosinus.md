@@ -1,10 +1,6 @@
-# 2.1.2 Similarité cosinus
+# Similarité cosinus
 
-> **Leçon de la section [2.1 v0.0.1 — le RAG à la main](../2.1-v0.0.1-rag-a-la-main.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis — [02_similarite.py](02_similarite.py),
-> **écrite par Anthony** (produit scalaire, normes, angle)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`02_similarite.py`](../../etapes/retrieval/02_similarite.py)
 
 ## L'essentiel
 
@@ -28,20 +24,20 @@ métrique du RAG, et elle tient en trois lignes de Python.
   produit scalaire projette un vecteur sur l'autre ; diviser par les
   normes ne garde que l'angle. Intuition 2D → valable en 768D.
 - **Le raccourci qui compte** : sur des vecteurs **normalisés**
-  (‖v‖ = 1, cas de [2.1.1](../2.1.1-embeddings/2.1.1-embeddings.md)),
+  (‖v‖ = 1, cas de [2.1.1](embeddings.md)),
   cosinus = produit scalaire tout court — trois multiplications-sommes,
   aucune racine carrée. C'est pour ça que les bases vectorielles
   proposent « dot » et « cosine » : sur du normalisé, c'est pareil.
 - **En Python pur** :
   `sum(a * b for a, b in zip(v1, v2))` — l'expression génératrice du
-  [PROGRESSION](../../PROGRESSION.md), écrite par Anthony.
+  [PROGRESSION](../_archive/journal/progression-fondamentaux.md), écrite par Anthony.
 - **Vs distance euclidienne** : sur vecteurs normalisés, les deux
   ordonnent pareil (‖A−B‖² = 2 − 2·cos) — le choix n'a d'importance
   que sur du non-normalisé.
 
 ## En pratique
 
-[02_similarite.py](02_similarite.py) : produit scalaire, normes
+[02_similarite.py](../../etapes/retrieval/02_similarite.py) : produit scalaire, normes
 et angle écrits à la main, vérifiés sur des paires de phrases dont on
 connaît la proximité attendue.
 
@@ -55,7 +51,7 @@ connaît la proximité attendue.
 - Comparer des scores entre modèles d'embeddings différents : chaque
   espace a sa géométrie.
 
-## Question d'entretien
+## Se tester
 
 > « Pourquoi le cosinus plutôt que la distance euclidienne pour comparer
 > des embeddings ? »
@@ -65,6 +61,6 @@ connaît la proximité attendue.
 
 ## Références
 
-- [Schéma 04_recherche_topk](../../schemas/04_recherche_topk.png) — la
+- [Schéma 04_recherche_topk](../_schemas/retrieval/04_recherche_topk.png) — la
   géométrie appliquée à la recherche
 - 3Blue1Brown, algèbre linéaire (produit scalaire) — pour l'intuition

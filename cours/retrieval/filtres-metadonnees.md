@@ -1,9 +1,6 @@
-# 2.2.4 Filtres métadonnées
+# Filtres métadonnées
 
-> **Leçon de la section [2.2 v0.0.2 — Qdrant + retrieval avancé](../2.2-v0.0.2-qdrant-retrieval-avance.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ⚪ à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## L'essentiel
 
@@ -12,7 +9,7 @@ vit dans `architecture/` est un handicap volontaire. Les filtres
 métadonnées **restreignent la recherche vectorielle à un sous-ensemble
 du payload** (dossier, type de doc) — exigés tels quels par les offres
 seniors, et gratuits chez nous : les métadonnées existent depuis le
-[chunking](../../2.1-v0.0.1-rag-a-la-main/2.1.3-chunking/2.1.3-chunking.md).
+[chunking](chunking.md).
 
 ## Le savoir
 
@@ -27,18 +24,18 @@ seniors, et gratuits chez nous : les métadonnées existent depuis le
     index sur les champs filtrés souvent (`fichier_source`, `type`).
 - **D'où viennent les filtres à l'exécution** :
   1. explicites (paramètre d'API — la
-     [2.4.1](../../2.4-service-et-craftsmanship/2.4.1-service-fastapi/2.4.1-service-fastapi.md)
+     [2.4.1](service-fastapi.md)
      l'exposera) ;
   2. déduits de la question (« dans la doc réseau… » → filtre
      `reseau/`) — un LLM léger peut extraire le filtre : ce sont les
      « filtres dynamiques » du context engineering
-     ([roadmap couche 0](../../../roadmap.md)) ;
+     ([roadmap couche 0](../_archive/roadmap.md)) ;
   3. de sécurité (périmètre par utilisateur) — hors scope homelab,
      mais LE cas entreprise à mentionner en entretien.
 - **Effet sur les scores** : filtrer améliore la *précision* (moins de
   candidats hors sujet) mais peut tuer le *rappel* si le filtre est
   faux — mesurer les deux dans
-  [2.2.5](../2.2.5-evals-comparatives/2.2.5-evals-comparatives.md).
+  [2.2.5](evals-comparatives.md).
 
 ## En pratique
 
@@ -58,7 +55,7 @@ où le filtre change la donne.
   l'indexation a écrit `type: "documentation"` — les métadonnées sont
   un contrat, à valider comme tel.
 
-## Question d'entretien
+## Se tester
 
 > « À quoi servent les métadonnées dans un RAG en production ? »
 > Citations (source exacte), filtres de pertinence (dossier/type),
@@ -68,5 +65,5 @@ où le filtre change la donne.
 ## Références
 
 - Doc Qdrant : filtering et payload indexes
-- [Roadmap couche 0](../../../roadmap.md) — « RAG et filtres
+- [Roadmap couche 0](../_archive/roadmap.md) — « RAG et filtres
   dynamiques » dans le context engineering

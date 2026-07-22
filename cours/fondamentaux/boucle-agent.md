@@ -1,9 +1,6 @@
-# 1.1.4 Mini-boucle d'agent
+# Mini-boucle d'agent
 
-> **Leçon de la section [1.1 Socle sans framework](../1.1-socle-sans-framework.md)**
-> · [sommaire](../../../sommaire.md) · [roadmap](../../../roadmap.md)
-> **Statut** : ✅ acquis (20 juillet 2026)
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md) · étape : [`07_agent.py`](../../etapes/fondamentaux/07_agent.py)
 
 ## L'essentiel
 
@@ -26,7 +23,7 @@ plafond l'arrête). Le pattern Pi : 4 outils, ~200 lignes. Tout le
     chemin, vérifier qu'il reste sous la racine) ;
   - **validation humaine** des commandes shell avant exécution
     (human-in-the-loop) — le germe du hook `tool_call` du
-    [module 3](../../../03-jarvis-agent/3.1-garde-fous-et-securite/3.1-garde-fous-et-securite.md).
+    [module 3](../agent/garde-fous.md).
 - **Leçons d'incidents** (vécues, à raconter) :
   - le modèle a fait une **typo dans un argument** (fichier mal nommé) ;
   - il a auto-corrigé `rm` → `del` selon la plateforme ;
@@ -41,7 +38,7 @@ plafond l'arrête). Le pattern Pi : 4 outils, ~200 lignes. Tout le
 
 ## En pratique
 
-[07_agent.py](07_agent.py) : sandbox `workspace/` (ignoré par
+[07_agent.py](../../etapes/fondamentaux/07_agent.py) : sandbox `workspace/` (ignoré par
 git), `ecrire_fichier` **écrit par Anthony** (try/except au-delà de la
 spec), validation humaine, MAX_TOURS.
 
@@ -52,18 +49,18 @@ spec), validation humaine, MAX_TOURS.
 - Ne pas tracer les tours : sans log de chaque tool_call, un
   comportement erratique est indébogable.
 - Prompt système d'agent trop long : chaque tour le re-paye
-  (→ [prompt caching](../../1.2-glossaire-executable/1.2.4-prompt-caching/1.2.4-prompt-caching.md)).
+  (→ [prompt caching](../glossaire/prompt-caching.md)).
 
-## Question d'entretien
+## Se tester
 
 > « Quels risques de sécurité pour un agent avec accès fichiers ? »
-> Question n°5 du [relevé de terrain](../../../roadmap.md) :
+> Question n°5 du [relevé de terrain](../_archive/roadmap.md) :
 > path-traversal, commandes destructives, exfiltration par outil,
 > injection via contenu lu ; défenses = sandbox, moindre privilège,
 > liste noire + human-in-the-loop, plafond de tours.
 
 ## Références
 
-- Le pattern Pi (harnais minimal) — couche 3 de la [roadmap](../../../roadmap.md)
-- [securite.md §5 du homelab](../../../../homelab/architecture/securite.md)
+- Le pattern Pi (harnais minimal) — couche 3 de la [roadmap](../_archive/roadmap.md)
+- [securite.md §5 du homelab](../../../homelab/architecture/securite.md)
   — les non-négociables

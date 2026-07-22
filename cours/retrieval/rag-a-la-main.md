@@ -1,9 +1,6 @@
-# 2.1 v0.0.1 — le RAG entièrement à la main 🔵
+# v0.0.1 — le RAG entièrement à la main
 
-> **Module 2 — 02-homelab-rag** · [sommaire](../../sommaire.md) ·
-> [roadmap](../../roadmap.md) · [progression du module](../PROGRESSION.md)
-> **Statut** : 🔵 en cours — 01 et 02 acquis, 03 à 07 à venir
-> **Dernière mise à jour** : 21 juillet 2026
+> [carte du cours](../carte.md)
 
 ## Vue d'ensemble
 
@@ -18,24 +15,24 @@ partie la plus valorisable du module.
 
 ## Contenu
 
-- [x] **[2.1.1 Embeddings](2.1.1-embeddings/2.1.1-embeddings.md)** —
+- **[2.1.1 Embeddings](embeddings.md)** —
       texte → vecteur 768 dims via Ollama, norme = 1
-- [x] **[2.1.2 Similarité cosinus](2.1.2-similarite-cosinus/2.1.2-similarite-cosinus.md)**
+- **[2.1.2 Similarité cosinus](similarite-cosinus.md)**
       — produit scalaire, normes, angle — écrite par Anthony
-- [ ] **[2.1.3 Chunking](2.1.3-chunking/2.1.3-chunking.md)** — découper
+- **[2.1.3 Chunking](chunking.md)** — découper
       les `.md` par sections, source en métadonnée
-- [ ] **[2.1.4 Indexation](2.1.4-indexation/2.1.4-indexation.md)** —
+- **[2.1.4 Indexation](indexation.md)** —
       pipeline chunk → embedding → SQLite
-- [ ] **[2.1.5 Recherche top-k](2.1.5-recherche-top-k/2.1.5-recherche-top-k.md)**
+- **[2.1.5 Recherche top-k](recherche-top-k.md)**
       — question → embedding → top-k (le « R » de RAG)
-- [ ] **[2.1.6 RAG complet](2.1.6-rag-complet/2.1.6-rag-complet.md)** —
+- **[2.1.6 RAG complet](rag-complet.md)** —
       retrieval → prompt avec contexte → réponse citée
-- [ ] **[2.1.7 Evals](2.1.7-evals/2.1.7-evals.md)** — jeu de questions,
+- **[2.1.7 Evals](evals.md)** — jeu de questions,
       score déterministe, baseline chiffrée
 
 > **Baseline provisoire mesurée** : retrieval 7/12, génération 7/12,
 > zéro hallucination — le point de départ chiffré que la
-> [v0.0.2](../2.2-v0.0.2-qdrant-retrieval-avance/2.2-v0.0.2-qdrant-retrieval-avance.md)
+> [v0.0.2](qdrant.md)
 > devra battre. Précision de méthode : « zéro hallucination » se fonde
 > sur la correspondance **question par question** (les cinq échecs de
 > génération sont les cinq échecs de retrieval), pas sur l'égalité des
@@ -50,12 +47,12 @@ les passages proches d'une question (2.1.2, 2.1.5), qu'on injecte dans
 le prompt pour une réponse sourcée (2.1.6) — et rien de tout cela ne
 compte sans mesure (2.1.7).* Quand le RAG répondra mal, le diagnostic
 suivra la même chaîne, maillon par maillon — c'est la question
-d'entretien n°3 du [relevé de terrain](../../roadmap.md).
+d'entretien n°3 du [relevé de terrain](../_archive/roadmap.md).
 **Auto-contrôle** : savoir dire quel maillon on accuserait en premier
 devant un score retrieval de 7/12 (indice : jamais le modèle).
 
 ## Références
 
-- Schémas du pipeline : [schemas/](../schemas/)
-- Bibliothèque commune : [rag_commun.py](../rag_commun.py)
-- Jeu d'evals : [evals/questions.json](../evals/questions.json)
+- Schémas du pipeline : [_schemas/retrieval/](../_schemas/retrieval/)
+- Bibliothèque commune : [rag_commun.py](../../etapes/retrieval/rag_commun.py)
+- Jeu d'evals : [evals/questions.json](../../etapes/retrieval/evals/questions.json)
