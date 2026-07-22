@@ -1,5 +1,5 @@
 {
   "readableLineLength": true,
-  "defaultViewMode": "source",
-  "livePreview": false
+  "defaultViewMode": "preview",
+  "livePreview": true
 }

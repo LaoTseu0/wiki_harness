@@ -5,3 +5,8 @@
 .venv/
 # Caches de bytecode Python
 __pycache__/
+
+# Bac a sable du mini-agent (etapes/fondamentaux/07_agent.py) : contenu genere
+workspace/
+# Index SQLite du RAG : artefact reconstructible par 04_indexer.py
+*.db
