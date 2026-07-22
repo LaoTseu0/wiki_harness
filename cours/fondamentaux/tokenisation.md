@@ -2,6 +2,13 @@
 
 > [carte du cours](../carte.md) · étape : [`09_tokens.py`](../../etapes/fondamentaux/09_tokens.py)
 
+## Où ça s'emboîte
+
+- **En amont** : rien — c'est la première chose que le modèle voit
+- **La pièce** : découpe le texte en unités du vocabulaire du modèle, seule unité dans laquelle tout se compte
+- **En aval** : [le template de chat](template-de-chat.md) — ses balises sont elles-mêmes des tokens · [sampling](sampling-et-prompting.md) — top-k et top-p filtrent des tokens · [attention](attention-et-kv-cache.md) — le coût se calcule en tokens
+- **À ne pas confondre avec** : les mots ou les caractères, dont le compte n'a aucun rapport avec la facture
+
 ## L'essentiel
 
 Le modèle ne lit pas des caractères, il lit des **tokens** : des morceaux
@@ -62,6 +69,24 @@ questions auxquelles ta mesure doit répondre :
 - le YAML est-il plus dense ou moins dense que la prose qui dit la même
   chose ? *(l'indentation et les sauts de ligne sont du texte, eux aussi)*
 
+## Mesures
+
+<!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
+
+## Recomposer
+
+**Ce que ça change à ce qu'on croyait savoir.** Le compteur qui gonflait à
+chaque tour dans le [chat](chat-historique-contexte.md) mesurait déjà des
+tokens — mais on le lisait comme un nombre abstrait. La troncature, la
+compaction et `num_predict` cessent d'être des réglages arbitraires : ce
+sont trois façons de tenir un budget dont on connaît enfin l'unité.
+
+**Ce qu'on peut prédire ailleurs.** Le [chunking](../retrieval/chunking.md)
+découpe le corpus en caractères, alors que la contrainte réelle du modèle
+est en tokens — sur de la doc française, la taille de chunk effective sera
+donc plus grande que prévue. Prédiction à vérifier le jour venu, avant même
+d'écrire la leçon.
+
 ## Pièges connus
 
 - **`prompt_eval_count` ne compte pas que ton texte** : il inclut les
@@ -84,6 +109,21 @@ questions auxquelles ta mesure doit répondre :
 - Un utilisateur se plaint que sa question « coûte » deux fois plus que
   celle de son collègue anglophone, à longueur de texte égale. Que lui
   réponds-tu, et qu'est-ce que tu vérifies d'abord ?
+
+## Ce que ça change dans le framework
+
+Rien pour l'instant, mais c'est le premier candidat : toute brique qui
+tronque, plafonne ou facture aura besoin d'un compteur de tokens. Il sera
+promu quand une deuxième leçon en aura besoin — pas avant.
+
+## À retenir
+
+- Le vocabulaire est figé à l'entraînement : ce qui était fréquent dans le
+  corpus est compact, ce qui était rare est cher.
+- Un budget de contexte n'est pas une quantité de texte : il dépend de la
+  langue, des accents et de la structure de ce qu'on y met.
+- Le compteur est indirect (`prompt_eval_count`) et biaisé par le template :
+  toute mesure commence par un tir à blanc.
 
 ## Références
 

@@ -2,6 +2,13 @@
 
 > [carte du cours](../carte.md) · étape : [`10_template.py`](../../etapes/fondamentaux/10_template.py)
 
+## Où ça s'emboîte
+
+- **En amont** : [le chat](chat-historique-contexte.md) — la liste de messages à aplatir · [tokenisation](tokenisation.md) — les balises se facturent en tokens
+- **La pièce** : aplatit la liste de messages en le texte unique et balisé que le modèle lit réellement
+- **En aval** : [function calling](function-calling.md) — le rôle `tool` n'est qu'une balise de plus · [prompt injection](../mcp/prompt-injection-indirecte.md) — écrire les balises soi-même est l'attaque la plus directe
+- **À ne pas confondre avec** : le prompt système, qui est un *contenu* placé dans le gabarit, pas le gabarit lui-même
+
 ## L'essentiel
 
 Depuis le [chat](chat-historique-contexte.md), on envoie une **liste de
@@ -34,19 +41,6 @@ nous. `/api/show` l'expose, au même endroit que les paramètres de sampling
 par défaut qui avaient piégé le [débogage du sampling](sampling-et-prompting.md).
 Même leçon : *ce que tu n'as pas envoyé, quelqu'un l'a rempli à ta place.*
 
-**Ce que ça explique rétroactivement.** Trois observations des leçons
-précédentes cessent d'être des mystères :
-
-- le **coût fixe** mesuré à la [tokenisation](tokenisation.md) : ce sont
-  ces balises, facturées à chaque tour ;
-- l'**autorité du message system** : il n'a pas de statut privilégié dans
-  le modèle, il est simplement *physiquement en tête* du texte. Ce qui
-  éclaire l'incident de la compaction — le même résumé ignoré en `user`,
-  suivi en `system` ;
-- le **rôle `tool`** du [function calling](function-calling.md) : encore
-  une balise, dans le même texte. Un appel d'outil n'est pas un canal
-  séparé, c'est une convention d'écriture.
-
 **Et quand le format est faux ?** Le modèle a été entraîné sur *ce*
 balisage. Lui en présenter un autre ne provoque pas d'erreur : il produit
 du texte plausible, et dégradé. C'est un bug silencieux — la pire espèce.
@@ -62,6 +56,31 @@ chemins — `/api/chat` (le serveur applique le template) et
 `/api/generate` avec `raw: true` (aucun template, notre chaîne telle
 quelle) — et on compare `prompt_eval_count`. Deux comptes égaux = même
 texte. On ne croit pas sa reconstruction sur parole, on la mesure.
+
+## Mesures
+
+<!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
+
+## Recomposer
+
+**Ce que ça change à ce qu'on croyait savoir.** Trois observations des
+leçons précédentes cessent d'être des mystères :
+
+- le **coût fixe** mesuré à la [tokenisation](tokenisation.md) : ce sont
+  ces balises, facturées à chaque tour ;
+- l'**autorité du message `system`** : il n'a aucun statut privilégié dans
+  le modèle, il est simplement *physiquement en tête* du texte. Ce qui
+  éclaire l'incident de la compaction — le même résumé ignoré en `user`,
+  suivi en `system` ;
+- le **rôle `tool`** du [function calling](function-calling.md) : encore
+  une balise, dans le même texte. Un appel d'outil n'est pas un canal
+  séparé, c'est une convention d'écriture.
+
+**Ce qu'on peut prédire ailleurs.** Puisque tout est un seul texte, une
+donnée récupérée par un outil ou par le RAG entre dans le même flux que les
+consignes, sans frontière typée. C'est mécaniquement pourquoi la
+[prompt injection indirecte](../mcp/prompt-injection-indirecte.md) fonctionne —
+et pourquoi aucune parade ne peut consister à « bien séparer les champs ».
 
 ## Pièges connus
 
@@ -89,6 +108,21 @@ texte. On ne croit pas sa reconstruction sur parole, on la mesure.
 - Tu ajoutes un modèle d'une autre famille derrière la même API. Qu'est-ce
   qui casse en premier, et comment le détectes-tu — sachant que rien ne
   lèvera d'exception ?
+
+## Ce que ça change dans le framework
+
+Rien tant qu'on parle à un seul serveur, qui applique le gabarit lui-même.
+Le jour du [backend commutable](../retrieval/backend-commutable.md), le
+template devient une propriété du provider : c'est là que la brique
+apparaîtra, pas avant.
+
+## À retenir
+
+- Les rôles n'existent pas dans le modèle : ce sont des balises dans un
+  texte unique, et leur ordre fait leur autorité.
+- Le gabarit est livré avec le modèle, pas choisi par nous — `/api/show`
+  l'expose, comme il exposait les défauts de sampling.
+- Un mauvais template ne lève aucune erreur : il dégrade silencieusement.
 
 ## Références
 

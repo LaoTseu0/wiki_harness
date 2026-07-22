@@ -1,0 +1,125 @@
+{
+	"nodes": [
+		{
+			"id": "piece",
+			"x": 0,
+			"y": 0,
+			"width": 260,
+			"height": 120,
+			"type": "text",
+			"text": "**attention-et-kv-cache**\n\nchaque token regarde tous les précédents, et le cache des K/V évite de tout recalculer à chaque nouveau token",
+			"color": "4"
+		},
+		{
+			"id": "amont0",
+			"x": -420,
+			"y": -65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/fondamentaux/tokenisation.md",
+			"color": "6"
+		},
+		{
+			"id": "amont1",
+			"x": -420,
+			"y": 65,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/fondamentaux/template-de-chat.md",
+			"color": "6"
+		},
+		{
+			"id": "aval0",
+			"x": 420,
+			"y": -130,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/inference/prompt-caching.md",
+			"color": "6"
+		},
+		{
+			"id": "aval1",
+			"x": 420,
+			"y": 0,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/inference/mecanismes-vllm.md",
+			"color": "6"
+		},
+		{
+			"id": "aval2",
+			"x": 420,
+			"y": 130,
+			"width": 260,
+			"height": 90,
+			"type": "file",
+			"file": "cours/inference/charge-concurrente.md",
+			"color": "6"
+		},
+		{
+			"id": "confusion",
+			"x": 0,
+			"y": 300,
+			"width": 260,
+			"height": 90,
+			"type": "text",
+			"text": "la fenêtre de contexte, qui est une limite déclarée quand le cache est un coût réel en VRAM",
+			"color": "1"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-amont0",
+			"fromNode": "amont0",
+			"fromSide": "right",
+			"toNode": "piece",
+			"toSide": "left",
+			"label": "le coût se compte en tokens"
+		},
+		{
+			"id": "e-amont1",
+			"fromNode": "amont1",
+			"fromSide": "right",
+			"toNode": "piece",
+			"toSide": "left",
+			"label": "c'est ce texte-là qui est lu au prefill"
+		},
+		{
+			"id": "e-aval0",
+			"fromNode": "piece",
+			"fromSide": "right",
+			"toNode": "aval0",
+			"toSide": "left",
+			"label": "garder le prefill d'un préfixe stable"
+		},
+		{
+			"id": "e-aval1",
+			"fromNode": "piece",
+			"fromSide": "right",
+			"toNode": "aval1",
+			"toSide": "left",
+			"label": "PagedAttention gère ce cache par pages"
+		},
+		{
+			"id": "e-aval2",
+			"fromNode": "piece",
+			"fromSide": "right",
+			"toNode": "aval2",
+			"toSide": "left",
+			"label": "c'est lui qui sature en premier"
+		},
+		{
+			"id": "e-confusion",
+			"fromNode": "piece",
+			"fromSide": "bottom",
+			"toNode": "confusion",
+			"toSide": "top",
+			"toEnd": "none",
+			"label": "≠"
+		}
+	]
+}

@@ -2,7 +2,27 @@
 
 Spécification de rédaction. Toute leçon de `cours/` s'y conforme, qu'elle
 soit écrite à la main ou générée. Ce fichier n'est pas une leçon : il ne
-s'indexe pas, il ne se lit pas dans le parcours.
+se lit pas dans le parcours.
+
+## La forme d'ensemble
+
+Une leçon va du **tout** aux **parties**, puis revient au **tout**. Ce n'est
+pas un principe importé : c'est la forme du repo lui-même — le framework
+maison est le tout, les leçons sont les parties, la promotion dans
+`src/framework/` est le retour au tout.
+
+| Phase | Rubrique | Opération mentale |
+|---|---|---|
+| Tout | `Où ça s'emboîte` | localiser la pièce parmi ses voisines |
+| — | `L'essentiel` | ce que la leçon affirme, et qu'on saura vérifier |
+| Parties | `Le savoir` | décomposer, expliquer le mécanisme |
+| Parties | `En pratique` · `Mesures` | l'épreuve du réel |
+| Tout | `Recomposer` | remettre la pièce, prédire ce qui change ailleurs |
+
+**`Recomposer` n'est pas `À retenir`.** Compresser, c'est redire les parties
+en plus court ; recomposer, c'est remettre la pièce dans l'ensemble et en
+tirer une prédiction sur autre chose. C'est le mouvement le plus difficile,
+donc celui qu'on saute — il est obligatoire.
 
 ## Choisir le gabarit
 
@@ -23,23 +43,55 @@ plus faible que celui d'une boîte noire.
 ## Les trois interdits
 
 Ils priment sur tout le reste. Un LLM qui rédige une leçon ne peut pas les
-respecter par bonne volonté : ils doivent être vérifiés après coup.
+respecter par bonne volonté : ils se vérifient après coup.
 
 1. **Ne jamais inventer une mesure.** Aucun chiffre de performance,
    latence, taille, score ou durée ne s'écrit sans avoir été produit ici.
-   Les emplacements prévus restent vides et marqués.
 2. **Ne jamais inventer un vécu.** Un incident, une panne, une erreur de
    parcours ne se rédigent que s'ils ont eu lieu. Pas d'anecdote
    plausible, pas de « on observe souvent que ».
 3. **Ne jamais livrer la solution d'un exercice non fait.** Le code de
-   `etapes/` est un squelette à trous avec un protocole, jamais une
-   implémentation complète.
+   `etapes/` est un squelette à trous avec un protocole.
 
-Marqueur unique pour les emplacements à ne pas combler :
+Marqueur des emplacements à ne pas combler :
 
 ```markdown
 <!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
 ```
+
+---
+
+## `Où ça s'emboîte` — la rubrique qui se dessine
+
+Quatre lignes, jamais plus, toujours dans cet ordre. C'est la **source** du
+schéma `.canvas` voisin, régénéré par `outils/canvas.py` — donc sa forme est
+contrainte.
+
+```markdown
+## Où ça s'emboîte
+
+- **En amont** : [tokenisation](tokenisation.md) — le texte est déjà découpé en tokens
+- **La pièce** : transforme la liste de messages en le texte unique que le modèle lit
+- **En aval** : [function calling](function-calling.md) — le rôle `tool` n'est qu'une balise de plus
+- **À ne pas confondre avec** : le prompt système, qui est un *contenu*, pas un *format*
+```
+
+- **En amont / En aval** : un lien par voisin, suivi d'un tiret cadratin et
+  de la relation en une clause — cette clause devient l'étiquette de la
+  flèche. Plusieurs voisins possibles, séparés par ` · `.
+- **La pièce** : ce que fait cet élément, sans lien, une ligne.
+- **À ne pas confondre avec** : l'axe de discrimination. Un concept se
+  définit autant par ce dont on le distingue que par ce qu'il est.
+
+Trois règles non négociables :
+
+1. **Rayon 1.** Voisins immédiats seulement. Sans cette borne, chaque schéma
+   rampe vers une carte globale et diverge de `carte.md`.
+2. **La prose est la source, le canvas est le rendu.** Le `.md` se lit seul ;
+   le `.canvas` se régénère. Jamais l'inverse.
+3. **Aucune analogie.** La réponse nomme des voisins réels du cours. Si on ne
+   peut pas la dessiner, c'est que l'ouverture est vague — le schéma échoue
+   avant le lecteur, et c'est le but.
 
 ---
 
@@ -50,18 +102,15 @@ Marqueur unique pour les emplacements à ne pas combler :
 
 > [carte du cours](../carte.md) · étape : [`NN_sujet.py`](../../etapes/domaine/NN_sujet.py)
 
+## Où ça s'emboîte
+
+Les quatre lignes décrites plus haut.
+
 ## L'essentiel
 
 Une thèse qu'on pourrait contredire, pas un résumé d'ambiance : ce que
 cette leçon affirme et qu'on saura vérifier. Se termine par la borne —
 ce que la leçon ne traite pas, et où ça se trouve.
-
-## Prérequis et suites
-
-- **Suppose acquis** : les notions nécessaires, chacune avec le lien vers
-  la leçon qui l'enseigne. Si une notion n'est enseignée nulle part, elle
-  se pose ici, en trois lignes, ou elle devient une leçon à part entière.
-- **Débloque** : ce que cette leçon rend possible ensuite.
 
 ## Le savoir
 
@@ -83,28 +132,39 @@ l'exécution : c'est l'écart entre la prédiction et le réel qui apprend.
 
 <!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
 
-Une fois l'étape lancée : les chiffres obtenus, le matériel et le modèle
-sur lesquels ils l'ont été, et ce qui a démenti la prédiction.
+Les chiffres obtenus, le matériel et le modèle sur lesquels ils l'ont été,
+et ce qui a démenti la prédiction.
+
+## Recomposer
+
+La pièce remise dans l'ensemble. Deux questions, pas une de plus :
+
+- qu'est-ce que ça **change à ce qu'on croyait déjà savoir** ? (les notions
+  déjà vues qui prennent un autre sens)
+- qu'est-ce qu'on peut désormais **prédire ailleurs**, dans une leçon qu'on
+  n'a pas encore faite ?
+
+Ni résumé, ni transition. Si le paragraphe pourrait être remplacé par
+« en résumé », il est à réécrire.
 
 ## Pièges connus
 
 - **Rencontrés** : ce qui a réellement mordu ici. Raconté en entier —
-  symptôme, hypothèse, test discriminant, cause. Un incident est du
-  contenu, pas une note de bas de page.
+  symptôme, hypothèse, test discriminant, cause.
 - **Anticipés** : ce qui devrait mordre, non vérifié à ce jour. Jamais
   mélangé avec les précédents.
 
 ## Se tester
 
 Trois questions maximum, qu'on peut **rater**. Chacune vient avec son
-critère de réussite : à quoi reconnaît-on une réponse juste. Une question
-sans critère ne discrimine rien.
+critère de réussite : à quoi reconnaît-on une réponse juste.
 
 ## Ce que ça change dans le framework
 
 La brique promue dans `src/framework/`, ou la phrase qui dit que cette
 leçon ne produit rien de réutilisable — et pourquoi. Rubrique obligatoire :
-c'est elle qui empêche le framework de rester un chapitre final.
+c'est le cas le plus concret de `Recomposer`, la pièce remise dans le tout
+littéral.
 
 ## À retenir
 
@@ -113,48 +173,47 @@ avant de reprendre l'étape.
 
 ## Références
 
-Chaque lien avec ce qu'on va y chercher. Une liste sans intention est une
-liste morte.
+Chaque lien avec ce qu'on va y chercher.
 ```
 
 ---
 
 ## Gabarit B — leçon « situer »
 
-Pas d'étape, donc pas de mesure ni de promotion. En contrepartie, la
-leçon doit assumer sa limite et fournir un critère de décision — sinon
-elle n'est qu'une définition allongée.
+Pas d'étape, donc pas de mesure ni de promotion. Les deux phases
+holistiques changent de nature : le tout n'est pas une chaîne qui tourne
+mais un **paysage**, et la recomposition est un **critère de décision**.
 
 ```markdown
 # Titre
 
 > [carte du cours](../carte.md)
 
+## Où ça s'emboîte
+
+Mêmes quatre lignes. Ici « en amont / en aval » se lisent comme
+« ce qui amène à en parler / ce que ça permet de comprendre ».
+
 ## L'essentiel
 
-La thèse, et la borne : ce que la leçon ne traite pas.
-
-## Prérequis et suites
-
-Identique au gabarit A.
+La thèse, et la borne.
 
 ## Le savoir
 
 Identique au gabarit A — mécanisme avant conclusion, une idée par unité.
-Le schéma y est plus important encore : sans exécution, c'est le seul
-support de vérification.
+Le schéma y compte davantage : sans exécution, c'est le seul support de
+vérification.
 
 ## Quand c'est la bonne réponse
 
-Le critère de décision : à quelles conditions on emploie ça, à quelles
-conditions on ne l'emploie pas, et par quoi on le remplace alors. C'est
-la vraie valeur d'une leçon « situer ».
+La recomposition de cette famille de leçons : à quelles conditions on
+emploie ça, à quelles conditions on ne l'emploie pas, et par quoi on le
+remplace alors. C'est la vraie valeur d'une leçon « situer ».
 
 ## Ce qu'on ne saura pas faire
 
-La limite assumée, en une ou deux phrases : ce que cette leçon permet de
-dire, et ce qu'elle ne permet pas de construire. Dit aussi ce qui la
-promouvrait en leçon « refaire ».
+La limite assumée : ce que la leçon permet de dire, et ce qu'elle ne permet
+pas de construire. Dit aussi ce qui la promouvrait en leçon « refaire ».
 
 ## Se tester
 
@@ -178,27 +237,29 @@ Chaque ligne se répond par oui ou non. Un seul non = la leçon repasse.
 | # | Contrôle |
 |---|---|
 | 1 | Le niveau visé (refaire / situer) est-il déclaré et le bon gabarit employé ? |
-| 2 | Chaque notion supposée connue est-elle liée à la leçon qui l'enseigne, ou posée sur place ? |
-| 3 | Toute propriété affirmée s'accompagne-t-elle de son mécanisme ? |
-| 4 | Un lecteur pourrait-il prédire le comportement dans un cas non traité ? |
-| 5 | La borne est-elle explicite — ce que la leçon ne couvre pas et où ça se trouve ? |
-| 6 | Y a-t-il un seul concept, ou la leçon en empile-t-elle plusieurs ? |
-| 7 | Aucun paragraphe n'empile-t-il plus d'une idée dense ? |
-| 8 | Tout chiffre présent a-t-il été produit ici, avec son contexte matériel ? |
-| 9 | Les emplacements de mesure non exécutés sont-ils vides et marqués ? |
-| 10 | Les pièges rencontrés sont-ils séparés des pièges anticipés ? |
-| 11 | Les incidents sont-ils racontés en entier, ou seulement cités ? |
-| 12 | Les questions de « se tester » peuvent-elles être ratées, et le critère est-il donné ? |
-| 13 | La leçon dit-elle ce qu'elle produit dans le framework, ou pourquoi rien ? |
-| 14 | Le schéma, s'il existe, porte-t-il une relation ou un ordre — pas une définition ? |
-| 15 | Une correction ponctuelle est-elle convertie en réflexe transférable ? |
-| 16 | Le ton distingue-t-il le savoir de manuel du vécu du parcours ? |
-| 17 | Le vocabulaire est-il exempt d'entretien, recruteur, offres, portfolio, CV ? |
-| 18 | La leçon est-elle exempte de statut, de case à cocher et de date de mise à jour ? |
+| 2 | `Où ça s'emboîte` tient-il en quatre lignes, à rayon 1, sans aucune analogie ? |
+| 3 | Le schéma `.canvas` se génère-t-il sans erreur depuis ces quatre lignes ? |
+| 4 | Chaque notion supposée connue est-elle liée à la leçon qui l'enseigne, ou posée sur place ? |
+| 5 | Toute propriété affirmée s'accompagne-t-elle de son mécanisme ? |
+| 6 | Un lecteur pourrait-il prédire le comportement dans un cas non traité ? |
+| 7 | La borne est-elle explicite — ce que la leçon ne couvre pas et où ça se trouve ? |
+| 8 | Y a-t-il un seul concept, ou la leçon en empile-t-elle plusieurs ? |
+| 9 | Aucun paragraphe n'empile-t-il plus d'une idée dense ? |
+| 10 | `Recomposer` produit-il une prédiction sur autre chose, plutôt qu'un résumé ? |
+| 11 | Tout chiffre présent a-t-il été produit ici, avec son contexte matériel ? |
+| 12 | Les emplacements de mesure non exécutés sont-ils vides et marqués ? |
+| 13 | Les pièges rencontrés sont-ils séparés des pièges anticipés ? |
+| 14 | Les incidents sont-ils racontés en entier, ou seulement cités ? |
+| 15 | Les questions de « se tester » peuvent-elles être ratées, et le critère est-il donné ? |
+| 16 | La leçon dit-elle ce qu'elle produit dans le framework, ou pourquoi rien ? |
+| 17 | Une correction ponctuelle est-elle convertie en réflexe transférable ? |
+| 18 | Le ton distingue-t-il le savoir de manuel du vécu du parcours ? |
+| 19 | Le vocabulaire est-il exempt d'entretien, recruteur, offres, portfolio, CV ? |
+| 20 | La leçon est-elle exempte de statut, de case à cocher et de date de mise à jour ? |
 
 ## Note sur la génération
 
-Les contrôles 8 à 11 et 16 ne sont pas satisfiables par un modèle : ils
+Les contrôles 11 à 14 et 18 ne sont pas satisfiables par un modèle : ils
 portent sur ce qui a été vécu et mesuré, qu'il ne peut que fabriquer de
 façon plausible. Une leçon générée est donc **complète sur le savoir et
 volontairement trouée sur le réel** — les trous se comblent à l'exécution,

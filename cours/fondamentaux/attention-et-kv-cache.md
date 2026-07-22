@@ -2,6 +2,13 @@
 
 > [carte du cours](../carte.md) · étape : [`11_kv_cache.py`](../../etapes/fondamentaux/11_kv_cache.py)
 
+## Où ça s'emboîte
+
+- **En amont** : [tokenisation](tokenisation.md) — le coût se compte en tokens · [le template de chat](template-de-chat.md) — c'est ce texte-là qui est lu au prefill
+- **La pièce** : chaque token regarde tous les précédents, et le cache des K/V évite de tout recalculer à chaque nouveau token
+- **En aval** : [prompt caching](../inference/prompt-caching.md) — garder le prefill d'un préfixe stable · [mécanismes vLLM](../inference/mecanismes-vllm.md) — PagedAttention gère ce cache par pages · [charge concurrente](../inference/charge-concurrente.md) — c'est lui qui sature en premier
+- **À ne pas confondre avec** : la fenêtre de contexte, qui est une limite déclarée quand le cache est un coût réel en VRAM
+
 ## L'essentiel
 
 L'**attention** est le mécanisme par lequel chaque token regarde tous les
@@ -45,12 +52,6 @@ C'est ce cache qui sature en premier sous
 PagedAttention gère par pages plutôt que d'un bloc — le sujet des
 [mécanismes vLLM](../inference/mecanismes-vllm.md).
 
-**Ce que ça éclaire ailleurs.** Le [prompt caching](../inference/prompt-caching.md)
-n'est rien d'autre que *garder le prefill d'un préfixe stable* d'une
-requête à l'autre : sans KV cache, l'idée n'a pas de sens. Et l'ordre du
-prompt cesse d'être esthétique — ce qui est stable se met devant, ce qui
-varie derrière, sinon le préfixe réutilisable n'existe pas.
-
 ## En pratique
 
 [11_kv_cache.py](../../etapes/fondamentaux/11_kv_cache.py) : la même tâche,
@@ -63,6 +64,25 @@ réponse — `prompt_eval_duration` (prefill) et `eval_duration` (decode).
   vite ? Ta mesure suffit-elle à trancher entre les deux ?
 - le débit de decode (tokens/s) bouge-t-il quand le prompt grossit ?
   Pourquoi devrait-il, ou ne pas devoir ?
+
+## Mesures
+
+<!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
+
+## Recomposer
+
+**Ce que ça change à ce qu'on croyait savoir.** *Lost in the middle* cesse
+d'être une curiosité empirique : c'est la conséquence d'un coût qui croît
+au carré. Et l'ordre du prompt cesse d'être une question de style — ce qui
+est stable se met devant, ce qui varie derrière, sinon aucun préfixe
+réutilisable n'existe.
+
+**Ce qu'on peut prédire ailleurs.** Le
+[prompt caching](../inference/prompt-caching.md) n'est rien d'autre que
+*garder le prefill d'un préfixe stable* d'une requête à l'autre — sans KV
+cache, l'idée n'a même pas de sens. On peut donc prédire, avant de faire la
+leçon, que son gain sera nul sur un prompt dont le début change à chaque
+appel, et maximal sur un long préambule figé.
 
 ## Pièges connus
 
@@ -87,6 +107,22 @@ réponse — `prompt_eval_duration` (prefill) et `eval_duration` (decode).
   modèle ni de machine. Quels leviers, et sur quel régime agit chacun ?
 - Ton service tient 5 utilisateurs et s'écroule à 8, sans que le CPU ni le
   GPU ne saturent. Quelle est ta première hypothèse ?
+
+## Ce que ça change dans le framework
+
+Aucune brique — c'est du savoir, pas du code. Mais une **contrainte de
+conception** que toute brique de construction de prompt devra respecter :
+partie stable devant, partie variable derrière. À vérifier au moment où le
+framework aura un assembleur de prompts.
+
+## À retenir
+
+- L'attention fait regarder chaque token à tous les précédents : le coût
+  croît au carré de la longueur.
+- Les K et V d'un token ne changent jamais, donc on les garde : c'est ce
+  qui sépare le prefill (lent, ~n²) du decode (rapide, ~n par token).
+- Ce cache occupe de la VRAM par séquence — c'est lui qui sature en premier
+  sous charge, bien avant le calcul.
 
 ## Références
 
