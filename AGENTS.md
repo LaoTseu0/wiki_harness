@@ -19,16 +19,6 @@ Point d'entrée : [cours/carte.md](cours/carte.md).
 
 ## Règles
 
-- **Pas de suivi d'avancement.** Ni statuts, ni cases à cocher, ni dates de
-  mise à jour, ni fichier de progression. L'état se lit dans le réel : ce qui
-  est dans `src/framework/` a été compris et promu, ce qui est dans `etapes/`
-  a tourné. Git porte l'historique.
-- **Ne jamais écrire d'avance la solution d'une leçon non faite.** Un énoncé,
-  un squelette à trous, oui. Du code complet livré clé en main, non — c'est
-  ce qui a rendu l'ancien repo inutilisable pour apprendre.
-- **Le cours n'est pas un CV.** Pas de « question d'entretien », pas de
-  vocabulaire d'offres d'emploi, pas de framing portfolio. Le critère de
-  validation est : *sais-tu le réimplémenter et prédire son comportement ?*
 - **Mesurer** : toute affirmation de performance s'appuie sur un chiffre
   produit ici, jamais sur un souvenir de doc.
 - **Un concept, un seul endroit.** Pas de dossier transverse qui rejoue un
