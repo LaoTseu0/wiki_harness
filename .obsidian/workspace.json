@@ -1,24 +1,24 @@
 {
   "main": {
-    "id": "89ff4b667104dc12",
+    "id": "326e02c56c7ba6e7",
     "type": "split",
     "children": [
       {
-        "id": "dd6224c95cd04111",
+        "id": "707f391df1f94a4a",
         "type": "tabs",
         "children": [
           {
-            "id": "ac609c5e555682e0",
+            "id": "d677cf8f545a8ce5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cours/_archive/roadmap.md",
-                "mode": "preview",
+                "file": "cours/fondamentaux/sampling-et-prompting.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "roadmap"
+              "title": "sampling-et-prompting"
             }
           }
         ]
@@ -27,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "02f70a348a970cdc",
+    "id": "108a005b6da6ac7f",
     "type": "split",
     "children": [
       {
-        "id": "4bc8485a75ea0b6a",
+        "id": "a010438644940f33",
         "type": "tabs",
         "children": [
           {
-            "id": "3128e74d2dc7d4fd",
+            "id": "8086501818db9b00",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,12 +48,12 @@
             }
           },
           {
-            "id": "c9deac6a59c464d3",
+            "id": "12410c67084fc3e7",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "seed",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +65,7 @@
             }
           },
           {
-            "id": "ea5ee187eb763bc8",
+            "id": "9232f861be760be7",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "34abadc732564456",
+    "id": "d3dd625628fa7470",
     "type": "split",
     "children": [
       {
-        "id": "291d9cd964e22af2",
+        "id": "0100bec3247a9fdd",
         "type": "tabs",
         "children": [
           {
-            "id": "5418d7aaf59e7a0f",
+            "id": "a8b53f6bf8608c22",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "04-ollama-vs-vllm-bench/4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md",
+                "file": "cours/fondamentaux/sampling-et-prompting.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rétrolien pour 4.3.1-mecanismes-vllm"
+              "title": "Rétrolien pour sampling-et-prompting"
             }
           },
           {
-            "id": "2dcd16b9d64bc971",
+            "id": "b17bc5c2f43ab873",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "04-ollama-vs-vllm-bench/4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md",
+                "file": "cours/fondamentaux/sampling-et-prompting.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Liens sortants de 4.3.1-mecanismes-vllm"
+              "title": "Liens sortants de sampling-et-prompting"
             }
           },
           {
-            "id": "1a6b980a10f35647",
+            "id": "af1e9893e32ea71a",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +137,7 @@
             }
           },
           {
-            "id": "8ef2d634cd7da96b",
+            "id": "3f019dead6353ddd",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,18 +151,18 @@
             }
           },
           {
-            "id": "a5a3158d445d80bc",
+            "id": "cb0221be6ef25a4e",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "04-ollama-vs-vllm-bench/4.3-analyse-et-verdict/4.3.1-mecanismes-vllm/4.3.1-mecanismes-vllm.md",
+                "file": "cours/fondamentaux/sampling-et-prompting.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Plan de 4.3.1-mecanismes-vllm"
+              "title": "Plan de sampling-et-prompting"
             }
           }
         ]
@@ -183,53 +183,41 @@
       "bases:Créer une nouvelle base": false
     }
   },
-  "active": "3128e74d2dc7d4fd",
+  "active": "d677cf8f545a8ce5",
   "lastOpenFiles": [
-    "CLAUDE.md.tmp.22584.8774b15d96dc",
-    "cours/fondamentaux/attention-et-kv-cache.md.tmp.22584.b2df65400f2b",
-    "cours/fondamentaux/template-de-chat.md.tmp.22584.60b9103faec3",
-    "cours/fondamentaux/template-de-chat.md.tmp.22584.a6b309390945",
-    "cours/fondamentaux/tokenisation.md.tmp.22584.87e9a21a17d6",
-    "cours/fondamentaux/tokenisation.canvas",
-    "cours/fondamentaux/template-de-chat.canvas",
-    "cours/fondamentaux/attention-et-kv-cache.canvas",
-    "cours/fondamentaux/tokenisation.md.tmp.22584.8ff7fc2e159f",
-    "outils/canvas.py",
-    "outils/canvas.py.tmp.22584.6865fbeaeefd",
-    "outils",
-    "cours/_gabarit.md.tmp.22584.e3dedc220b9a",
-    "cours/_archive/readme-anglais-fondamentaux.md",
-    "cours/carte.md",
-    "cours/_gabarit.md",
-    "cours/agent/garde-fous.md",
-    "cours/agent/conteneur-moindre-privilege.md",
-    "cours/_schemas/retrieval/04_recherche_topk.png",
-    "cours/_schemas/retrieval/03_indexation_sqlite.png",
-    "cours/_schemas/retrieval/02_chunking.png",
-    "cours/_schemas/retrieval/01_pipeline_rag.png",
-    "src/framework/README.md",
-    "CLAUDE.md",
+    "cours/_schemas/canvas/sampling-et-prompting.canvas",
+    "cours/_gabarit.md.tmp.15964.e540a6b660b1",
+    "cours/_gabarit.md.tmp.15964.b195b66aa239",
+    "cours/_schemas/canvas/attention-et-kv-cache.canvas",
+    "cours/_schemas/canvas/tokenisation.canvas",
+    "cours/_schemas/canvas/template-de-chat.canvas",
+    "cours/_schemas/canvas/chat-historique-contexte.canvas",
+    "outils/canvas.py.tmp.15964.b886859013ef",
+    "outils/canvas.py.tmp.15964.08a14477f662",
     "cours/fondamentaux/sampling-et-prompting.md",
-    "CLAUDE.md.tmp.22584.6fe1f71a3ad2",
-    "cours/fondamentaux/attention-et-kv-cache.md",
-    "sampling-et-prompting.md",
-    "cours/agent/quatre-regimes.md",
     "cours/fondamentaux/template-de-chat.md",
     "cours/fondamentaux/tokenisation.md",
-    "cours/_archive/roadmap.md",
-    "cours/multimodal/vlm-local.md",
-    "cours/multimodal/api-cloud-equivalentes.md",
-    "cours/retrieval/llamaindex-outillage.md",
-    "cours/retrieval/llamaindex.md",
-    "cours/fondamentaux/structured-output.md",
-    "cours/retrieval/re-ranking.md",
+    "outils/canvas.py.tmp.15964.81888b84d82f",
+    "cours/_schemas/canvas/generation-token.canvas",
+    "outils/canvas.py.tmp.23908.b342b3a0a42b",
+    "cours/_gabarit.md",
+    "outils/canvas.py.tmp.23908.3fac5010a6c3",
+    "cours/fondamentaux/attention-et-kv-cache.md",
+    "cours/retrieval/ragas-deepeval.md",
+    "cours/retrieval/recherche-top-k.md",
     "cours/retrieval/re-ranking-top-k.md",
-    "cours/_archive/glossaire-index.md",
-    "cours/production/lora.md",
-    "cours/inference/prompt-caching.md",
-    "cours/mcp/handshake-mcp.md",
-    "ou-agit-la-seed.canvas",
-    "Sans titre.canvas",
-    "Sans titre 1.canvas"
+    "cours/retrieval/re-ranking.md",
+    "cours/retrieval/backend-commutable.md",
+    "cours/retrieval/llamaindex-outillage.md",
+    "cours/glossaire/index.md",
+    "cours/glossaire/logits.md",
+    "cours/glossaire/modelfile.md",
+    "cours/glossaire/argmax.md",
+    "cours/glossaire/autoregression.md",
+    "cours/_archive/roadmap.md",
+    "cours/fondamentaux/chat-historique-contexte.md",
+    "outils/canvas.py.tmp.12332.da1028e0b9ba",
+    "outils/canvas.py.tmp.12332.f977c651bb92",
+    "cours/fondamentaux/index.md"
   ]
 }
