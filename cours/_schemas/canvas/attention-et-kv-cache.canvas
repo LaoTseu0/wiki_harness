@@ -1,88 +1,11 @@
 {
-	"nodes": [
-		{
-			"id": "tokenizer",
-			"x": 0,
-			"y": 0,
-			"width": 260,
-			"height": 110,
-			"type": "file",
-			"file": "cours/_schemas/canvas/tokenisation.canvas",
-			"color": "6"
-		},
-		{
-			"id": "modele",
-			"x": 340,
-			"y": 0,
-			"width": 260,
-			"height": 110,
-			"type": "text",
-			"text": "**Le modèle**\n\nattention sur tout le passé, KV cache pour ne pas tout recalculer",
-			"color": "4"
-		},
-		{
-			"id": "filtres",
-			"x": 680,
-			"y": 0,
-			"width": 260,
-			"height": 110,
-			"type": "file",
-			"file": "cours/_schemas/canvas/sampling-et-prompting.canvas",
-			"color": "6"
-		},
-		{
-			"id": "detail",
-			"x": 340,
-			"y": 200,
-			"width": 260,
-			"height": 110,
-			"type": "text",
-			"text": "entrent des tokens, sort un logit par entrée du vocabulaire",
-			"color": "3"
-		},
-		{
-			"id": "proc",
-			"x": 340,
-			"y": -190,
-			"width": 260,
-			"height": 60,
-			"type": "file",
-			"file": "cours/_schemas/canvas/generation-token.canvas",
-			"color": "2"
-		}
+	"nodes":[
+		{"id":"tokenizer","x":0,"y":20,"width":290,"height":140,"type":"file","file":"cours/_schemas/canvas/tokenisation.canvas","color":"6"},
+		{"id":"modele","x":630,"y":0,"width":310,"height":180,"type":"text","text":"**[[cours/fondamentaux/attention-et-kv-cache|Le modèle]]**\n\n- attention sur tout le passé, KV cache pour ne pas tout recalculer\n- entrent des tokens, sort un logit par entrée du vocabulaire","color":"4"},
+		{"id":"filtres","x":1280,"y":20,"width":290,"height":140,"type":"file","file":"cours/_schemas/canvas/sampling-et-prompting.canvas","color":"6"}
 	],
-	"edges": [
-		{
-			"id": "e-tokenizer-modele",
-			"fromNode": "tokenizer",
-			"fromSide": "right",
-			"toNode": "modele",
-			"toSide": "left",
-			"label": "des entiers du vocabulaire"
-		},
-		{
-			"id": "e-modele-filtres",
-			"fromNode": "modele",
-			"fromSide": "right",
-			"toNode": "filtres",
-			"toSide": "left",
-			"label": "un logit par token du vocabulaire"
-		},
-		{
-			"id": "e-detail",
-			"fromNode": "detail",
-			"fromSide": "top",
-			"toNode": "modele",
-			"toSide": "bottom",
-			"label": "la leçon ouvre ici"
-		},
-		{
-			"id": "e-proc",
-			"fromNode": "proc",
-			"fromSide": "bottom",
-			"toNode": "modele",
-			"toSide": "top",
-			"label": "processus complet"
-		}
+	"edges":[
+		{"id":"e-tokenizer-modele","fromNode":"tokenizer","fromSide":"right","toNode":"modele","toSide":"left","label":"des entiers du vocabulaire"},
+		{"id":"e-modele-filtres","fromNode":"modele","fromSide":"right","toNode":"filtres","toSide":"left","label":"un logit par token du vocabulaire"}
 	]
 }

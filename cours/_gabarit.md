@@ -99,18 +99,25 @@ traverse et quelle étape elle ouvre. Deux lignes, jamais plus.
   processus n'existe pas encore, on l'écrit d'abord — jamais en double.
 - **L'étape ouverte** : un ou plusieurs identifiants d'étape contigus, entre
   accents graves, séparés par ` · `, puis un tiret cadratin et ce qui entre /
-  ce qui sort. Cette clause devient l'encadré attaché à la boîte allumée.
+  ce qui sort. Cette clause devient une puce de la boîte allumée.
 - **L'incrustation** `![[<stem>.canvas]]` affiche le schéma sous la rubrique.
   Le nom de base suffit — Obsidian le résout où qu'il soit rangé.
 
 Le générateur produit **deux vues**, toutes deux rangées dans
 `cours/_schemas/canvas/` :
 
-- le **processus complet**, une fois par définition — la carte de référence ;
-- la **vue locale** de chaque leçon — trois boîtes : l'étape précédente,
-  celle de la leçon (allumée), l'étape suivante. Les deux boîtes voisines
-  sont des liens : un clic ouvre le canvas de la leçon voisine, et de proche
-  en proche on parcourt toute la chaîne.
+- le **processus complet**, une fois par définition — la carte de référence,
+  incrustée dans le fichier de `cours/_processus/` et nulle part ailleurs ;
+- la **vue locale** de chaque leçon — l'étape précédente, celle(s) de la
+  leçon (allumées, en vert), l'étape suivante. Les boîtes voisines sont des
+  liens : un clic ouvre le canvas de la leçon voisine, et de proche en proche
+  on parcourt toute la chaîne.
+
+La boîte verte se suffit à elle-même : son **titre est un lien vers la leçon**
+(`[[chemin|libellé de l'étape]]`), son corps une liste à puces — le rôle de
+l'étape, puis la clause « ce qui entre / ce qui sort ». Rien d'autre autour :
+ni encadré annexe, ni renvoi vers le processus complet, qu'on rejoint par la
+prose. Le générateur produit tout cela ; on ne dessine rien à la main.
 
 ```bash
 python outils/canvas.py            # régénère tout
@@ -122,9 +129,13 @@ Trois règles non négociables :
 1. **Une définition, N rendus.** Le processus est décrit une seule fois dans
    `cours/_processus/` ; les leçons n'en redonnent jamais leur version. Une
    mécanique fausse se corrige à un seul endroit.
-2. **La même machine, une boîte qui bouge.** Chaque vue locale montre les
-   étapes aux mêmes coordonnées d'une leçon à l'autre : seule change la boîte
-   allumée. C'est ce qui donne la vision de l'imbrication.
+2. **La même machine, une boîte qui bouge.** Une leçon qui ouvre une seule
+   étape la place toujours aux mêmes coordonnées, entre les mêmes voisines :
+   d'une leçon à l'autre, seul le contenu de la boîte allumée change. C'est
+   ce qui donne la vision de l'imbrication. Au-delà de deux étapes ouvertes,
+   la rangée devient une colonne — la leçon se lit alors de haut en bas, ses
+   voisines restant accrochées à gauche de la première et à droite de la
+   dernière.
 3. **La prose est la source, le canvas est le rendu.** Ne jamais éditer un
    `.canvas` à la main : il sera écrasé.
 
