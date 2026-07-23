@@ -4,14 +4,25 @@
 
 ## Où ça s'emboîte
 
-- **En amont** : [tokenisation](tokenisation.md) — le coût se compte en tokens · [le template de chat](template-de-chat.md) — c'est ce texte-là qui est lu au prefill
-- **La pièce** : chaque token regarde tous les précédents, et le cache des K/V évite de tout recalculer à chaque nouveau token
-- **En aval** : [prompt caching](../inference/prompt-caching.md) — garder le prefill d'un préfixe stable · [mécanismes vLLM](../inference/mecanismes-vllm.md) — PagedAttention gère ce cache par pages · [charge concurrente](../inference/charge-concurrente.md) — c'est lui qui sature en premier
-- **À ne pas confondre avec** : la fenêtre de contexte, qui est une limite déclarée quand le cache est un coût réel en VRAM
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `modele` — entrent des tokens, sort un logit par entrée du vocabulaire
+
+![[attention-et-kv-cache.canvas]]
+
+## Prérequis et suites
+
+- **Suppose acquis** : [la tokenisation](tokenisation.md) (le coût se compte en
+  tokens), [le template de chat](template-de-chat.md) (c'est ce texte-là qui
+  est lu au prefill).
+- **Débloque** : [le prompt caching](../inference/prompt-caching.md),
+  [les mécanismes vLLM](../inference/mecanismes-vllm.md) (PagedAttention gère
+  ce cache par pages), [la charge concurrente](../inference/charge-concurrente.md)
+  (c'est lui qui sature en premier).
 
 ## L'essentiel
 
-L'**attention** est le mécanisme par lequel chaque token regarde tous les
+L'**attention** est le mécanisme au cœur de l'architecture
+[transformers](../glossaire/transformers.md) : chaque token regarde tous les
 tokens précédents pour décider de quoi il dépend. Son coût croît avec le
 carré de la longueur — c'est pour ça qu'un long contexte n'est ni gratuit
 ni pleinement exploité. Le **KV cache** est l'optimisation qui rend la

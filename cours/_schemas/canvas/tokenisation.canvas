@@ -1,0 +1,88 @@
+{
+	"nodes": [
+		{
+			"id": "template",
+			"x": 0,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "file",
+			"file": "cours/_schemas/canvas/template-de-chat.canvas",
+			"color": "6"
+		},
+		{
+			"id": "tokenizer",
+			"x": 340,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "**La tokenisation**\n\ndécoupe ce texte en unités du vocabulaire",
+			"color": "4"
+		},
+		{
+			"id": "modele",
+			"x": 680,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "file",
+			"file": "cours/_schemas/canvas/attention-et-kv-cache.canvas",
+			"color": "6"
+		},
+		{
+			"id": "detail",
+			"x": 340,
+			"y": 200,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "entre un texte balisé, sortent des entiers du vocabulaire",
+			"color": "3"
+		},
+		{
+			"id": "proc",
+			"x": 340,
+			"y": -190,
+			"width": 260,
+			"height": 60,
+			"type": "file",
+			"file": "cours/_schemas/canvas/generation-token.canvas",
+			"color": "2"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-template-tokenizer",
+			"fromNode": "template",
+			"fromSide": "right",
+			"toNode": "tokenizer",
+			"toSide": "left",
+			"label": "un texte unique et balisé"
+		},
+		{
+			"id": "e-tokenizer-modele",
+			"fromNode": "tokenizer",
+			"fromSide": "right",
+			"toNode": "modele",
+			"toSide": "left",
+			"label": "des entiers du vocabulaire"
+		},
+		{
+			"id": "e-detail",
+			"fromNode": "detail",
+			"fromSide": "top",
+			"toNode": "tokenizer",
+			"toSide": "bottom",
+			"label": "la leçon ouvre ici"
+		},
+		{
+			"id": "e-proc",
+			"fromNode": "proc",
+			"fromSide": "bottom",
+			"toNode": "tokenizer",
+			"toSide": "top",
+			"label": "processus complet"
+		}
+	]
+}

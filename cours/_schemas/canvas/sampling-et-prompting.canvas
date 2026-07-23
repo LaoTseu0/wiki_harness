@@ -1,0 +1,124 @@
+{
+	"nodes": [
+		{
+			"id": "modele",
+			"x": 0,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "file",
+			"file": "cours/_schemas/canvas/attention-et-kv-cache.canvas",
+			"color": "6"
+		},
+		{
+			"id": "filtres",
+			"x": 340,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "**top-k / top-p**\n\ntaille la distribution des candidats",
+			"color": "4"
+		},
+		{
+			"id": "temperature",
+			"x": 680,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "**La temperature**\n\nrègle le tranchant de ce qui reste",
+			"color": "4"
+		},
+		{
+			"id": "tirage",
+			"x": 1020,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "**Le tirage**\n\nextrait un token, seul endroit où le hasard agit",
+			"color": "4"
+		},
+		{
+			"id": "messages",
+			"x": 1360,
+			"y": 0,
+			"width": 260,
+			"height": 110,
+			"type": "file",
+			"file": "cours/_schemas/canvas/chat-historique-contexte.canvas",
+			"color": "6"
+		},
+		{
+			"id": "detail",
+			"x": 340,
+			"y": 200,
+			"width": 260,
+			"height": 110,
+			"type": "text",
+			"text": "entre un logit par token du vocabulaire, sort un token unique",
+			"color": "3"
+		},
+		{
+			"id": "proc",
+			"x": 340,
+			"y": -190,
+			"width": 260,
+			"height": 60,
+			"type": "file",
+			"file": "cours/_schemas/canvas/generation-token.canvas",
+			"color": "2"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-modele-filtres",
+			"fromNode": "modele",
+			"fromSide": "right",
+			"toNode": "filtres",
+			"toSide": "left",
+			"label": "un logit par token du vocabulaire"
+		},
+		{
+			"id": "e-filtres-temperature",
+			"fromNode": "filtres",
+			"fromSide": "right",
+			"toNode": "temperature",
+			"toSide": "left",
+			"label": "les candidats retenus"
+		},
+		{
+			"id": "e-temperature-tirage",
+			"fromNode": "temperature",
+			"fromSide": "right",
+			"toNode": "tirage",
+			"toSide": "left",
+			"label": "la distribution tranchée"
+		},
+		{
+			"id": "e-tirage-messages",
+			"fromNode": "tirage",
+			"fromSide": "right",
+			"toNode": "messages",
+			"toSide": "left",
+			"label": "le token choisi, réinjecté — autorégression"
+		},
+		{
+			"id": "e-detail",
+			"fromNode": "detail",
+			"fromSide": "top",
+			"toNode": "filtres",
+			"toSide": "bottom",
+			"label": "la leçon ouvre ici"
+		},
+		{
+			"id": "e-proc",
+			"fromNode": "proc",
+			"fromSide": "bottom",
+			"toNode": "filtres",
+			"toSide": "top",
+			"label": "processus complet"
+		}
+	]
+}

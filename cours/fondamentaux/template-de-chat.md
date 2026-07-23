@@ -4,10 +4,19 @@
 
 ## Où ça s'emboîte
 
-- **En amont** : [le chat](chat-historique-contexte.md) — la liste de messages à aplatir · [tokenisation](tokenisation.md) — les balises se facturent en tokens
-- **La pièce** : aplatit la liste de messages en le texte unique et balisé que le modèle lit réellement
-- **En aval** : [function calling](function-calling.md) — le rôle `tool` n'est qu'une balise de plus · [prompt injection](../mcp/prompt-injection-indirecte.md) — écrire les balises soi-même est l'attaque la plus directe
-- **À ne pas confondre avec** : le prompt système, qui est un *contenu* placé dans le gabarit, pas le gabarit lui-même
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `template` — entre une liste de messages, sort un texte unique et balisé
+
+![[template-de-chat.canvas]]
+
+## Prérequis et suites
+
+- **Suppose acquis** : [le chat](chat-historique-contexte.md) (la liste de
+  messages), [la tokenisation](tokenisation.md) (les balises se facturent).
+- **Débloque** : [function calling](function-calling.md) (le rôle `tool` n'est
+  qu'une balise de plus),
+  [la prompt injection](../mcp/prompt-injection-indirecte.md) (écrire les
+  balises soi-même est l'attaque la plus directe).
 
 ## L'essentiel
 
@@ -35,8 +44,9 @@ texte**. La dernière ligne, ouverte et vide, est ce qui donne la parole au
 modèle — il complète, et signale sa fin en produisant `<|im_end|>`, un
 token spécial que le serveur intercepte pour couper la génération.
 
-**D'où vient le gabarit.** Il est livré avec le modèle (Modelfile chez
-Ollama, `chat_template` du tokenizer chez Hugging Face) — pas choisi par
+**D'où vient le gabarit.** Il est livré avec le modèle
+([Modelfile](../glossaire/modelfile.md) chez Ollama, `chat_template` du
+tokenizer chez Hugging Face) — pas choisi par
 nous. `/api/show` l'expose, au même endroit que les paramètres de sampling
 par défaut qui avaient piégé le [débogage du sampling](sampling-et-prompting.md).
 Même leçon : *ce que tu n'as pas envoyé, quelqu'un l'a rempli à ta place.*

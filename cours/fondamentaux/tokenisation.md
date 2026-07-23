@@ -4,10 +4,18 @@
 
 ## Où ça s'emboîte
 
-- **En amont** : rien — c'est la première chose que le modèle voit
-- **La pièce** : découpe le texte en unités du vocabulaire du modèle, seule unité dans laquelle tout se compte
-- **En aval** : [le template de chat](template-de-chat.md) — ses balises sont elles-mêmes des tokens · [sampling](sampling-et-prompting.md) — top-k et top-p filtrent des tokens · [attention](attention-et-kv-cache.md) — le coût se calcule en tokens
-- **À ne pas confondre avec** : les mots ou les caractères, dont le compte n'a aucun rapport avec la facture
+- **Processus** : [d'un texte à un token](../_processus/generation-token.md)
+- **L'étape ouverte** : `tokenizer` — entre un texte balisé, sortent des entiers du vocabulaire
+
+![[tokenisation.canvas]]
+
+## Prérequis et suites
+
+- **Suppose acquis** : rien — c'est la première chose que le modèle voit.
+- **Débloque** : [le template de chat](template-de-chat.md) (ses balises sont
+  elles-mêmes des tokens), [le sampling](sampling-et-prompting.md) (top-k et
+  top-p filtrent des tokens), [l'attention](attention-et-kv-cache.md) (le coût
+  se calcule en tokens).
 
 ## L'essentiel
 
