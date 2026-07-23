@@ -12,8 +12,13 @@ fois par token généré**. Le retour de `tirage` vers `messages` n'est pas
 une commodité de dessin : c'est l'autorégression, le token produit devient
 l'entrée du suivant, sans retour en arrière possible.
 
-L'ordre des trois dernières étapes est celui **mesuré sur llama.cpp**, pas
-celui des manuels — les filtres avant la temperature.
+L'ordre retenu ici pour les trois dernières étapes — les **filtres avant la
+temperature** — n'est pas celui des manuels, qui placent souvent l'inverse. Ce
+que l'étape [sampling](../fondamentaux/sampling.md) mesure, c'est que le filtre
+a le dernier mot sur la temperature ; l'ordre d'application dans le code du
+moteur, lui, n'a pas été vérifié ici — une sortie déterministe ne suffit pas à
+le discriminer, et il est parfois configurable. À lire dans sa propre
+configuration avant d'en dépendre.
 
 ## Les étapes
 

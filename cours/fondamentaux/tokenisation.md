@@ -13,7 +13,7 @@
 
 - **Suppose acquis** : rien — c'est la première chose que le modèle voit.
 - **Débloque** : [le template de chat](template-de-chat.md) (ses balises sont
-  elles-mêmes des tokens), [le sampling](sampling-et-prompting.md) (top-k et
+  elles-mêmes des tokens), [le sampling](sampling.md) (top-k et
   top-p filtrent des tokens), [l'attention](attention-et-kv-cache.md) (le coût
   se calcule en tokens).
 

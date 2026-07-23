@@ -1,11 +1,52 @@
 {
-	"nodes":[
-		{"id":"tirage","type":"file","file":"cours/_schemas/canvas/sampling-et-prompting.canvas","x":0,"y":20,"width":290,"height":140,"color":"6"},
-		{"id":"messages","type":"text","text":"**[[cours/fondamentaux/chat-historique-contexte|La liste de messages]]**\n\n- l'état côté client, renvoyé en entier à chaque tour\n- la liste côté client, renvoyée en entier à chaque tour et où le token généré est réinjecté","x":630,"y":0,"width":310,"height":200,"color":"4"},
-		{"id":"template","type":"file","file":"cours/_schemas/canvas/template-de-chat.canvas","x":1280,"y":20,"width":290,"height":140,"color":"6"}
+	"nodes": [
+		{
+			"id": "tirage",
+			"x": 0,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "cours/_schemas/canvas/sampling.canvas",
+			"color": "6"
+		},
+		{
+			"id": "messages",
+			"x": 630,
+			"y": 0,
+			"width": 310,
+			"height": 180,
+			"type": "text",
+			"text": "**[[cours/fondamentaux/chat-historique-contexte|La liste de messages]]**\n\n- l'état côté client, renvoyé en entier à chaque tour\n- la liste côté client, renvoyée en entier à chaque tour et où le token généré est réinjecté",
+			"color": "4"
+		},
+		{
+			"id": "template",
+			"x": 1280,
+			"y": 20,
+			"width": 290,
+			"height": 140,
+			"type": "file",
+			"file": "cours/_schemas/canvas/template-de-chat.canvas",
+			"color": "6"
+		}
 	],
-	"edges":[
-		{"id":"e-tirage-messages","fromNode":"tirage","fromSide":"right","toNode":"messages","toSide":"left","label":"le token choisi, réinjecté — autorégression"},
-		{"id":"e-messages-template","fromNode":"messages","fromSide":"right","toNode":"template","toSide":"left","label":"la liste à aplatir"}
+	"edges": [
+		{
+			"id": "e-tirage-messages",
+			"fromNode": "tirage",
+			"fromSide": "right",
+			"toNode": "messages",
+			"toSide": "left",
+			"label": "le token choisi, réinjecté — autorégression"
+		},
+		{
+			"id": "e-messages-template",
+			"fromNode": "messages",
+			"fromSide": "right",
+			"toNode": "template",
+			"toSide": "left",
+			"label": "la liste à aplatir"
+		}
 	]
 }

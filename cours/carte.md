@@ -34,8 +34,10 @@ Construire :
 
 - [Chat, historique et contexte](fondamentaux/chat-historique-contexte.md) —
   modèle stateless, streaming, troncature et compaction
-- [Sampling et prompting](fondamentaux/sampling-et-prompting.md) —
-  temperature, top-k, top-p ; zero/few-shot, chain-of-thought
+- [Sampling](fondamentaux/sampling.md) —
+  temperature, top-k, top-p, le tirage et la portée de la seed
+- [Prompting](fondamentaux/prompting.md) —
+  zero/few-shot, chain-of-thought, ReAct, prompt système
 - [Function calling](fondamentaux/function-calling.md) —
   schémas JSON, parsing, exécution, renvoi
 - [Boucle d'agent](fondamentaux/boucle-agent.md) —

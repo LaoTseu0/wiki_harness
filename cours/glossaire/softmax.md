@@ -10,5 +10,5 @@ $$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$$
 Deux propriétés qui resservent partout : l'**ordre est conservé** (le plus
 gros logit reste la plus grosse probabilité), et les **écarts sont
 amplifiés** par l'exponentielle (un léger avantage en logit devient un net
-avantage en probabilité). La [temperature](../fondamentaux/sampling-et-prompting.md)
+avantage en probabilité). La [temperature](../fondamentaux/sampling.md)
 agit juste avant cette fonction.
