@@ -1,0 +1,19 @@
+[project]
+name = "framework"
+version = "0.0.1"
+description = "Framework LLM maison — sediment des lecons du cours"
+requires-python = ">=3.12"
+dependencies = ["httpx>=0.28", "pydantic>=2.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["wiki/src"]
+
+[tool.pytest.ini_options]
+# wiki/src/ sur le chemin d'import sans installer le paquet ni bricoler
+# sys.path dans les tests.
+pythonpath = ["wiki/src"]
+testpaths = ["wiki/tests"]
