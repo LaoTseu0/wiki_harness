@@ -39,7 +39,7 @@ configuration (`AGENTS.md`, `pyproject.toml`, `.obsidian/`) et `raw/`.
   est [wiki/cours/carte.md](wiki/cours/carte.md), et elle est unique.
 - **Si tu ne sais pas le refaire en ~50 lignes, il te faut une étape.** Un
   concept qu'un framework cache et qu'on ne saurait pas réimplémenter reste
-  une boîte noire tant qu'il n'a pas son script exécutable dans `wiki/etapes/`.
+  une boîte noire tant qu'il n'a pas son script exécutable dans le `wiki/etapes/`.
 
 ## Gabarit d'une leçon
 
