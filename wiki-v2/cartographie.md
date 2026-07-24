@@ -1,23 +1,8 @@
 # Cartographie du cours
 
-> Refaire à la main chaque couche d'une application LLM — de la génération d'un token jusqu'au harnais multi-agent — puis déposer ce qu'on a compris dans **Hosef**, la librairie maison sur laquelle le harnais sera bâti. Terrain : un petit modèle local.
+> Refaire à la main chaque couche d'une application LLM — de la génération d'un token jusqu'au harnais multi-agent — puis déposer ce qu'on a compris dans **Hosef**, la bibliothèque maison sur laquelle le harnais sera bâti. Terrain : un petit modèle local.
 
 Ce fichier fixe l'ordre du parcours. La forme d'une leçon est dans [template.md](template.md) ; ce qu'on construit, dans [cadrage.md](cadrage.md).
-
-## Le principe : des couches.
-
-Cette V2 range par **couche du système**. Chaque Parcours est une couche, et une couche est **un seul niveau d'abstraction** : on ne mélange pas le tirage d'un token avec l'aiguillage entre agents. Les couches montent dans l'ordre où la compréhension se construit — la génération d'abord, l'orchestration en haut — et on ne redescend jamais : chaque Parcours suppose la couche du dessous acquise.
-
-L'ordre est donc **cognitif** : on ne manipule une pièce qu'après avoir compris celle sur laquelle elle repose.
-
-## La forme d'un Parcours
-
-Un Parcours enseigne les **mécanismes** d'une couche — jamais un outil qu'on ne saurait pas refaire. Il se termine par deux sections fixes :
-
-- **Cas pratique** — des exercices sur la couche, à faire, pas à lire.
-- **Intégration** — la brique Hosef de la couche, déposée dans `src/hosef/`. C'est le retour au tout : la pièce comprise devient du code réutilisé.
-
-Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce que la rédaction devra couvrir, pour qu'aucune ne se perde. Une notion sans leçon propre part au glossaire ; aucune ne disparaît.
 
 ## Les Parcours
 
@@ -183,17 +168,4 @@ Aucun mécanisme nouveau. On compose les briques Hosef en un assistant qui tourn
 **Cas pratique** — le harnais est le cas pratique.
 **Intégration** — Hosef atteint sa première version stable ; le harnais tourne dessus.
 
-## Le transverse et le glossaire
 
-Certaines notions ne sont pas une couche : elles traversent tout le projet. Elles ne forment pas un Parcours, elles se pratiquent à chaque *Intégration*.
-
-
-- **Artisanat** — promotion (ce qui qualifie une brique), architecture modulaire, évolutivité sans friction, sortie précoce et semver, dogfooding, clean code, tests / typing / packaging.
-
-
-Et ce qui n'a pas de mécanisme propre part au glossaire, sans se perdre : `transformers`, `argmax`, `MoE`, `Modelfile`, et les termes croisés en chemin. 
-Les termes du glossaire utilisé dans des parcours son sous forme de liens pour consulté rapidement leur definition / explication.
-
-## Ce qui vient ensuite
-
-Le squelette est fixé : douze Parcours, en couches, chacun d'un seul niveau d'abstraction, chacun fermé par un *Cas pratique* et une *Intégration*. Reste à dériver, Parcours par Parcours, chaque notion en leçon ou en entrée de glossaire, avec son en-tête complet — c'est là que le graphe devient vérifiable par `outils/`. On construit un Parcours à la fois, dans l'ordre, en commençant par le 0.
