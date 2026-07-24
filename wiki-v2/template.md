@@ -7,25 +7,23 @@ Deux échecs de la V1 le guident.
 - **Le plan partait dans tous les sens.** Désormais chaque leçon déclare, en tête, ce dont elle dépend et ce qu'elle débloque.
 - **La langue était approximative.** Les conventions de langage d'AGENTS.md la cadrent, et la liste de contrôle la sanctionne. Une leçon juste sur le fond mais mal formulée ne sera pas validée.
 
-## L'en-tête
+## Frontmatter
 
-Chaque leçon s'ouvre sur un bloc de métadonnées. Il n'est pas décoratif : c'est lui qui rend le parcours vérifiable par un outil. Les prérequis pointent vers des leçons qui existent ; l'exercice existe dans `cas-pratique/` ; la brique promise existe dans `src/hosef/`. Un contrôle échoue si l'un ment.
+Chaque leçon s'ouvre sur un bloc de métadonnées. Il n'est pas décoratif : `promeut` pointe une brique qui existe dans `src/hosef/`, et un contrôle échoue si elle ment. Le reste identifie et date la note : `id` (slug stable, unique dans le dépôt), `type`, `tags`, `created`, `updated`.
 
 ```yaml
 ---
+id: sampling
+type: leçon
 titre: Le sampling
-niveau: refaire            # refaire | situer
-statut: prévue             # prévue | écrite | mesurée
-parcours: 0-la-generation
-prérequis: [tokenisation, le-template-de-chat]
-débloque: [prompting, structured-output]
-processus: generation-token          # ou : aucun
-étape: sampler                        # l'étape ouverte dans le processus
+tags: [generation, sampling]
+created: 2026-07-24
+updated: 2026-07-24
 promeut: hosef/sampling.py        # ou : aucune — <raison en une ligne>
 ---
 ```
 
-`statut` dit où en est la leçon, sans le commenter dans le corps : `prévue` (titre réservé), `écrite` (savoir complet, réel encore troué), `mesurée` (l'étape a tourné, les chiffres sont là).
+Les prérequis, ce que la leçon débloque, le processus et l'étape ne sont plus dans le frontmatter : ils vivent dans le corps — `Prérequis et suites` et `Savoir le situer` — écrits une seule fois.
 
 ## Les trois interdits
 
@@ -67,7 +65,7 @@ Un seul plan, quel que soit le niveau.
 
 ```markdown
 ---
-<en-tête complet>
+<frontmatter complet>
 ---
 
 # Titre
@@ -84,7 +82,7 @@ Un seul plan, quel que soit le niveau.
 ## Références
 ```
 
-Une leçon « situer » sans cas pratique réduit le sous-titre à `> [cartographie](../cartographie.md)` seul, et déclare `processus`, `étape`, `promeut : aucun` dans l'en-tête. `Ce que ça dépose dans Hosef` dit alors pourquoi rien.
+Une leçon « situer » sans cas pratique réduit le sous-titre à `> [cartographie](../cartographie.md)` seul, omet le processus et l'étape dans `Savoir le situer`, et porte `promeut : aucune` dans le frontmatter. `Ce que ça dépose dans Hosef` dit alors pourquoi rien.
 
 ## Ce que contient chaque rubrique
 
@@ -101,7 +99,7 @@ Partout : registre impersonnel (« on »), une idée par phrase, le concret avan
 ### `Prérequis et suites`
 
 - **Rôle** — orienter avant d'entrer : ce qu'on tient déjà, ce que ça ouvre.
-- **Contenu** — les prérequis de l'en-tête rendus en liens, chacun avec la raison de sa présence en cinq mots. Puis ce que la leçon débloque, en liens. La version lisible de l'en-tête, la raison en plus.
+- **Contenu** — les prérequis rendus en liens, chacun avec la raison de sa présence en cinq mots. Puis ce que la leçon débloque, en liens. C'est ici, et non dans le frontmatter, que vivent les dépendances.
 - **Forme** — deux listes courtes, aucune prose de remplissage.
 - **Écueil** — recopier les slugs sans dire à quoi chacun sert ; nommer un prérequis que la leçon n'utilise jamais.
 
@@ -139,8 +137,8 @@ Rubrique composite : faire voir la machine entière, y placer la pièce, énonce
 
 Chaque ligne se répond par oui ou non. Un seul non, la leçon repasse.
 
-1. Le niveau (refaire / situer) est-il déclaré dans l'en-tête, cohérent avec la présence ou l'absence d'étape ?
-2. L'en-tête est-il complet, et chacun de ses liens pointe-t-il vers une cible réelle ?
+1. Le niveau (refaire / situer) se lit-il sans ambiguïté — un processus et une étape présents pour « refaire », absents pour « situer » ?
+2. Le frontmatter est-il complet, et `promeut` pointe-t-il vers une cible réelle, ou porte-t-il sa raison d'être « aucune » ?
 3. La leçon tient-elle sur **un** concept, sans « et » dans son titre ?
 4. `Savoir le situer` nomme-t-il un processus existant et une étape réelle, sans redécrire la chaîne ?
 5. Le schéma se génère-t-il, et `--verifier` passe-t-il ?
