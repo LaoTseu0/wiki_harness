@@ -5,11 +5,11 @@ Ce fichier fixe la forme de toute leçon de la V2. Ce n'est pas une leçon : on 
 Deux échecs de la V1 le guident.
 
 - **Le plan partait dans tous les sens.** Désormais chaque leçon déclare, en tête, ce dont elle dépend et ce qu'elle débloque. 
-- **La langue était approximative.** Une section entière la cadre, et la liste de contrôle la sanctionne. Une leçon juste sur le fond mais mal formulé ne sera pas valider.
+- **La langue était approximative.** Une section entière la cadre, et la liste de contrôle la sanctionne. Une leçon juste sur le fond mais mal formulée ne sera pas validée.
 
 ## Le mouvement : du tout aux parties, puis retour au tout
 
-Une leçon descend du tout vers les parties, puis remonte. Ce n'est pas un ornement : c'est la forme du dépôt. Le framework est le tout ; chaque leçon en détache une pièce pour la comprendre ; la promotion la repose dans le tout.
+Une leçon descend du tout vers les parties, puis remonte. Ce n'est pas un ornement : c'est la forme du dépôt. Hosef est le tout ; chaque leçon en détache une pièce pour la comprendre ; la promotion la repose dans le tout.
 
 | Phase   | Rubrique              | Geste mental                             |
 | ------- | --------------------- | ---------------------------------------- |
@@ -22,6 +22,9 @@ Une leçon descend du tout vers les parties, puis remonte. Ce n'est pas un ornem
 
 **`Recomposer` n'est pas un résumé.** Résumer, c'est redire les parties en plus court. Recomposer, c'est remettre la pièce dans l'ensemble et en tirer une compréhension sur son utilité dans son ensemble. Il est obligatoire.
 
+L'approche H-A-H s'observe sur la parti du début du cours, avec :
+Savoir le situer (H) - > L'essentiel (A) -> Recomposer (H)
+
 ## Deux niveaux : refaire ou situer
 
 | Niveau | On doit savoir… | Squelette |
@@ -33,19 +36,19 @@ Le niveau se déclare dans l'en-tête, il ne se devine pas. Une leçon « situer
 
 ## L'en-tête
 
-Chaque leçon s'ouvre sur un bloc de métadonnées. Il n'est pas décoratif : c'est lui qui rend le parcours vérifiable par un outil. Les prérequis pointent vers des leçons qui existent ; l'étape existe dans `etapes/` ; la brique promise existe dans `src/framework/`. Un contrôle échoue si l'un ment.
+Chaque leçon s'ouvre sur un bloc de métadonnées. Il n'est pas décoratif : c'est lui qui rend le parcours vérifiable par un outil. Les prérequis pointent vers des leçons qui existent ; l'exercice existe dans `cas-pratique/` ; la brique promise existe dans `src/hosef/`. Un contrôle échoue si l'un ment.
 
 ```yaml
 ---
 titre: Le sampling
 niveau: refaire            # refaire | situer
 statut: prévue             # prévue | écrite | mesurée
-mouvement: 1-la-physique
+parcours: 0-la-generation
 prérequis: [tokenisation, le-template-de-chat]
 débloque: [prompting, structured-output]
 processus: generation-token          # ou : aucun
 étape: sampler                        # l'étape ouverte dans le processus
-promeut: framework/sampling.py        # ou : aucune — <raison en une ligne>
+promeut: hosef/sampling.py        # ou : aucune — <raison en une ligne>
 ---
 ```
 
@@ -55,6 +58,7 @@ promeut: framework/sampling.py        # ou : aucune — <raison en une ligne>
 
 Le fond juste ne suffit pas. La V1 a échoué là-dessus ; la V2 en fait un motif de rejet.
 
+- **Le test du francophone natif prime** — règle suprême d'AGENTS.md : aucun calque de l'anglais, aucun faux-ami. Le jargon technique anglais, lui, reste en anglais.
 - **Registre écrit, précis.** Pas de béquilles de l'oral (« du coup », « en gros », « un peu »), pas d'emphase commerciale (« puissant », « incontournable »).
 - **Une phrase, une idée.** Phrases courtes par défaut. Un paragraphe défend une seule affirmation.
 - **Toute propriété affirmée porte sa cause.** Interdit : l'adjectif-verdict seul (« instable », « coûteux »). On donne le mécanisme qui le produit, ou on se tait.
@@ -108,19 +112,19 @@ Une leçon « situer » qui ne porte sur aucun processus n'a pas de schéma, et 
 
 # Titre
 
-> [cartographie](../cartographie.md) · étape : [`NN_sujet.py`](../etapes/…)
+> [cartographie](../cartographie.md) · cas pratique : [`NN_sujet.py`](../cas-pratique/…)
 
-## Où ça s'emboîte
 ## Prérequis et suites
+## Savoir le situer
 ## L'essentiel
-## Le savoir
+## Recomposer
+## Connaissances
 ## En pratique
 ## Mesures
 <!-- À MESURER — ne rien écrire ici sans avoir exécuté l'étape -->
-## Recomposer
 ## Pièges connus
 ## Se tester
-## Ce que ça change dans le framework
+## Ce que ça dépose dans Hosef
 ## À retenir
 ## Références
 ```
@@ -140,7 +144,7 @@ Pas d'étape, donc pas de mesure ni de promotion. Le tout n'est plus une chaîne
 
 ## Prérequis et suites
 ## L'essentiel
-## Le savoir
+## Connaissances
 ## Quand c'est la bonne réponse
 ## Ce qu'on ne saura pas faire
 ## Se tester
@@ -155,7 +159,7 @@ Chaque ligne se répond par oui ou non. Un seul non, la leçon repasse.
 1. Le niveau (refaire / situer) est-il déclaré, et le bon squelette employé ?
 2. L'en-tête est-il complet, et chacun de ses liens pointe-t-il vers une cible réelle ?
 3. La leçon tient-elle sur **un** concept, sans « et » dans son titre ?
-4. `Où ça s'emboîte` nomme-t-il un processus existant et une étape réelle, sans redécrire la chaîne ?
+4. `Savoir le situer` nomme-t-il un processus existant et une étape réelle, sans redécrire la chaîne ?
 5. Le schéma se génère-t-il, et `--verifier` passe-t-il ?
 6. Toute notion supposée connue est-elle liée à sa leçon, ou posée sur place en trois lignes ?
 7. Toute propriété affirmée porte-t-elle son mécanisme, jamais l'adjectif-verdict seul ?
@@ -164,7 +168,7 @@ Chaque ligne se répond par oui ou non. Un seul non, la leçon repasse.
 10. Tout chiffre a-t-il été produit ici, avec son matériel et son modèle — ou l'emplacement est-il vide et marqué ?
 11. Les pièges rencontrés sont-ils séparés des pièges anticipés, et racontés en entier ?
 12. La langue tient-elle la section « La langue » — registre, une idée par phrase, aucune auto-référence ?
-13. La leçon dit-elle ce qu'elle dépose dans le framework, ou pourquoi rien ?
+13. La leçon dit-elle ce qu'elle dépose dans Hosef, ou pourquoi rien ?
 
 ---
 

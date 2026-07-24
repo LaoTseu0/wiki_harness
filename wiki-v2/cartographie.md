@@ -1,12 +1,10 @@
 # Cartographie du cours
 
-> Refaire à la main chaque couche d'une application LLM — de la génération d'un token jusqu'au harnais multi-agent — puis déposer ce qu'on a compris dans **HOSeF**, la librairie maison sur laquelle le harnais sera bâti. Terrain : un petit modèle local.
+> Refaire à la main chaque couche d'une application LLM — de la génération d'un token jusqu'au harnais multi-agent — puis déposer ce qu'on a compris dans **Hosef**, la librairie maison sur laquelle le harnais sera bâti. Terrain : un petit modèle local.
 
 Ce fichier fixe l'ordre du parcours. La forme d'une leçon est dans [template.md](template.md) ; ce qu'on construit, dans [cadrage.md](cadrage.md).
 
-## Le principe : des couches, pas une étagère ni un récit
-
-La V1 rangeait par thème, sans ordre entre les dossiers — un plan de wiki, pas de cours. Une première V2 rangeait par récit de construction, mais le récit sautait d'un niveau d'abstraction à l'autre : on croisait la boucle d'agent avant de savoir ce qu'est un token.
+## Le principe : des couches.
 
 Cette V2 range par **couche du système**. Chaque Parcours est une couche, et une couche est **un seul niveau d'abstraction** : on ne mélange pas le tirage d'un token avec l'aiguillage entre agents. Les couches montent dans l'ordre où la compréhension se construit — la génération d'abord, l'orchestration en haut — et on ne redescend jamais : chaque Parcours suppose la couche du dessous acquise.
 
@@ -17,7 +15,7 @@ L'ordre est donc **cognitif** : on ne manipule une pièce qu'après avoir compri
 Un Parcours enseigne les **mécanismes** d'une couche — jamais un outil qu'on ne saurait pas refaire. Il se termine par deux sections fixes :
 
 - **Cas pratique** — des exercices sur la couche, à faire, pas à lire.
-- **Intégration** — la brique HOSeF de la couche, déposée dans `src/hosef/`. C'est le retour au tout : la pièce comprise devient du code réutilisé.
+- **Intégration** — la brique Hosef de la couche, déposée dans `src/hosef/`. C'est le retour au tout : la pièce comprise devient du code réutilisé.
 
 Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce que la rédaction devra couvrir, pour qu'aucune ne se perde. Une notion sans leçon propre part au glossaire ; aucune ne disparaît.
 
@@ -84,7 +82,7 @@ Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce
 - exécution ; renvoi du résultat au modèle
 - conception d'un outil — nom et description **sont** du prompt
 - forme du résultat rendu ; troncature d'une sortie énorme
-- erreurs actionnables ; idempotence
+- erreurs exploitables ; idempotence
 
 **Cas pratique** — un outil du schéma au renvoi, avec une erreur que le modèle sait rattraper.
 **Intégration** — `tools` : registre et dispatch d'outils natifs.
@@ -174,7 +172,7 @@ Les notions listées sous chaque Parcours sont **exhaustives** : elles fixent ce
 ### 11 · Le harnais
 *Pas une couche neuve : l'assemblage de toutes les précédentes.*
 
-Aucun mécanisme nouveau. On compose les briques HOSeF en un assistant qui tourne :
+Aucun mécanisme nouveau. On compose les briques Hosef en un assistant qui tourne :
 
 - la topologie d'agents concrète — qui sont les ouvriers, qui supervise
 - le sous-système mémoire câblé — les quatre natures, ensemble
@@ -183,15 +181,18 @@ Aucun mécanisme nouveau. On compose les briques HOSeF en un assistant qui tourn
 - garde-fous et observabilité branchés
 
 **Cas pratique** — le harnais est le cas pratique.
-**Intégration** — HOSeF atteint sa première version stable ; le harnais tourne dessus.
+**Intégration** — Hosef atteint sa première version stable ; le harnais tourne dessus.
 
 ## Le transverse et le glossaire
 
 Certaines notions ne sont pas une couche : elles traversent tout le projet. Elles ne forment pas un Parcours, elles se pratiquent à chaque *Intégration*.
 
+
 - **Artisanat** — promotion (ce qui qualifie une brique), architecture modulaire, évolutivité sans friction, sortie précoce et semver, dogfooding, clean code, tests / typing / packaging.
 
-Et ce qui n'a pas de mécanisme propre part au glossaire, sans se perdre : `transformers`, `argmax`, `MoE`, `Modelfile`, et les termes croisés en chemin.
+
+Et ce qui n'a pas de mécanisme propre part au glossaire, sans se perdre : `transformers`, `argmax`, `MoE`, `Modelfile`, et les termes croisés en chemin. 
+Les termes du glossaire utilisé dans des parcours son sous forme de liens pour consulté rapidement leur definition / explication.
 
 ## Ce qui vient ensuite
 

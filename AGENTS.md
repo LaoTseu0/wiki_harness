@@ -1,10 +1,10 @@
 # Conventions du langage ! Important !
 
 **Interdiction suprême de faire ça** : "forme la phrase en anglais, puis je la rhabille en français. Les mots deviennent français, la charpente reste anglaise — structure, images, collocations. Un lecteur natif entend l'anglais en dessous."
-
 **Interdiction suprême de faire ça** : utilisation de faux-amis, l'interdiction du calque.
+Tous les termes technique anglicisé peuvent resté en anglais pour la bonne comprehension du jargon !
 
-**le test du francophone natif est ABSOLUMENT IMPERATIF !!** 
+**Le test du francophone natif est ABSOLUMENT IMPERATIF !!** 
 
 # Conventions du repo
 
@@ -13,22 +13,26 @@ et en construire un framework maison maîtrisé de bout en bout.
 /raw : contiens des informations glané lors de mes recherches pour ajouté de la qualité aux cours. 
 Point d'entrée : [wiki/cours/carte.md](wiki/cours/carte.md).
 
+# Hierarchie des sources de verité
+
+AGENTS.md -> cadrage.md -> cartographie.md -> template.md
+
 ## Organisation
 
 Tout le contenu vit sous `wiki/` — la racine du repo ne garde que la
 configuration (`AGENTS.md`, `pyproject.toml`, `.obsidian/`) et `raw/`.
 
-| Dossier                 | Rôle                                                                                |
-| ----------------------- | ----------------------------------------------------------------------------------- |
-| `wiki-v2/parcours/`     | la connaissance, un dossier par domaine. L'ensemble structurer par couche logiciel. |
-| `wiki-v2/cas-pratique/` | Exercice en .py ou .ipynb                                                           |
-| `Hosef`                 | le framework maison "Hosef" — s'enrichit à chaque la fin de chaque Parcours         |
-| `Harnais`               | le harnais , finalité ultime, complète et entièrement maitrisé                      |
-| `wiki-v2/glossaire/`    | définitions courtes des termes qui n'ont pas de leçon                               |
-| `wiki/_schemas/canvas/` | schémas `.canvas` générés — jamais édités à la main                                 |
-| raw                     | Information brut à fusionner dans les cours uniquement sur demande et validation !  |
-| `outils/`               | l'outillage du repo lui-même (génération des schémas, contrôles)                    |
-| `wiki/cours/_archive/`  | écrit avant d'être vécu, ou journal historique. Ne pas s'y fier.                    |
+| Dossier                   | Rôle                                                                                |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| `wiki-v2/parcours/`       | la connaissance, un dossier par domaine. L'ensemble structurer par couche logiciel. |
+| `wiki-v2/cas-pratique/`   | Exercice en .py ou .ipynb                                                           |
+| `Hosef`                   | le framework maison "Hosef" — s'enrichit à chaque la fin de chaque Parcours         |
+| `Harnais`                 | le harnais , finalité ultime, complète et entièrement maitrisé                      |
+| `wiki-v2/glossaire/`      | définitions courtes des termes qui n'ont pas de leçon                               |
+| `wiki/_schemas/canvas/`   | schémas `.canvas` générés — jamais édités à la main                                 |
+| raw                       | Information brut à fusionner dans les cours uniquement sur demande et validation !  |
+| `outils/`                 | l'outillage du repo lui-même (génération des schémas, contrôles)                    |
+| `wiki-v1/cours/_archive/` | Ne pas s'y fier. Ne pas le consulté.                                                |
 
 ## Règles
 

@@ -41,10 +41,10 @@ Les faits ne sont pas indépendants : *Alice travaille avec Bob*, *depuis mars*,
 - **le score** — chaque arête porte un poids : importance × fréquence de rappel.
 - **le decay** — ce poids décroît avec le temps sans rappel, en exponentielle sur Δt. Ce qui ne ressert plus s'efface de soi-même ; ce qu'on réactive remonte.
 
-C'est la courbe de l'oubli, posée en formule. Le rappel classe par score × pertinence, dans une fenêtre de temps.
+C'est la courbe de l'oubli, mise en équation. Le rappel classe par score × pertinence, dans une fenêtre de temps.
 
 ### Wiki-LLM — la connaissance que l'agent s'écrit
-L'idée, que tu places sous le nom de Karpathy : la mémoire la plus utile n'est pas le tas d'épisodes bruts, mais ce que l'agent en a *tiré*, rédigé, rangé. Le harnais tient un wiki — des pages markdown liées, qu'il écrit et relit — exactement comme le dépôt que vous lisez en ce moment. Distinct du vectoriel : celui-ci rend des bouts bruts, le wiki rend une page curée, dédupliquée, auditable à l'œil. C'est la mémoire sémantique, mais *rédigée* au lieu d'*accumulée*.
+L'idée, que tu places sous le nom de Karpathy : la mémoire la plus utile n'est pas le tas d'épisodes bruts, mais ce que l'agent en a *tiré*, rédigé, rangé. Le harnais tient un wiki — des pages markdown liées, qu'il écrit et relit — exactement comme le dépôt que vous lisez en ce moment. Distinct du vectoriel : celui-ci rend des bouts bruts, le wiki rend une page triée, dédupliquée, qu'on peut relire d'un coup d'œil. C'est la mémoire sémantique, mais *rédigée* au lieu d'*accumulée*.
 
 ## Les processus
 
@@ -61,7 +61,7 @@ Une trajectoire réussie est une procédure à garder ; une trajectoire échoué
 
 ## La brique Hosef `memory`
 
-Hosef expose une **interface de rappel commune** — `write`, `recall(requête, quand, budget)` — derrière laquelle les quatre magasins se branchent, et un **ordonnanceur** pour les processus (le Dream tourne sur planning). Substrat par défaut : **SQLite** — une extension vectorielle, une table d'état, une table de graphe, un seul fichier local — avec Qdrant en montée de charge. HOSeF fournit les magasins et les processus ; le harnais décide ce qu'il consolide et quand lancer ces passes.
+Hosef expose une **interface de rappel commune** — `write`, `recall(requête, quand, budget)` — derrière laquelle les quatre magasins se branchent, et un **ordonnanceur** pour les processus (le Dream tourne sur planning). Substrat par défaut : **SQLite** — une extension vectorielle, une table d'état, une table de graphe, un seul fichier local — avec Qdrant en montée de charge. Hosef fournit les magasins et les processus ; le harnais décide ce qu'il consolide et quand lancer ces passes.
 
 ## Ce que ça impose au Parcours 6
 
@@ -73,7 +73,7 @@ Un ordre de construction, du sûr vers l'ambitieux, chaque marche mesurée avant
 4. **Wiki-LLM** — l'agent écrit et relit ses pages.
 5. **Processus** — scoring / decay, puis le Dream, puis l'auto-apprentissage.
 
-Les deux dernières marches sont à la frontière : on en construit une version minimale, on la mesure contre la mémoire sans elle, et on ne garde que ce qui bat la ligne de base. Pas de mémoire savante qui ne prouve pas qu'elle aide.
+Les deux dernières marches sont à la frontière : on en construit une version minimale, on la mesure contre la mémoire sans elle, et on ne garde que ce qui fait mieux que la référence. Une mémoire savante ne se garde que si elle prouve qu'elle aide.
 
 ## Ce qui reste ouvert
 
