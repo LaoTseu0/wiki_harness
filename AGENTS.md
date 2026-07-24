@@ -75,6 +75,12 @@ python wiki/outils/controles.py
 un chiffre signalé peut être un fait matériel ou un calcul redéductible,
 que le gabarit autorise. C'est à la relecture de trancher.
 
+
+## Git
+
+Interdiction de mettre des références de co-autheur anthropic ou autre.
+exemple: Co-authored-by: Claude <noreply@anthropic.com>
+Interdit.
 ## Code
 
 - Python 3.12 via `mise` ; un seul venv à la racine, dépendances dans
