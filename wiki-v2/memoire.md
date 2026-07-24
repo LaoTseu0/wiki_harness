@@ -1,6 +1,6 @@
 # La mémoire du harnais
 
-La mémoire est le cœur du harnais : c'est elle qui sépare un agent qui repart de zéro à chaque session d'un assistant qui vous connaît. C'est aussi le sous-système le plus ambitieux, et celui où l'on se noie le plus vite si l'on confond ce qu'une mémoire *est*, *où* elle est rangée, et *comment* elle évolue.
+La mémoire est le cœur du harnais : c'est elle qui sépare un agent qui repart de zéro à chaque session d'un assistant qui connaît la personne qu'il sert. C'est aussi le sous-système le plus ambitieux, et celui où l'on se noie le plus vite si l'on confond ce qu'une mémoire *est*, *où* elle est rangée, et *comment* elle évolue.
 
 Ce fichier fixe l'architecture. Il précède le découpage du Parcours 6.
 
@@ -18,7 +18,7 @@ Les quatre rôles cognitifs — travail, épisodique, sémantique, procédural �
 
 ## Degré zéro : la mémoire de travail
 
-La mémoire de travail, c'est la fenêtre de contexte elle-même — ce que le modèle a sous les yeux au tour courant. Elle est déjà construite : c'est la brique `context` du Parcours 2. Elle ne se range nulle part et ne survit pas au tour. Tout le reste de ce fichier est de la mémoire **à long terme** : ce qui doit survivre à la fenêtre, donc être rangé dehors et rappelé dedans.
+La mémoire de travail, c'est la fenêtre de contexte elle-même — ce que le modèle a sous les yeux au tour en cours. Elle est déjà construite : c'est la brique `context` du Parcours 2. Elle ne se range nulle part et ne survit pas au tour. Tout le reste de ce fichier est de la mémoire **à long terme** : ce qui doit survivre à la fenêtre, donc être rangé dehors et rappelé dedans.
 
 ## Les magasins
 
@@ -33,7 +33,7 @@ La mémoire de travail, c'est la fenêtre de contexte elle-même — ce que le m
 Le RAG du Parcours 6, dans son rôle de mémoire : on transforme le texte en vecteur, on le range, on rappelle les plus proches. C'est flou par construction — on retrouve « ce qui ressemble », jamais « la valeur exacte de X ». D'où le magasin suivant.
 
 ### Stateful — le rappel par la clé
-Tout ce qu'un rappel flou abîmerait : le prénom de l'utilisateur, la langue choisie, l'état d'une tâche en cours. On l'écrit sous une clé, on le relit à l'identique. Substrat : une table SQLite, ou un simple clé-valeur. Tenir la distinction vectoriel / stateful est le premier devoir du harnais — sinon il « se souvient à peu près » de votre nom.
+Tout ce qu'un rappel flou abîmerait : le prénom de l'utilisateur, la langue choisie, l'état d'une tâche en cours. On l'écrit sous une clé, on le relit à l'identique. Substrat : une table SQLite, ou un simple clé-valeur. Tenir la distinction vectoriel / stateful est le premier devoir du harnais — sinon il « se souvient à peu près » de ce prénom.
 
 ### Graphe temporel — les liens qui vieillissent
 Les faits ne sont pas indépendants : *Alice travaille avec Bob*, *depuis mars*, *sur le projet X*. Un graphe le tient : nœuds (entités, événements), arêtes (relations datées). Deux mécanismes le rendent vivant :
@@ -44,7 +44,7 @@ Les faits ne sont pas indépendants : *Alice travaille avec Bob*, *depuis mars*,
 C'est la courbe de l'oubli, mise en équation. Le rappel classe par score × pertinence, dans une fenêtre de temps.
 
 ### Wiki-LLM — la connaissance que l'agent s'écrit
-L'idée, que tu places sous le nom de Karpathy : la mémoire la plus utile n'est pas le tas d'épisodes bruts, mais ce que l'agent en a *tiré*, rédigé, rangé. Le harnais tient un wiki — des pages markdown liées, qu'il écrit et relit — exactement comme le dépôt que vous lisez en ce moment. Distinct du vectoriel : celui-ci rend des bouts bruts, le wiki rend une page triée, dédupliquée, qu'on peut relire d'un coup d'œil. C'est la mémoire sémantique, mais *rédigée* au lieu d'*accumulée*.
+L'idée, qu'on rattache à Karpathy : la mémoire la plus utile n'est pas le tas d'épisodes bruts, mais ce que l'agent en a *tiré*, rédigé, rangé. Le harnais tient un wiki — des pages markdown liées, qu'il écrit et relit — exactement comme ce dépôt de cours. Distinct du vectoriel : celui-ci rend des bouts bruts, le wiki rend une page triée, dédupliquée, qu'on peut relire d'un coup d'œil. C'est la mémoire sémantique, mais *rédigée* au lieu d'*accumulée*.
 
 ## Les processus
 
@@ -77,5 +77,5 @@ Les deux dernières marches sont à la frontière : on en construit une version 
 
 ## Ce qui reste ouvert
 
-- **Le wiki-LLM est-il un magasin ou la sortie de la consolidation ?** Je le pose en magasin — l'agent y écrit directement — et le Dream y promeut aussi. À trancher : deux voies d'écriture, ou une seule.
-- **Un score unique, ou un par magasin ?** Je penche pour une même formule, calibrée par magasin. Les mesures trancheront.
+- **Le wiki-LLM est-il un magasin ou la sortie de la consolidation ?** Posé ici comme magasin — l'agent y écrit directement — et le Dream y promeut aussi. À trancher : deux voies d'écriture, ou une seule.
+- **Un score unique, ou un par magasin ?** Hypothèse de départ : une même formule, calibrée par magasin. Les mesures trancheront.

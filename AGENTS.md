@@ -9,6 +9,7 @@ Tous les termes techniques anglicisés peuvent rester en anglais pour la bonne c
 - **Le test du francophone natif prime** — règle suprême d'AGENTS.md : aucun calque de l'anglais, aucun faux-ami. Le jargon technique anglais, lui, reste en anglais. 
 	- liste acceptée en plus des termes communs : 
 	  - Template
+	  - Input / Output — dans les signatures de pièces ou d'étapes, jamais « entrée / sortie » ni « entrent X, sort Y »
 
 
 - **Registre écrit, précis.** Pas de béquilles de l'oral (« du coup », « en gros », « un peu »), pas d'emphase commerciale (« puissant », « incontournable »).
@@ -23,7 +24,7 @@ Tous les termes techniques anglicisés peuvent rester en anglais pour la bonne c
 Cours + mises en pratique pour comprendre chaque couche d'une application LLM
 et en construire un framework maison maîtrisé de bout en bout.
 /raw : contient des informations glanées lors de mes recherches pour ajouter de la qualité aux cours. 
-Point d'entrée : [wiki/cours/carte.md](wiki/cours/carte.md).
+Point d'entrée : [wiki-v2/cartographie.md](wiki-v2/cartographie.md).
 
 # Hiérarchie des sources de vérité
 
@@ -31,8 +32,10 @@ AGENTS.md -> cadrage.md -> cartographie.md -> template.md
 
 ## Organisation
 
-Tout le contenu vit sous `wiki/` — la racine du repo ne garde que la
+Tout le contenu vit sous `wiki-v2/` — la racine du repo ne garde que la
 configuration (`AGENTS.md`, `pyproject.toml`, `.obsidian/`) et `raw/`.
+
+Attention ne jamais consulté ni répertorier le wiki-v1 car le contenu est extrément lourd et surchargerai le context.
 
 | Dossier                   | Rôle                                                                                |
 | ------------------------- | ----------------------------------------------------------------------------------- |
@@ -58,17 +61,17 @@ configuration (`AGENTS.md`, `pyproject.toml`, `.obsidian/`) et `raw/`.
 
 ## Gabarit d'une leçon
 
-La spécification complète est dans [wiki/cours/_gabarit.md](wiki/cours/_gabarit.md) 
+La spécification complète est dans [wiki-v2/template.md](wiki-v2/template.md) 
 
 ## Contrôles
 
-Ce qui doit rester vrai de `wiki/cours/` se vérifie en une commande — liens
+Ce qui doit rester vrai de `wiki-v2/parcours/` se vérifie en une commande — liens
 morts, fichiers orphelins, renvois vers `_archive/`, numérotation héritée,
 vocabulaire proscrit, chiffres hors rubrique `Mesures`, rubriques vides ou
 manquantes :
 
 ```bash
-python wiki/outils/controles.py
+python outils/conformite.py
 ```
 
 `--detail` liste chaque occurrence. Le script constate, il ne trie pas :
