@@ -8,20 +8,19 @@
 
 ## Comment le repo est organisé
 
-| Dossier | Contenu |
-|---|---|
-| `cours/` | la prose — un dossier par domaine, aucun numéro dans les chemins |
-| `etapes/` | les scripts : une étape = un mécanisme, numérotés par domaine |
-| `src/framework/` | le framework maison, sédiment des leçons acquises |
-| [`cours/glossaire/`](glossaire/index.md) | les termes qui n'ont pas de leçon |
+| Dossier                                               | Contenu                                                               |
+| ----------------------------------------------------- | --------------------------------------------------------------------- |
+| `cours/`                                              | la prose — un dossier par domaine, aucun numéro dans les chemins      |
+| `etapes/`                                             | les scripts : une étape = un mécanisme, numérotés par domaine         |
+| `src/framework/`                                      | le framework maison, sédiment des leçons acquises                     |
+| [`cours/glossaire/`](glossaire/index.md)              | les termes qui n'ont pas de leçon                                     |
 | [`cours/_processus/`](_processus/generation-token.md) | les chaînes techniques, décrites une seule fois et rendues en schémas |
-| `cours/_archive/` | ce qui a été écrit avant d'être vécu, et le journal du parcours |
+| `cours/_archive/`                                     | ancienne version, incomplete et avec un français très mal formulé.    |
 
 Trois règles :
 
 1. **À la main d'abord, l'outil ensuite.** On ne débogue que ce qu'on a écrit.
-2. **Une leçon acquise laisse du code dans `src/framework/`.** Sinon elle n'est
-   pas finie — le framework n'est pas un chapitre final, c'est le dépôt continu.
+2. **Un chapitre acquis laisse du code dans `src/framework/` ** si possible.   — le framework n'est pas un chapitre final, c'est le dépôt continu.
 3. **Mesurer.** Un pipeline LLM sans évaluation chiffrée est une démo.
 
 Un titre sans lien désigne une leçon prévue et pas encore écrite.

@@ -18,9 +18,9 @@
 ## L'essentiel
 
 Le framework se découpe en briques dont chacune a une interface étroite et un
-remplaçant concevable : client LLM, outils, boucle, mémoire, retrieval, evals.
-La règle tient en une ligne — **les dépendances vont dans un seul sens**, et
-une brique n'appelle jamais une autre brique concrète.
+remplaçant concevable : client LLM, contexte, outils, boucle, mémoire,
+retrieval, evals. La règle tient en une ligne — **les dépendances vont dans un
+seul sens**, et une brique n'appelle jamais une autre brique concrète.
 
 La thèse qu'on peut contredire n'est pas « il faut découper », que personne ne
 conteste. C'est que **le bon critère de découpe n'est pas le concept mais la
@@ -34,7 +34,7 @@ résultat, qui est [sortie précoce et semver](sortie-precoce-semver.md).
 
 ## Le savoir
 
-### Les six briques, et l'état réel du dossier
+### Les sept briques, et l'état réel du dossier
 
 | Brique | Ce qu'elle rend | État |
 |---|---|---|
