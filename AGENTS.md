@@ -57,13 +57,9 @@ Attention ne jamais consulté ni répertorier le wiki-v1 car le contenu est extr
 
 ## Règles
 
-- **Mesurer** : toute affirmation de performance s'appuie sur un chiffre
-  produit ici, jamais sur un souvenir de doc.
 - **Un concept, un seul endroit.** Pas de dossier transverse qui rejoue un
   deuxième axe de rangement.
-- **Si tu ne sais pas le refaire en ~50 lignes, il te faut une étape.** Un
-  concept qu'un framework cache et qu'on ne saurait pas réimplémenter reste
-  une boîte noire tant qu'il n'a pas son script exécutable dans `wiki/etapes/`.
+- **Aucun concept boîte noir**. On veut une maitrise total de l'outil. Si un concept est très pertinent mais complexe il doit avoir ça place dans le référentiel "Cartographie"
 
 ## Gabarit d'une leçon
 
