@@ -29,7 +29,12 @@ Point d'entrée : [wiki-v2/cartographie.md](wiki-v2/cartographie.md).
 
 # Hiérarchie des sources de vérité
 
-AGENTS.md -> cadrage.md -> cartographie.md -> template.md
+AGENTS.md (+ REGLES.md, importé ci-dessous) -> cartographie.md
+
+`REGLES.md` fusionne l'ancien cadrage (ce qu'on construit) et l'ancien gabarit
+de leçon (sous quelle forme elle rentre). Il est chargé avec ce fichier :
+
+@wiki-v2/REGLES.md
 
 ## Organisation
 
@@ -62,7 +67,7 @@ Attention ne jamais consulté ni répertorier le wiki-v1 car le contenu est extr
 
 ## Gabarit d'une leçon
 
-La spécification complète est dans [wiki-v2/template.md](wiki-v2/template.md) 
+La spécification vit dans la partie II de [REGLES.md](wiki-v2/REGLES.md), chargé avec ce fichier.
 
 ## Contrôles
 
