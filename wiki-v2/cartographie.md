@@ -71,15 +71,19 @@ Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon
 ### 4 · L'action
 *La couche : le modèle appelle des fonctions et lit leurs résultats.*
 
-- function calling — le modèle émet un appel, pas une action
-- schémas JSON d'outils ; parsing de l'appel
-- exécution ; renvoi du résultat au modèle
+- function calling — le modèle émet un appel, pas une action ; la sortie structurée la plus fiable, héritée du P3
+- natif vs émulé — le modèle entraîné à l'appel, ou l'appel forcé par prompt et décodage contraint quand il ne sait pas
+- schémas JSON d'outils — nom, description, paramètres ; parsing et validation de l'appel
+- tool_choice — laisser choisir, forcer un outil, ou l'interdire
+- le cycle d'un appel — l'assistant émet un ou plusieurs appels, on exécute, le rôle tool renvoie le résultat, l'assistant relit
+- enchaîner les appels — la boucle appel → résultat → appel, jusqu'à la réponse finale
 - conception d'un outil — nom et description **sont** du prompt
 - forme du résultat rendu ; troncature d'une sortie énorme
-- erreurs exploitables ; idempotence
+- erreurs exploitables ; idempotence, et la reprise d'un appel non idempotent
+- Ajouter au glossaire — appels parallèles, tool_call_id
 
 **Cas pratique** — un outil du schéma au renvoi, avec une erreur que le modèle sait rattraper.
-**Intégration** — `tools` : registre et dispatch d'outils natifs.
+**Intégration** — `tools` : registre d'outils natifs, validation des arguments, dispatch, rendu du résultat.
 
 ### 5 · Les outils distants — MCP
 *La couche : l'outil comme service distant, interchangeable.*
