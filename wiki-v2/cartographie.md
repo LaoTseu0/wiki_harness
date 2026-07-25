@@ -56,15 +56,17 @@ Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon
 ### 3 · Le contrôle
 *La couche : diriger ce que le modèle produit, sans toucher à ses poids.*
 
-- prompting — zero-shot, few-shot
-- chaîne de pensée ; ReAct
+- prompting — zero-shot, few-shot ; le nombre et l'ordre des exemples comptent
+- chaîne de pensée — faire produire le raisonnement avant la réponse
 - prompt système — sa portée, ce qu'il ne garantit pas
-- sortie structurée — JSON schema, grammaires
-- décodage contraint — comment la contrainte s'applique au tirage
-- validation (Pydantic) et retry
+- prefill de la réponse — commencer à la place du modèle pour forcer le format
+- sortie structurée — deux voies : prompt seul sans garantie, décodage contraint valide par construction
+- décodage contraint — masquage des logits par une grammaire ; logit_bias pour forcer ou bannir un token ; son coût sur le débit et le contenu
+- validation et retry — Pydantic, re-prompt avec l'erreur ; inutile quand la sortie est contrainte
+- Ajouter au glossaire — self-consistency, délimiteurs instruction/donnée
 
 **Cas pratique** — forcer une sortie JSON valide sous contrainte, puis sans, et mesurer l'écart.
-**Intégration** — `control` : gabarits de prompt, sortie structurée validée.
+**Intégration** — `control` : gabarits de prompt, prefill, décodage contraint, sortie structurée validée.
 
 ### 4 · L'action
 *La couche : le modèle appelle des fonctions et lit leurs résultats.*
@@ -127,6 +129,7 @@ Ce fichier fixe l'ordre du parcours. Ce qu'on construit et la forme d'une leçon
 *La couche : le flot de contrôle par-dessus plusieurs appels.*
 
 - la boucle d'agent — lire, écrire, exécuter ; la condition d'arrêt
+- ReAct — raisonner / agir / observer, le patron que la boucle exécute
 - garde-fous — hook `tool_call`, conteneur, moindre privilège
 - fiabilité de la boucle — timeout, retry, backoff, 429, outil non idempotent
 - sous-agents — contexte isolé, rapport en retour
