@@ -2,3 +2,6 @@
 
 Encodage variable qui représente chaque point de code Unicode avec un à quatre
 octets. Une frontière de fragment peut couper cette suite d’octets.
+
+Le signe « € » s’encode en trois octets, `E2 82 AC`. Une lecture qui s’arrête après
+`E2 82` doit attendre le troisième octet pour décoder le signe.
