@@ -1,6 +1,6 @@
 ## Reconstruction
 
-RMSNorm et une mise à jour résiduelle :
+**RMSNorm** et une mise à jour résiduelle :
 
 ```python
 from math import sqrt
@@ -20,5 +20,5 @@ def ajouter_residu(
     return [x + delta for x, delta in zip(residu, mise_a_jour)]
 ```
 
-Faire varier l'amplitude de `x` montre que RMSNorm remet l'échelle sous
+Faire varier l'amplitude de `x` montre que **RMSNorm** remet l'échelle sous
 contrôle, tandis que l'addition conserve exactement une mise à jour nulle.

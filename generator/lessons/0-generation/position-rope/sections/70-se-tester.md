@@ -1,6 +1,6 @@
 ## Se tester
 
-1. Pourquoi le masque causal ne remplace-t-il pas RoPE ?
+1. Pourquoi le **masque causal** ne remplace-t-il pas **RoPE** ?
 2. Quelles composantes sont tournées dans une implémentation Llama courante ?
 3. Pourquoi deux paires de positions séparées par le même déplacement peuvent-
    elles produire le même score dans la reconstruction ?

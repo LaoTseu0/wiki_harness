@@ -7,4 +7,4 @@
   partage des clés et valeurs entre groupes de requêtes.
 - [Transformers — implémentation Llama, révision `main` vérifiée le
   2026-07-27](https://github.com/huggingface/transformers/blob/main/src/transformers/models/llama/modeling_llama.py) —
-  projections, masque, scaling, softmax et répétition des groupes KV.
+  projections, masque, scaling, **softmax** et répétition des groupes KV.

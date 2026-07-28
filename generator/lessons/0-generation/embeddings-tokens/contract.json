@@ -11,7 +11,14 @@
     "Partage avec la projection de sortie"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "embedding",
+    "vocabulaire",
+    "token",
+    "checkpoint"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/05-embeddings-tokens.md",
   "profil_par_defaut": "complet",
@@ -28,7 +35,7 @@
       "embeddings"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "inference-transformer",
     "etape": "embeddings-tokens",

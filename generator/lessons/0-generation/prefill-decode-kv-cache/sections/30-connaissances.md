@@ -1,23 +1,23 @@
 ## Connaissances
 
-### Prefill
+### **Prefill**
 
-Le prefill traite les \(N\) tokens du prompt sous masque causal. Les opérations
+Le **prefill** traite les $N$ tokens du prompt sous masque causal. Les opérations
 sur les positions peuvent être exécutées en parallèle parce que toutes les
 valeurs du prompt sont déjà connues.
 
 Chaque couche produit les clés et valeurs correspondant à ces positions. Le
 runtime conserve celles qui seront nécessaires aux futurs calculs d'attention.
 Le premier logit de génération provient de la dernière position utile du
-prefill.
+**prefill**.
 
 Le temps avant le premier token inclut donc Template, tokenisation, transfert
-des entrées, prefill et choix du premier token. Il ne se réduit pas au seul
-sampling.
+des entrées, **prefill** et choix du premier token. Il ne se réduit pas au seul
+**sampling**.
 
-### Decode
+### **Decode**
 
-Après avoir choisi un token, le decode calcule sa nouvelle représentation
+Après avoir choisi un token, le **decode** calcule sa nouvelle représentation
 position par position. À chaque couche :
 
 1. produire `Q`, `K` et `V` pour la nouvelle position ;
@@ -31,7 +31,7 @@ préfixe à chaque tour. Avec cache, il les relit.
 
 ### Ce que le cache contient
 
-Un cache KV courant contient, pour chaque couche, les clés et valeurs des
+Un [[glossaire/cache-kv|cache KV]] courant contient, pour chaque couche, les clés et valeurs des
 positions conservées, ainsi que les informations permettant de les positionner
 et de les masquer correctement.
 
@@ -68,7 +68,7 @@ Ces propriétés doivent être mesurées sur le runtime et le matériel concern�
 Un cache dépend au minimum du checkpoint, des couches, de la convention de
 position, du préfixe exact et de la configuration d'attention. Le réutiliser
 avec un autre Template ou un autre modèle donne des états sans rapport avec le
-nouvel Input.
+nouvel **Input**.
 
 Partager un cache de préfixe stable peut être une optimisation volontaire. Le
 préfixe doit être identique au niveau des identifiants et sa frontière de

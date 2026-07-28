@@ -29,4 +29,4 @@ def attention(
 ```
 
 Pour simuler la causalité à la position `i`, ne fournir que les clés et valeurs
-`0..i`, ou masquer explicitement le reste avant softmax.
+`0..i`, ou masquer explicitement le reste avant **softmax**.

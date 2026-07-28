@@ -12,7 +12,15 @@
     "La synchronisation avec uv"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "environnement virtuel",
+    "frontend de projet",
+    "backend de build",
+    "lockfile",
+    "wheel",
+    "sdist",
+    "uv"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/preambule-python/01-environnements-dependances.md",
   "profil_par_defaut": "complet",
@@ -30,7 +38,7 @@
       "packaging"
     ],
     "created": "2026-07-25",
-    "updated": "2026-07-25",
+    "updated": "2026-07-28",
     "verified": "2026-07-25",
     "processus": "aucun — préparation du projet",
     "schema": "environnement-projet-python",

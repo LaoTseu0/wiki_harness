@@ -8,7 +8,7 @@
   penalty.
 - [Transformers — `GenerationConfig`, documentation `main` vérifiée le
   2026-07-27](https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig) —
-  paramètres de température, top-k, top-p, min-p et répétition.
+  paramètres de **température**, **top-k**, **top-p**, **min-p** et répétition.
 - [Transformers — `logits_process.py`, révision `main` vérifiée le
   2026-07-27](https://github.com/huggingface/transformers/blob/main/src/transformers/generation/logits_process.py) —
   formules d'implémentation et garanties minimales.

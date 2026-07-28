@@ -11,31 +11,31 @@ Une interface de chat manipule des objets tels que :
 ]
 ```
 
-Le Transformer decoder-only reçoit une séquence d'identifiants. Le Template
+Le Transformer **decoder-only** reçoit une séquence d'identifiants. Le **Template**
 doit donc encoder l'ordre, les rôles, les frontières de messages et le point où
 une réponse est attendue.
 
 Deux modèles entraînés avec des formats différents peuvent employer les mêmes
-noms de rôles tout en exigeant des séquences incompatibles. Un Template n'est
+noms de rôles tout en exigeant des séquences incompatibles. Un **Template** n'est
 pas interchangeable parce qu'il « ressemble » à ChatML ou à une autre
 convention.
 
-### Le moindre séparateur fait partie du prompt
+### Le moindre séparateur fait partie du [[glossaire/prompt|prompt]]
 
 Un retour à la ligne, un espace ou un token de fin de tour modifie le texte puis
-la tokenisation. Les espaces ajoutés par un moteur de Template ne sont pas une
+la tokenisation. Les espaces ajoutés par un moteur de **Template** ne sont pas une
 question esthétique. Ils deviennent des données du modèle.
 
-Dans Transformers, le Template est généralement une expression Jinja associée
-au tokenizer. `apply_chat_template()` reçoit notamment `messages` et
+Dans Transformers, le **Template** est généralement une expression Jinja associée
+au **tokenizer**. `apply_chat_template()` reçoit notamment `messages` et
 `add_generation_prompt`. Les tokens déclarés dans la carte des tokens spéciaux
-sont accessibles au Template.
+sont accessibles au **Template**.
 
 ### Ouvrir un nouveau tour ou continuer le dernier
 
-`add_generation_prompt=True` demande au Template d'ajouter, lorsqu'il en
+`add_generation_prompt=True` demande au **Template** d'ajouter, lorsqu'il en
 possède un, le préfixe qui annonce un nouveau message assistant. Certains
-Templates n'en ont pas besoin ; l'option peut alors ne rien changer.
+**Templates** n'en ont pas besoin ; l'option peut alors ne rien changer.
 
 Continuer un message assistant déjà commencé est un autre contrat. Ajouter le
 préfixe d'un nouveau tour dans ce cas sépare le préremplissage de sa suite.
@@ -52,11 +52,11 @@ texte = tokenizer.apply_chat_template(messages, tokenize=False)
 ids_separes = tokenizer.encode(texte, add_special_tokens=False)
 ```
 
-Si le Template contient déjà les marqueurs requis, la seconde tokenisation
+Si le **Template** contient déjà les marqueurs requis, la seconde tokenisation
 désactive leur ajout automatique. Le contrat utile est l'égalité des
 identifiants finaux, pas seulement l'égalité de deux chaînes affichées.
 
-### Un Template ne protège pas les instructions
+### Un **Template** ne protège pas les instructions
 
 Les délimiteurs aident le modèle à reconnaître les rôles appris. Ils ne
 constituent pas une séparation de privilèges comparable à celle d'un processus

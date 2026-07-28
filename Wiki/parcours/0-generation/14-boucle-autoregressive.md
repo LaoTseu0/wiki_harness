@@ -6,7 +6,7 @@ parcours: 0-generation
 statut: brouillon
 tags: [generation, autoregression, loop]
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 verified: 2026-07-27
 processus: generation-token
 etape: reinjection
@@ -27,23 +27,23 @@ contrat: praxis.generation.GenerationLoop
 
 **Processus** —
 [[generator/guardrails/schema/processus/generation-token.canvas|de l'échange à la réponse générée]].  
-Input global : messages structurés. Output global : texte généré et raison
+[[glossaire/input|Input]] global : messages structurés. [[glossaire/output|Output]] global : texte généré et raison
 d'arrêt.  
 Grandes étapes : inférence → choix → ajout → décodage → décision d'arrêt →
 réinjection.
 
 **Étape ouverte** —
 `condition-arret → reinjection → inference`.  
-Input : séquence étendue, état du run et décision de continuer. Output : nouvel
-Input du modèle pour le pas suivant.  
-Responsabilité : faire du token choisi une partie immuable du préfixe suivant.
+**Input** : séquence étendue, état du run et décision de continuer. **Output** : nouvel
+**Input** du modèle pour le pas suivant.  
+Responsabilité : faire du [[glossaire/token|token]] choisi une partie immuable du préfixe suivant.
 
-**L'essentiel** — un modèle causal produit une distribution pour une position.
-Le harnais choisit un token, l'ajoute au préfixe et recommence jusqu'à une
-condition d'arrêt.
+**L'essentiel** — la [[glossaire/boucle-autoregressive|boucle autorégressive]] choisit un **token**, l'ajoute au
+préfixe et recommence jusqu'à une condition d'arrêt. Le modèle causal produit
+une distribution pour chaque nouvelle position.
 
 **Recomposer** — chaque tour repasse par l'inférence, les transformations et le
-sampling. Le token réinjecté modifie toutes les distributions suivantes ; une
+[[glossaire/sampling|sampling]]. Le **token** réinjecté modifie toutes les distributions suivantes ; une
 divergence locale devient une nouvelle trajectoire.
 
 ![[boucle-autoregressive.canvas]]
@@ -52,26 +52,26 @@ divergence locale devient une nouvelle trajectoire.
 
 ### Factorisation autorégressive
 
-La probabilité d'une suite \(t_1,\ldots,t_N\) se factorise :
+La probabilité d'une suite $t_1,\ldots,t_N$ se factorise :
 
-\[
+$$
 P(t_1,\ldots,t_N)
 =
 \prod_{i=1}^{N} P(t_i \mid t_1,\ldots,t_{i-1})
-\]
+$$
 
-Le passage avant fournit la distribution du prochain token conditionnellement
+Le passage avant fournit la distribution du prochain **token** conditionnellement
 au préfixe courant. Il ne produit pas toute la réponse en une seule décision.
 
-### Le token choisi devient une donnée
+### Le **token** choisi devient une donnée
 
-Après sampling, le token est ajouté à la séquence. Le pas suivant le traite
+Après **sampling**, le **token** est ajouté à la séquence. Le pas suivant le traite
 comme n'importe quel élément du préfixe. Le modèle ne garde pas à côté une
 liste de candidats abandonnés.
 
 Revenir sur un choix exige un algorithme de recherche, un fork de trajectoire
-ou une nouvelle génération. La boucle greedy ou sampling simple ne corrige pas
-spontanément un token déjà réinjecté.
+ou une nouvelle génération. La boucle greedy ou **sampling** simple ne corrige pas
+spontanément un **token** déjà réinjecté.
 
 ### État minimal du run
 
@@ -101,17 +101,17 @@ Un ordre explicite évite les effets cachés :
 7. réinjecter seulement si la génération continue.
 
 Certaines implémentations vérifient EOS immédiatement après le choix et ne
-décodent pas ce token comme contenu. Cette variation doit être fixée par la
+décodent pas ce **token** comme contenu. Cette variation doit être fixée par la
 politique d'arrêt ; elle ne change pas le principe autorégressif.
 
 ### Entraînement et inférence
 
 Pendant l'entraînement causal, plusieurs positions d'une séquence connue
 peuvent être évaluées en parallèle sous masque causal. À l'inférence, le
-prochain token n'existe pas encore : chaque nouvelle position dépend du choix
+prochain **token** n'existe pas encore : chaque nouvelle position dépend du choix
 précédent.
 
-Cette dépendance séquentielle limite la parallélisation du decode, même si le
+Cette dépendance séquentielle limite la parallélisation du [[glossaire/decode|decode]], même si le
 calcul interne d'un passage avant reste massivement parallèle.
 
 ## Reconstruction
@@ -158,10 +158,10 @@ Le maximum reste obligatoire même si une fonction EOS est fournie.
 - **Coût accepté** — davantage de petits objets et d'événements qu'un simple
   appel `generate()`.
 - **Condition de révision** — le Parcours 9 généralisera cette boucle en boucle
-  d'agent ; le Parcours 0 reste limité au prochain token.
+  d'agent ; le Parcours 0 reste limité au prochain **token**.
 - **Contrat** — `praxis.generation.GenerationLoop`.
-- **Invariant et tests** — au plus un token est ajouté par tour ; chaque Input
-  est le préfixe précédent plus ce token ; un budget fini borne la boucle.
+- **Invariant et tests** — au plus un **token** est ajouté par tour ; chaque **Input**
+  est le préfixe précédent plus ce **token** ; un budget fini borne la boucle.
 
 ## Limites et cas d'échec
 
@@ -176,11 +176,11 @@ Le maximum reste obligatoire même si une fonction EOS est fournie.
 
 ## Se tester
 
-1. Pourquoi une seule différence de token peut-elle faire diverger tout le
+1. Pourquoi une seule différence de **token** peut-elle faire diverger tout le
    suffixe ?
 2. Quelle partie de l'état doit progresser à chaque tirage aléatoire ?
 3. Pourquoi l'entraînement peut-il évaluer plusieurs positions en parallèle
-   alors que le decode simple reste séquentiel ?
+   alors que le **decode** simple reste séquentiel ?
 4. Quelle garantie apporte un budget maximal même lorsque EOS existe ?
 
 [Vérifier les réponses](../../corrections/0-generation/00-parcours-0.md#14--réinjecter-le-token-choisi).

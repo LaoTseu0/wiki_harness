@@ -8,35 +8,35 @@
   "sections": {
     "prerequis": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "savoir-le-situer": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "connaissances": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "reconstruction": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "decision-praxis": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "limites": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "se-tester": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "references": {
       "statut": "generee",
-      "mise_a_jour": "2026-07-25"
+      "mise_a_jour": "2026-07-28"
     },
     "mesures": {
       "statut": "a-generer"

@@ -12,7 +12,16 @@
     "Encodage, décodage et aller-retour"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "tokenizer",
+    "vocabulaire",
+    "BPE",
+    "SentencePiece",
+    "checkpoint",
+    "token"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/02-tokenisation-vocabulaire.md",
   "profil_par_defaut": "complet",
@@ -30,7 +39,7 @@
       "sentencepiece"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "tokenisation",

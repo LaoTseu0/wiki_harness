@@ -1,6 +1,6 @@
 ## Reconstruction
 
-Apprendre un BPE miniature sur un corpus volontairement réduit :
+Apprendre un **BPE** miniature sur un corpus volontairement réduit :
 
 ```python
 from collections import Counter
@@ -44,5 +44,5 @@ for _ in range(4):
 ```
 
 Cette reconstruction montre l'apprentissage des fusions. Elle ne reproduit ni
-le pré-tokenizer, ni les optimisations, ni toutes les règles d'égalité d'un
-tokenizer de production.
+le pré-**tokenizer**, ni les optimisations, ni toutes les règles d'égalité d'un
+**tokenizer** de production.

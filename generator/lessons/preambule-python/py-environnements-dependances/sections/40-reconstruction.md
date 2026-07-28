@@ -18,5 +18,5 @@ python3 -m venv .venv
 ```
 
 L'expérience doit montrer deux préfixes distincts et la valeur `True`. Elle
-n'établit encore rien sur le resolver, le lockfile ou le packaging : elle isole
-seulement le mécanisme de l'environnement virtuel.
+n'établit encore rien sur le resolver, le **lockfile** ou le packaging : elle isole
+seulement le mécanisme de l'**environnement virtuel**.

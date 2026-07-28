@@ -6,4 +6,4 @@
 - [Transformers — Chat templates](https://huggingface.co/docs/transformers/chat_templating) —
   `add_generation_prompt`, continuation et tokenisation.
 - [Model card SmolLM2-135M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct) —
-  exemple concret de Template appliqué avant la génération locale.
+  exemple concret de **Template** appliqué avant la génération locale.

@@ -1,6 +1,6 @@
 ## Limites et cas d'échec
 
-- **La reconstruction ne prouve pas** — que le Template jouet correspond à un
+- **La reconstruction ne prouve pas** — que le **Template** jouet correspond à un
   modèle réel.
 - **Praxis ne garantit pas encore** — que le modèle suivra le rôle déclaré.
 - **Échec provoqué** — ajouter ou retirer un retour à la ligne doit modifier la

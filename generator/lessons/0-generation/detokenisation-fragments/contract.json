@@ -13,7 +13,15 @@
     "Buffer de sortie"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "token",
+    "UTF-8",
+    "détokenisation",
+    "streaming",
+    "buffer"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/15-detokenisation-fragments.md",
   "profil_par_defaut": "complet",
@@ -31,7 +39,7 @@
       "utf8"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "generation-token",
     "etape": "detokenisation",

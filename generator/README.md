@@ -92,14 +92,21 @@ python generator/tools/assemble_lesson.py position-rope --profil apprentissage -
 ## Contrôler
 
 ```bash
+python generator/tools/test_glossarylib.py
+python generator/tools/format_glossary_terms.py --verifier
 python generator/tools/validate_lessons.py
 python generator/tools/canvas.py --verifier
 ```
 
-Le premier contrôle vérifie les contrats, les états, les fragments, les profils
-et la conformité des sorties assemblées. Une dette éditoriale trouvée dans une
-section non validée reste un avertissement. La même dette devient une erreur
-dès que la section est marquée `validee`.
+Le test protège le traitement des pluriels et des zones Markdown qui ne sont
+pas de la prose. Le formateur vérifie que les fragments portent déjà la mise en
+forme déclarée par les contrats. Le validateur principal vérifie les contrats,
+les états, les fragments, les profils et la conformité des sorties assemblées.
+Le contrôle du glossaire exige une entrée française, un lien sur la première
+occurrence de prose et du gras sur les occurrences suivantes. Le code, les URL
+et les libellés de navigation ne sont pas des occurrences de prose. Une dette
+éditoriale trouvée dans une section non validée reste un avertissement. La même
+dette devient une erreur dès que la section est marquée `validee`.
 
 ## Migration initiale
 

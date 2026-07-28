@@ -1,27 +1,27 @@
 ## Connaissances
 
-### EOS
+### **EOS**
 
-EOS est un identifiant de vocabulaire choisi comme les autres. La politique
+**EOS** est un identifiant de vocabulaire choisi comme les autres. La politique
 d'arrêt compare l'identifiant produit à un ensemble configuré. Elle peut
 exclure ce token du texte visible tout en le conservant dans la trajectoire.
 
-Forcer EOS lorsque le budget est atteint n'est pas équivalent à observer un EOS
-spontané : le premier est une intervention du runtime, le second un choix du
+Forcer **EOS** lorsque le budget est atteint n'est pas équivalent à observer un **EOS**
+spontané : le premier est une intervention du [[glossaire/runtime|runtime]], le second un choix du
 modèle. Les raisons doivent rester distinctes.
 
-### Stop sequences
+### **Stop sequences**
 
-Une stop sequence est une chaîne ou une séquence d'octets recherchée dans la
+Une **stop sequence** est une chaîne ou une séquence d'octets recherchée dans la
 sortie reconstruite. Elle peut :
 
 - traverser plusieurs tokens ;
-- partager un préfixe avec une autre stop sequence ;
+- partager un préfixe avec une autre **stop sequence** ;
 - commencer à la fin du dernier fragment reçu ;
 - apparaître dans un token qui contient aussi du texte antérieur.
 
 La publication doit donc retenir le suffixe qui pourrait encore devenir un
-marqueur. Si le contrat exclut la stop sequence de la réponse, elle ne doit pas
+marqueur. Si le contrat exclut la **stop sequence** de la réponse, elle ne doit pas
 avoir été streamée avant sa reconnaissance.
 
 Une correspondance sur la chaîne décodée et une correspondance sur les
@@ -32,7 +32,7 @@ former le même texte.
 
 `max_new_tokens` compte les tokens produits après le prompt. Il se distingue
 d'une longueur totale comprenant l'entrée. Quand le compteur atteint le budget,
-la boucle s'arrête même sans EOS.
+la boucle s'arrête même sans **EOS**.
 
 Une valeur maximale ne réserve pas automatiquement la place correspondante
 dans la fenêtre de contexte. Cette précondition sera ouverte dans la leçon
@@ -55,7 +55,7 @@ politiques de retry, d'approbation et de reprise appartiennent aux Parcours 2,
 
 ### Priorité et simultanéité
 
-Le dernier token autorisé peut être EOS au moment exact où le budget est
+Le dernier token autorisé peut être **EOS** au moment exact où le budget est
 atteint. La politique doit choisir une priorité stable. Préférer `eos` conserve
 l'information que le modèle a produit une fin ; préférer `max_new_tokens`
 indique que la limite a été atteinte. Aucun choix n'est implicite.

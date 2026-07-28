@@ -22,6 +22,6 @@ assert unicodedata.normalize("NFC", textes["précomposé"]) == unicodedata.norma
 assert textes["précomposé"].encode("utf-8") != textes["décomposé"].encode("utf-8")
 ```
 
-L'expérience isole trois faits : le rendu ne fixe pas la séquence de points de
-code, `len(str)` ne compte pas les octets et une normalisation peut rendre deux
+L'expérience isole trois faits : le rendu ne fixe pas la séquence de **points de
+code**, `len(str)` ne compte pas les **octets** et une normalisation peut rendre deux
 séquences égales sans qu'elles l'aient été au départ.

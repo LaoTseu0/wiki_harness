@@ -12,7 +12,15 @@
     "Variantes d'architecture"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "MLP",
+    "residual stream",
+    "SwiGLU",
+    "MoE",
+    "runtime"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/09-mlp-transformer.md",
   "profil_par_defaut": "complet",
@@ -30,7 +38,7 @@
       "swiglu"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "inference-transformer",
     "etape": "mlp",

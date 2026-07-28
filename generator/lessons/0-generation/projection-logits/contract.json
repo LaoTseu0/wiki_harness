@@ -12,7 +12,13 @@
     "Partage de poids optionnel"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "logit",
+    "embedding",
+    "token"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/10-projection-logits.md",
   "profil_par_defaut": "complet",
@@ -30,7 +36,7 @@
       "lm-head"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-29",
     "verified": "2026-07-27",
     "processus": "inference-transformer",
     "etape": "projection-vocabulaire",

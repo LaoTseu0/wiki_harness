@@ -12,7 +12,14 @@
     "Position absolue du cache"
   ],
   "hors_perimetre": [],
-  "termes": [],
+  "termes": [
+    "Input",
+    "Output",
+    "RoPE",
+    "masque causal",
+    "cache KV",
+    "checkpoint"
+  ],
   "regles_supplementaires": [],
   "sortie": "Wiki/parcours/0-generation/06-position-rope.md",
   "profil_par_defaut": "complet",
@@ -34,7 +41,7 @@
       "position"
     ],
     "created": "2026-07-27",
-    "updated": "2026-07-27",
+    "updated": "2026-07-28",
     "verified": "2026-07-27",
     "processus": "inference-transformer",
     "etape": "attention-causale",
