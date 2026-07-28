@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "sampling-reproductibilite",
+  "titre": "Tirer le prochain token",
+  "concept_central": "Tirer le prochain token",
+  "attribution_cartographie": "échantillonnage, seed, sources d'aléa et reproductibilité",
+  "notions": [
+    "Distribution catégorielle",
+    "État du générateur pseudo-aléatoire",
+    "La seed ne suffit pas",
+    "Greedy et départage",
+    "Reproductibilité contre qualité"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/13-sampling-reproductibilite.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 1,
+  "frontmatter": {
+    "id": "sampling-reproductibilite",
+    "type": "leçon",
+    "titre": "Tirer le prochain token",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "sampling",
+      "seed",
+      "reproductibilite"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "sampling",
+    "brique": "generation",
+    "contrat": "praxis.generation.Sampler"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}

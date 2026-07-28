@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "id": "unicode-octets",
+  "titre": "Texte, Unicode et octets",
+  "concept_central": "Texte, Unicode et octets",
+  "attribution_cartographie": "points de code, encodage, bytes et limites d'un caractère",
+  "notions": [
+    "Du caractère abstrait au point de code",
+    "Un symbole visible peut contenir plusieurs points de code",
+    "UTF-8 produit des octets",
+    "Le token est encore une autre unité"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/01-unicode-octets.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "visualisation": {
+    "hauteurs": {
+      "caractere-abstrait": 160,
+      "point-code": 160,
+      "valeur-scalaire": 160
+    }
+  },
+  "frontmatter": {
+    "id": "unicode-octets",
+    "type": "leçon",
+    "titre": "Texte, Unicode et octets",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "unicode",
+      "utf8"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "aucun — représentation fondamentale du texte",
+    "schema": "representation-texte",
+    "element": "point-code",
+    "brique": "generation",
+    "contrat": "aucun — prépare la frontière textuelle du tokenizer"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}

@@ -1,31 +1,13 @@
 {
   "nodes": [
     {
-      "id": "projet-versionne",
+      "id": "groupe-py-environnements-dependances",
       "type": "group",
-      "x": -160,
-      "y": 0,
-      "width": 980,
-      "height": 620,
-      "label": "PROJET VERSIONNÉ"
-    },
-    {
-      "id": "environnement-local",
-      "type": "group",
-      "x": 1100,
-      "y": 0,
-      "width": 740,
-      "height": 620,
-      "label": "ENVIRONNEMENT LOCAL NON VERSIONNÉ"
-    },
-    {
-      "id": "distribution",
-      "type": "group",
-      "x": 1960,
-      "y": 0,
-      "width": 480,
-      "height": 620,
-      "label": "ARTEFACTS DE DISTRIBUTION"
+      "x": -130,
+      "y": 80,
+      "width": 1940,
+      "height": 450,
+      "label": "Environnements et dépendances"
     },
     {
       "id": "interpreteur-base",
@@ -58,24 +40,6 @@
       "color": "5"
     },
     {
-      "id": "backend-build",
-      "type": "text",
-      "text": "**Backend de build**\n\nTransformer les sources selon le contrat déclaré",
-      "x": 2050,
-      "y": 100,
-      "width": 300,
-      "height": 140
-    },
-    {
-      "id": "wheel-sdist",
-      "type": "text",
-      "text": "**Wheel et sdist**\n\nArtefact installable et archive source",
-      "x": 2050,
-      "y": 360,
-      "width": 300,
-      "height": 140
-    },
-    {
       "id": "pyproject-toml",
       "type": "text",
       "text": "**RELATION DIRECTE**\n\n**pyproject.toml**\n\nMétadonnées, contraintes, backend et configuration",
@@ -84,15 +48,6 @@
       "width": 260,
       "height": 140,
       "color": "5"
-    },
-    {
-      "id": "sources-praxis",
-      "type": "text",
-      "text": "**Sources de Praxis**\n\nCode destiné à devenir importable",
-      "x": 200,
-      "y": 100,
-      "width": 260,
-      "height": 140
     },
     {
       "id": "frontend-projet",
@@ -171,46 +126,6 @@
       "toNode": "site-packages",
       "toSide": "top",
       "label": "isole"
-    },
-    {
-      "id": "sources-installees-editable",
-      "fromNode": "sources-praxis",
-      "fromSide": "right",
-      "toNode": "site-packages",
-      "toSide": "left",
-      "label": "installation éditable"
-    },
-    {
-      "id": "pyproject-designe-backend",
-      "fromNode": "pyproject-toml",
-      "fromSide": "right",
-      "toNode": "backend-build",
-      "toSide": "left",
-      "label": "désigne"
-    },
-    {
-      "id": "sources-alimentent-backend",
-      "fromNode": "sources-praxis",
-      "fromSide": "right",
-      "toNode": "backend-build",
-      "toSide": "left",
-      "label": "fournissent le contenu"
-    },
-    {
-      "id": "frontend-invoque-backend",
-      "fromNode": "frontend-projet",
-      "fromSide": "right",
-      "toNode": "backend-build",
-      "toSide": "left",
-      "label": "invoque"
-    },
-    {
-      "id": "backend-produit-artefacts",
-      "fromNode": "backend-build",
-      "fromSide": "bottom",
-      "toNode": "wheel-sdist",
-      "toSide": "top",
-      "label": "produit"
     }
   ]
 }

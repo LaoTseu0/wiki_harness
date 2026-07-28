@@ -1,4 +1,12 @@
-# Contrat du projet
+# Archive du contrat de génération 1
+
+> [!warning]
+> Ce fichier conserve le contrat monolithique antérieur au refactor par
+> sections. Il n’est plus chargé pour générer une leçon. Les règles canoniques
+> ont été réparties depuis ce texte et leur point d’entrée est
+> [CADRAGE.md](CADRAGE.md).
+
+## Contrat historique
 
 Ce fichier définit ce que le dépôt construit, comment le cours transmet la
 connaissance et sous quelle forme une pièce rejoint Praxis.
@@ -104,20 +112,6 @@ Chaque Parcours contient quatre résultats :
 un fil rouge de Mnémos. Le produit ne doit pas attendre le dernier Parcours pour
 commencer à fonctionner.
 
-## Local-first et comparaison
-
-Le petit modèle local est le terrain principal :
-
-- il rend les paramètres et les limites observables ;
-- il permet de répéter les expériences ;
-- il conserve les données personnelles dans l'infrastructure domestique ;
-- il donne un usage concret aux mécanismes appris.
-
-Une API cloud sert à éprouver les contrats, comparer une capacité ou fournir un
-repli. Une abstraction n'efface pas les différences : contexte, streaming,
-sorties structurées, outils, raisonnement et multimodal sont décrits comme des
-capacités, pas comme les méthodes obligatoires d'un `Provider` universel.
-
 ## Connaissance stable et veille
 
 La cartographie contient les mécanismes durables. Les fonctions mouvantes d'un
@@ -204,6 +198,8 @@ Un processus complet respecte ces conventions :
 - les identifiants de nœuds et d'arêtes sont uniques et stables ;
 - l'identifiant d'une étape est un slug lisible, réutilisé par le Frontmatter
   des leçons ;
+- une vue destinée à une leçon place les nœuds présentés dans un `group` ;
+  le `label` du `group` reprend le nom du mécanisme étudié ;
 - le flux principal se lit de gauche à droite ;
 - une boucle de retour passe sous le flux principal ;
 - une arête porte un libellé lorsque sa donnée ou sa condition n'est pas
@@ -493,6 +489,21 @@ La cartographie fixe ce que chaque Parcours doit couvrir. Une notion ne peut pas
 disparaître pendant la rédaction : elle devient une leçon, une partie
 explicitement rattachée à une leçon, ou une entrée de glossaire.
 
+## Termes techniques et glossaire
+
+Un terme ou un mot-clé technique spécifique qui exige une définition pour
+comprendre le cours possède une entrée dans `Wiki/glossaire/`. Cette entrée
+conserve le terme consacré et donne sa définition en français simple.
+
+Dans le corps de chaque leçon :
+
+1. la première occurrence du terme ou de l'expression porte un lien vers son
+   entrée de glossaire ;
+2. les occurrences suivantes dans cette même leçon sont en gras, sans lien.
+
+La règle recommence dans chaque leçon. Elle rend la définition accessible au
+premier emploi sans multiplier les liens dans le reste du texte.
+
 ## Cadrage d'un Parcours avant rédaction
 
 Avant la première leçon d'un Parcours, sa rubrique de cartographie reçoit un
@@ -560,6 +571,14 @@ sources change `verified`.
 
 Une leçon déclare exactement un couple de positionnement : `processus`–`etape`
 ou `schema`–`element`.
+
+## MathJax
+
+Dans une leçon destinée à Obsidian :
+
+- une formule intégrée à une phrase utilise `$...$` ;
+- une formule en bloc utilise `$$...$$` ;
+- les délimiteurs `\(...\)` et `\[...\]` ne sont pas utilisés.
 
 ## Squelette
 

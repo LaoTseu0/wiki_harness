@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "id": "fenetre-contexte-cout",
+  "titre": "Fenêtre de contexte et coût",
+  "concept_central": "Fenêtre de contexte et coût",
+  "attribution_cartographie": "limite de contexte, croissance du coût et frontière de la mesure",
+  "notions": [
+    "Trois nombres différents",
+    "La capacité effective",
+    "Coût du prefill",
+    "Coût du decode avec cache",
+    "Les architectures peuvent changer ces lois locales",
+    "La politique de contexte vient après la frontière"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/18-fenetre-contexte-cout.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "fenetre-contexte-cout",
+    "type": "leçon",
+    "titre": "Fenêtre de contexte et coût",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "context-window",
+      "complexity",
+      "budgets"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "generation-token",
+    "etape": "ajout-token",
+    "brique": "generation",
+    "contrat": "praxis.generation.ContextLimit"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}

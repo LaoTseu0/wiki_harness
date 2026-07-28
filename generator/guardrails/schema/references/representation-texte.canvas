@@ -1,23 +1,23 @@
 {
 	"nodes":[
-		{"id":"note:lecture","type":"text","x":0,"y":-300,"width":760,"height":180,"text":"# Représenter un texte\n\n**Type** · carte de concepts\n\nChaque arête nomme une relation. La position et la couleur ne créent aucun ordre de traitement."},
-		{"id":"caractere-abstrait","type":"text","x":0,"y":0,"width":280,"height":130,"text":"**Caractère abstrait**\n\nUnité sémantique encodée par Unicode"},
-		{"id":"point-code","type":"text","x":400,"y":0,"width":280,"height":130,"text":"**Point de code**\n\nPosition numérique notée U+XXXX"},
-		{"id":"valeur-scalaire","type":"text","x":800,"y":0,"width":280,"height":130,"text":"**Valeur scalaire**\n\nPoint de code hors zone des surrogates"},
-		{"id":"encodage-utf8","type":"text","x":1200,"y":0,"width":280,"height":130,"text":"**Encodage UTF-8**\n\nAssocier une valeur scalaire à des unités de code"},
-		{"id":"octets","type":"text","x":1600,"y":0,"width":280,"height":130,"text":"**Octets**\n\nUnités de code de 8 bits en UTF-8"},
-		{"id":"grapheme","type":"text","x":200,"y":320,"width":300,"height":150,"text":"**Grapheme cluster**\n\nUnité que l'utilisateur peut percevoir comme un caractère"},
-		{"id":"normalisation","type":"text","x":700,"y":320,"width":300,"height":150,"text":"**Normalisation Unicode**\n\nChoisir une forme canonique ou de compatibilité"},
-		{"id":"chaine-python","type":"text","x":1200,"y":320,"width":300,"height":150,"text":"**str Python**\n\nSéquence de points de code manipulée par le programme"}
+		{"id":"caractere-abstrait","type":"text","text":"**Caractère abstrait**\n\nUnité sémantique encodée par Unicode","x":-980,"y":0,"width":280,"height":130},
+		{"id":"point-code","type":"text","text":"**Point de code**\n\nPosition numérique notée U+XXXX","x":-200,"y":0,"width":280,"height":130},
+		{"id":"valeur-scalaire","type":"text","text":"**Valeur scalaire**\n\nPoint de code hors zone des surrogates","x":420,"y":0,"width":280,"height":130},
+		{"id":"encodage-utf8","type":"text","text":"**Encodage UTF-8**\n\nAssocier une valeur scalaire à des unités de code","x":920,"y":0,"width":280,"height":130},
+		{"id":"octets","type":"text","text":"**Octets**\n\nUnités de code de 8 bits en UTF-8","x":1440,"y":0,"width":280,"height":130},
+		{"id":"grapheme","type":"text","text":"**Grapheme cluster**\n\nUnité que l'utilisateur peut percevoir comme un caractère","x":-840,"y":280,"width":300,"height":150},
+		{"id":"normalisation","type":"text","text":"**Normalisation Unicode**\n\nChoisir une forme canonique ou de compatibilité","x":-220,"y":520,"width":300,"height":150},
+		{"id":"chaine-python","type":"text","text":"**str Python**\n\nSéquence de points de code manipulée par le programme","x":380,"y":280,"width":300,"height":150},
+		{"id":"note:lecture","type":"text","text":"# Représenter un texte\n\n**Type** · carte de concepts\n\nChaque arête nomme une relation. La position et la couleur ne créent aucun ordre de traitement.","x":-980,"y":-300,"width":760,"height":180}
 	],
 	"edges":[
-		{"id":"caractere-vers-point","fromNode":"caractere-abstrait","fromSide":"right","toNode":"point-code","toSide":"left","toEnd":"arrow","label":"reçoit généralement un point de code"},
-		{"id":"point-vers-scalaire","fromNode":"point-code","fromSide":"right","toNode":"valeur-scalaire","toSide":"left","toEnd":"arrow","label":"hors surrogates devient"},
-		{"id":"scalaire-vers-utf8","fromNode":"valeur-scalaire","fromSide":"right","toNode":"encodage-utf8","toSide":"left","toEnd":"arrow","label":"est encodée par"},
-		{"id":"utf8-vers-octets","fromNode":"encodage-utf8","fromSide":"right","toNode":"octets","toSide":"left","toEnd":"arrow","label":"produit 1 à 4"},
-		{"id":"grapheme-vers-points","fromNode":"grapheme","fromSide":"top","toNode":"point-code","toSide":"bottom","toEnd":"arrow","label":"peut regrouper plusieurs"},
-		{"id":"normalisation-vers-points","fromNode":"normalisation","fromSide":"top","toNode":"point-code","toSide":"bottom","toEnd":"arrow","label":"transforme une séquence en une forme équivalente"},
-		{"id":"chaine-vers-points","fromNode":"chaine-python","fromSide":"top","toNode":"point-code","toSide":"bottom","toEnd":"arrow","label":"indexe des"},
-		{"id":"chaine-vers-utf8","fromNode":"chaine-python","fromSide":"top","toNode":"encodage-utf8","toSide":"bottom","toEnd":"arrow","label":"encode explicitement vers"}
+		{"id":"caractere-vers-point","fromNode":"caractere-abstrait","fromSide":"right","toNode":"point-code","toSide":"left","label":"reçoit généralement un point de code"},
+		{"id":"point-vers-scalaire","fromNode":"point-code","fromSide":"right","toNode":"valeur-scalaire","toSide":"left","label":"hors surrogates devient"},
+		{"id":"scalaire-vers-utf8","fromNode":"valeur-scalaire","fromSide":"right","toNode":"encodage-utf8","toSide":"left","label":"est encodée par"},
+		{"id":"utf8-vers-octets","fromNode":"encodage-utf8","fromSide":"right","toNode":"octets","toSide":"left","label":"produit 1 à 4"},
+		{"id":"grapheme-vers-points","fromNode":"grapheme","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"peut regrouper plusieurs"},
+		{"id":"normalisation-vers-points","fromNode":"normalisation","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"transforme une séquence en une forme équivalente"},
+		{"id":"chaine-vers-points","fromNode":"chaine-python","fromSide":"top","toNode":"point-code","toSide":"bottom","label":"indexe des"},
+		{"id":"chaine-vers-utf8","fromNode":"chaine-python","fromSide":"top","toNode":"encodage-utf8","toSide":"bottom","label":"encode explicitement vers"}
 	]
 }

@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "regles_communes": [
+    "generator/guardrails/parcours/AGENTS.md",
+    "generator/guardrails/parcours/CADRAGE.md",
+    "generator/guardrails/parcours/fondations.md",
+    "generator/guardrails/lecon/REGLES.md",
+    "generator/guardrails/lecon/base.md"
+  ],
+  "ordre_lecture": [
+    "prerequis",
+    "savoir-le-situer",
+    "connaissances",
+    "reconstruction",
+    "decision-praxis",
+    "limites",
+    "se-tester",
+    "mesures",
+    "references"
+  ],
+  "sections": {
+    "prerequis": {
+      "titre": "Prérequis",
+      "dependances": [],
+      "regles": [
+        "generator/guardrails/sections/prerequis.md"
+      ]
+    },
+    "savoir-le-situer": {
+      "titre": "Savoir le situer",
+      "dependances": [
+        "references"
+      ],
+      "regles": [
+        "generator/guardrails/sections/savoir-le-situer.md",
+        "generator/guardrails/schema/REGLES.md"
+      ]
+    },
+    "connaissances": {
+      "titre": "Connaissances",
+      "dependances": [
+        "savoir-le-situer",
+        "references"
+      ],
+      "regles": [
+        "generator/guardrails/sections/connaissances.md"
+      ]
+    },
+    "reconstruction": {
+      "titre": "Reconstruction",
+      "dependances": [
+        "connaissances"
+      ],
+      "regles": [
+        "generator/guardrails/sections/reconstruction.md"
+      ]
+    },
+    "decision-praxis": {
+      "titre": "Décision et dépôt dans Praxis",
+      "dependances": [
+        "connaissances",
+        "reconstruction"
+      ],
+      "regles": [
+        "generator/guardrails/sections/decision-praxis.md",
+        "generator/guardrails/parcours/integration.md"
+      ]
+    },
+    "limites": {
+      "titre": "Limites et cas d'échec",
+      "dependances": [
+        "connaissances",
+        "reconstruction"
+      ],
+      "regles": [
+        "generator/guardrails/sections/limites.md"
+      ]
+    },
+    "se-tester": {
+      "titre": "Se tester",
+      "dependances": [
+        "connaissances",
+        "limites"
+      ],
+      "regles": [
+        "generator/guardrails/sections/se-tester.md"
+      ]
+    },
+    "mesures": {
+      "titre": "Mesures",
+      "dependances": [
+        "reconstruction"
+      ],
+      "regles": [
+        "generator/guardrails/sections/mesures.md"
+      ]
+    },
+    "references": {
+      "titre": "Références",
+      "dependances": [],
+      "regles": [
+        "generator/guardrails/sections/references.md"
+      ]
+    }
+  }
+}

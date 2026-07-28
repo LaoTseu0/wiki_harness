@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "attention-causale",
+  "titre": "L'attention causale",
+  "concept_central": "L'attention causale",
+  "attribution_cartographie": "Q, K, V, masque causal et agrégation",
+  "notions": [
+    "Projeter Q, K et V",
+    "Masquer le futur",
+    "Pondérer les valeurs",
+    "Plusieurs têtes",
+    "La causalité ne garantit pas la vérité"
+  ],
+  "hors_perimetre": [],
+  "termes": [],
+  "regles_supplementaires": [],
+  "sortie": "Wiki/parcours/0-generation/07-attention-causale.md",
+  "profil_par_defaut": "complet",
+  "sauts_de_ligne_fin": 2,
+  "frontmatter": {
+    "id": "attention-causale",
+    "type": "leçon",
+    "titre": "L'attention causale",
+    "parcours": "0-generation",
+    "statut": "brouillon",
+    "tags": [
+      "generation",
+      "transformer",
+      "attention"
+    ],
+    "created": "2026-07-27",
+    "updated": "2026-07-27",
+    "verified": "2026-07-27",
+    "processus": "inference-transformer",
+    "etape": "attention-causale",
+    "brique": "generation",
+    "contrat": "aucun — mécanisme interne fourni par le runtime du modèle"
+  },
+  "introduction": "sections/00-introduction.md",
+  "sections": {
+    "prerequis": "sections/10-prerequis.md",
+    "savoir-le-situer": "sections/20-savoir-le-situer.md",
+    "connaissances": "sections/30-connaissances.md",
+    "reconstruction": "sections/40-reconstruction.md",
+    "decision-praxis": "sections/50-decision-praxis.md",
+    "limites": "sections/60-limites.md",
+    "se-tester": "sections/70-se-tester.md",
+    "mesures": "sections/80-mesures.md",
+    "references": "sections/90-references.md"
+  }
+}
