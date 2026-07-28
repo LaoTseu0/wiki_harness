@@ -1,0 +1,219 @@
+{
+  "nodes": [
+    {
+      "id": "identifiants-tokens",
+      "type": "text",
+      "text": "**Identifiants de tokens**\n\nSéquence discrète reçue par le modèle",
+      "x": 0,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "embeddings-tokens",
+      "type": "text",
+      "text": "**Embeddings de tokens**\n\nProjeter chaque identifiant dans le residual stream",
+      "x": 340,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "normalisation-attention",
+      "type": "text",
+      "text": "**Normalisation d'attention**\n\nPréparer l'entrée du sous-bloc",
+      "x": 680,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "attention-causale",
+      "type": "text",
+      "text": "**Attention causale**\n\nQ, K, V, position, masque et cache KV",
+      "x": 1020,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "residu-attention",
+      "type": "text",
+      "text": "**Résidu d'attention**\n\nAjouter la mise à jour au residual stream",
+      "x": 1360,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "normalisation-mlp",
+      "type": "text",
+      "text": "**Normalisation du MLP**\n\nPréparer l'entrée du second sous-bloc",
+      "x": 1700,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "mlp",
+      "type": "text",
+      "text": "**MLP**\n\nTransformer chaque position indépendamment",
+      "x": 2040,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "residu-mlp",
+      "type": "text",
+      "text": "**Résidu du MLP**\n\nAjouter la seconde mise à jour",
+      "x": 2380,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "decider-couche",
+      "type": "text",
+      "text": "**Décider de la couche**\n\nReboucler ou sortir du dernier bloc",
+      "x": 2720,
+      "y": 0,
+      "width": 260,
+      "height": 120
+    },
+    {
+      "id": "normalisation-finale",
+      "type": "text",
+      "text": "**AMONT**\n\n**Normalisation finale**\n\nPréparer la représentation de sortie",
+      "x": 3060,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "color": "5"
+    },
+    {
+      "id": "projection-vocabulaire",
+      "type": "text",
+      "text": "**ÉTAPE OUVERTE**\n\n**Projection vocabulaire**\n\nProduire un score pour chaque token",
+      "x": 3400,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "logits-sortie",
+      "type": "text",
+      "text": "**AVAL**\n\n**Logits**\n\nScores bruts du prochain token",
+      "x": 3740,
+      "y": 0,
+      "width": 260,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "couche-suivante",
+      "type": "text",
+      "text": "**Couche suivante**\n\nTransmettre le residual stream mis à jour",
+      "x": 1700,
+      "y": 320,
+      "width": 260,
+      "height": 120
+    }
+  ],
+  "edges": [
+    {
+      "id": "tokens-vers-embeddings",
+      "fromNode": "identifiants-tokens",
+      "fromSide": "right",
+      "toNode": "embeddings-tokens",
+      "toSide": "left"
+    },
+    {
+      "id": "embeddings-vers-normalisation-attention",
+      "fromNode": "embeddings-tokens",
+      "fromSide": "right",
+      "toNode": "normalisation-attention",
+      "toSide": "left"
+    },
+    {
+      "id": "normalisation-vers-attention",
+      "fromNode": "normalisation-attention",
+      "fromSide": "right",
+      "toNode": "attention-causale",
+      "toSide": "left"
+    },
+    {
+      "id": "attention-vers-residu",
+      "fromNode": "attention-causale",
+      "fromSide": "right",
+      "toNode": "residu-attention",
+      "toSide": "left"
+    },
+    {
+      "id": "residu-attention-vers-normalisation-mlp",
+      "fromNode": "residu-attention",
+      "fromSide": "right",
+      "toNode": "normalisation-mlp",
+      "toSide": "left"
+    },
+    {
+      "id": "normalisation-vers-mlp",
+      "fromNode": "normalisation-mlp",
+      "fromSide": "right",
+      "toNode": "mlp",
+      "toSide": "left"
+    },
+    {
+      "id": "mlp-vers-residu",
+      "fromNode": "mlp",
+      "fromSide": "right",
+      "toNode": "residu-mlp",
+      "toSide": "left"
+    },
+    {
+      "id": "residu-mlp-vers-decision",
+      "fromNode": "residu-mlp",
+      "fromSide": "right",
+      "toNode": "decider-couche",
+      "toSide": "left"
+    },
+    {
+      "id": "decision-vers-normalisation-finale",
+      "fromNode": "decider-couche",
+      "fromSide": "right",
+      "toNode": "normalisation-finale",
+      "toSide": "left",
+      "label": "dernière couche"
+    },
+    {
+      "id": "normalisation-finale-vers-projection",
+      "fromNode": "normalisation-finale",
+      "fromSide": "right",
+      "toNode": "projection-vocabulaire",
+      "toSide": "left"
+    },
+    {
+      "id": "projection-vers-logits",
+      "fromNode": "projection-vocabulaire",
+      "fromSide": "right",
+      "toNode": "logits-sortie",
+      "toSide": "left"
+    },
+    {
+      "id": "decision-vers-couche-suivante",
+      "fromNode": "decider-couche",
+      "fromSide": "bottom",
+      "toNode": "couche-suivante",
+      "toSide": "right",
+      "label": "autre couche"
+    },
+    {
+      "id": "couche-suivante-vers-normalisation-attention",
+      "fromNode": "couche-suivante",
+      "fromSide": "left",
+      "toNode": "normalisation-attention",
+      "toSide": "bottom"
+    }
+  ]
+}
