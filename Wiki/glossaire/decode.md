@@ -5,3 +5,5 @@ réutilise le cache disponible pour éviter de recalculer tout le préfixe.
 
 Après le prefill, le modèle propose un premier token. Le réinjecter avec le cache
 permet de calculer les scores du token suivant sur une seule nouvelle position.
+
+[Distinguer le premier passage du pas incrémental](../parcours/0-generation/17-prefill-decode-kv-cache.md#connaissances)
