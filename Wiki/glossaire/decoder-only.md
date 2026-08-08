@@ -7,3 +7,5 @@ positions futures.
 Pour la séquence A, B, C, les scores à la position B servent à prédire C à partir de A
 et B. Le calcul à cette position exclut C, même si toute la séquence est disponible à
 l’entraînement.
+
+[Relier les préfixes aux prédictions successives](../parcours/0-generation/14-boucle-autoregressive.md#connaissances)
