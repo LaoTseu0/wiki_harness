@@ -6,3 +6,5 @@ partagent cette capacité.
 
 Dans une fenêtre de 100 positions, une entrée de 76 positions, marqueurs compris,
 laisse au plus 24 positions de sortie si toute la séquence doit tenir dans la fenêtre.
+
+[Calculer la place disponible pour la réponse](../parcours/0-generation/18-fenetre-contexte-cout.md#connaissances)
