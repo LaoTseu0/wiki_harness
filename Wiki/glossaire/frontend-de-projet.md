@@ -5,3 +5,5 @@ résoudre, verrouiller, synchroniser, lancer ou construire.
 
 Lors d’une construction pilotée par `uv build`, uv reçoit la commande du projet et
 appelle le backend déclaré pour fabriquer les distributions.
+
+[Suivre la répartition du travail pendant une construction](../parcours/preambule-python/01-environnements-dependances.md#connaissances)
