@@ -6,3 +6,5 @@ du cache KV.
 
 Avec huit têtes de requêtes réparties en deux groupes égaux, quatre têtes consultent
 la même tête de clés et de valeurs dans chaque groupe.
+
+[Voir comment plusieurs requêtes partagent leurs clés et valeurs](../parcours/0-generation/07-attention-causale.md#connaissances)
