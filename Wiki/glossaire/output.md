@@ -6,3 +6,5 @@ contrat précise ce que le consommateur suivant peut considérer comme garanti.
 Pour un vocabulaire de quatre tokens, la projection peut renvoyer quatre logits pour
 la prochaine position. Le composant de sélection reçoit ces quatre scores avant de
 choisir un identifiant.
+
+[Identifier la sortie de la dernière projection](../parcours/0-generation/10-projection-logits.md#connaissances)
