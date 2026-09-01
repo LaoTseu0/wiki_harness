@@ -6,3 +6,5 @@ résiduel.
 
 Dans `x + F(Norm(x))`, le sous-bloc F reçoit une entrée normalisée. Le terme x qui
 rejoint directement la somme conserve sa valeur.
+
+[Suivre les deux chemins jusqu’à l’addition](../parcours/0-generation/08-residual-normalisation.md#connaissances)
