@@ -5,3 +5,5 @@ des valeurs non négatives dont la somme vaut un et conserve l’ordre des score
 
 Pour trois logits égaux, les trois exponentielles sont égales. Après division par leur
 somme, chaque candidat reçoit une probabilité de 1/3.
+
+[Reconstituer la normalisation des scores](../parcours/0-generation/11-logits-softmax.md#connaissances)
