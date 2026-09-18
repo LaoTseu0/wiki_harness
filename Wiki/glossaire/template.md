@@ -7,3 +7,5 @@ séparateurs et les marqueurs attendus par le modèle.
 Une même liste de messages peut être sérialisée avec ou sans ouverture du tour
 assistant. Comparer les identifiants obtenus révèle l’effet de ce choix sur l’entrée
 du modèle.
+
+[Repérer la frontière entre deux tours de chat](../parcours/0-generation/04-templates-chat.md#connaissances)
