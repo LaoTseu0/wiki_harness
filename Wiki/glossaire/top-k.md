@@ -5,3 +5,5 @@ de renormaliser la distribution.
 
 Avec des scores de 7, 4, 2 et 1, top-k réglé à 2 conserve les deux premiers candidats.
 Le tirage se fait sur les probabilités renormalisées de ces deux candidats.
+
+[Déterminer quels candidats restent après le filtre](../parcours/0-generation/12-filtrage-distribution.md#connaissances)
