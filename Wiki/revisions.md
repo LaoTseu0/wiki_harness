@@ -30,3 +30,19 @@ portant sur a et bc.
 </details>
 
 [Tokenisation et vocabulaire](parcours/0-generation/02-tokenisation-vocabulaire.md#connaissances)
+
+## Marqueurs de contrôle
+
+Un encodeur ajoute BOS devant une séquence qui commence déjà par BOS. Que faut-il
+comparer pour repérer l’erreur ?
+
+<details>
+<summary>Réponse</summary>
+
+Comparer la liste d’identifiants produite à la séquence attendue par le modèle. Les
+deux premiers identifiants peuvent être identiques même si aucun marqueur n’apparaît à
+l’écran.
+
+</details>
+
+[Tokens de contrôle](parcours/0-generation/03-tokens-controle.md#connaissances)
