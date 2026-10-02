@@ -46,3 +46,18 @@ l’écran.
 </details>
 
 [Tokens de contrôle](parcours/0-generation/03-tokens-controle.md#connaissances)
+
+## Tours de conversation
+
+Deux prompts affichent les mêmes mots. L’un contient un retour à la ligne de plus
+devant le tour assistant. Comment vérifier si l’entrée du modèle change ?
+
+<details>
+<summary>Réponse</summary>
+
+Appliquer le tokenizer prévu et comparer les séquences d’identifiants, en conservant
+les marqueurs spéciaux.
+
+</details>
+
+[Le texte réellement lu par le modèle](parcours/0-generation/04-templates-chat.md#connaissances)
