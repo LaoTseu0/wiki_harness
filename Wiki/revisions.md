@@ -61,3 +61,18 @@ les marqueurs spéciaux.
 </details>
 
 [Le texte réellement lu par le modèle](parcours/0-generation/04-templates-chat.md#connaissances)
+
+## Dimensions des embeddings
+
+Une table contient 80 lignes de 6 valeurs. Quelle forme obtient-on en sélectionnant
+les lignes 3, 7 et 3 ?
+
+<details>
+<summary>Réponse</summary>
+
+Trois lignes de six valeurs. Avant l’ajout d’informations de contexte ou de position,
+la première et la dernière sélectionnent le même vecteur.
+
+</details>
+
+[Embeddings de tokens](parcours/0-generation/05-embeddings-tokens.md#connaissances)
