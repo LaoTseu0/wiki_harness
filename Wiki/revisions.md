@@ -76,3 +76,17 @@ la première et la dernière sélectionnent le même vecteur.
 </details>
 
 [Embeddings de tokens](parcours/0-generation/05-embeddings-tokens.md#connaissances)
+
+## Rotation de position
+
+Sur une paire de composantes, que devient (1, 0) après une rotation positive d’un
+quart de tour ?
+
+<details>
+<summary>Réponse</summary>
+
+Elle devient (0, 1). La direction change et la norme reste égale à 1.
+
+</details>
+
+[Représenter la position](parcours/0-generation/06-position-rope.md#connaissances)
