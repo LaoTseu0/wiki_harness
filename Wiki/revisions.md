@@ -90,3 +90,18 @@ Elle devient (0, 1). La direction change et la norme reste égale à 1.
 </details>
 
 [Représenter la position](parcours/0-generation/06-position-rope.md#connaissances)
+
+## Accès aux positions
+
+Dans une séquence de quatre positions numérotées à partir de 1, quelles positions la
+troisième peut-elle consulter en attention causale complète ?
+
+<details>
+<summary>Réponse</summary>
+
+Les positions 1, 2 et 3. La quatrième doit être masquée avant la normalisation des
+scores.
+
+</details>
+
+[L'attention causale](parcours/0-generation/07-attention-causale.md#connaissances)
