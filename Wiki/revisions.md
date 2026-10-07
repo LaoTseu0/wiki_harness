@@ -105,3 +105,17 @@ scores.
 </details>
 
 [L'attention causale](parcours/0-generation/07-attention-causale.md#connaissances)
+
+## Chemin résiduel
+
+Dans un bloc pré-norm simplifié, que devient x si le sous-bloc renvoie le vecteur nul
+?
+
+<details>
+<summary>Réponse</summary>
+
+La sortie vaut x, puisque l’addition résiduelle donne x + 0.
+
+</details>
+
+[Residual stream et normalisation](parcours/0-generation/08-residual-normalisation.md#connaissances)
