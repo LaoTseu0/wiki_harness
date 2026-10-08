@@ -119,3 +119,18 @@ La sortie vaut x, puisque l’addition résiduelle donne x + 0.
 </details>
 
 [Residual stream et normalisation](parcours/0-generation/08-residual-normalisation.md#connaissances)
+
+## Projection par position
+
+Un MLP dense reçoit trois vecteurs de largeur 8, élargit chacun à 32 composantes, puis
+revient à 8. Combien de vecteurs sortent du MLP ?
+
+<details>
+<summary>Réponse</summary>
+
+Trois vecteurs de largeur 8. La dimension intermédiaire change pour chaque position et
+le nombre de positions est conservé.
+
+</details>
+
+[Le MLP d'une couche](parcours/0-generation/09-mlp-transformer.md#connaissances)
