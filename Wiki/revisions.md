@@ -134,3 +134,18 @@ le nombre de positions est conservé.
 </details>
 
 [Le MLP d'une couche](parcours/0-generation/09-mlp-transformer.md#connaissances)
+
+## Scores du vocabulaire
+
+La dernière position a une représentation de largeur 8 et le vocabulaire contient 50
+entrées. Combien de scores faut-il pour cette position ?
+
+<details>
+<summary>Réponse</summary>
+
+Cinquante. Chaque entrée du vocabulaire reçoit un score à partir de la même
+représentation de huit composantes.
+
+</details>
+
+[De la représentation aux logits](parcours/0-generation/10-projection-logits.md#connaissances)
