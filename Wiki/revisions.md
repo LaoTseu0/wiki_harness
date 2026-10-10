@@ -149,3 +149,18 @@ représentation de huit composantes.
 </details>
 
 [De la représentation aux logits](parcours/0-generation/10-projection-logits.md#connaissances)
+
+## Stabilité de softmax
+
+Avant softmax, on remplace les scores (1000, 999) par (0, −1). Pourquoi les
+probabilités restent-elles identiques ?
+
+<details>
+<summary>Réponse</summary>
+
+Soustraire 1000 aux deux scores multiplie leurs exponentielles par un même facteur. Ce
+facteur se simplifie lors de la division par la somme.
+
+</details>
+
+[Des logits à une distribution](parcours/0-generation/11-logits-softmax.md#connaissances)
