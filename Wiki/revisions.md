@@ -164,3 +164,18 @@ facteur se simplifie lors de la division par la somme.
 </details>
 
 [Des logits à une distribution](parcours/0-generation/11-logits-softmax.md#connaissances)
+
+## Seuil de filtrage
+
+Deux distributions triées valent (0,9 ; 0,1) et (0,6 ; 0,4). Combien de candidats
+top-p conserve-t-il au seuil 0,8 ?
+
+<details>
+<summary>Réponse</summary>
+
+Un dans la première distribution, deux dans la seconde. Il faut franchir le seuil de
+masse cumulée dans chaque cas.
+
+</details>
+
+[Transformer la distribution](parcours/0-generation/12-filtrage-distribution.md#connaissances)
