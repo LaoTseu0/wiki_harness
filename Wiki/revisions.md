@@ -194,3 +194,18 @@ coïncider, mais les deux sélections ne partent plus du même état.
 </details>
 
 [Tirer le prochain token](parcours/0-generation/13-sampling-reproductibilite.md#connaissances)
+
+## Probabilité d’une suite
+
+Un premier token a une probabilité de 0,4 et le suivant une probabilité de 0,5
+conditionnée au premier. Quelle probabilité attribuer à la paire ?
+
+<details>
+<summary>Réponse</summary>
+
+0,2. La factorisation autorégressive multiplie 0,4 par la probabilité conditionnelle
+0,5.
+
+</details>
+
+[Réinjecter le token choisi](parcours/0-generation/14-boucle-autoregressive.md#connaissances)
