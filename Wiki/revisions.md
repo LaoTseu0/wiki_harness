@@ -179,3 +179,18 @@ masse cumulée dans chaque cas.
 </details>
 
 [Transformer la distribution](parcours/0-generation/12-filtrage-distribution.md#connaissances)
+
+## État du tirage
+
+Deux exécutions ont la même seed. La seconde effectue un tirage de diagnostic avant la
+génération. Peut-on exiger le même prochain token ?
+
+<details>
+<summary>Réponse</summary>
+
+Le tirage supplémentaire avance l’état du générateur. Le prochain token peut
+coïncider, mais les deux sélections ne partent plus du même état.
+
+</details>
+
+[Tirer le prochain token](parcours/0-generation/13-sampling-reproductibilite.md#connaissances)
