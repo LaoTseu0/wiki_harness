@@ -209,3 +209,17 @@ conditionnée au premier. Quelle probabilité attribuer à la paire ?
 </details>
 
 [Réinjecter le token choisi](parcours/0-generation/14-boucle-autoregressive.md#connaissances)
+
+## Décodage par fragments
+
+Le premier fragment contient les octets 41 C3 et le second A9. Que peut émettre un
+décodeur UTF-8 incrémental après chaque fragment ?
+
+<details>
+<summary>Réponse</summary>
+
+Il peut émettre A après le premier et conserver C3. L’arrivée de A9 complète « é ».
+
+</details>
+
+[Reconstruire le texte généré](parcours/0-generation/15-detokenisation-fragments.md#connaissances)
