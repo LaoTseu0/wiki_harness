@@ -223,3 +223,18 @@ Il peut émettre A après le premier et conserver C3. L’arrivée de A9 complè
 </details>
 
 [Reconstruire le texte généré](parcours/0-generation/15-detokenisation-fragments.md#connaissances)
+
+## Arrêt du flux
+
+Le motif d’arrêt est « FIN ». Le flux reçu se termine par « résultat FI ». Quel
+suffixe retenir si le motif doit rester invisible ?
+
+<details>
+<summary>Réponse</summary>
+
+Retenir « FI ». Si le caractère suivant est N, le motif est complet et le texte déjà
+publié peut s’arrêter après l’espace.
+
+</details>
+
+[Borner la génération](parcours/0-generation/16-conditions-arret.md#connaissances)
