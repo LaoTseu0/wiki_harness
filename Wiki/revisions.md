@@ -238,3 +238,19 @@ publié peut s’arrêter après l’espace.
 </details>
 
 [Borner la génération](parcours/0-generation/16-conditions-arret.md#connaissances)
+
+## Longueur du cache
+
+Un préfixe de cinq positions a été traité. Un token vient d’être choisi, mais son
+passage dans le modèle n’a pas encore eu lieu. Combien de positions figurent dans un
+cache complet ?
+
+<details>
+<summary>Réponse</summary>
+
+Cinq. Les clés et valeurs du token choisi ne rejoignent le cache que lorsque sa
+position est traitée.
+
+</details>
+
+[Prefill, decode et cache KV](parcours/0-generation/17-prefill-decode-kv-cache.md#connaissances)
