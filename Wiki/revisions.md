@@ -254,3 +254,18 @@ position est traitée.
 </details>
 
 [Prefill, decode et cache KV](parcours/0-generation/17-prefill-decode-kv-cache.md#connaissances)
+
+## Budget de contexte
+
+Une fenêtre accepte 64 positions. Le contenu en prend 40 et les marqueurs en prennent
+6. Peut-on réserver 20 positions de sortie en gardant toute l’entrée ?
+
+<details>
+<summary>Réponse</summary>
+
+Il reste 18 positions. Il faut libérer au moins deux positions d’entrée ou réduire la
+réserve de sortie.
+
+</details>
+
+[Fenêtre de contexte et coût](parcours/0-generation/18-fenetre-contexte-cout.md#connaissances)
