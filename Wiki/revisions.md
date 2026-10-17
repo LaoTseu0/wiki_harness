@@ -269,3 +269,19 @@ réserve de sortie.
 </details>
 
 [Fenêtre de contexte et coût](parcours/0-generation/18-fenetre-contexte-cout.md#connaissances)
+
+## Recréer un environnement
+
+Après suppression de l’environnement virtuel d’un projet, quels fichiers retrouver
+pour réinstaller les dépendances résolues avec uv ?
+
+<details>
+<summary>Réponse</summary>
+
+Le fichier pyproject.toml porte la déclaration du projet et uv.lock porte la
+résolution. La synchronisation utilise ces informations avec un interpréteur
+compatible.
+
+</details>
+
+[Environnements et dépendances](parcours/preambule-python/01-environnements-dependances.md#connaissances)
